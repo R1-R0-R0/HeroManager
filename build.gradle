@@ -1,9 +1,13 @@
 plugins {
-    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id "edu.sc.seis.launch4j" version "2.4.6"
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
+
+mainClassName = "controller.Main"
 
 repositories {
     mavenCentral()
@@ -12,6 +16,9 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    compileJava.options.encoding = 'UTF-8'
+    compileTestJava.options.encoding = 'UTF-8'
 }
 
 test {
