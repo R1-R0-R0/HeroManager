@@ -1,13 +1,18 @@
 plugins {
+    id 'java'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.8'
-    id "edu.sc.seis.launch4j" version "2.4.6"
+    id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
 
 mainClassName = "controller.Main"
+
+javafx {
+    version = "15.0.1"
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.web']
+}
 
 repositories {
     mavenCentral()
@@ -20,6 +25,7 @@ dependencies {
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
 }
+
 
 test {
     useJUnitPlatform()
