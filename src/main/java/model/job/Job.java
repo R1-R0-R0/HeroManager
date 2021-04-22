@@ -1,6 +1,7 @@
 package model.job;
 
 import model.items.Item;
+import model.race.Race;
 import model.spell.Spell;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class Job {
             intelligenceBoost,
             wisdomBoost,
             charismBoost;
+    private Race race;
     private JobType jobType;
     private List<Item> inventory;
     private String name, description;
