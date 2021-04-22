@@ -21,7 +21,7 @@ public class CharacterView {
     public CharacterView() {
         try {
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/character.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/character.fxml"));
             stage.setTitle("HeroManager - Character");
             stage.setScene(new Scene(root));
             stage.setResizable(false);

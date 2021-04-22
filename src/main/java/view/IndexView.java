@@ -15,7 +15,7 @@ public class IndexView {
     public IndexView() {
         try {
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/index.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/index.fxml"));
             stage.setTitle("HeroManager");
             stage.setScene(new Scene(root));
             stage.show();
