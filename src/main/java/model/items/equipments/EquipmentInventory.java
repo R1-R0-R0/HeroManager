@@ -4,7 +4,7 @@ public class EquipmentInventory {
     private HeadEquipment head;
     private BodyEquipment body;
     private LegsEquipment legs;
-    private FeetsEquipment feets;
+    private FeetEquipment feet;
     private HandsEquipment hands;
     private BeltEquipment belt;
     private MantleEquipment mantle;
@@ -12,13 +12,13 @@ public class EquipmentInventory {
     private RingEquipment leftRing;
     private RingEquipment rightRing;
 
-    public EquipmentInventory(HeadEquipment head, BodyEquipment body, LegsEquipment legs, FeetsEquipment feets,
+    public EquipmentInventory(HeadEquipment head, BodyEquipment body, LegsEquipment legs, FeetEquipment feet,
                               HandsEquipment hands, BeltEquipment belt, MantleEquipment mantle, AmuletEquipment amulet,
                               RingEquipment leftRing, RingEquipment rightRing) {
         this.head = head;
         this.body = body;
         this.legs = legs;
-        this.feets = feets;
+        this.feet = feet;
         this.hands = hands;
         this.belt = belt;
         this.mantle = mantle;
@@ -39,8 +39,8 @@ public class EquipmentInventory {
         return legs;
     }
 
-    public FeetsEquipment getFeets() {
-        return feets;
+    public FeetEquipment getFeet() {
+        return feet;
     }
 
     public HandsEquipment getHands() {

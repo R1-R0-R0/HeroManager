@@ -1,6 +1,6 @@
 package model.items.equipments;
 
-public class FeetsEquipment implements Equipment{
+public class FeetEquipment implements Equipment{
 
 
     private String name;
@@ -9,7 +9,7 @@ public class FeetsEquipment implements Equipment{
     private EquipmentEffect effect;
     private EquipmentType type;
 
-    public FeetsEquipment(String name, String description, int armorBonus, EquipmentEffect effect, EquipmentType type) {
+    public FeetEquipment(String name, String description, int armorBonus, EquipmentEffect effect, EquipmentType type) {
         this.name = name;
         this.description = description;
         this.armorBonus = armorBonus;
