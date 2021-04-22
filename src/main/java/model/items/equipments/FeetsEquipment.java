@@ -1,6 +1,6 @@
 package model.items.equipments;
 
-public class FootEquipment implements Equipment{
+public class FeetsEquipment implements Equipment{
 
 
     String name;
