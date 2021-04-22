@@ -9,6 +9,14 @@ public class FeetsEquipment implements Equipment{
     private EquipmentEffect effect;
     private EquipmentType type;
 
+    public FeetsEquipment(String name, String description, int armorBonus, EquipmentEffect effect, EquipmentType type) {
+        this.name = name;
+        this.description = description;
+        this.armorBonus = armorBonus;
+        this.effect = effect;
+        this.type = type;
+    }
+
     @Override
     public String getName() {
         return name;

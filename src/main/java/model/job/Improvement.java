@@ -6,6 +6,11 @@ public class Improvement {
                     description;
 
 
+    public Improvement(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public String getName() {
         return name;
     }
@@ -13,4 +18,7 @@ public class Improvement {
     public String getDescription() {
         return description;
     }
+
+
+
 }
