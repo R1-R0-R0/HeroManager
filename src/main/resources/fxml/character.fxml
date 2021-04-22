@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CharacterController">
+<VBox prefHeight="600.0" prefWidth="800.0" stylesheets="@css/character.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CharacterController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -39,7 +39,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <TabPane prefHeight="829.0" prefWidth="1170.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0">
             <tabs>
                 <Tab text="Character">
                     <content>
