@@ -1,12 +1,14 @@
 package model.Utils;
 
 
+import model.Characteristics;
 import model.items.consumables.Consumable;
 import model.items.consumables.ConsumableEffect;
 import model.items.equipments.Equipment;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
 import model.items.weapons.WeaponType;
+import model.job.JobSkill;
 import model.job.JobType;
 import model.spell.Component;
 import model.spell.Spell;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reader {
+
+    // TODO : avoir des methode pour choper l'enum sur un string
 
     public static ArrayList<Consumable> jsonReaderConsumable (String Filename){
         JSONParser parser = new JSONParser();
@@ -54,7 +58,7 @@ public class Reader {
 
         ConsumableEffect effect = (ConsumableEffect) objects.get("effect");
 
-        return new Consumable(name,description,effect);
+        return new Consumable(effect,name,description);
     }
 
 
@@ -149,5 +153,41 @@ public class Reader {
 
         return new Spell(name,description,school,castingTime,duration,level,range,jobType,doDamages,components);
     }
+
+    public static ArrayList<JobSkill> jsonReaderJobSkill (String Filename){
+        JSONParser parser = new JSONParser();
+        ArrayList<JobSkill> jobskills = new ArrayList<>();
+
+        try (FileReader reader = new FileReader(Filename)){
+            Object obj = parser.parse(reader);
+            JSONArray objectList = (JSONArray) obj;
+
+            objectList.forEach( element ->  jobskills.add(parseJobSkill((JSONObject) element)));
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return jobskills;
+    }
+
+    private static JobSkill parseJobSkill(JSONObject object)
+    {
+        JSONObject objects = (JSONObject) object.get("spell");
+
+        String name = (String) objects.get("name");
+
+        boolean mastered = (boolean) objects.get("mastered");
+
+        Characteristics characteristic = (Characteristics) objects.get("characteristic");
+
+        return new JobSkill(name,mastered,characteristic);
+    }
+
+
 
 }
