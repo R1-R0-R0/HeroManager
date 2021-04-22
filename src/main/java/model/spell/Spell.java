@@ -14,7 +14,7 @@ public class Spell {
     int level,
         range;
 
-    JobType jobtype;
+    JobType jobType;
     boolean doDamages;
     List<Component> components;
 
@@ -47,8 +47,8 @@ public class Spell {
         return range;
     }
 
-    public JobType getJobtype() {
-        return jobtype;
+    public JobType getJobType() {
+        return jobType;
     }
 
     public boolean isDoDamages() {
