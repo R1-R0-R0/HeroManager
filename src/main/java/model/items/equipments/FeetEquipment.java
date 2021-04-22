@@ -1,6 +1,7 @@
 package model.items.equipments;
 
-public class BeltEquipment implements Equipment{
+public class FeetEquipment implements Equipment{
+
 
     private String name;
     private String description;
@@ -8,7 +9,7 @@ public class BeltEquipment implements Equipment{
     private EquipmentEffect effect;
     private EquipmentType type;
 
-    public BeltEquipment(String name, String description, int armorBonus, EquipmentEffect effect, EquipmentType type) {
+    public FeetEquipment(String name, String description, int armorBonus, EquipmentEffect effect, EquipmentType type) {
         this.name = name;
         this.description = description;
         this.armorBonus = armorBonus;

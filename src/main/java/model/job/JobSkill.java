@@ -3,10 +3,15 @@ package model.job;
 import model.Characteristics;
 
 public class JobSkill {
-    String name;
-    boolean mastered;
-    Characteristics affectedCharacteristic;
+    private String name;
+    private boolean mastered;
+    private Characteristics affectedCharacteristic;
 
+    public JobSkill(String name, boolean mastered, Characteristics affectedCharacteristic) {
+        this.name = name;
+        this.mastered = mastered;
+        this.affectedCharacteristic = affectedCharacteristic;
+    }
 
     public String getName() {
         return name;
@@ -19,4 +24,6 @@ public class JobSkill {
     public Characteristics getAffectedCharacteristic() {
         return affectedCharacteristic;
     }
+
+
 }

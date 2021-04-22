@@ -2,9 +2,14 @@ package model.job;
 
 public class Improvement {
 
-    String  name,
-            description;
+    private String  name,
+                    description;
 
+
+    public Improvement(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     public String getName() {
         return name;
@@ -13,4 +18,7 @@ public class Improvement {
     public String getDescription() {
         return description;
     }
+
+
+
 }
