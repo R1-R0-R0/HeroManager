@@ -1,4 +1,4 @@
-package model;
+package model.job;
 
 public enum JobType {
     BARBARIAN,
