@@ -4,28 +4,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import model.IndexModel;
-import view.IndexView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class IndexController implements Initializable {
 
-    public static IndexController instance;
-    public static IndexView view;
+    private static IndexController instance;
     public static IndexModel model;
 
     @FXML public Button simpleButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        instance = this;
-        view = new IndexView();
         model = new IndexModel();
+
+        instance = this;
     }
 
     @FXML
     public void simpleButtonClick() {
         model.simpleButtonTrigger();
+    }
+
+    public static IndexController getInstance() {
+        return instance;
     }
 }

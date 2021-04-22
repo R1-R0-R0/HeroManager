@@ -1,6 +1,7 @@
 package model;
 
 import controller.IndexController;
+import view.IndexView;
 
 public class IndexModel {
 
@@ -11,7 +12,7 @@ public class IndexModel {
     }
 
     public void simpleButtonTrigger() {
-        IndexController.instance.simpleButton.setText(bool ? ":)" : ":(");
+        IndexView.getInstance().updateButtonText(bool ? ":)" : ":(");
         bool = !bool;
     }
 }
