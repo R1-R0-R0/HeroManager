@@ -12,6 +12,21 @@ public class EquipmentInventory {
     private RingEquipment leftRing;
     private RingEquipment rightRing;
 
+    public EquipmentInventory(HeadEquipment head, BodyEquipment body, LegsEquipment legs, FeetsEquipment feets,
+                              HandsEquipment hands, BeltEquipment belt, MantleEquipment mantle, AmuletEquipment amulet,
+                              RingEquipment leftRing, RingEquipment rightRing) {
+        this.head = head;
+        this.body = body;
+        this.legs = legs;
+        this.feets = feets;
+        this.hands = hands;
+        this.belt = belt;
+        this.mantle = mantle;
+        this.amulet = amulet;
+        this.leftRing = leftRing;
+        this.rightRing = rightRing;
+    }
+
     public HeadEquipment getHead() {
         return head;
     }
