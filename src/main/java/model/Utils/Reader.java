@@ -7,6 +7,8 @@ import model.items.equipments.Equipment;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
 import model.items.weapons.WeaponType;
+import model.spell.Component;
+import model.spell.Spell;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reader {
 
@@ -42,13 +45,13 @@ public class Reader {
 
     private static Consumable parseConsomable(JSONObject object)
     {
-        JSONObject employeeObject = (JSONObject) object.get("consomable");
+        JSONObject objects = (JSONObject) object.get("consomable");
 
-        String name = (String) employeeObject.get("name");
+        String name = (String) objects.get("name");
 
-        String description = (String) employeeObject.get("description");
+        String description = (String) objects.get("description");
 
-        ConsumableEffect effect = (ConsumableEffect) employeeObject.get("effect");
+        ConsumableEffect effect = (ConsumableEffect) objects.get("effect");
 
         return new Consumable(/*name,description,effect*/);
     }
@@ -77,19 +80,59 @@ public class Reader {
 
     private static Weapon parseWeapon(JSONObject object)
     {
-        JSONObject employeeObject = (JSONObject) object.get("weapon");
+        JSONObject objects = (JSONObject) object.get("weapon");
 
-        String name = (String) employeeObject.get("name");
+        String name = (String) objects.get("name");
 
-        String description = (String) employeeObject.get("description");
+        String description = (String) objects.get("description");
 
-        WeaponType type = (WeaponType) employeeObject.get("type");
+        WeaponType type = (WeaponType) objects.get("type");
 
-        String properties = (String) employeeObject.get("properties");
+        String properties = (String) objects.get("properties");
 
-        DamageType damageType = (DamageType) employeeObject.get("damagetype");
+        DamageType damageType = (DamageType) objects.get("damagetype");
 
         return new Weapon(name,description,properties,type,damageType);
+    }
+
+    public static ArrayList<Spell> jsonReaderSpell (String Filename){
+        JSONParser parser = new JSONParser();
+        ArrayList<Spell> spells = new ArrayList<>();
+
+        try (FileReader reader = new FileReader(Filename)){
+            Object obj = parser.parse(reader);
+            JSONArray objectList = (JSONArray) obj;
+
+            objectList.forEach( element ->  spells.add(parseSpell((JSONObject) element)));
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return spells;
+    }
+
+    private static Spell parseSpell(JSONObject object)
+    {
+        JSONObject objects = (JSONObject) object.get("spell");
+
+        String name = (String) objects.get("name");
+
+        int level = (int) objects.get("level");
+
+        String school = (String) objects.get("school");
+
+        int range = (int) objects.get("range");
+
+        List<Component> components = (List<Component>)  objects.get("components");
+
+        String description = (String) objects.get("description");
+
+        return new Spell(name,description,properties,type,damageType);
     }
 
 }
