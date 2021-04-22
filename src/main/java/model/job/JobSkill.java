@@ -3,9 +3,9 @@ package model.job;
 import model.Characteristics;
 
 public class JobSkill {
-    String name;
-    boolean mastered;
-    Characteristics affectedCharacteristic;
+    private String name;
+    private boolean mastered;
+    private Characteristics affectedCharacteristic;
 
 
     public String getName() {

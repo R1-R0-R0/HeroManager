@@ -2,8 +2,8 @@ package model.job;
 
 public class Improvement {
 
-    String  name,
-            description;
+    private String  name,
+                    description;
 
 
     public String getName() {

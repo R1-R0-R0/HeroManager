@@ -5,18 +5,18 @@ import model.job.JobType;
 import java.util.List;
 
 public class Spell {
-    String  name,
-            description,
-            school,
-            castingTime,
-            duration;
+    private String  name,
+                    description,
+                    school,
+                    castingTime,
+                    duration;
 
-    int level,
+    private int level,
         range;
 
-    JobType jobType;
-    boolean doDamages;
-    List<Component> components;
+    private JobType jobType;
+    private boolean doDamages;
+    private List<Component> components;
 
 
     public String getName() {

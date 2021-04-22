@@ -2,11 +2,11 @@ package model.items.equipments;
 
 public class AmuletEquipment implements Equipment{
 
-    String name;
-    String description;
-    int armorBonus;
-    EquipmentEffect effect;
-    EquipmentType type;
+    private String name;
+    private String description;
+    private int armorBonus;
+    private EquipmentEffect effect;
+    private EquipmentType type;
 
     @Override
     public String getName() {

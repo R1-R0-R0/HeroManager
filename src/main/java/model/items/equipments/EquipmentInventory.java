@@ -1,16 +1,16 @@
 package model.items.equipments;
 
 public class EquipmentInventory {
-    HeadEquipment head;
-    BodyEquipment body;
-    LegsEquipment legs;
-    FeetsEquipment feets;
-    HandsEquipment hands;
-    BeltEquipment belt;
-    MantleEquipment mantle;
-    AmuletEquipment amulet;
-    RingEquipment leftRing;
-    RingEquipment rightRing;
+    private HeadEquipment head;
+    private BodyEquipment body;
+    private LegsEquipment legs;
+    private FeetsEquipment feets;
+    private HandsEquipment hands;
+    private BeltEquipment belt;
+    private MantleEquipment mantle;
+    private AmuletEquipment amulet;
+    private RingEquipment leftRing;
+    private RingEquipment rightRing;
 
     public HeadEquipment getHead() {
         return head;
