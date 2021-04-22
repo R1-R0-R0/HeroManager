@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CharacterController">
@@ -42,7 +43,7 @@
             <tabs>
                 <Tab text="Character">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0">
                             <children>
                                 <GridPane gridLinesVisible="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                                     <columnConstraints>
@@ -53,47 +54,69 @@
                                     <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
-                           <children>
-                              <Pane fx:id="paneImageJob" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
-                                 <children>
-                                    <ImageView fx:id="imageJob" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="https://cdn.discordapp.com/attachments/626804778462085131/834752733650354176/kisspng-thief-role-playing-game-character-class-role-playi-rpg-5ac3e957074ca9.9799545715227886950299.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </Pane>
-                              <TextFlow fx:id="jobInfo" lineSpacing="2.0">
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </GridPane.margin></TextFlow>
-                              <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="1">
-                                <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                    <children>
+                                        <TextFlow fx:id="jobInfo" lineSpacing="2.0">
+                                            <GridPane.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </GridPane.margin>
+                                        </TextFlow>
+                                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="1">
+                                            <items>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                    <children>
+                                                        <Label layoutX="14.0" layoutY="14.0" text="Dernières compétences utilisés" wrapText="true" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+                                                            <font>
+                                                                <Font name="System Bold" size="15.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                    </padding>
+                                                </AnchorPane>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                    <children>
+                                                        <TextFlow fx:id="improvementsInfo" layoutX="-6.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                    </padding>
+                                                </AnchorPane>
+                                            </items>
+                                        </SplitPane>
+                                        <SplitPane dividerPositions="0.9007936507936508" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="2">
+                                            <items>
+                                                <Pane fx:id="paneImageJob" layoutX="101.0" layoutY="-235.0" prefHeight="200.0" prefWidth="200.0">
+                                                    <children>
+                                                        <ImageView fx:id="imageJob" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="https://cdn.discordapp.com/attachments/626804778462085131/834752733650354176/kisspng-thief-role-playing-game-character-class-role-playi-rpg-5ac3e957074ca9.9799545715227886950299.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </children>
+                                                </Pane>
+                                                <AnchorPane fx:id="jobStatus" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
-                                          <Label layoutX="14.0" layoutY="14.0" text="Dernières compétences utilisés" wrapText="true" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+                                          <Rectangle fx:id="hpBar" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="38.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="300.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                          <Text fx:id="hpText" layoutX="122.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100 / 100" textAlignment="CENTER" AnchorPane.leftAnchor="122.0" AnchorPane.topAnchor="13.8134765625">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
+                                             </font></Text>
+                                          <Text fx:id="levelText" layoutX="316.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LVL 01" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="9.0">
+                                             <font>
+                                                <Font size="20.0" />
                                              </font>
-                                          </Label>
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                    </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                       <children>
-                                          <TextFlow fx:id="improvementsInfo" layoutX="-6.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                    </AnchorPane>
-                                </items>
-                              </SplitPane>
-                           </children>
+                                          </Text>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00800000" height="38.0" layoutX="5.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+                                       </children></AnchorPane>
+                                            </items>
+                                        </SplitPane>
+                                    </children>
                                 </GridPane>
                             </children>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                         </AnchorPane>
                     </content>
                 </Tab>
