@@ -12,7 +12,6 @@ public class Dice {
     }
 
     public int roll() {
-        // TODO : Random from 1 to diceRange
-        return 0;
+        return (int) (Math.random()*diceRange);
     }
 }
