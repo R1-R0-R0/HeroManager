@@ -7,6 +7,7 @@ import model.items.equipments.Equipment;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
 import model.items.weapons.WeaponType;
+import model.job.JobType;
 import model.spell.Component;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
@@ -53,7 +54,7 @@ public class Reader {
 
         ConsumableEffect effect = (ConsumableEffect) objects.get("effect");
 
-        return new Consumable(/*name,description,effect*/);
+        return new Consumable(name,description,effect);
     }
 
 
@@ -122,17 +123,31 @@ public class Reader {
 
         String name = (String) objects.get("name");
 
+        String description = (String) objects.get("description");
+
         int level = (int) objects.get("level");
 
         String school = (String) objects.get("school");
 
+        String castingTime = (String) objects.get("castingtime");
+
         int range = (int) objects.get("range");
 
-        List<Component> components = (List<Component>)  objects.get("components");
+        JSONObject comp = (JSONObject) object.get("components");
 
-        String description = (String) objects.get("description");
+        List<Component> components = new ArrayList<>();
 
-        return new Spell(name,description,properties,type,damageType);
+        if ((boolean) comp.get("V")) components.add(Component.VOCAL);
+        if ((boolean) comp.get("S")) components.add(Component.MOVEMENT);
+        if ((boolean) comp.get("M")) components.add(Component.MATERIAL);
+
+        String duration = (String) objects.get("duration");
+
+        JobType jobType = (JobType) objects.get("jobtype");
+
+        boolean doDamages = (boolean) objects.get("dodamage");
+
+        return new Spell(name,description,school,castingTime,duration,level,range,jobType,doDamages,components);
     }
 
 }
