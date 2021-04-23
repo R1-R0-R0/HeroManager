@@ -1,7 +1,5 @@
 package model.gui;
 
-import model.job.Job;
-
 public class MenuModel {
 
     private static MenuModel instance;
