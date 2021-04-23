@@ -20,7 +20,7 @@ public class DiceModel {
         sDices = sDices.replaceAll(" ", "");
         sDices = sDices.toLowerCase();
 
-        if (!sDices.matches("^(([1-9]+d[2-9]+)|([1-9]+d[2-9]+\\+)+([1-9]+d[2-9]+))$")) {
+        if (!sDices.matches("^(([0-9]+d[0-9]+)|([0-9]+d[0-9]+\\+)+([0-9]+d[0-9]+))$")) {
             System.err.println("Regex is wrong");
             return;
         }
