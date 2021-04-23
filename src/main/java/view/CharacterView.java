@@ -15,11 +15,16 @@ import java.io.IOException;
 
 public class CharacterView {
 
+    public final static int DEFAULT_WINDOW_WIDTH = 800;
     public final static int MAX_HP_BAR_SIZE = 300;
+
+    private int maxWidthHPBar;
     private static CharacterView instance;
 
     public CharacterView() {
         try {
+            instance = this;
+
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/character.fxml"));
             stage.setTitle("HeroManager - Character");
@@ -27,7 +32,7 @@ public class CharacterView {
             // stage.setResizable(false);
             stage.show();
 
-            instance = this;
+            maxWidthHPBar = MAX_HP_BAR_SIZE;
 
             // TODO : For test only, remove later
             setJobInfo("Voleuse", "Humain", "Force 8 (+2)", "Agilité 20 (+10)", "Charisme 69 (+69)");
@@ -41,6 +46,24 @@ public class CharacterView {
 
     public static CharacterView getInstance() {
         return instance;
+    }
+
+    public void updateHPBarWidth(int newMaxHP) {
+        maxWidthHPBar = newMaxHP;
+
+        Rectangle borderHPBar = CharacterController.getInstance().borderHPBar;
+        Rectangle hpBar = CharacterController.getInstance().hpBar;
+        Text hpText = CharacterController.getInstance().hpText;
+
+        double newWidth = (((double) newMaxHP * ((double) MAX_HP_BAR_SIZE)) / ((double) DEFAULT_WINDOW_WIDTH));
+        borderHPBar.setWidth(newWidth);
+        maxWidthHPBar = ((int) newWidth);
+
+        // TODO : Need review
+        /*
+        hpBar.setWidth((((double) hpBar.getWidth() * ((double) MAX_HP_BAR_SIZE)) / ((double) DEFAULT_WINDOW_WIDTH)));
+        hpText.setX();
+         */
     }
 
     public void setJobInfo(String className, String race, String... statistics) {
@@ -75,9 +98,10 @@ public class CharacterView {
 
     public void setHP(int hp, int maxHP) {
         Rectangle hpBar = CharacterController.getInstance().hpBar;
+        Rectangle maxHpBar = CharacterController.getInstance().borderHPBar;
         Text hpText = CharacterController.getInstance().hpText;
 
-        hpBar.setWidth((((double) hp) / ((double) maxHP)) * MAX_HP_BAR_SIZE);
+        hpBar.setWidth((((double) hp) / ((double) maxHP)) * maxHpBar.getWidth());
         hpText.setText(hp + " / " + maxHP);
     }
 

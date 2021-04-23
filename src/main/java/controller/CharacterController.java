@@ -1,12 +1,10 @@
 package controller;
 
-import javafx.beans.property.DoublePropertyBase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -33,6 +31,10 @@ public class CharacterController implements Initializable {
     public Text hpText;
     @FXML
     public Text levelText;
+    @FXML
+    public VBox window;
+    @FXML
+    public Rectangle borderHPBar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,6 +42,10 @@ public class CharacterController implements Initializable {
 
         imageJob.fitWidthProperty().bind(paneImageJob.widthProperty());
         imageJob.fitHeightProperty().bind(paneImageJob.heightProperty());
+
+        window.widthProperty().addListener(((observable, oldValue, newValue) -> {
+            CharacterView.getInstance().updateHPBarWidth(newValue.intValue());
+        }));
 
         /*
         paneImageJob.heightProperty().addListener((observable, oldValue, newValue) -> {
