@@ -1,10 +1,10 @@
 package model.gui;
 
-import controller.CharacterController;
+import view.HpPopUpView;
 
 public class CharacterModel {
 
-    public CharacterModel() {
-
+    public void hpBarOnClickEvent() {
+        new HpPopUpView(100);
     }
 }

@@ -58,6 +58,11 @@ public class CharacterController implements Initializable {
         }); */
     }
 
+    @FXML
+    public void hpBarOnClick() {
+        CharacterView.getModel().hpBarOnClickEvent();
+    }
+
     public static CharacterController getInstance() {
         return instance;
     }

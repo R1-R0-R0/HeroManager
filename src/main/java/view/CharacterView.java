@@ -10,6 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import model.gui.CharacterModel;
 
 import java.io.IOException;
 
@@ -20,10 +21,12 @@ public class CharacterView {
 
     private int maxWidthHPBar;
     private static CharacterView instance;
+    private static CharacterModel model;
 
     public CharacterView() {
         try {
             instance = this;
+            model = new CharacterModel();
 
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/character.fxml"));
@@ -46,6 +49,10 @@ public class CharacterView {
 
     public static CharacterView getInstance() {
         return instance;
+    }
+
+    public static CharacterModel getModel() {
+        return model;
     }
 
     public void updateHPBarWidth(int newMaxHP) {
