@@ -21,11 +21,11 @@
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin></Text>
-            <Button fx:id="setButton" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="SET" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#setButtonOnClick" prefWidth="100.0" text="SET" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></Button>
-            <Button fx:id="cancelButton" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="CANCEL" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#cancelButtonOnClick" prefWidth="100.0" text="CANCEL" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></Button>

@@ -125,4 +125,12 @@ public class CharacterView {
         Text levelText = CharacterController.getInstance().levelText;
         levelText.setText("LVL " + sLevel);
     }
+
+    public void blockWindow() {
+        CharacterController.getInstance().window.setDisable(true);
+    }
+
+    public void unblockWindow() {
+        CharacterController.getInstance().window.setDisable(false);
+    }
 }

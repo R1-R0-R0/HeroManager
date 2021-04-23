@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class HpPopUpView {
 
-    private HpPopUpView instance;
+    private static HpPopUpView instance;
 
     public HpPopUpView(int maxHP) {
         try {
@@ -29,7 +29,12 @@ public class HpPopUpView {
         }
     }
 
-    public HpPopUpView getInstance() {
+    public static HpPopUpView getInstance() {
         return instance;
+    }
+
+    public void closeStage() {
+        Stage stage = ((Stage) HpPopUpController.getInstance().maxHPText.getScene().getWindow());
+        stage.close();
     }
 }
