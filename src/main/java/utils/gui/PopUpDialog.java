@@ -9,7 +9,7 @@ public class PopUpDialog {
 
     public PopUpDialog(Alert.AlertType alertType, String title, String text) {
         alert = new Alert(alertType);
-        alert.setTitle("HeroManager - Error");
+        alert.setTitle("HeroManager - " + alertType.name().toLowerCase());
         alert.setHeaderText(title);
         alert.setContentText(text);
     }
