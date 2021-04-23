@@ -30,24 +30,23 @@ public class Job {
     private List<Improvement> improvements;
     private List<JobSkill> skills;
 
-    public Job(int hp, int armor, int level, int proficiencyLevel, int strength, int dexterity, int intelligence,
-               int wisdom, int charisma, int strengthBoost, int dexterityBoost, int intelligenceBoost, int wisdomBoost,
-               int charismaBoost, Race race, JobType jobType, List<Item> inventory, String name, String description,
+    public Job(String name, String description, int hp, int armor, int level, int strength, int dexterity, int intelligence,
+               int wisdom, int charisma, Race race, JobType jobType, List<Item> inventory,
                int[] spellSlots, List<Spell> spellInventory, List<Improvement> improvements, List<JobSkill> skills) {
         this.hp = hp;
         this.armor = armor;
         this.level = level;
-        this.proficiencyLevel = proficiencyLevel;
+        this.proficiencyLevel = 0;
         this.strength = strength;
         this.dexterity = dexterity;
         this.intelligence = intelligence;
         this.wisdom = wisdom;
         this.charisma = charisma;
-        this.strengthBoost = strengthBoost;
-        this.dexterityBoost = dexterityBoost;
-        this.intelligenceBoost = intelligenceBoost;
-        this.wisdomBoost = wisdomBoost;
-        this.charismaBoost = charismaBoost;
+        this.strengthBoost = 0;
+        this.dexterityBoost = 0;
+        this.intelligenceBoost = 0;
+        this.wisdomBoost = 0;
+        this.charismaBoost = 0;
         this.race = race;
         this.jobType = jobType;
         this.inventory = inventory;
@@ -57,6 +56,10 @@ public class Job {
         this.spellInventory = spellInventory;
         this.improvements = improvements;
         this.skills = skills;
+    }
+
+    public Job(String name, String description, int hp, int armor, int strength, int dexterity, int intelligence, int wisdom, int charisma, Race race, JobType jobType, List<Spell> spellInventory, List<Improvement> improvements, List<JobSkill> skills) {
+
     }
 
     public int getHp() {
