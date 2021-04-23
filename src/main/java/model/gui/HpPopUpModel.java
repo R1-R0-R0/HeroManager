@@ -1,5 +1,7 @@
 package model.gui;
 
+import javafx.scene.control.Alert;
+import utils.gui.Dialog;
 import view.HpPopUpView;
 
 public class HpPopUpModel {
@@ -8,14 +10,19 @@ public class HpPopUpModel {
         try {
             int hp = Integer.parseInt(newHP);
 
-            if (hp < 0 || hp > 100) {
-                return; // TODO : Do error pop-up
-            }
+            System.out.println("hp = " + hp);
 
-            HpPopUpView.getInstance().closeStage();
-            CharacterModel.getInstance().hpBarOnClickEventDone(hp);
+            if (hp < 0)
+                new Dialog(Alert.AlertType.ERROR, "Invalid amount", "New HP value can't be lower than 0").showAndWait();
+            else if (hp > 100)// TODO : Set MAX HP later
+                new Dialog(Alert.AlertType.ERROR, "Invalid amount", "New HP value can't be higher than 100").showAndWait();
+            else {
+                HpPopUpView.getInstance().closeStage();
+                CharacterModel.getInstance().hpBarOnClickEventDone(hp);
+            }
         } catch (NumberFormatException e) {
-            // TODO : Error pop-up enter valid number
+            Dialog dialog = new Dialog(Alert.AlertType.ERROR, "Invalid entry", "Please type a number.");
+            dialog.showAndWait();
         }
     }
 

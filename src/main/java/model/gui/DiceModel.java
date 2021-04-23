@@ -2,10 +2,9 @@ package model.gui;
 
 import javafx.scene.control.Alert;
 import model.Dice;
-import utils.gui.PopUpDialog;
+import utils.gui.Dialog;
 import view.DiceView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class DiceModel {
         sDices = sDices.toLowerCase();
 
         if (!sDices.matches("^(([0-9]+d[0-9]+)|([0-9]+d[0-9]+\\+)+([0-9]+d[0-9]+))$")) {
-            PopUpDialog dialog = new PopUpDialog(
+            Dialog dialog = new Dialog(
                     Alert.AlertType.ERROR,
                     "Wrong dice syntax",
                     "Entered syntax is incorrect.\nYour formula need to be like: \"2d3 + 3d4\" or \"1d2+3D3\" ");
@@ -66,7 +65,7 @@ public class DiceModel {
     }
 
     public void howItWorksEvent() {
-        PopUpDialog dialog = new PopUpDialog(
+        Dialog dialog = new Dialog(
                 Alert.AlertType.INFORMATION,
                 "How dice thorwer works ?",
                 "Type in given text field the formula of what dices you want.\n" +
