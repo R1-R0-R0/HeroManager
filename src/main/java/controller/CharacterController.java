@@ -2,8 +2,11 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Tab;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
@@ -40,6 +43,8 @@ public class CharacterController implements Initializable {
     public Rectangle borderHPBar;
     @FXML
     public Tab characterTab;
+    @FXML
+    public AnchorPane inventoryPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,15 +57,18 @@ public class CharacterController implements Initializable {
             CharacterView.getInstance().updateHPBarWidth(newValue.intValue());
         }));
 
-        /*
-        paneImageJob.heightProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Updated");
-            System.out.println("newValue.doubleValue() = " + newValue.doubleValue());
-            System.out.println("paneImageJob.getLayoutY() = " + paneImageJob.getScaleY());
-            System.out.println("imageJob.getFitHeight() = " + imageJob.getFitHeight());
-            double paneCenter = (paneImageJob.getLayoutY() + (newValue.doubleValue() / 2));
-            // imageJob.setY(paneCenter - imgCenter);
-        }); */
+        GridPane inventory = new GridPane();
+        inventory.setGridLinesVisible(true);
+
+        for (int i = 0; i < 10; i++) {
+            inventory.addColumn(i, new Text(String.valueOf(i)));
+
+            for (int j = 0; j < 10; j++) {
+                inventory.addColumn(j, new Text(String.valueOf(j)));
+            }
+        }
+
+        inventoryPane.getChildren().add(inventory);
     }
 
     @FXML
