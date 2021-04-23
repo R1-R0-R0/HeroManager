@@ -5,13 +5,18 @@ import view.HpPopUpView;
 public class HpPopUpModel {
 
     public void defineNewHP(String newHP) {
-        int hp = Integer.parseInt(newHP);
+        try {
+            int hp = Integer.parseInt(newHP);
 
-        if (hp < 0 || hp > 100) {
-            return; // TODO : Do error pop-up
+            if (hp < 0 || hp > 100) {
+                return; // TODO : Do error pop-up
+            }
+
+            HpPopUpView.getInstance().closeStage();
+            CharacterModel.getInstance().hpBarOnClickEventDone(hp);
+        } catch (NumberFormatException e) {
+            // TODO : Error pop-up enter valid number
         }
-
-        CharacterModel.getInstance().hpBarOnClickEvent();
     }
 
     public void cancelNewHP() {
