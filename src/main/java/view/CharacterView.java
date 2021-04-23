@@ -34,6 +34,11 @@ public class CharacterView {
             stage.setScene(new Scene(root));
             // stage.setResizable(false);
             stage.show();
+            
+            stage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
+                System.out.println("UPDATED");
+                updateHPBarWidth(((int) CharacterController.getInstance().borderHPBar.getWidth()));
+            });
 
             maxWidthHPBar = MAX_HP_BAR_SIZE;
 
@@ -63,14 +68,11 @@ public class CharacterView {
         Text hpText = CharacterController.getInstance().hpText;
 
         double newWidth = (((double) newMaxHP * ((double) MAX_HP_BAR_SIZE)) / ((double) DEFAULT_WINDOW_WIDTH));
-        borderHPBar.setWidth(newWidth);
         maxWidthHPBar = ((int) newWidth);
 
-        // TODO : Need review
-        /*
-        hpBar.setWidth((((double) hpBar.getWidth() * ((double) MAX_HP_BAR_SIZE)) / ((double) DEFAULT_WINDOW_WIDTH)));
-        hpText.setX();
-         */
+        hpBar.setWidth(newWidth * hpBar.getWidth() / borderHPBar.getWidth());
+        hpText.setTranslateX((borderHPBar.getWidth()/2) - 20);
+        borderHPBar.setWidth(newWidth);
     }
 
     public void setJobInfo(String className, String race, String... statistics) {

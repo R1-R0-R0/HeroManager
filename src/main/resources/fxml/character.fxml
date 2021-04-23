@@ -99,7 +99,7 @@
                                                 <AnchorPane fx:id="jobStatus" maxHeight="47.0" minHeight="47.0">
                                        <children>
                                           <Rectangle fx:id="hpBar" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="38.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="300.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                                          <Text fx:id="hpText" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="122.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100 / 100" textAlignment="CENTER" AnchorPane.leftAnchor="122.0" AnchorPane.topAnchor="13.8134765625">
+                                          <Text fx:id="hpText" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="122.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100 / 100" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="13.5">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font></Text>
