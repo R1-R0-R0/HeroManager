@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Tab;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -37,6 +38,8 @@ public class CharacterController implements Initializable {
     public VBox window;
     @FXML
     public Rectangle borderHPBar;
+    @FXML
+    public Tab characterTab;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,6 +66,11 @@ public class CharacterController implements Initializable {
     @FXML
     public void hpBarOnClick() {
         CharacterModel.getInstance().hpBarOnClickEvent();
+    }
+
+    @FXML
+    public void diceMenuOnAction() {
+        CharacterModel.getInstance().openDiceWindow();
     }
 
     public static CharacterController getInstance() {

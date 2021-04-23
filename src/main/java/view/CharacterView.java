@@ -40,6 +40,7 @@ public class CharacterView {
             // TODO : For test only, remove later
             setJobInfo("Voleuse", "Humain", "Force 8 (+2)", "Agilité 20 (+10)", "Charisme 69 (+69)");
             setImprovementsInfo("Vol", "Camouflage", "Assassin");
+            setCharacterName("Hiraye");
             setHP(50, 100);
             setLevel(3);
         } catch (IOException e) {
@@ -115,6 +116,10 @@ public class CharacterView {
 
         Text levelText = CharacterController.getInstance().levelText;
         levelText.setText("LVL " + sLevel);
+    }
+
+    public void setCharacterName(String name) {
+        CharacterController.getInstance().characterTab.setText(name);
     }
 
     public void blockWindow() {

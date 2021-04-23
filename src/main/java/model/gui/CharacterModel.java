@@ -37,6 +37,10 @@ public class CharacterModel {
         CharacterView.getInstance().unblockWindow();
     }
 
+    public void openDiceWindow() {
+        new DiceModel();
+    }
+
     public static CharacterModel getInstance() {
         return instance;
     }
