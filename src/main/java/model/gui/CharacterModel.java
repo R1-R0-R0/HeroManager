@@ -1,5 +1,6 @@
 package model.gui;
 
+import model.job.Job;
 import view.CharacterView;
 import view.HpPopUpView;
 
@@ -7,8 +8,10 @@ public class CharacterModel {
 
     private static CharacterModel instance;
 
-    public CharacterModel() {
+    public CharacterModel(Job character) {
         instance = this;
+
+        new CharacterView();
     }
 
     /**

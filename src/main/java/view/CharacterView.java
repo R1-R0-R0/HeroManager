@@ -19,14 +19,11 @@ public class CharacterView {
     public final static int DEFAULT_WINDOW_WIDTH = 800;
     public final static int MAX_HP_BAR_SIZE = 300;
 
-    private int maxWidthHPBar;
     private static CharacterView instance;
-    private static CharacterModel model;
 
     public CharacterView() {
         try {
             instance = this;
-            model = new CharacterModel();
 
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/character.fxml"));
@@ -39,8 +36,6 @@ public class CharacterView {
                 System.out.println("UPDATED");
                 updateHPBarWidth(((int) CharacterController.getInstance().borderHPBar.getWidth()));
             });
-
-            maxWidthHPBar = MAX_HP_BAR_SIZE;
 
             // TODO : For test only, remove later
             setJobInfo("Voleuse", "Humain", "Force 8 (+2)", "Agilité 20 (+10)", "Charisme 69 (+69)");
@@ -56,19 +51,13 @@ public class CharacterView {
         return instance;
     }
 
-    public static CharacterModel getModel() {
-        return model;
-    }
-
     public void updateHPBarWidth(int newMaxHP) {
-        maxWidthHPBar = newMaxHP;
 
         Rectangle borderHPBar = CharacterController.getInstance().borderHPBar;
         Rectangle hpBar = CharacterController.getInstance().hpBar;
         Text hpText = CharacterController.getInstance().hpText;
 
         double newWidth = (((double) newMaxHP * ((double) MAX_HP_BAR_SIZE)) / ((double) DEFAULT_WINDOW_WIDTH));
-        maxWidthHPBar = ((int) newWidth);
 
         hpBar.setWidth(newWidth * hpBar.getWidth() / borderHPBar.getWidth());
         hpText.setTranslateX((borderHPBar.getWidth()/2) - 20);

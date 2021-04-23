@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import model.gui.CharacterModel;
 import view.CharacterView;
 
 import java.net.URL;
@@ -61,7 +62,7 @@ public class CharacterController implements Initializable {
 
     @FXML
     public void hpBarOnClick() {
-        CharacterView.getModel().hpBarOnClickEvent();
+        CharacterModel.getInstance().hpBarOnClickEvent();
     }
 
     public static CharacterController getInstance() {
