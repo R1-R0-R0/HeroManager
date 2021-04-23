@@ -35,7 +35,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Table">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#diceMenuOnAction" text="Dices" />
+                        <MenuItem mnemonicParsing="false" onAction="#diceMenuOnAction" text="Dice thrower" />
                     </items>
                 </Menu>
             </menus>
