@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.gui.MenuModel;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ public class MenuView {
             stage.setResizable(false);
             stage.show();
 
+            new MenuModel();
             instance = this;
         } catch (IOException e) {
             e.printStackTrace();
