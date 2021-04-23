@@ -17,7 +17,13 @@ public class DiceModel {
     }
 
     public void rollDices(String sDices) {
-        // TODO : Check if string is correct with regex
+        sDices = sDices.replaceAll(" ", "");
+        sDices = sDices.toLowerCase();
+
+        if (!sDices.matches("^(([1-9]+d[2-9]+)|([1-9]+d[2-9]+\\+)+([1-9]+d[2-9]+))$")) {
+            System.err.println("Regex is wrong");
+            return;
+        }
 
         List<Dice> dices = dicesParser(sDices);
 
@@ -33,7 +39,6 @@ public class DiceModel {
     private List<Dice> dicesParser(String dices) {
         List<Dice> diceList = new ArrayList<>();
 
-        dices = dices.replaceAll(" ", "");
         String[] dice = dices.split("\\+");
 
         for (String d : dice) {
