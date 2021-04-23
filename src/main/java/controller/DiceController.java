@@ -37,6 +37,6 @@ public class DiceController implements Initializable {
 
     @FXML
     public void howItWorksButtonOnClick() {
-
+        DiceModel.getInstance().howItWorksEvent();
     }
 }

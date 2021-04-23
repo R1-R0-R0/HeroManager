@@ -66,7 +66,16 @@ public class DiceModel {
     }
 
     public void howItWorksEvent() {
+        PopUpDialog dialog = new PopUpDialog(
+                Alert.AlertType.INFORMATION,
+                "How dice thorwer works ?",
+                "Type in given text field the formula of what dices you want.\n" +
+                        "For an example, if you want 3 dices of 20, and 2 dices of 10:\n" +
+                        "3d10 + 2d10.\n" +
+                        "Then you just have to click on roll button!\n" +
+                        "If your entered formula don't respect syntax, an error will pop up to warn you.");
 
+        dialog.show();
     }
 
     public static DiceModel getInstance() {
