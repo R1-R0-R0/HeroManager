@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DiceController">
+   <children>
+      <AnchorPane>
+         <children>
+            <Text fx:id="diceResultText" layoutX="172.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="96.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="dicesText" promptText="ex: 2d4 + 1d6">
+         <VBox.margin>
+            <Insets bottom="10.0" left="50.0" right="50.0" />
+         </VBox.margin>
+      </TextField>
+      <AnchorPane prefWidth="200.0">
+         <children>
+          <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#rollDicesButtonOnClick" prefWidth="100.0" text="Roll dices" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="5.0" />
+            <Button layoutX="286.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#howItWorksButtonOnClick" prefWidth="100.0" text="How it works ?" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="5.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
