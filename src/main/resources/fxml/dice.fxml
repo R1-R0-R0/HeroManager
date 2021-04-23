@@ -5,17 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DiceController">
+<VBox prefHeight="224.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DiceController">
    <children>
-      <AnchorPane>
+      <StackPane>
          <children>
-            <Text fx:id="diceResultText" layoutX="172.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Text fx:id="diceResultText" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="96.0" />
                </font>
             </Text>
          </children>
-      </AnchorPane>
+      </StackPane>
+      <StackPane alignment="CENTER_LEFT">
+         <children>
+            <Text fx:id="diceResultDetailsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Detail of dice results will appear here">
+               <StackPane.margin>
+                  <Insets bottom="5.0" left="10.0" right="5.0" />
+               </StackPane.margin>
+            </Text>
+         </children>
+      </StackPane>
       <TextField fx:id="dicesText" promptText="ex: 2d4 + 1d6">
          <VBox.margin>
             <Insets bottom="10.0" left="50.0" right="50.0" />

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class DiceView {
 
@@ -18,7 +19,10 @@ public class DiceView {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/dice.fxml"));
             stage.setTitle("HeroManager - Dices");
             stage.setScene(new Scene(root));
-            stage.setResizable(false);
+            // stage.setResizable(false);
+            stage.setMinWidth(400);
+            stage.setMinHeight(263);
+            stage.setMaxHeight(263);
             stage.show();
 
             instance = this;
@@ -29,6 +33,24 @@ public class DiceView {
 
     public void setDiceResult(int result) {
         DiceController.getInstance().diceResultText.setText(String.valueOf(result));
+    }
+
+    public void setDiceDetails(List<Integer> results) {
+        boolean first = true;
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("(");
+
+        for (int result : results) {
+            if (first)  first = false;
+            else        sb.append(", ");
+
+            sb.append(result);
+        }
+
+        sb.append(")");
+
+        DiceController.getInstance().diceResultDetailsText.setText(sb.toString());
     }
 
     public static DiceView getInstance() {

@@ -1,8 +1,11 @@
 package model.gui;
 
+import javafx.scene.control.Alert;
 import model.Dice;
+import utils.gui.PopUpDialog;
 import view.DiceView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,19 +24,27 @@ public class DiceModel {
         sDices = sDices.toLowerCase();
 
         if (!sDices.matches("^(([0-9]+d[0-9]+)|([0-9]+d[0-9]+\\+)+([0-9]+d[0-9]+))$")) {
-            System.err.println("Regex is wrong");
+            PopUpDialog dialog = new PopUpDialog(
+                    Alert.AlertType.ERROR,
+                    "Wrong dice syntax",
+                    "Entered syntax is incorrect.\nYour formula need to be like: \"2d3 + 3d4\" or \"1d2+3D3\" ");
+            dialog.showAndWait();
             return;
         }
 
         List<Dice> dices = dicesParser(sDices);
 
         int total = 0;
+        List<Integer> detailsResult = new ArrayList<>();
 
         for (Dice dice : dices) {
-            total += dice.roll();
+            int res = dice.roll();
+            total += res;
+            detailsResult.add(res);
         }
 
         DiceView.getInstance().setDiceResult(total);
+        DiceView.getInstance().setDiceDetails(detailsResult);
     }
 
     private List<Dice> dicesParser(String dices) {

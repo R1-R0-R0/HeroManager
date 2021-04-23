@@ -18,6 +18,8 @@ public class DiceController implements Initializable {
     public TextField dicesText;
     @FXML
     public Text diceResultText;
+    @FXML
+    public Text diceResultDetailsText;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
