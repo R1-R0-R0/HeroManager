@@ -1,7 +1,10 @@
 package model.job;
 
 import model.items.Item;
-import model.race.Race;
+import model.items.equipments.Equipment;
+import model.race.Alignment;
+import model.race.Language;
+import model.race.RaceType;
 import model.spell.Spell;
 
 import java.util.List;
@@ -10,43 +13,41 @@ public class Job {
     private int hp,
             armor,
             level,
-            proficiencyLevel,
             strength,
             dexterity,
             intelligence,
             wisdom,
-            charisma,
-            strengthBoost,
-            dexterityBoost,
-            intelligenceBoost,
-            wisdomBoost,
-            charismaBoost;
-    private Race race;
+            charisma;
+    private int age;
+    private String sex;
+    private Alignment alignment;
+    private int size;
+    private int weight;
+    private int speed;
+    private List<Language> languages;
+    private RaceType race;
     private JobType jobType;
     private List<Item> inventory;
+    private List<Equipment> equippedEquipments;
     private String name, description;
     private int[] spellSlots; // TODO : A modifier
     private List<Spell> spellInventory;
-    private List<Improvement> improvements;
     private List<JobSkill> skills;
 
-    public Job(String name, String description, int hp, int armor, int level, int strength, int dexterity, int intelligence,
-               int wisdom, int charisma, Race race, JobType jobType, List<Item> inventory,
-               int[] spellSlots, List<Spell> spellInventory, List<Improvement> improvements, List<JobSkill> skills) {
+    public Job(String name, String description, Alignment alignment, int speed,
+               int hp, int armor, int level, int strength, int dexterity, int intelligence,
+               int wisdom, int charisma, RaceType race, JobType jobType, List<Item> inventory,
+               int[] spellSlots, List<Spell> spellInventory, List<JobSkill> skills) {
+
         this.hp = hp;
         this.armor = armor;
-        this.level = level;
-        this.proficiencyLevel = 0;
+        this.speed = speed;
+        this.level = 1;
         this.strength = strength;
         this.dexterity = dexterity;
         this.intelligence = intelligence;
         this.wisdom = wisdom;
         this.charisma = charisma;
-        this.strengthBoost = 0;
-        this.dexterityBoost = 0;
-        this.intelligenceBoost = 0;
-        this.wisdomBoost = 0;
-        this.charismaBoost = 0;
         this.race = race;
         this.jobType = jobType;
         this.inventory = inventory;
@@ -54,11 +55,16 @@ public class Job {
         this.description = description;
         this.spellSlots = spellSlots;
         this.spellInventory = spellInventory;
-        this.improvements = improvements;
+
         this.skills = skills;
+
+
     }
 
-    public Job(String name, String description, int hp, int armor, int strength, int dexterity, int intelligence, int wisdom, int charisma, Race race, JobType jobType, List<Spell> spellInventory, List<Improvement> improvements, List<JobSkill> skills) {
+    public Job(String name, String description, int hp, int armor, int strength, int dexterity, int intelligence,
+               int wisdom, int charisma, RaceType race, JobType jobType, List<Spell> spellInventory,
+               List<Improvement> improvements, List<JobSkill> skills) {
+
 
     }
 
@@ -75,7 +81,9 @@ public class Job {
     }
 
     public int getProficiencyLevel() {
-        return proficiencyLevel;
+        double proficiency = 1 + (double) (level/4);
+        return (int) Math.nextUp(proficiency);
+
     }
 
     public int getStrength() {
@@ -99,26 +107,60 @@ public class Job {
     }
 
     public int getStrengthBoost() {
-        return strengthBoost;
+        int result = 0;
+        for (Improvement improv: getImprovements()) {
+            result += improv.getStrengthBoost();
+        }
+        result += race.getStrengthBoost(); //TODO: + equippedEquipments.getStrengthBoost
+        return result;
     }
 
     public int getDexterityBoost() {
-        return dexterityBoost;
+        int result = 0;
+        for (Improvement improv: getImprovements()) {
+            result += improv.getDexterityBoost();
+        }
+        result += race.getDexterityBoost(); //TODO: + equippedEquipments.getDexterityBoost
+        return result;
+    }
+
+    public int getRobustnessBoost() {
+        int result = 0;
+        for (Improvement improv: getImprovements()) {
+            result += improv.getRobustnessBoost();
+        }
+        result += race.getRobustnessBoost(); //TODO: + equippedEquipments.getRobustnessBoost
+        return result;
     }
 
     public int getIntelligenceBoost() {
-        return intelligenceBoost;
+        int result = 0;
+        for (Improvement improv: getImprovements()) {
+            result += improv.getIntelligenceBoost();
+        }
+        result += race.getIntelligenceBoost(); //TODO: + equippedEquipments.getIntelligenceBoost
+        return result;
     }
 
     public int getWisdomBoost() {
-        return wisdomBoost;
+        int result = 0;
+        for (Improvement improv: getImprovements()) {
+            result += improv.getWisdomBoost();
+        }
+        result += race.getWisdomBoost(); //TODO: + equippedEquipments.getWisdomBoost
+        return result;
     }
 
-    public int getCharismBoost() {
-        return charismaBoost;
+    public int getCharismaBoost() {
+        int result = 0;
+        for (Improvement improv: getImprovements()) {
+            result += improv.getCharismaBoost();
+        }
+        result += race.getCharismaBoost();
+        return result; //TODO: + equippedEquipments.getCharismaBoost
     }
 
-    public Race getRace() {
+    public RaceType getRaceType() {
         return race;
     }
 
@@ -147,7 +189,7 @@ public class Job {
     }
 
     public List<Improvement> getImprovements() {
-        return improvements;
+        return race.getImprovements();
     }
 
     public List<JobSkill> getSkills() {
