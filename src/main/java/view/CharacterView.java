@@ -2,10 +2,14 @@ package view;
 
 import controller.CharacterController;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -20,8 +24,21 @@ import java.io.IOException;
 
 public class CharacterView {
 
+    /* GENERAL SETTINGS */
     public final static int DEFAULT_WINDOW_WIDTH = 800;
+
+    /* CHARACTER TAB SETTINGS */
     public final static int MAX_HP_BAR_SIZE = 300;
+
+    /* INVENTORY TAB SETTINGS */
+    /**
+     * Defines the size of the inventory.
+     * This value is square root of number of created cells
+     */
+    public final static int INVENTORY_SIZE = 8;
+    public final static int IMAGE_SIZE = 40;
+    public final static String IMAGE_PLUS_PATH = "/images/ui/plus.png";
+
 
     private static CharacterView instance;
 
@@ -139,13 +156,19 @@ public class CharacterView {
 
         int counter = 0;
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < INVENTORY_SIZE; i++) {
+            for (int j = 0; j < INVENTORY_SIZE; j++) {
                 StackPane pane = new StackPane();
-                ImageView img = new ImageView();
-                img.setId("inventorySlot" + counter);
+                pane.setId("inventorySlot" + counter);
+                pane.setOnMouseClicked(event -> System.out.println(event));
+                pane.setCursor(Cursor.HAND);
 
-                pane.getChildren().add(new Text(Integer.toString(counter)));
+                ImageView img = new ImageView();
+                img.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
+                img.setFitHeight(IMAGE_SIZE);
+                img.setFitWidth(IMAGE_SIZE);
+
+                pane.getChildren().add(img);
                 inventory.add(pane, j, i);
                 counter++;
             }
@@ -153,11 +176,11 @@ public class CharacterView {
 
         for (int i = 0; i < 8; i++) {
             RowConstraints rowConstraints = new RowConstraints();
-            rowConstraints.setPercentHeight(100.0/8);
+            rowConstraints.setPercentHeight(100.0/INVENTORY_SIZE);
             inventory.getRowConstraints().add(rowConstraints);
 
             ColumnConstraints columnConstraints = new ColumnConstraints();
-            columnConstraints.setPercentWidth(100.0/8);
+            columnConstraints.setPercentWidth(100.0/INVENTORY_SIZE);
             inventory.getColumnConstraints().add(columnConstraints);
         }
 
