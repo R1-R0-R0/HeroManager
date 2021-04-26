@@ -3,6 +3,7 @@ package model.Utils;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
+import model.spell.Spell;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -78,6 +79,43 @@ public class Writer {
 
         try (FileWriter file = new FileWriter("/HeroManager/resources/equipment.json")) {
             file.write(equipmentList.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void WriterSpell (List<Spell> spells){
+        JSONArray spellList = new JSONArray();
+
+        for (int index = 0; index<spells.size(); index++){
+
+            JSONObject consu = new JSONObject();
+            consu.put("name" , spells.get(index).getName());
+            consu.put("description" , spells.get(index).getDescription());
+            consu.put("level" , spells.get(index).getLevel());
+            consu.put("school" , spells.get(index).getSchool());
+            consu.put("castingtime" , spells.get(index).getCastingTime());
+            consu.put("range" , spells.get(index).getRange());
+            for (int x = 0 ; x < spells.get(index).getComponents().size(); x++){
+                switch (spells.get(index).getComponents().get(x)){
+                    case VOCAL: consu.put("components","V");
+                    case MATERIAL:consu.put("components","S");
+                    case MOVEMENT:consu.put("components","M");
+                }
+            }
+            consu.put("duration" , spells.get(index).getDuration());
+            consu.put("jobtype" , spells.get(index).getJobType());
+            consu.put("dodamage" , spells.get(index).isDoDamages());
+
+
+            spellList.add(consu);
+
+        }
+
+        try (FileWriter file = new FileWriter("/HeroManager/resources/spells.json")) {
+            file.write(spellList.toJSONString());
             file.flush();
 
         } catch (IOException e) {
