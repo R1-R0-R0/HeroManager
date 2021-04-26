@@ -195,46 +195,43 @@ public class Writer {
         }
     }
 
-    public static void WriterJob (List<Job> jobs){
+    public static void WriterJob (Job jobs){
         JSONArray jobList = new JSONArray();
 
-        for (int index = 0; index<jobs.size(); index++){
 
             JSONObject consu = new JSONObject();
             JSONObject consumax = new JSONObject();
 
-            consu.put("hp", jobs.get(index).getHp());
-            consu.put("armor", jobs.get(index).getArmor());
-            consu.put("level", jobs.get(index).getLevel());
-            consu.put("proficiencyLevel", jobs.get(index).getProficiencyLevel());
-            consu.put("strength", jobs.get(index).getStrength());
-            consu.put("dexterity", jobs.get(index).getDexterity());
-            consu.put("intelligence", jobs.get(index).getIntelligence());
-            consu.put("wisdom", jobs.get(index).getWisdom());
-            consu.put("charism", jobs.get(index).getCharisma());
-            consu.put("strengthBoost", jobs.get(index).getStrengthBoost());
-            consu.put("dexterityBoost", jobs.get(index).getDexterityBoost());
-            consu.put("intelligenceBoost", jobs.get(index).getIntelligenceBoost());
-            consu.put("wisdomBoost", jobs.get(index).getWisdomBoost());
-            consu.put("charismBoost", jobs.get(index).getCharismBoost());
-            consu.put("race", jobs.get(index).getRace());
-            consu.put("jobtype", jobs.get(index).getJobType());
-            consu.put("inventory", jobs.get(index).getInventory());
-            consu.put("name" , jobs.get(index).getName());
-            consu.put("description" , jobs.get(index).getDescription());
-            consu.put("spellSlots", jobs.get(index).getSpellSlots());
-            consu.put("spellsInventory", jobs.get(index).getSpellInventory());
-            consu.put("improvement", jobs.get(index).getImprovements());
-            consu.put("jobSkill", jobs.get(index).getSkills());
+            consu.put("hp", jobs.getHp());
+            consu.put("armor", jobs.getArmor());
+            consu.put("level", jobs.getLevel());
+            consu.put("proficiencyLevel", jobs.getProficiencyLevel());
+            consu.put("strength", jobs.getStrength());
+            consu.put("dexterity", jobs.getDexterity());
+            consu.put("intelligence", jobs.getIntelligence());
+            consu.put("wisdom", jobs.getWisdom());
+            consu.put("charism", jobs.getCharisma());
+            consu.put("strengthBoost", jobs.getStrengthBoost());
+            consu.put("dexterityBoost", jobs.getDexterityBoost());
+            consu.put("intelligenceBoost", jobs.getIntelligenceBoost());
+            consu.put("wisdomBoost", jobs.getWisdomBoost());
+            consu.put("charismBoost", jobs.getCharismBoost());
+            consu.put("race", jobs.getRace());
+            consu.put("jobtype", jobs.getJobType());
+            consu.put("inventory", jobs.getInventory());
+            consu.put("name" , jobs.getName());
+            consu.put("description" , jobs.getDescription());
+            consu.put("spellSlots", jobs.getSpellSlots());
+            consu.put("spellsInventory", jobs.getSpellInventory());
+            consu.put("improvement", jobs.getImprovements());
+            consu.put("jobSkill", jobs.getSkills());
 
 
             consumax.put("job",consu);
 
             jobList.add(consumax);
 
-        }
-
-        try (FileWriter file = new FileWriter("/HeroManager/resources/" + jobs.get(0).getName()
+        try (FileWriter file = new FileWriter("/HeroManager/resources/" + jobs.getName()
                 +".json")) {
             file.write(jobList.toJSONString());
             file.flush();
