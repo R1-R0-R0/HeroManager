@@ -160,7 +160,7 @@ public class CharacterView {
             for (int j = 0; j < INVENTORY_SIZE; j++) {
                 StackPane pane = new StackPane();
                 pane.setId("inventorySlot" + counter);
-                pane.setOnMouseClicked(event -> System.out.println(event));
+                pane.setOnMouseClicked(this::inventoryMouseClickedEvent);
                 pane.setCursor(Cursor.HAND);
 
                 ImageView img = new ImageView();
@@ -185,5 +185,12 @@ public class CharacterView {
         }
 
         return inventory;
+    }
+
+    // TODO : To implement when item pickers are here
+    private void inventoryMouseClickedEvent(MouseEvent event) {
+        System.out.println("event = " + event);
+        StackPane source = ((StackPane) event.getSource());
+        source.getChildren().clear();
     }
 }
