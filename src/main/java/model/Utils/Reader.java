@@ -282,27 +282,6 @@ public class Reader {
         return items;
     }
 
-    public static ArrayList<Job> jsonReaderJob (String Filename){
-        JSONParser parser = new JSONParser();
-        ArrayList<Job> jobskills = new ArrayList<>();
-
-        try (FileReader reader = new FileReader(Filename)){
-            Object obj = parser.parse(reader);
-            JSONArray objectList = (JSONArray) obj;
-
-            objectList.forEach( element ->  jobskills.add(parseJob((JSONObject) element,Filename)));
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return jobskills;
-    }
-
     public static ArrayList<Improvement> jsonReaderImprovement (String Filename){
         JSONParser parser = new JSONParser();
         ArrayList<Improvement> improvements = new ArrayList<>();
@@ -326,13 +305,34 @@ public class Reader {
 
     private static Improvement parseImprovement(JSONObject object)
     {
-        JSONObject objects = (JSONObject) object.get("consomable");
+        JSONObject objects = (JSONObject) object.get("improvement");
 
         String name = (String) objects.get("name");
 
         String description = (String) objects.get("description");
 
         return new Improvement(name,description);
+    }
+
+    public static ArrayList<Job> jsonReaderJob (String Filename){
+        JSONParser parser = new JSONParser();
+        ArrayList<Job> jobskills = new ArrayList<>();
+
+        try (FileReader reader = new FileReader(Filename)){
+            Object obj = parser.parse(reader);
+            JSONArray objectList = (JSONArray) obj;
+
+            objectList.forEach( element ->  jobskills.add(parseJob((JSONObject) element,Filename)));
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return jobskills;
     }
 
     private static Job parseJob(JSONObject object, String Filename)
@@ -355,7 +355,7 @@ public class Reader {
         int charismaBoost = (int) object.get("charismaBoost");
 
         Race race = (Race) object.get("race");
-        JobType jobType = (JobType) object.get("race");
+        JobType jobType = (JobType) object.get("jobtype");
         List<Item> inventory = jsonReaderItem(Filename);
         String name = (String) object.get("name");
         String description = (String) object.get("description");
