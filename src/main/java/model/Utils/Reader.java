@@ -184,7 +184,7 @@ public class Reader {
 
     private static JobSkill parseJobSkill(JSONObject object)
     {
-        JSONObject objects = (JSONObject) object.get("spell");
+        JSONObject objects = (JSONObject) object.get("jobskill");
 
         String name = (String) objects.get("name");
 
