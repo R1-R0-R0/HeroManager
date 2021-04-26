@@ -2,11 +2,12 @@ package view;
 
 import controller.CharacterController;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -19,8 +20,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import model.job.JobType;
+import model.spell.Spell;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CharacterView {
 
@@ -52,10 +57,20 @@ public class CharacterView {
             stage.setScene(new Scene(root));
             // stage.setResizable(false);
             stage.show();
-            
+
             stage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
                 updateHPBarWidth(((int) CharacterController.getInstance().borderHPBar.getWidth()));
             });
+
+            Spell spell = new Spell("A", "Description", "School", "1 minute", "1 minute",
+                    10, 50, JobType.CLERIC, true, null);
+            Spell spell2 = new Spell("B", "Description 2", "No", "1 hour", "1 hour",
+                    20, 40, JobType.DRUID, true, null);
+
+            List<Spell> test = new ArrayList<>();
+            test.add(spell);
+            test.add(spell2);
+            setSpellList(test);
 
             // TODO : For test only, remove later
             setJobInfo("Voleuse", "Humain", "Force 8 (+2)", "Agilité 20 (+10)", "Charisme 69 (+69)");
@@ -72,6 +87,17 @@ public class CharacterView {
         return instance;
     }
 
+    public void blockWindow() {
+        CharacterController.getInstance().window.setDisable(true);
+    }
+
+    public void unblockWindow() {
+        CharacterController.getInstance().window.setDisable(false);
+    }
+
+    /**
+     * Character Tab
+     **/
     public void updateHPBarWidth(int newMaxHP) {
 
         Rectangle borderHPBar = CharacterController.getInstance().borderHPBar;
@@ -81,7 +107,7 @@ public class CharacterView {
         double newWidth = (((double) newMaxHP * ((double) MAX_HP_BAR_SIZE)) / ((double) DEFAULT_WINDOW_WIDTH));
 
         hpBar.setWidth(newWidth * hpBar.getWidth() / borderHPBar.getWidth());
-        hpText.setTranslateX((borderHPBar.getWidth()/2) - 20);
+        hpText.setTranslateX((borderHPBar.getWidth() / 2) - 20);
         borderHPBar.setWidth(newWidth);
     }
 
@@ -104,7 +130,7 @@ public class CharacterView {
 
     public void setImprovementsInfo(String... improvements) {
         TextFlow improvementsInfo = CharacterController.getInstance().improvementsInfo;
-        ObservableList list = improvementsInfo.getChildren();
+        ObservableList<javafx.scene.Node> list = improvementsInfo.getChildren();
 
         Text title = new Text("Aptitudes" + "\n\n");
         title.setFont(new Font(20));
@@ -142,14 +168,30 @@ public class CharacterView {
         CharacterController.getInstance().characterTab.setText(name);
     }
 
-    public void blockWindow() {
-        CharacterController.getInstance().window.setDisable(true);
+    /**
+     * Spell Tab
+     **/
+    public void setSpellList(List<Spell> spells) {
+        ListView list = CharacterController.getInstance().spellList;
+        ObservableList items = list.getItems();
+        items.addAll(spells);
     }
 
-    public void unblockWindow() {
-        CharacterController.getInstance().window.setDisable(false);
+    public void setSpellDetails(Spell spell) {
+        TextArea spellInfo = CharacterController.getInstance().spellInfo;
+        TextArea spellDesc = CharacterController.getInstance().spellDesc;
+
+        spellInfo.setText(spell.getName() + '\n'
+                + "Casting time: " + spell.getCastingTime() + '\n'
+                + "Duration: " + spell.getDuration()
+        );
+
+        spellDesc.setText(spell.getDescription());
     }
 
+    /**
+     * Inventory Tab
+     **/
     public GridPane createInventoryGrid() {
         GridPane inventory = new GridPane();
         inventory.setGridLinesVisible(true);
@@ -176,11 +218,11 @@ public class CharacterView {
 
         for (int i = 0; i < 8; i++) {
             RowConstraints rowConstraints = new RowConstraints();
-            rowConstraints.setPercentHeight(100.0/INVENTORY_SIZE);
+            rowConstraints.setPercentHeight(100.0 / INVENTORY_SIZE);
             inventory.getRowConstraints().add(rowConstraints);
 
             ColumnConstraints columnConstraints = new ColumnConstraints();
-            columnConstraints.setPercentWidth(100.0/INVENTORY_SIZE);
+            columnConstraints.setPercentWidth(100.0 / INVENTORY_SIZE);
             inventory.getColumnConstraints().add(columnConstraints);
         }
 

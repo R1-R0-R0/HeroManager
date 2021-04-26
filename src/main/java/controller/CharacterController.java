@@ -3,7 +3,9 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
@@ -11,6 +13,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.gui.CharacterModel;
+import model.spell.Spell;
 import view.CharacterView;
 
 import java.net.URL;
@@ -20,6 +23,7 @@ public class CharacterController implements Initializable {
 
     private static CharacterController instance;
 
+    /** Character Tab **/
     @FXML
     public ImageView imageJob;
     @FXML
@@ -40,8 +44,20 @@ public class CharacterController implements Initializable {
     public Rectangle borderHPBar;
     @FXML
     public Tab characterTab;
+
+    /** Spell Tab **/
+    @FXML
+    public ListView<Spell> spellList;
+    @FXML
+    public TextArea spellInfo;
+    @FXML
+    public TextArea spellDesc;
+
+    /** Inventory Tab **/
     @FXML
     public AnchorPane inventoryPane;
+
+    /** ---- **/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,6 +77,8 @@ public class CharacterController implements Initializable {
         AnchorPane.setBottomAnchor(inventory, 10.0);
         AnchorPane.setLeftAnchor(inventory, 10.0);
         inventoryPane.getChildren().add(inventory);
+
+        spellList.setOnMouseClicked(event -> CharacterView.getInstance().setSpellDetails(spellList.getSelectionModel().getSelectedItem()));
     }
 
     @FXML
