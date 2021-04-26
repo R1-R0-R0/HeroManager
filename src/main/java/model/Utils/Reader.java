@@ -32,6 +32,7 @@ import java.util.List;
 public class Reader {
 
     // TODO : avoir des methode pour choper l'enum sur un string
+    // TODO : avec des attribut public final static de type Filename pour enlever les attribut de méthode reader
 
     public static ArrayList<Consumable> jsonReaderConsumable (String Filename){
         JSONParser parser = new JSONParser();
