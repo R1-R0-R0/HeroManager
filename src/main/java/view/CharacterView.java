@@ -5,12 +5,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import model.gui.CharacterModel;
 
 import java.io.IOException;
 
@@ -33,7 +37,6 @@ public class CharacterView {
             stage.show();
             
             stage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
-                System.out.println("UPDATED");
                 updateHPBarWidth(((int) CharacterController.getInstance().borderHPBar.getWidth()));
             });
 
@@ -128,5 +131,36 @@ public class CharacterView {
 
     public void unblockWindow() {
         CharacterController.getInstance().window.setDisable(false);
+    }
+
+    public GridPane createInventoryGrid() {
+        GridPane inventory = new GridPane();
+        inventory.setGridLinesVisible(true);
+
+        int counter = 0;
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                StackPane pane = new StackPane();
+                ImageView img = new ImageView();
+                img.setId("inventorySlot" + counter);
+
+                pane.getChildren().add(new Text(Integer.toString(counter)));
+                inventory.add(pane, j, i);
+                counter++;
+            }
+        }
+
+        for (int i = 0; i < 8; i++) {
+            RowConstraints rowConstraints = new RowConstraints();
+            rowConstraints.setPercentHeight(100.0/8);
+            inventory.getRowConstraints().add(rowConstraints);
+
+            ColumnConstraints columnConstraints = new ColumnConstraints();
+            columnConstraints.setPercentWidth(100.0/8);
+            inventory.getColumnConstraints().add(columnConstraints);
+        }
+
+        return inventory;
     }
 }

@@ -5,10 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Tab;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -26,7 +23,7 @@ public class CharacterController implements Initializable {
     @FXML
     public ImageView imageJob;
     @FXML
-    public Pane paneImageJob;
+    public AnchorPane paneImageJob;
     @FXML
     public TextFlow jobInfo;
     @FXML
@@ -50,24 +47,19 @@ public class CharacterController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
 
-        imageJob.fitWidthProperty().bind(paneImageJob.widthProperty());
-        imageJob.fitHeightProperty().bind(paneImageJob.heightProperty());
+        // imageJob.fitWidthProperty().bind(paneImageJob.widthProperty());
+        // imageJob.fitHeightProperty().bind(paneImageJob.heightProperty());
 
         window.widthProperty().addListener(((observable, oldValue, newValue) -> {
             CharacterView.getInstance().updateHPBarWidth(newValue.intValue());
         }));
 
-        GridPane inventory = new GridPane();
-        inventory.setGridLinesVisible(true);
+        GridPane inventory = CharacterView.getInstance().createInventoryGrid();
 
-        for (int i = 0; i < 10; i++) {
-            inventory.addColumn(i, new Text(String.valueOf(i)));
-
-            for (int j = 0; j < 10; j++) {
-                inventory.addColumn(j, new Text(String.valueOf(j)));
-            }
-        }
-
+        AnchorPane.setTopAnchor(inventory, 10.0);
+        AnchorPane.setRightAnchor(inventory, 10.0);
+        AnchorPane.setBottomAnchor(inventory, 10.0);
+        AnchorPane.setLeftAnchor(inventory, 10.0);
         inventoryPane.getChildren().add(inventory);
     }
 
