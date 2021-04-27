@@ -6,13 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.gui.ItemManagerModel;
 
 import java.io.IOException;
 
 public class ItemManagerView {
 
     private Stage stage;
-    private ItemManagerView instance;
+    private static ItemManagerView instance;
 
     public ItemManagerView() {
         try {
@@ -21,6 +22,7 @@ public class ItemManagerView {
             stage.setTitle("HeroManager - Item Manager");
             stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(event -> ItemManagerModel.getInstance().returnToMenu());
             stage.setResizable(false);
             stage.show();
 
@@ -30,7 +32,11 @@ public class ItemManagerView {
         }
     }
 
-    public ItemManagerView getInstance() {
+    public void close() {
+        stage.close();
+    }
+
+    public static ItemManagerView getInstance() {
         return instance;
     }
 }

@@ -15,4 +15,9 @@ public class ItemManagerModel {
     public static ItemManagerModel getInstance() {
         return instance;
     }
+
+    public void returnToMenu() {
+        ItemManagerView.getInstance().close();
+        new MenuModel();
+    }
 }
