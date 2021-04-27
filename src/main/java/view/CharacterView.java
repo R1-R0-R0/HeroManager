@@ -284,10 +284,9 @@ public class CharacterView {
             MenuItem discard = new MenuItem("Discard");
 
             clickMenu.getItems().addAll(info, separatorMenuItem, discard);
+        } else {
+            // TODO : Open Item creator
         }
 
         clickMenu.show((Node) event.getSource(), event.getScreenX(), event.getScreenY());
-    } else {
-        // TODO : Open Item creator
-    }
 }
