@@ -67,7 +67,7 @@
          <items>
             <Button fx:id="createButton" mnemonicParsing="false" onAction="#createButtonOnClick" text="Create new character" />
             <Pane HBox.hgrow="ALWAYS" />
-            <Button fx:id="createGameButton" disable="true" mnemonicParsing="false" onAction="#loadButtonOnClick" text="Create new game">
+            <Button disable="true" mnemonicParsing="false" onAction="#createGameButtonOnClick" text="Create new game">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></Button>
