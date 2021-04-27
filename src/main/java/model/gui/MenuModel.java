@@ -29,4 +29,8 @@ public class MenuModel {
     public void loadGame() {
         // TODO : New window listing of saved games
     }
+
+    public void quitProgram() {
+        System.exit(0);
+    }
 }

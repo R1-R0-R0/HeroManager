@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import model.gui.MenuModel;
+import view.MenuView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,5 +44,11 @@ public class MenuController implements Initializable {
     @FXML
     public void settingsButtonOnClick() {
 
+    }
+
+    @FXML
+    public void quitButtonOnClick() {
+        MenuView.getInstance().close();
+        MenuModel.getInstance().quitProgram();
     }
 }
