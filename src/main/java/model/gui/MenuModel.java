@@ -18,7 +18,7 @@ public class MenuModel {
     public void resumeGame() {
 
         // Job expl = new Job("Hiraye", "A human", 100, 100, 1, 2, 3, 4, 5, )
-        new CharacterView();
+        new CharacterModel(null);
         MenuView.getInstance().close();
     }
 
