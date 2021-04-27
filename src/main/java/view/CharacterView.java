@@ -20,6 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.items.Item;
 import model.items.equipments.Equipment;
 import model.items.weapons.DamageType;
@@ -208,6 +209,7 @@ public class CharacterView {
         inventory.setGridLinesVisible(true);
 
         Tooltip tooltip = new Tooltip("Empty slot");
+        tooltip.setShowDelay(Duration.ONE);
 
         int counter = 0;
 
@@ -252,6 +254,7 @@ public class CharacterView {
         for (Item item : items) {
             selector = "#inventorySlot" + counter;
             tooltip = new Tooltip(item.getDescription());
+            tooltip.setShowDelay(Duration.ONE);
 
             pane = ((StackPane) CharacterController.getInstance().inventoryPane.getScene().lookup(selector));
             pane.getChildren().clear();
