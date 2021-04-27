@@ -3,6 +3,7 @@ package view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.gui.MenuModel;
 
@@ -20,9 +21,10 @@ public class NewGameView {
             stage.setTitle("HeroManager - New Game");
             stage.setScene(new Scene(root));
             stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(MenuView.getInstance().getStage());
             stage.show();
 
-            new MenuModel();
             instance = this;
         } catch (IOException e) {
             e.printStackTrace();

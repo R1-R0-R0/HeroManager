@@ -33,6 +33,10 @@ public class MenuView {
         stage.close();
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
     public static MenuView getInstance() {
         return instance;
     }
