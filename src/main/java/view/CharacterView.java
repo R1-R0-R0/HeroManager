@@ -289,4 +289,5 @@ public class CharacterView {
         }
 
         clickMenu.show((Node) event.getSource(), event.getScreenX(), event.getScreenY());
+    }
 }
