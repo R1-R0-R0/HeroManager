@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -27,6 +28,7 @@ import model.items.weapons.WeaponType;
 import model.job.JobType;
 import model.spell.Spell;
 
+import javax.tools.Tool;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -205,6 +207,8 @@ public class CharacterView {
         GridPane inventory = new GridPane();
         inventory.setGridLinesVisible(true);
 
+        Tooltip tooltip = new Tooltip("Empty slot");
+
         int counter = 0;
 
         for (int i = 0; i < INVENTORY_SIZE; i++) {
@@ -213,6 +217,7 @@ public class CharacterView {
                 pane.setId("inventorySlot" + counter);
                 pane.setOnMouseClicked(this::inventoryMouseClickedEvent);
                 pane.setCursor(Cursor.HAND);
+                Tooltip.install(pane, tooltip);
 
                 ImageView img = new ImageView();
                 img.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
@@ -242,15 +247,18 @@ public class CharacterView {
         int counter = 0;
 
         StackPane pane;
+        Tooltip tooltip;
         String selector;
         for (Item item : items) {
             selector = "#inventorySlot" + counter;
-            System.out.println("selector = " + selector);
+            tooltip = new Tooltip(item.getDescription());
 
             pane = ((StackPane) CharacterController.getInstance().inventoryPane.getScene().lookup(selector));
-            System.out.println("pane = " + pane);
             pane.getChildren().clear();
             pane.getChildren().add(new Text(item.getName()));
+
+            Tooltip.install(pane, tooltip);
+
             counter++;
         }
     }
