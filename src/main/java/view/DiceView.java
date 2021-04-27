@@ -1,6 +1,7 @@
 package view;
 
 import controller.DiceController;
+import controller.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,7 +18,8 @@ public class DiceView {
         try {
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/dice.fxml"));
-            stage.setTitle("HeroManager - Dices");
+            stage.setTitle("HeroManager - Dice Thrower");
+            stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));
             // stage.setResizable(false);
             stage.setMinWidth(400);

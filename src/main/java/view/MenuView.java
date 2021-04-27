@@ -1,5 +1,6 @@
 package view;
 
+import controller.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class MenuView {
             stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
             stage.setTitle("HeroManager");
+            stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             stage.show();

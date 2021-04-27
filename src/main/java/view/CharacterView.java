@@ -1,6 +1,7 @@
 package view;
 
 import controller.CharacterController;
+import controller.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -62,6 +63,7 @@ public class CharacterView {
             stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/character.fxml"));
             stage.setTitle("HeroManager - Character");
+            stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));
             // stage.setResizable(false);
             stage.show();
