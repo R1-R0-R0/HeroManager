@@ -37,7 +37,7 @@ public class NewGameController implements Initializable {
     }
 
     @FXML
-    public void loadButtonOnClick() {
+    public void createGameButton() {
         // TODO
     }
 
