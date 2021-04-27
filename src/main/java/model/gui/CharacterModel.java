@@ -19,7 +19,7 @@ public class CharacterModel {
      */
     public void hpBarOnClickEvent() {
         new HpPopUpView(100);
-        CharacterView.getInstance().blockWindow();
+        // CharacterView.getInstance().blockWindow();
     }
 
     /**
@@ -27,14 +27,14 @@ public class CharacterModel {
      * @param newHP New HP to set
      */
     public void hpBarOnClickEventDone(int newHP) {
-        CharacterView.getInstance().unblockWindow();
+
     }
 
     /**
      * When new hp pop-up updater canceled
      */
     public void hpBarOnClickEventCancel() {
-        CharacterView.getInstance().unblockWindow();
+
     }
 
     public void openDiceWindow() {

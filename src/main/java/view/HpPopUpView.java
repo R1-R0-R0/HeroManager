@@ -4,6 +4,7 @@ import controller.HpPopUpController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +20,8 @@ public class HpPopUpView {
             stage.setTitle("HeroManager - New HP");
             stage.setScene(new Scene(root));
             stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(CharacterView.getInstance().getStage());
             stage.show();
 
             instance = this;

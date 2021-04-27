@@ -53,12 +53,13 @@ public class CharacterView {
 
 
     private static CharacterView instance;
+    private Stage stage;
 
     public CharacterView() {
         try {
             instance = this;
 
-            Stage stage = new Stage();
+            stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/character.fxml"));
             stage.setTitle("HeroManager - Character");
             stage.setScene(new Scene(root));
@@ -99,12 +100,8 @@ public class CharacterView {
         return instance;
     }
 
-    public void blockWindow() {
-        CharacterController.getInstance().window.setDisable(true);
-    }
-
-    public void unblockWindow() {
-        CharacterController.getInstance().window.setDisable(false);
+    public Stage getStage() {
+        return stage;
     }
 
     /**
