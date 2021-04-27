@@ -34,4 +34,8 @@ public class NewGameView {
     public static NewGameView getInstance() {
         return instance;
     }
+
+    public void close() {
+        stage.close();
+    }
 }

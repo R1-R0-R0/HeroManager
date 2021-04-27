@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import model.gui.NewGameModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,5 +29,10 @@ public class NewGameController implements Initializable {
         imageJob.setImage(new Image(getClass().getResourceAsStream("/images/ui/question_mark.png")));
         imageJobClass.setImage(new Image(getClass().getResourceAsStream("/images/ui/question_mark.png")));
         textJobDesc.getChildren().add(new Text("<- Select a character on the left."));
+    }
+
+    @FXML
+    public void backButtonOnClick() {
+        NewGameModel.getInstance().close();
     }
 }

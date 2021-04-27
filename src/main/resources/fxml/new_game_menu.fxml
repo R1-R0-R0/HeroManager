@@ -65,14 +65,14 @@
       </GridPane>
       <ToolBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" GridPane.rowIndex="1">
          <items>
-            <Button mnemonicParsing="false" text="Create new character" />
+            <Button fx:id="createButton" mnemonicParsing="false" text="Create new character" />
             <Pane HBox.hgrow="ALWAYS" />
-            <Button disable="true" mnemonicParsing="false" text="Load character">
+            <Button fx:id="loadButton" disable="true" mnemonicParsing="false" text="Load character">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></Button>
             <Separator />
-            <Button cancelButton="true" mnemonicParsing="false" text="Back to menu" />
+            <Button fx:id="backButton" cancelButton="true" mnemonicParsing="false" onAction="#backButtonOnClick" text="Back to menu" />
          </items>
       </ToolBar>
    </children>
