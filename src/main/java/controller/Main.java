@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        new CharacterModel(null);
-        // new MenuView();
+        // new CharacterModel(null);
+        new MenuView();
     }
 }

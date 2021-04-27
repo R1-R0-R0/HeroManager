@@ -1,5 +1,8 @@
 package model.gui;
 
+import view.CharacterView;
+import view.MenuView;
+
 public class MenuModel {
 
     private static MenuModel instance;
@@ -15,6 +18,8 @@ public class MenuModel {
     public void resumeGame() {
 
         // Job expl = new Job("Hiraye", "A human", 100, 100, 1, 2, 3, 4, 5, )
+        new CharacterView();
+        MenuView.getInstance().close();
     }
 
     public void newGame() {
