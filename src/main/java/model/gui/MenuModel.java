@@ -31,6 +31,11 @@ public class MenuModel {
         new LoadGameModel();
     }
 
+    public void openItemManager() {
+        MenuView.getInstance().close();
+        new ItemManagerModel();
+    }
+
     public void quitProgram() {
         System.exit(0);
     }

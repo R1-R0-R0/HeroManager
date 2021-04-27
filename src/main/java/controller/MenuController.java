@@ -38,7 +38,7 @@ public class MenuController implements Initializable {
 
     @FXML
     public void manageItemsButtonOnClick() {
-
+        MenuModel.getInstance().openItemManager();
     }
 
     @FXML
