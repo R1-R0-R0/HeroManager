@@ -12,8 +12,8 @@
          </font>
       </Text>
       <Button layoutX="58.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#resumeButtonOnClick" prefHeight="25.0" prefWidth="210.0" text="Resume game" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="185.0" />
-      <Button layoutX="167.0" layoutY="224.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#newGameButtonOnClick" prefWidth="100.0" text="New game" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="225.0" />
-      <Button layoutX="58.0" layoutY="224.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#loadGameButtonOnClick" prefWidth="100.0" text="Load game" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="225.0" />
+      <Button layoutX="167.0" layoutY="224.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newGameButtonOnClick" prefWidth="100.0" text="New game" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="225.0" />
+      <Button layoutX="58.0" layoutY="224.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadGameButtonOnClick" onMouseClicked="#loadGameButtonOnClick" prefWidth="100.0" text="Load game" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="225.0" />
       <Button layoutX="54.0" layoutY="259.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#manageItemsButtonOnClick" prefWidth="210.0" text="Manage items" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="265.0" />
       <Button disable="true" layoutX="58.0" layoutY="292.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#settingsButtonOnClick" prefWidth="210.0" text="Settings" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="305.0" />
       <Text fx:id="resumeText" layoutX="277.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hiraye - Voleuse - Humain - LVL 01" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="189.0" />

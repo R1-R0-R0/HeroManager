@@ -9,6 +9,7 @@ public class MenuModel {
 
     public MenuModel() {
         instance = this;
+        new MenuView();
     }
 
     public static MenuModel getInstance() {
@@ -27,7 +28,7 @@ public class MenuModel {
     }
 
     public void loadGame() {
-        // TODO : New window listing of saved games
+        new LoadGameModel();
     }
 
     public void quitProgram() {

@@ -3,6 +3,7 @@ package controller;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.gui.CharacterModel;
+import model.gui.MenuModel;
 import view.CharacterView;
 import view.MenuView;
 
@@ -13,7 +14,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // new CharacterModel(null);
-        new MenuView();
+        new MenuModel();
     }
 }

@@ -22,7 +22,6 @@ public class MenuView {
             stage.setResizable(false);
             stage.show();
 
-            new MenuModel();
             instance = this;
         } catch (IOException e) {
             e.printStackTrace();
