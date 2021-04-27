@@ -4,11 +4,10 @@ import controller.CharacterController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.items.Item;
+import model.items.equipments.Equipment;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
 import model.items.weapons.WeaponType;
@@ -267,6 +267,27 @@ public class CharacterView {
     private void inventoryMouseClickedEvent(MouseEvent event) {
         System.out.println("event = " + event);
         StackPane source = ((StackPane) event.getSource());
-        source.getChildren().clear();
+        System.out.println("source.getId() = " + source.getId());
+
+        ContextMenu clickMenu = new ContextMenu();
+        Item item = new Weapon("Épée", "Une épée", "Propriétés", WeaponType.COMMON, DamageType.SLASHING);
+
+        if (item != null) {
+            if (item instanceof Weapon || item instanceof Equipment) {
+                MenuItem equip = new MenuItem("Equip");
+                clickMenu.getItems().add(equip);
+            }
+
+            MenuItem info = new MenuItem("Info");
+
+            SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
+            MenuItem discard = new MenuItem("Discard");
+
+            clickMenu.getItems().addAll(info, separatorMenuItem, discard);
+        }
+
+        clickMenu.show((Node) event.getSource(), event.getScreenX(), event.getScreenY());
+    } else {
+        // TODO : Open Item creator
     }
 }
