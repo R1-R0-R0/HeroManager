@@ -20,6 +20,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import model.items.Item;
+import model.items.weapons.DamageType;
+import model.items.weapons.Weapon;
+import model.items.weapons.WeaponType;
 import model.job.JobType;
 import model.spell.Spell;
 
@@ -78,6 +82,11 @@ public class CharacterView {
             setCharacterName("Hiraye");
             setHP(50, 100);
             setLevel(3);
+            List<Item> items = new ArrayList<>();
+            items.add(new Weapon("Épée", "Une épée", "Propriétés", WeaponType.COMMON, DamageType.SLASHING));
+            items.add(new Weapon("Hache", "Une hache", "Propriétés", WeaponType.COMMON, DamageType.BLUDGEONING));
+            items.add(new Weapon("Arc", "Un arc", "Propriétés", WeaponType.COMMON, DamageType.PIERCING));
+            setInventory(items);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -227,6 +236,23 @@ public class CharacterView {
         }
 
         return inventory;
+    }
+
+    public void setInventory(List<Item> items) {
+        int counter = 0;
+
+        StackPane pane;
+        String selector;
+        for (Item item : items) {
+            selector = "#inventorySlot" + counter;
+            System.out.println("selector = " + selector);
+
+            pane = ((StackPane) CharacterController.getInstance().inventoryPane.getScene().lookup(selector));
+            System.out.println("pane = " + pane);
+            pane.getChildren().clear();
+            pane.getChildren().add(new Text(item.getName()));
+            counter++;
+        }
     }
 
     // TODO : To implement when item pickers are here
