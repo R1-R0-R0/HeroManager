@@ -6,5 +6,7 @@ public enum Characteristics {
     ROBUSTNESS,
     INTELLIGENCE,
     WISDOM,
-    CHARISMA
+    CHARISMA,
+    SPEED
+
 }
