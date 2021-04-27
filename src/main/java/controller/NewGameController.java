@@ -32,6 +32,16 @@ public class NewGameController implements Initializable {
     }
 
     @FXML
+    public void createButtonOnClick() {
+        // TODO
+    }
+
+    @FXML
+    public void loadButtonOnClick() {
+        // TODO
+    }
+
+    @FXML
     public void backButtonOnClick() {
         NewGameModel.getInstance().close();
     }

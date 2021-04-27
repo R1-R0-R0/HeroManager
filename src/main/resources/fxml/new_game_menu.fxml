@@ -65,9 +65,9 @@
       </GridPane>
       <ToolBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" GridPane.rowIndex="1">
          <items>
-            <Button fx:id="createButton" mnemonicParsing="false" text="Create new character" />
+            <Button fx:id="createButton" mnemonicParsing="false" onAction="#createButtonOnClick" text="Create new character" />
             <Pane HBox.hgrow="ALWAYS" />
-            <Button fx:id="loadButton" disable="true" mnemonicParsing="false" text="Load character">
+            <Button fx:id="loadButton" disable="true" mnemonicParsing="false" onAction="#loadButtonOnClick" text="Load character">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></Button>
