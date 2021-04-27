@@ -23,7 +23,7 @@ public class MenuModel {
     }
 
     public void newGame() {
-        // TODO : New window listing every characters created (Like Stellaris)
+        new NewGameModel();
     }
 
     public void loadGame() {
