@@ -19,7 +19,7 @@ public class Job {
                 dexterity,
                 intelligence,
                 wisdom,
-                robutsness,
+                robustness,
                 charisma,
                 speed;
     private int statsPoints = ADDITIONNAL_STATS;
@@ -81,8 +81,8 @@ public class Job {
     }
 
     public int getMaxHp(int value) {
-        return (int)((value + getModificator(robutsness)
-                + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robutsness))));
+        return (int)((value + getModificator(robustness)
+                + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robustness))));
     }
 
     public int getModificator(int value){
@@ -135,7 +135,7 @@ public class Job {
     }
 
     public int getRobustness(){
-        return robutsness;
+        return robustness;
     }
 
     public int getSpeed(){ return speed; }
@@ -376,8 +376,8 @@ public class Job {
 
     public void addRobustness(){
         if(level == 1 && statsPoints !=0) {
-            if (robutsness < 15) {
-                robutsness++;
+            if (robustness < 15) {
+                robustness++;
                 statsPoints--;
             }
         }
@@ -386,12 +386,12 @@ public class Job {
 
     public void removeRobustness(){
         if(level == 1){
-            if (robutsness >8 && intelligence <= 10){
-                robutsness--;
+            if (robustness >8 && intelligence <= 10){
+                robustness--;
                 statsPoints++;
             }
         }else{
-            robutsness--;
+            robustness--;
         }
     }
 
