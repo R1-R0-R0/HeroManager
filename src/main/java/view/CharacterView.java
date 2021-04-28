@@ -22,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.equipments.Equipment;
 import model.items.weapons.DamageType;
@@ -272,7 +273,7 @@ public class CharacterView {
         System.out.println("source.getId() = " + source.getId());
 
         ContextMenu clickMenu = new ContextMenu();
-        Item item = new Weapon("Épée", "Une épée", "Propriétés", WeaponType.COMMON, DamageType.SLASHING);
+        Item item = null; // new Weapon("Épée", "Une épée", "Propriétés", WeaponType.COMMON, DamageType.SLASHING);
 
         if (item != null) {
             if (item instanceof Weapon || item instanceof Equipment) {
@@ -287,7 +288,7 @@ public class CharacterView {
 
             clickMenu.getItems().addAll(info, separatorMenuItem, discard);
         } else {
-            // TODO : Open Item creator
+            new ItemPickerModel();
         }
 
         clickMenu.show((Node) event.getSource(), event.getScreenX(), event.getScreenY());

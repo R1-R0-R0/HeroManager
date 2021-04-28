@@ -1,5 +1,6 @@
 package model.gui;
 
+import model.items.Item;
 import model.job.Job;
 import view.CharacterView;
 import view.HpPopUpView;
@@ -34,6 +35,10 @@ public class CharacterModel {
      * When new hp pop-up updater canceled
      */
     public void hpBarOnClickEventCancel() {
+
+    }
+
+    public void inventoryClickedEvent(Item item) {
 
     }
 
