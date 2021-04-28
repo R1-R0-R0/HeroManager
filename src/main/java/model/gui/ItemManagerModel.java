@@ -1,5 +1,7 @@
 package model.gui;
 
+import model.items.weapons.DamageType;
+import model.items.weapons.WeaponType;
 import view.ItemManagerView;
 
 public class ItemManagerModel {
@@ -14,6 +16,18 @@ public class ItemManagerModel {
 
     public static ItemManagerModel getInstance() {
         return instance;
+    }
+
+    public void newItem(String name, String description, String properties, WeaponType weaponType, DamageType damageType) {
+
+    }
+
+    public void updateItem(String name, String description, String properties, WeaponType weaponType, DamageType damageType) {
+
+    }
+
+    public void deleteItemEvent(String name) {
+
     }
 
     public void returnToMenu() {
