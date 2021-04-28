@@ -32,7 +32,12 @@ public class ItemManagerController implements Initializable {
 
     @FXML
     public void itemTypeSelectedEvent() {
-        System.out.println("EVENT");
-        System.out.println("typePicker.getValue().toString() = " + typePicker.getValue().toString());
+        ItemType selectedType = typePicker.getValue();
+
+        switch (selectedType) {
+            case WEAPONS:
+            case EQUIPMENTS:
+            case CONSUMABLES:
+        }
     }
 }
