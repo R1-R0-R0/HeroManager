@@ -22,10 +22,33 @@
         <ListView fx:id="itemList" GridPane.rowIndex="1">
 
         </ListView>
-      <Label fx:id="itemNameLabel" text="Item name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
+        <Label fx:id="itemNameLabel" text="Item name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="1">
+                    <items>
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="New Item" />
+                        <Separator />
+                        <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Update Item" />
+                        <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Delete item" />
+                        <Separator />
+                        <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" text="Return to menu" />
+
+                    </items>
+                </ToolBar>
+            </children>
+        </GridPane>
     </children>
 </GridPane>
