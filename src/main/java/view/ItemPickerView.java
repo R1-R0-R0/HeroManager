@@ -20,6 +20,24 @@ public class ItemPickerView {
     private Stage stage;
     private static ItemPickerView instance;
 
+    public ItemPickerView(Stage owner) {
+        try {
+            stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/item_picker.fxml"));
+            stage.setTitle("HeroManager - Item Picker");
+            stage.getIcons().add(Main.APP_LOGO);
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(owner);
+            stage.setResizable(false);
+            stage.show();
+
+            instance = this;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ItemPickerView() {
         try {
             stage = new Stage();
@@ -28,7 +46,6 @@ public class ItemPickerView {
             stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(CharacterView.getInstance().getStage());
             stage.setResizable(false);
             stage.show();
 
