@@ -13,11 +13,12 @@ import java.io.IOException;
 
 public class CharacterCreatorView {
 
+    private Stage stage;
     private static CharacterCreatorView instance;
 
     public CharacterCreatorView(Stage owner) {
         try {
-            Stage stage = new Stage();
+            stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/character_creator.fxml"));
             stage.setTitle("HeroManager - Character Creator");
             stage.getIcons().add(Main.APP_LOGO);
@@ -39,6 +40,10 @@ public class CharacterCreatorView {
 
     public void changeJobTypeImage(String path) {
         CharacterCreatorController.getInstance().jobTypeImage.setImage(new Image(getClass().getResourceAsStream(path)));
+    }
+
+    public void close() {
+        stage.close();
     }
 
     public void enableInputs() {

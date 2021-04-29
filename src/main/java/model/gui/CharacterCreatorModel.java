@@ -50,4 +50,8 @@ public class CharacterCreatorModel {
             case WIZARD -> view.changeJobTypeImage(WIZARD_IMAGE_PATH);
         }
     }
+
+    public void close() {
+        CharacterCreatorView.getInstance().close();
+    }
 }

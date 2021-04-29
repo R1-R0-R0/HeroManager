@@ -15,6 +15,7 @@ import model.gui.CharacterCreatorModel;
 import model.job.JobType;
 import model.race.Alignment;
 import model.race.RaceType;
+import view.CharacterCreatorView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,6 +58,11 @@ public class CharacterCreatorController implements Initializable {
 
         ObservableList<RaceType> raceTypeObservableList = FXCollections.observableArrayList(RaceType.values());
         racePicker.setItems(raceTypeObservableList);
+    }
+
+    @FXML
+    public void backButtonOnClick() {
+        CharacterCreatorModel.getInstance().close();
     }
 
     @FXML
