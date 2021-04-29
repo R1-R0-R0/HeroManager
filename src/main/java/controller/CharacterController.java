@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 import model.gui.CharacterModel;
+import model.items.equipments.*;
 import model.spell.Spell;
 import view.CharacterView;
 
@@ -139,13 +140,63 @@ public class CharacterController implements Initializable {
         Tooltip.install(ringImage2, ringTip);
     }
 
+    /** EVENTS **/
+
+    @FXML
+    public void diceMenuOnAction() {
+        CharacterModel.getInstance().openDiceWindow();
+    }
+
+    /* CHARACTERS EVENT */
+
     @FXML
     public void hpBarOnClick() {
         CharacterModel.getInstance().hpBarOnClickEvent();
     }
 
+    /* EQUIPMENT EVENT */
     @FXML
-    public void diceMenuOnAction() {
-        CharacterModel.getInstance().openDiceWindow();
+    public void headImageOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(HeadEquipment.class);
+    }
+
+    @FXML
+    public void bodyImageOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(BodyEquipment.class);
+    }
+
+    @FXML
+    public void mantleImageOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(MantleEquipment.class);
+    }
+
+    @FXML
+    public void beltImageOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(BeltEquipment.class);
+    }
+
+    @FXML
+    public void legsImageOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(LegsEquipment.class);
+    }
+
+    @FXML
+    public void feetImageOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(FeetEquipment.class);
+    }
+
+    @FXML
+    public void amuletImageOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(AmuletEquipment.class);
+    }
+
+    @FXML
+    public void ring1ImageOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(RingEquipment.class);
+    }
+
+    @FXML
+    public void ring2ImageOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(RingEquipment.class);
     }
 }

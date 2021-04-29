@@ -22,12 +22,19 @@ public class ItemPickerController implements Initializable {
     @FXML
     public Label itemNameLabel;
 
-    private Item selectedItem;
+    public Item selectedItem;
+
+    private static ItemPickerController instance;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        instance = this;
         ObservableList<ItemType> list = FXCollections.observableArrayList(ItemType.values());
         typePicker.setItems(list);
+    }
+
+    public static ItemPickerController getInstance() {
+        return instance;
     }
 
     @FXML

@@ -182,46 +182,46 @@
                     <content>
                         <AnchorPane fx:id="equipmentTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="headImage" fitHeight="50.0" fitWidth="50.0" layoutX="151.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="25.0">
+                        <ImageView fx:id="headImage" fitHeight="50.0" fitWidth="50.0" layoutX="151.0" layoutY="26.0" onMouseClicked="#headImageOnClick" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="25.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></ImageView>
-                        <ImageView fx:id="bodyImage" fitHeight="50.0" fitWidth="50.0" layoutX="457.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bodyImage" fitHeight="50.0" fitWidth="50.0" layoutX="457.0" layoutY="142.0" onMouseClicked="#bodyImageOnClick" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="beltImage" fitHeight="50.0" fitWidth="50.0" layoutX="476.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="beltImage" fitHeight="50.0" fitWidth="50.0" layoutX="476.0" layoutY="298.0" onMouseClicked="#beltImageOnClick" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="amuletImage" fitHeight="50.0" fitWidth="50.0" layoutX="451.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="amuletImage" fitHeight="50.0" fitWidth="50.0" layoutX="451.0" layoutY="75.0" onMouseClicked="#amuletImageOnClick" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="feetImage" fitHeight="50.0" fitWidth="50.0" layoutX="501.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="feetImage" fitHeight="50.0" fitWidth="50.0" layoutX="501.0" layoutY="482.0" onMouseClicked="#feetImageOnClick" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="legsImage" fitHeight="50.0" fitWidth="50.0" layoutX="275.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="legsImage" fitHeight="50.0" fitWidth="50.0" layoutX="275.0" layoutY="372.0" onMouseClicked="#legsImageOnClick" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="ringImage1" fitHeight="50.0" fitWidth="50.0" layoutX="275.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ringImage1" fitHeight="50.0" fitWidth="50.0" layoutX="275.0" layoutY="273.0" onMouseClicked="#ring1ImageOnClick" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="ringImage2" fitHeight="50.0" fitWidth="50.0" layoutX="476.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ringImage2" fitHeight="50.0" fitWidth="50.0" layoutX="476.0" layoutY="236.0" onMouseClicked="#ring2ImageOnClick" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="mantleImage" fitHeight="50.0" fitWidth="50.0" layoutX="250.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="mantleImage" fitHeight="50.0" fitWidth="50.0" layoutX="250.0" layoutY="125.0" onMouseClicked="#mantleImageOnClick" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

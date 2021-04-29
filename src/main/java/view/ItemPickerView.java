@@ -1,12 +1,17 @@
 package view;
 
+import controller.ItemPickerController;
 import controller.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.gui.ItemManagerModel;
+import model.items.Item;
+import model.items.ItemType;
+import model.items.equipments.Equipment;
 
 import java.io.IOException;
 
@@ -35,6 +40,16 @@ public class ItemPickerView {
 
     public void close() {
         stage.close();
+    }
+
+    public void setItemType(ItemType itemType) {
+        ItemPickerController.getInstance().typePicker.setDisable(true);
+        ItemPickerController.getInstance().typePicker.setValue(itemType);
+    }
+
+    public void updateList() {
+        ListView<Item> listView = ItemPickerController.getInstance().itemList;
+        // TODO
     }
 
     public static ItemPickerView getInstance() {

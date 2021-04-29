@@ -73,6 +73,7 @@ public class CharacterView {
                 updateHPBarWidth(((int) CharacterController.getInstance().borderHPBar.getWidth()));
             });
 
+            /* -- */
             Spell spell = new Spell("A", "Description", "School", "1 minute", "1 minute",
                     10, 50, JobType.CLERIC, true, null);
             Spell spell2 = new Spell("B", "Description 2", "No", "1 hour", "1 hour",
@@ -288,7 +289,7 @@ public class CharacterView {
 
             clickMenu.getItems().addAll(info, separatorMenuItem, discard);
         } else {
-            new ItemPickerModel();
+            new ItemPickerModel(getStage());
         }
 
         clickMenu.show((Node) event.getSource(), event.getScreenX(), event.getScreenY());
