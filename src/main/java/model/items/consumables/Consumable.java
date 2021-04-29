@@ -4,18 +4,12 @@ import model.items.Item;
 
 public class Consumable implements Item {
 
-    private ConsumableEffect effect;
     private String name;
     private String description;
 
-    public Consumable(ConsumableEffect effect, String name, String description) {
-        this.effect = effect;
+    public Consumable(String name, String description) {
         this.name = name;
         this.description = description;
-    }
-
-    public ConsumableEffect getEffect() {
-        return effect;
     }
 
     @Override
