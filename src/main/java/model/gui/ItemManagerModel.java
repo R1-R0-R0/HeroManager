@@ -18,13 +18,14 @@ public class ItemManagerModel {
         return instance;
     }
 
+    /*
     public void newItem(String name, String description, String properties, WeaponType weaponType, DamageType damageType) {
 
     }
 
     public void updateItem(String name, String description, String properties, WeaponType weaponType, DamageType damageType) {
 
-    }
+    } */
 
     public void deleteItemEvent(String name) {
 
@@ -33,5 +34,17 @@ public class ItemManagerModel {
     public void returnToMenu() {
         ItemManagerView.getInstance().close();
         new MenuModel();
+    }
+
+    public enum EquipmentPart {
+        HEAD,
+        BODY,
+        BELT,
+        LEGS,
+        FEET,
+        AMULET,
+        HANDS,
+        MANTLE,
+        RING
     }
 }

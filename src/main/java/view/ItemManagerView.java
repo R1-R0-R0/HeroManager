@@ -23,7 +23,6 @@ public class ItemManagerView {
             stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));
             stage.setOnCloseRequest(event -> ItemManagerModel.getInstance().returnToMenu());
-            stage.setResizable(false);
             stage.show();
 
             instance = this;
