@@ -33,11 +33,31 @@ public class CharacterCreatorView {
         }
     }
 
+    public static CharacterCreatorView getInstance() {
+        return instance;
+    }
+
     public void changeJobTypeImage(String path) {
         CharacterCreatorController.getInstance().jobTypeImage.setImage(new Image(getClass().getResourceAsStream(path)));
     }
 
-    public static CharacterCreatorView getInstance() {
-        return instance;
+    public void enableInputs() {
+        CharacterCreatorController controller = CharacterCreatorController.getInstance();
+
+        controller.jobNameText.setDisable(false);
+        controller.jobDescriptionText.setDisable(false);
+        controller.genderPicker.setDisable(false);
+        controller.alignmentPicker.setDisable(false);
+        controller.racePicker.setDisable(false);
+    }
+
+    public void disableInputs() {
+        CharacterCreatorController controller = CharacterCreatorController.getInstance();
+
+        controller.jobNameText.setDisable(true);
+        controller.jobDescriptionText.setDisable(true);
+        controller.genderPicker.setDisable(true);
+        controller.alignmentPicker.setDisable(true);
+        controller.racePicker.setDisable(true);
     }
 }

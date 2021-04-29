@@ -1,11 +1,12 @@
 package controller;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,10 +21,15 @@ import java.util.ResourceBundle;
 
 public class CharacterCreatorController implements Initializable {
 
+    private static CharacterCreatorController instance;
     @FXML
     public ImageView jobImage, jobTypeImage;
     @FXML
     public ComboBox<JobType> jobTypePicker;
+    @FXML
+    public TextField jobNameText;
+    @FXML
+    public TextArea jobDescriptionText;
     @FXML
     public ComboBox<?> genderPicker;
     @FXML
@@ -31,7 +37,9 @@ public class CharacterCreatorController implements Initializable {
     @FXML
     public ComboBox<RaceType> racePicker;
 
-    private static CharacterCreatorController instance;
+    public static CharacterCreatorController getInstance() {
+        return instance;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -54,9 +62,5 @@ public class CharacterCreatorController implements Initializable {
     @FXML
     public void jobTypeOnPick() {
         CharacterCreatorModel.getInstance().selectedJobType(jobTypePicker.getValue());
-    }
-
-    public static CharacterCreatorController getInstance() {
-        return instance;
     }
 }

@@ -1,6 +1,5 @@
 package model.gui;
 
-import controller.CharacterCreatorController;
 import javafx.stage.Stage;
 import model.job.JobType;
 import view.CharacterCreatorView;
@@ -33,6 +32,8 @@ public class CharacterCreatorModel {
     }
 
     public void selectedJobType(JobType jobType) {
+        CharacterCreatorView.getInstance().enableInputs();
+
         CharacterCreatorView view = CharacterCreatorView.getInstance();
         switch (jobType) {
             case BARBARIAN -> view.changeJobTypeImage(BARBARIAN_IMAGE_PATH);

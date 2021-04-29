@@ -66,18 +66,18 @@
                   <Label text="Alignment" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                   <Label text="Race" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                   <Label text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <TextField fx:id="jobNameText" GridPane.columnIndex="1">
+                  <TextField fx:id="jobNameText" disable="true" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin></TextField>
-                  <TextArea fx:id="jobDescriptionText" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextArea fx:id="jobDescriptionText" disable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin></TextArea>
-                  <ComboBox fx:id="alignmentPicker" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="racePicker" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="alignmentPicker" disable="true" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="racePicker" disable="true" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                   <Label layoutX="10.0" layoutY="303.0" text="Gender" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <ComboBox fx:id="genderPicker" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="genderPicker" disable="true" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>
