@@ -33,7 +33,7 @@ public class NewGameController implements Initializable {
 
     @FXML
     public void createButtonOnClick() {
-        // TODO
+        NewGameModel.getInstance().createNewCharacter();
     }
 
     @FXML
