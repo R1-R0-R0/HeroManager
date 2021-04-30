@@ -54,6 +54,8 @@ public class CharacterCreatorView {
         controller.genderPicker.setDisable(false);
         controller.alignmentPicker.setDisable(false);
         controller.racePicker.setDisable(false);
+
+        controller.createCharacterButton.setDisable(false);
     }
 
     public void disableInputs() {
@@ -64,5 +66,7 @@ public class CharacterCreatorView {
         controller.genderPicker.setDisable(true);
         controller.alignmentPicker.setDisable(true);
         controller.racePicker.setDisable(true);
+
+        controller.createCharacterButton.setDisable(true);
     }
 }

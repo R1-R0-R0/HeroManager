@@ -18,7 +18,7 @@
         <ToolBar prefHeight="40.0" GridPane.rowIndex="2">
             <items>
                 <Pane HBox.hgrow="ALWAYS" />
-                <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="105.0" text="Create character" />
+                <Button fx:id="createCharacterButton" disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createCharacterButtonOnClick" prefWidth="105.0" text="Create character" />
                 <Separator />
                 <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backButtonOnClick" prefWidth="52.0" text="Back" />
             </items>

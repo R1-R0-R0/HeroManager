@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -12,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import model.gui.CharacterCreatorModel;
+import model.job.Gender;
 import model.job.JobType;
 import model.race.Alignment;
 import model.race.RaceType;
@@ -32,11 +34,13 @@ public class CharacterCreatorController implements Initializable {
     @FXML
     public TextArea jobDescriptionText;
     @FXML
-    public ComboBox<?> genderPicker;
+    public ComboBox<Gender> genderPicker;
     @FXML
     public ComboBox<Alignment> alignmentPicker;
     @FXML
     public ComboBox<RaceType> racePicker;
+    @FXML
+    public Button createCharacterButton;
 
     public static CharacterCreatorController getInstance() {
         return instance;
@@ -53,6 +57,9 @@ public class CharacterCreatorController implements Initializable {
         ObservableList<JobType> jobTypeObservableList = FXCollections.observableArrayList(JobType.values());
         jobTypePicker.setItems(jobTypeObservableList);
 
+        ObservableList<Gender> genderObservableList = FXCollections.observableArrayList(Gender.values());
+        genderPicker.setItems(genderObservableList);
+
         ObservableList<Alignment> alignmentObservableList = FXCollections.observableArrayList(Alignment.values());
         alignmentPicker.setItems(alignmentObservableList);
 
@@ -68,5 +75,10 @@ public class CharacterCreatorController implements Initializable {
     @FXML
     public void jobTypeOnPick() {
         CharacterCreatorModel.getInstance().selectedJobType(jobTypePicker.getValue());
+    }
+
+    @FXML
+    public void createCharacterButtonOnClick() {
+        CharacterCreatorModel.getInstance().createCharacter();
     }
 }
