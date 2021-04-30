@@ -22,12 +22,15 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.gui.CharacterModel;
 import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.equipments.Equipment;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
 import model.items.weapons.WeaponType;
+import model.job.Gender;
+import model.job.Job;
 import model.job.JobType;
 import model.spell.Spell;
 
@@ -72,6 +75,15 @@ public class CharacterView {
             stage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
                 updateHPBarWidth(((int) CharacterController.getInstance().borderHPBar.getWidth()));
             });
+
+            Job character = CharacterModel.getInstance().getCharacter();
+            Gender gender = character.getGender();
+            JobType jobType = character.getJobType();
+
+            String pictureNameJobType = jobType.name().toLowerCase();
+            String pictureNameGender = (gender == Gender.MAN) ? "_m.jpg" : "_f.jpg";
+            Image pictureJob = new Image(getClass().getResourceAsStream(pictureNameJobType + pictureNameGender));
+            CharacterController.getInstance().imageJob.setImage(pictureJob);
 
             /* -- */
             Spell spell = new Spell("A", "Description", "School", "1 minute", "1 minute",

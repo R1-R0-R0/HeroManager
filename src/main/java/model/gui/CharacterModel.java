@@ -12,9 +12,11 @@ import view.HpPopUpView;
 public class CharacterModel {
 
     private static CharacterModel instance;
+    private Job character;
 
     public CharacterModel(Job character) {
         instance = this;
+        this.character = character;
 
         new CharacterView();
     }
@@ -62,6 +64,10 @@ public class CharacterModel {
 
     public void openDiceWindow() {
         new DiceModel();
+    }
+
+    public Job getCharacter() {
+        return character;
     }
 
     public static CharacterModel getInstance() {
