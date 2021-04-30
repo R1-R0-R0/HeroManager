@@ -480,5 +480,7 @@ public class Job {
         spellInventory.add(spell);
     }
 
-
+    public Gender getGender() {
+        return gender;
+    }
 }
