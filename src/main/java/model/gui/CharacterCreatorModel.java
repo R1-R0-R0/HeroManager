@@ -4,7 +4,6 @@ import controller.CharacterCreatorController;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.job.Gender;
-import model.job.Job;
 import model.job.JobType;
 import model.race.Alignment;
 import model.race.RaceType;
@@ -14,18 +13,18 @@ import view.CharacterCreatorView;
 public class CharacterCreatorModel {
 
     public final static String
-            BARBARIAN_IMAGE_PATH = "/images/jobs/barbarian.jpg",
-            BARD_IMAGE_PATH = "/images/jobs/bard.jpg",
-            CLERIC_IMAGE_PATH = "/images/jobs/cleric.jpg",
-            DRUID_IMAGE_PATH = "/images/jobs/druid.jpg",
-            FIGHTER_IMAGE_PATH = "/images/jobs/fighter.jpg",
-            MONK_IMAGE_PATH = "/images/jobs/monk.jpg",
-            PALADIN_IMAGE_PATH = "/images/jobs/paladin.jpg",
-            RANGER_IMAGE_PATH = "/images/jobs/ranger.jpg",
-            ROGUE_IMAGE_PATH = "/images/jobs/rogue.jpg",
-            SORCERER_IMAGE_PATH = "/images/jobs/sorcerer.jpg",
-            WARLOCK_IMAGE_PATH = "/images/jobs/warlock.jpg",
-            WIZARD_IMAGE_PATH = "/images/jobs/wizard.jpg";
+            BARBARIAN_IMAGE_PATH = "/images/jobs/logo/barbarian.jpg",
+            BARD_IMAGE_PATH = "/images/jobs/logo/bard.jpg",
+            CLERIC_IMAGE_PATH = "/images/jobs/logo/cleric.jpg",
+            DRUID_IMAGE_PATH = "/images/jobs/logo/druid.jpg",
+            FIGHTER_IMAGE_PATH = "/images/jobs/logo/fighter.jpg",
+            MONK_IMAGE_PATH = "/images/jobs/logo/monk.jpg",
+            PALADIN_IMAGE_PATH = "/images/jobs/logo/paladin.jpg",
+            RANGER_IMAGE_PATH = "/images/jobs/logo/ranger.jpg",
+            ROGUE_IMAGE_PATH = "/images/jobs/logo/rogue.jpg",
+            SORCERER_IMAGE_PATH = "/images/jobs/logo/sorcerer.jpg",
+            WARLOCK_IMAGE_PATH = "/images/jobs/logo/warlock.jpg",
+            WIZARD_IMAGE_PATH = "/images/jobs/logo/wizard.jpg";
 
     private static CharacterCreatorModel instance;
 
@@ -56,6 +55,10 @@ public class CharacterCreatorModel {
             case WARLOCK -> view.changeJobTypeImage(WARLOCK_IMAGE_PATH);
             case WIZARD -> view.changeJobTypeImage(WIZARD_IMAGE_PATH);
         }
+
+        CharacterCreatorController controller = CharacterCreatorController.getInstance();
+        if (controller.genderPicker.getValue() != null)
+            controller.genderTypeOnPick();
     }
 
     public void createCharacter() {

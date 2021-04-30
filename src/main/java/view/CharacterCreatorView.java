@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.gui.CharacterCreatorModel;
+import model.job.Gender;
 
 import java.io.IOException;
 
@@ -40,6 +42,20 @@ public class CharacterCreatorView {
 
     public void changeJobTypeImage(String path) {
         CharacterCreatorController.getInstance().jobTypeImage.setImage(new Image(getClass().getResourceAsStream(path)));
+    }
+
+    public void changeJobImage(String path) {
+        CharacterCreatorController.getInstance().jobImage.setImage(new Image(getClass().getResourceAsStream(path)));
+    }
+
+    public void selectedGender(Gender gender) {
+        CharacterCreatorView view = CharacterCreatorView.getInstance();
+
+        String classNameFile = CharacterCreatorController.getInstance().jobTypePicker.getValue().name().toLowerCase();
+        String genderNameFile = (gender == Gender.MAN) ? "_m.jpg" : "_f.jpg";
+        String imageJobPath = "/images/jobs/pictures/" + classNameFile + genderNameFile;
+
+        view.changeJobImage(imageJobPath);
     }
 
     public void close() {

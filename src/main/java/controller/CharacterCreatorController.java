@@ -52,6 +52,7 @@ public class CharacterCreatorController implements Initializable {
 
         jobImage.setImage(new Image(getClass().getResourceAsStream("/images/ui/question_mark.png")));
         jobTypeImage.setImage(new Image(getClass().getResourceAsStream("/images/ui/question_mark.png")));
+        jobImage.setEffect(new DropShadow(20, Color.BLACK));
         jobTypeImage.setEffect(new DropShadow(20, Color.BLACK));
 
         ObservableList<JobType> jobTypeObservableList = FXCollections.observableArrayList(JobType.values());
@@ -75,6 +76,11 @@ public class CharacterCreatorController implements Initializable {
     @FXML
     public void jobTypeOnPick() {
         CharacterCreatorModel.getInstance().selectedJobType(jobTypePicker.getValue());
+    }
+
+    @FXML
+    public void genderTypeOnPick() {
+        CharacterCreatorView.getInstance().selectedGender(genderPicker.getValue());
     }
 
     @FXML
