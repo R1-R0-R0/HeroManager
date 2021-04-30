@@ -22,13 +22,14 @@ public class Job {
                 robustness,
                 charisma,
                 speed;
+    private Gender gender;
     private int statsPoints = ADDITIONNAL_STATS;
     private Alignment alignment;
     private List<Language> languages;
     private final RaceType race;
     private final JobType jobType;
-    private List<Item> inventory;
-    private final List<Equipment> equippedEquipments = new ArrayList<>();
+    private final List<Item> inventory;
+    private List<Equipment> equippedEquipments = new ArrayList<>();
     private final String name;
     private final String description;
     private int[] spellSlots;
@@ -36,13 +37,14 @@ public class Job {
     private final List<JobSkill> skills;
     private final List<Improvement> improvements;
 
-    public Job(String name, String description, Alignment alignment, RaceType race, JobType jobType, List<Item> inventory,
+    public Job(String name, String description,Gender gender, Alignment alignment, RaceType race, JobType jobType, List<Item> inventory,
                int[] spellSlots,List<Improvement> improvements, List<Spell> spellInventory, List<JobSkill> skills) {
 
         this.race = race;
         this.jobType = jobType;
         this.name = name;
         this.description = description;
+        this.gender = gender;
         this.alignment = alignment;
 
         this.armor = BASE_STATS;
@@ -63,20 +65,28 @@ public class Job {
 
     }
 
-    public Job(String name, String description, int armor, int strength, int dexterity, int intelligence,
-               int wisdom, int charisma, RaceType race, JobType jobType, List<Spell> spellInventory,
-               List<Improvement> improvements, List<JobSkill> skills) {
+    public Job(int level, String name, String description, Gender gender, int armor, int strength, int dexterity, int intelligence,
+               int wisdom, int charisma, RaceType race, JobType jobType,List<Item> inventory,List<Equipment> equippedEquipments,
+               List<Spell> spellInventory, List<Improvement> improvements, List<JobSkill> skills) {
 
         this.name = name;
         this.description = description;
+        this.level = level;
+        this.gender = gender;
         this.armor = armor;
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.intelligence = intelligence;
+        this.wisdom = wisdom;
+        this.charisma = charisma;
         this.race = race;
         this.jobType = jobType;
+        this.inventory = inventory;
+        this.equippedEquipments = equippedEquipments;
         this.spellInventory = spellInventory;
         this.improvements = improvements;
         this.skills = skills;
 
-        //TODO: what is the 2nd constructor for ?
 
     }
 
