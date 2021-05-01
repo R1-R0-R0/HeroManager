@@ -87,22 +87,7 @@
                                         </SplitPane>
                                         <SplitPane dividerPositions="0.9007936507936508" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="2">
                                             <items>
-                                    <AnchorPane fx:id="paneImageJob" prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                              <ImageView fx:id="imageJob" fitHeight="350.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                                                                  <image>
-                                                                      <Image url="https://cdn.discordapp.com/attachments/626804778462085131/834752733650354176/kisspng-thief-role-playing-game-character-class-role-playi-rpg-5ac3e957074ca9.9799545715227886950299.png" />
-                                                                  </image>
-                                                   <rotationAxis>
-                                                      <Point3D x="1.0" y="1.0" z="1.0" />
-                                                   </rotationAxis>
-                                                              </ImageView>
-                                             </children>
-                                          </StackPane>
-                                       </children>
-                                    </AnchorPane>
+                                    <AnchorPane fx:id="imageJob" prefHeight="200.0" prefWidth="200.0" />
                                                 <AnchorPane fx:id="jobStatus" maxHeight="47.0" minHeight="47.0">
                                        <children>
                                           <Rectangle fx:id="hpBar" arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="38.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="300.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
@@ -182,7 +167,7 @@
                     <content>
                         <AnchorPane fx:id="equipmentTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="headImage" fitHeight="50.0" fitWidth="50.0" layoutX="151.0" layoutY="26.0" onMouseClicked="#headImageOnClick" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="25.0">
+                        <ImageView fx:id="headImage" fitHeight="50.0" fitWidth="50.0" layoutX="300.0" layoutY="26.0" onMouseClicked="#headImageOnClick" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="25.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></ImageView>

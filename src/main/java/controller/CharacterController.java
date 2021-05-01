@@ -31,9 +31,7 @@ public class CharacterController implements Initializable {
      * Character Tab
      **/
     @FXML
-    public ImageView imageJob;
-    @FXML
-    public AnchorPane paneImageJob;
+    public AnchorPane imageJob;
     @FXML
     public TextFlow jobInfo;
     @FXML

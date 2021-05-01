@@ -12,10 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -34,7 +31,6 @@ import model.job.Job;
 import model.job.JobType;
 import model.spell.Spell;
 
-import javax.tools.Tool;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +51,7 @@ public class CharacterView {
     public final static int INVENTORY_SIZE = 8;
     public final static int IMAGE_SIZE = 40;
     public final static String IMAGE_PLUS_PATH = "/images/ui/plus.png";
+    public final static String IMAGES_JOBS_FOLDER = "/images/jobs/pictures/";
 
 
     private static CharacterView instance;
@@ -82,8 +79,16 @@ public class CharacterView {
 
             String pictureNameJobType = jobType.name().toLowerCase();
             String pictureNameGender = (gender == Gender.MAN) ? "_m.jpg" : "_f.jpg";
-            Image pictureJob = new Image(getClass().getResourceAsStream(pictureNameJobType + pictureNameGender));
-            CharacterController.getInstance().imageJob.setImage(pictureJob);
+            String pictureJobPath = ".." + IMAGES_JOBS_FOLDER + pictureNameJobType + pictureNameGender;
+            Image pictureJob = new Image(getClass().getResourceAsStream(pictureJobPath));
+
+            BackgroundImage bgImg = new BackgroundImage(pictureJob,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.CENTER,
+                    new BackgroundSize(100, 100, true, true, true, false));
+            CharacterController.getInstance().imageJob.setBackground(new Background(bgImg));
+
 
             /* -- */
             Spell spell = new Spell("A", "Description", "School", "1 minute", "1 minute",

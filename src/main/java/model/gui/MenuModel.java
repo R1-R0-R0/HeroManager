@@ -1,7 +1,14 @@
 package model.gui;
 
+import model.job.Gender;
+import model.job.Job;
+import model.job.JobType;
+import model.race.Alignment;
+import model.race.RaceType;
 import view.CharacterView;
 import view.MenuView;
+
+import java.util.ArrayList;
 
 public class MenuModel {
 
@@ -19,7 +26,9 @@ public class MenuModel {
     public void resumeGame() {
 
         // Job expl = new Job("Hiraye", "A human", 100, 100, 1, 2, 3, 4, 5, )
-        new CharacterModel(null);
+        Job hiraye = new Job("Hiraye", "A woman", Gender.WOMAN, Alignment.NEUTRAL, RaceType.HUMAN, JobType.ROGUE, new ArrayList<>(), new int[6], new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        Job airels = new Job("Airels", "A man", Gender.MAN, Alignment.CHAOTIC_EVIL, RaceType.HUMAN, JobType.PALADIN, new ArrayList<>(), new int[6], new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        new CharacterModel(hiraye);
         MenuView.getInstance().close();
     }
 

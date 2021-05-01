@@ -4,7 +4,7 @@
 
 #equipmentTab {
     -fx-background-image: url("../images/ui/silhouette.png");
-    -fx-background-position: top center;
+    -fx-background-position: center center;
     -fx-background-size: contain, auto;
     -fx-background-repeat: no-repeat;
 }
