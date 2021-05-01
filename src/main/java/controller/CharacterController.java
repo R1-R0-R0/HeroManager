@@ -8,9 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -37,15 +35,15 @@ public class CharacterController implements Initializable {
     @FXML
     public TextFlow improvementsInfo;
     @FXML
-    public Rectangle hpBar;
-    @FXML
     public Text hpText;
     @FXML
     public Text levelText;
     @FXML
     public VBox window;
     @FXML
-    public Rectangle borderHPBar;
+    public StackPane hpBarContainer;
+    @FXML
+    public Pane hpBar, borderHpBar;
     @FXML
     public Tab characterTab;
 
@@ -82,13 +80,6 @@ public class CharacterController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
-
-        // imageJob.fitWidthProperty().bind(paneImageJob.widthProperty());
-        // imageJob.fitHeightProperty().bind(paneImageJob.heightProperty());
-
-        window.widthProperty().addListener(((observable, oldValue, newValue) -> {
-            CharacterView.getInstance().updateHPBarWidth(newValue.intValue());
-        }));
 
         GridPane inventory = CharacterView.getInstance().createInventoryGrid();
 

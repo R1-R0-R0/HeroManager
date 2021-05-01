@@ -69,8 +69,10 @@ public class CharacterView {
             // stage.setResizable(false);
             stage.show();
 
-            stage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
-                updateHPBarWidth(((int) CharacterController.getInstance().borderHPBar.getWidth()));
+
+            CharacterController.getInstance().borderHpBar.widthProperty().addListener((observable, oldValue, newValue) -> {
+                Pane hpBar = CharacterController.getInstance().hpBar;
+                hpBar.setMaxWidth(newValue.doubleValue() * hpBar.getMaxWidth() / oldValue.doubleValue());
             });
 
             Job character = CharacterModel.getInstance().getCharacter();
@@ -128,18 +130,6 @@ public class CharacterView {
     /**
      * Character Tab
      **/
-    public void updateHPBarWidth(int newMaxHP) {
-
-        Rectangle borderHPBar = CharacterController.getInstance().borderHPBar;
-        Rectangle hpBar = CharacterController.getInstance().hpBar;
-        Text hpText = CharacterController.getInstance().hpText;
-
-        double newWidth = (((double) newMaxHP * ((double) MAX_HP_BAR_SIZE)) / ((double) DEFAULT_WINDOW_WIDTH));
-
-        hpBar.setWidth(newWidth * hpBar.getWidth() / borderHPBar.getWidth());
-        hpText.setTranslateX((borderHPBar.getWidth() / 2) - 20);
-        borderHPBar.setWidth(newWidth);
-    }
 
     public void setJobInfo(String className, String race, String... statistics) {
         TextFlow jobInfo = CharacterController.getInstance().jobInfo;
@@ -172,11 +162,11 @@ public class CharacterView {
     }
 
     public void setHP(int hp, int maxHP) {
-        Rectangle hpBar = CharacterController.getInstance().hpBar;
-        Rectangle maxHpBar = CharacterController.getInstance().borderHPBar;
+        Pane hpBar = CharacterController.getInstance().hpBar;
+        Pane maxHPBar = CharacterController.getInstance().borderHpBar;
         Text hpText = CharacterController.getInstance().hpText;
 
-        hpBar.setWidth((((double) hp) / ((double) maxHP)) * maxHpBar.getWidth());
+        hpBar.setMaxWidth(((double) hp) / maxHP * maxHPBar.getWidth());
         hpText.setText(hp + " / " + maxHP);
     }
 
