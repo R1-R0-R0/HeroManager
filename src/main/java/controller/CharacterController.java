@@ -102,15 +102,15 @@ public class CharacterController implements Initializable {
 
         spellList.setOnMouseClicked(event -> CharacterView.getInstance().setSpellDetails(spellList.getSelectionModel().getSelectedItem()));
 
-        headImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        bodyImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        mantleImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        beltImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        legsImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        feetImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        amuletImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        ringImage1.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        ringImage2.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
+        headImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        bodyImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        mantleImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        beltImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        legsImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        feetImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        amuletImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        ringImage1.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        ringImage2.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
 
         Tooltip headTip = new Tooltip("Head");
         headTip.setShowDelay(Duration.ONE);
