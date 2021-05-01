@@ -44,9 +44,9 @@ public class MenuModel {
         items.add(new Weapon("Arc", "Un arc", "Propriétés", WeaponType.COMMON, DamageType.PIERCING));
 
         Job hiraye = new Job("Hiraye", "A woman", Gender.WOMAN, Alignment.NEUTRAL, RaceType.HUMAN, JobType.ROGUE, items, new int[6], null, spells, new ArrayList<>());
-        Job airels = new Job("Airels", "A man", Gender.MAN, Alignment.CHAOTIC_EVIL, RaceType.HUMAN, JobType.ROGUE, items, new int[6], null, spells, new ArrayList<>());
+        Job airels = new Job("Airels", "A man", Gender.MAN, Alignment.CHAOTIC_EVIL, RaceType.DRAGONBORN, JobType.WARLOCK, items, new int[6], null, spells, new ArrayList<>());
 
-        new CharacterModel(hiraye);
+        new CharacterModel(airels);
         MenuView.getInstance().close();
     }
 
