@@ -67,10 +67,7 @@ public class CharacterView {
             // stage.setResizable(false);
             stage.show();
 
-            CharacterController.getInstance().borderHpBar.widthProperty().addListener((observable, oldValue, newValue) -> {
-                Pane hpBar = CharacterController.getInstance().hpBar;
-                hpBar.setMaxWidth(newValue.doubleValue() * hpBar.getMaxWidth() / oldValue.doubleValue());
-            });
+            initResponsiveNodes();
 
             Gender gender = character.getGender();
             JobType jobType = character.getJobType();
@@ -112,6 +109,61 @@ public class CharacterView {
 
     public Stage getStage() {
         return stage;
+    }
+
+    private void initResponsiveNodes() {
+        CharacterController.getInstance().borderHpBar.widthProperty().addListener((observable, oldValue, newValue) -> {
+            Pane hpBar = CharacterController.getInstance().hpBar;
+            hpBar.setMaxWidth(newValue.doubleValue() * hpBar.getMaxWidth() / oldValue.doubleValue());
+        });
+
+        CharacterController.getInstance().equipmentTab.widthProperty().addListener((observable, oldValue, newValue) -> {
+            ImageView
+                    headImage = CharacterController.getInstance().headImage,
+                    bodyImage = CharacterController.getInstance().bodyImage,
+                    mantleImage = CharacterController.getInstance().mantleImage,
+                    beltImage = CharacterController.getInstance().beltImage,
+                    legsImage = CharacterController.getInstance().legsImage,
+                    feetImage = CharacterController.getInstance().feetImage,
+                    amuletImage = CharacterController.getInstance().amuletImage,
+                    ringImage1 = CharacterController.getInstance().ringImage1,
+                    ringImage2 = CharacterController.getInstance().ringImage2;
+
+
+            headImage.setLayoutX(newValue.doubleValue() * headImage.getLayoutX() / oldValue.doubleValue());
+            bodyImage.setLayoutX(newValue.doubleValue() * bodyImage.getLayoutX() / oldValue.doubleValue());
+            mantleImage.setLayoutX(newValue.doubleValue() * mantleImage.getLayoutX() / oldValue.doubleValue());
+            beltImage.setLayoutX(newValue.doubleValue() * beltImage.getLayoutX() / oldValue.doubleValue());
+            legsImage.setLayoutX(newValue.doubleValue() * legsImage.getLayoutX() / oldValue.doubleValue());
+            feetImage.setLayoutX(newValue.doubleValue() * feetImage.getLayoutX() / oldValue.doubleValue());
+            amuletImage.setLayoutX(newValue.doubleValue() * amuletImage.getLayoutX() / oldValue.doubleValue());
+            ringImage1.setLayoutX(newValue.doubleValue() * ringImage1.getLayoutX() / oldValue.doubleValue());
+            ringImage2.setLayoutX(newValue.doubleValue() * ringImage2.getLayoutX() / oldValue.doubleValue());
+        });
+
+        CharacterController.getInstance().equipmentTab.heightProperty().addListener((observable, oldValue, newValue) -> {
+            ImageView
+                    headImage = CharacterController.getInstance().headImage,
+                    bodyImage = CharacterController.getInstance().bodyImage,
+                    mantleImage = CharacterController.getInstance().mantleImage,
+                    beltImage = CharacterController.getInstance().beltImage,
+                    legsImage = CharacterController.getInstance().legsImage,
+                    feetImage = CharacterController.getInstance().feetImage,
+                    amuletImage = CharacterController.getInstance().amuletImage,
+                    ringImage1 = CharacterController.getInstance().ringImage1,
+                    ringImage2 = CharacterController.getInstance().ringImage2;
+
+
+            headImage.setLayoutY(newValue.doubleValue() * headImage.getLayoutY() / oldValue.doubleValue());
+            bodyImage.setLayoutY(newValue.doubleValue() * bodyImage.getLayoutY() / oldValue.doubleValue());
+            mantleImage.setLayoutY(newValue.doubleValue() * mantleImage.getLayoutY() / oldValue.doubleValue());
+            beltImage.setLayoutY(newValue.doubleValue() * beltImage.getLayoutY() / oldValue.doubleValue());
+            legsImage.setLayoutY(newValue.doubleValue() * legsImage.getLayoutY() / oldValue.doubleValue());
+            feetImage.setLayoutY(newValue.doubleValue() * feetImage.getLayoutY() / oldValue.doubleValue());
+            amuletImage.setLayoutY(newValue.doubleValue() * amuletImage.getLayoutY() / oldValue.doubleValue());
+            ringImage1.setLayoutY(newValue.doubleValue() * ringImage1.getLayoutY() / oldValue.doubleValue());
+            ringImage2.setLayoutY(newValue.doubleValue() * ringImage2.getLayoutY() / oldValue.doubleValue());
+        });
     }
 
     /**

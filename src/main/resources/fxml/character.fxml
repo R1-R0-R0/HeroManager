@@ -194,7 +194,7 @@
                     <content>
                         <AnchorPane fx:id="equipmentTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <ImageView fx:id="headImage" fitHeight="50.0" fitWidth="50.0" layoutX="300.0" layoutY="26.0" onMouseClicked="#headImageOnClick" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="25.0">
+                                <ImageView fx:id="headImage" fitHeight="50.0" fitWidth="50.0" layoutX="300.0" layoutY="25.0" onMouseClicked="#headImageOnClick" pickOnBounds="true" preserveRatio="true">
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor>

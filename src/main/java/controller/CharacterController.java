@@ -61,6 +61,8 @@ public class CharacterController implements Initializable {
      * Equipment Tab
      **/
     @FXML
+    public AnchorPane equipmentTab;
+    @FXML
     public ImageView headImage, bodyImage, mantleImage, beltImage, legsImage, feetImage, amuletImage, ringImage1, ringImage2;
 
     /**
