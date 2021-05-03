@@ -4,7 +4,7 @@ import model.items.Item;
 import model.items.equipments.Equipment;
 import model.race.Alignment;
 import model.race.Language;
-import model.race.RaceType;
+import model.race.Race;
 import model.spell.Spell;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class Job {
     private int statsPoints = ADDITIONNAL_STATS;
     private Alignment alignment;
     private List<Language> languages;
-    private final RaceType race;
+    private final Race race;
     private final JobType jobType;
     private final List<Item> inventory;
     private List<Equipment> equippedEquipments = new ArrayList<>();
@@ -37,8 +37,8 @@ public class Job {
     private final List<JobSkill> skills;
     private final List<Improvement> improvements;
 
-    public Job(String name, String description,Gender gender, Alignment alignment, RaceType race, JobType jobType, List<Item> inventory,
-               int[] spellSlots,List<Improvement> improvements, List<Spell> spellInventory, List<JobSkill> skills) {
+    public Job(String name, String description, Gender gender, Alignment alignment, Race race, JobType jobType, List<Item> inventory,
+               int[] spellSlots, List<Improvement> improvements, List<Spell> spellInventory, List<JobSkill> skills) {
 
         this.race = race;
         this.jobType = jobType;
@@ -66,7 +66,7 @@ public class Job {
     }
 
     public Job(int level, String name, String description, Gender gender, int armor, int strength, int dexterity, int intelligence,
-               int wisdom, int charisma, RaceType race, JobType jobType,List<Item> inventory,List<Equipment> equippedEquipments,
+               int wisdom, int charisma, Race race, JobType jobType, List<Item> inventory, List<Equipment> equippedEquipments,
                List<Spell> spellInventory, List<Improvement> improvements, List<JobSkill> skills) {
 
         this.name = name;
@@ -306,7 +306,7 @@ public class Job {
         return getSpeed() + getSpeedBoost();
     }
 
-    public RaceType getRaceType() {
+    public Race getRaceType() {
         return race;
     }
 

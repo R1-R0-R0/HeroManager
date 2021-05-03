@@ -16,7 +16,7 @@ import model.gui.CharacterCreatorModel;
 import model.job.Gender;
 import model.job.JobType;
 import model.race.Alignment;
-import model.race.RaceType;
+import model.race.Race;
 import view.CharacterCreatorView;
 
 import java.net.URL;
@@ -38,7 +38,7 @@ public class CharacterCreatorController implements Initializable {
     @FXML
     public ComboBox<Alignment> alignmentPicker;
     @FXML
-    public ComboBox<RaceType> racePicker;
+    public ComboBox<Race> racePicker;
     @FXML
     public Button createCharacterButton;
 
@@ -64,8 +64,8 @@ public class CharacterCreatorController implements Initializable {
         ObservableList<Alignment> alignmentObservableList = FXCollections.observableArrayList(Alignment.values());
         alignmentPicker.setItems(alignmentObservableList);
 
-        ObservableList<RaceType> raceTypeObservableList = FXCollections.observableArrayList(RaceType.values());
-        racePicker.setItems(raceTypeObservableList);
+        ObservableList<Race> raceObservableList = FXCollections.observableArrayList(Race.values());
+        racePicker.setItems(raceObservableList);
     }
 
     @FXML

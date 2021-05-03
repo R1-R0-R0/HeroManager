@@ -4,9 +4,10 @@ import controller.CharacterCreatorController;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.job.Gender;
+import model.job.Job;
 import model.job.JobType;
 import model.race.Alignment;
-import model.race.RaceType;
+import model.race.Race;
 import utils.gui.Dialog;
 import view.CharacterCreatorView;
 
@@ -68,7 +69,7 @@ public class CharacterCreatorModel {
         String description = controller.jobDescriptionText.getText();
         Gender gender = controller.genderPicker.getValue();
         Alignment alignment = controller.alignmentPicker.getValue();
-        RaceType race = controller.racePicker.getValue();
+        Race race = controller.racePicker.getValue();
 
         if (name.matches("^(\\s)*$") || gender == null || alignment == null || race == null){
             new Dialog(Alert.AlertType.ERROR, "Required fields not filled", "ALL fields except description are required, please fill them.").showAndWait();

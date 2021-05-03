@@ -6,9 +6,8 @@ import model.items.weapons.Weapon;
 import model.items.weapons.WeaponType;
 import model.job.*;
 import model.race.Alignment;
-import model.race.RaceType;
+import model.race.Race;
 import model.spell.Spell;
-import view.CharacterView;
 import view.MenuView;
 
 import java.util.ArrayList;
@@ -43,8 +42,8 @@ public class MenuModel {
         items.add(new Weapon("Hache", "Une hache", "Propriétés", WeaponType.COMMON, DamageType.BLUDGEONING));
         items.add(new Weapon("Arc", "Un arc", "Propriétés", WeaponType.COMMON, DamageType.PIERCING));
 
-        Job hiraye = new Job("Hiraye", "A woman", Gender.WOMAN, Alignment.NEUTRAL, RaceType.HUMAN, JobType.ROGUE, items, new int[6], null, spells, new ArrayList<>());
-        Job airels = new Job("Airels", "A man", Gender.MAN, Alignment.CHAOTIC_EVIL, RaceType.DRAGONBORN, JobType.WARLOCK, items, new int[6], null, spells, new ArrayList<>());
+        Job hiraye = new Job("Hiraye", "A woman", Gender.WOMAN, Alignment.NEUTRAL, Race.HUMAN, JobType.ROGUE, items, new int[6], null, spells, new ArrayList<>());
+        Job airels = new Job("Airels", "A man", Gender.MAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.WARLOCK, items, new int[6], null, spells, new ArrayList<>());
 
         new CharacterModel(airels);
         MenuView.getInstance().close();

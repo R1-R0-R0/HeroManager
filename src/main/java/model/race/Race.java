@@ -1,13 +1,12 @@
 package model.race;
 
-import model.Characteristics;
 import model.job.Improvement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public enum RaceType {
+public enum Race {
     DWARF(0,0,2,0,0,0,Height.MEDIUM,25,
             Improvement.DARKVISION,
             Improvement.DWARVEN_COMBAT_TRAINING,
@@ -61,8 +60,8 @@ public enum RaceType {
 
 
 
-    RaceType(int strengthBoost, int dexterityBoost, int robustnessBoost, int intelligenceBoost, int wisdomBoost,
-             int charismaBoost, Height height, int speed, Improvement... improvements){
+    Race(int strengthBoost, int dexterityBoost, int robustnessBoost, int intelligenceBoost, int wisdomBoost,
+         int charismaBoost, Height height, int speed, Improvement... improvements){
         valueToImprove[0] = strengthBoost;
         valueToImprove[1] = dexterityBoost;
         valueToImprove[2] = robustnessBoost;
@@ -75,8 +74,8 @@ public enum RaceType {
         this.improvements = improvements;
     }
 
-    RaceType(int strengthBoost,int dexterityBoost,int robustnessBoost,int intelligenceBoost,int wisdomBoost,
-             int charismaBoost,Height height,int speed,int bonusStats){
+    Race(int strengthBoost, int dexterityBoost, int robustnessBoost, int intelligenceBoost, int wisdomBoost,
+         int charismaBoost, Height height, int speed, int bonusStats){
         valueToImprove[0] = strengthBoost;
         valueToImprove[1] = dexterityBoost;
         valueToImprove[2] = robustnessBoost;
