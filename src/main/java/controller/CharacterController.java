@@ -31,13 +31,9 @@ public class CharacterController implements Initializable {
     @FXML
     public AnchorPane imageJob;
     @FXML
-    public TextFlow jobInfo;
+    public TextFlow jobInfo, improvementsInfo, skillsInfo;
     @FXML
-    public TextFlow improvementsInfo;
-    @FXML
-    public Text hpText;
-    @FXML
-    public Text levelText;
+    public Text hpText, levelText;
     @FXML
     public VBox window;
     @FXML

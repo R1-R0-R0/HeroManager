@@ -23,10 +23,7 @@ import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
-import model.job.Gender;
-import model.job.Improvement;
-import model.job.Job;
-import model.job.JobType;
+import model.job.*;
 import model.spell.Spell;
 
 import java.io.IOException;
@@ -83,11 +80,16 @@ public class CharacterView {
 
             List<Improvement> improvements = character.getImprovements();
             String[] improvementStrings = new String[improvements.size()];
-            System.out.println("improvements.size() = " + improvements.size());
             for (int i = 0; i < improvements.size(); i++)
                 improvementStrings[i] = improvements.get(i).name();
-
             setImprovements(improvementStrings);
+
+            List<JobSkill> skills = character.getSkills();
+            String[] skillStrings = new String[skills.size()];
+            for (int i = 0; i < skills.size(); i++)
+                skillStrings[i] = skills.get(i).getName();
+            setSkills(skillStrings);
+
             setCharacterName(character.getName());
             setHP(50, 100); // TODO
             setLevel(character.getLevel());
@@ -194,13 +196,36 @@ public class CharacterView {
         }
     }
 
+    public void setSkills(String... skills) {
+        TextFlow skillsInfo = CharacterController.getInstance().skillsInfo;
+        ObservableList list = skillsInfo.getChildren();
+
+        Text title = new Text("Skills" + "\n\n");
+        title.setFont(new Font(20));
+        list.add(title);
+
+        if (skills.length == 0) {
+            list.add(new Text("None"));
+            return;
+        }
+
+        for (String skill : skills) {
+            list.add(new Text("    - " + skill + "\n"));
+        }
+    }
+
     public void setImprovements(String... improvements) {
         TextFlow improvementsInfo = CharacterController.getInstance().improvementsInfo;
-        ObservableList<javafx.scene.Node> list = improvementsInfo.getChildren();
+        ObservableList list = improvementsInfo.getChildren();
 
         Text title = new Text("Improvements" + "\n\n");
         title.setFont(new Font(20));
         list.add(title);
+
+        if (improvements.length == 0){
+            list.add(new Text("None"));
+            return;
+        }
 
         for (String improvement : improvements) {
             list.add(new Text("    - " + improvement + "\n"));
