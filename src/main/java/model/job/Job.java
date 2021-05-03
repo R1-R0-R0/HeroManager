@@ -142,9 +142,7 @@ public class Job {
                     default     -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 4};
                 }
             }
-            default -> {
-                Arrays.fill(spellSlots, 0);
-            }
+            default -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         }
     }
 
