@@ -50,7 +50,8 @@ public class MenuModel {
     }
 
     public void newGame() {
-        new NewGameModel();
+        // new NewGameModel();
+        new CharacterCreatorModel(MenuView.getInstance().getStage());
     }
 
     public void loadGame() {
