@@ -3,7 +3,6 @@ package model.job;
 import model.items.Item;
 import model.items.equipments.Equipment;
 import model.race.Alignment;
-import model.race.Language;
 import model.race.Race;
 import model.spell.Spell;
 
@@ -24,7 +23,7 @@ public class Job {
                 charisma,
                 armor;
     private Gender gender;
-    private int statsPoints = ADDITIONNAL_STATS;
+    private int statsPoints;
     private Alignment alignment;
     private final Race race;
     private final JobType jobType;
@@ -149,7 +148,7 @@ public class Job {
         }
     }
 
-    public int getMaxHp(int value) {
+    public int getMaxHp(int value) { //TODO: do JOBTYPE enum with values of Dlife to replace value;
         return (int)((value + getModificator(robustness)
                 + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robustness))));
     }
@@ -207,7 +206,7 @@ public class Job {
         return robustness;
     }
 
-    public int getSpeed(){ return speed; }
+    public int getSpeed(){ return race.getSpeed(); }
 
     public int getArmorBoost(){
         int result = 0;
@@ -394,7 +393,7 @@ public class Job {
     }
 
     public List<Improvement> getImprovements() {
-        return race.getImprovements();
+        return improvements;
     }
 
     public List<JobSkill> getSkills() {
@@ -529,6 +528,7 @@ public class Job {
 
     public void levelUp(){
         level++;
+        setSpellSlots(level);
     }
 
     public void addImprovement(Improvement improvement){
@@ -537,6 +537,10 @@ public class Job {
 
     public void addSpell(Spell spell){
         spellInventory.add(spell);
+    }
+
+    public void addJobSkills(JobSkill jobSkill){
+        skills.add(jobSkill);
     }
 
     public Gender getGender() {
