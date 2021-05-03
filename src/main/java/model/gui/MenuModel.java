@@ -45,7 +45,7 @@ public class MenuModel {
         Job hiraye = new Job("Hiraye", "A woman", Gender.WOMAN, Alignment.NEUTRAL_NEUTRAL, Race.HUMAN, JobType.ROGUE);
         Job airels = new Job("Airels", "A man", Gender.MAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.WARLOCK);
 
-        new CharacterModel(airels);
+        new CharacterModel(hiraye);
         MenuView.getInstance().close();
     }
 

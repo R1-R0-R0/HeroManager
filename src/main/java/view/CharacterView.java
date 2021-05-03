@@ -72,7 +72,14 @@ public class CharacterView {
             Gender gender = character.getGender();
             JobType jobType = character.getJobType();
 
-            setJobInfo(jobType.name(), character.getRaceType().name(), "Strength 10 (+2)");
+            setJobInfo(jobType.name(), character.getRaceType().name(),
+                    "Strength:      " + character.getTotalStrength() + " (" + character.getStrength() + " + " + character.getStrengthBoost() + ")",
+                    "Dexterity:     " + character.getTotalDexterity() + " (" + character.getDexterity() + " + " + character.getDexterityBoost() + ")",
+                    "Intelligence: " + character.getTotalIntelligence() + " (" + character.getIntelligence() + " + " + character.getIntelligenceBoost() + ")",
+                    "Wisdom:       " + character.getTotalWisdom() + " (" + character.getWisdom() + " + " + character.getWisdomBoost() + ")",
+                    "Robustness:  " + character.getTotalRobustness() + " (" + character.getRobustness() + " + " + character.getRobustnessBoost() + ")",
+                    "Charisma:      " + character.getTotalCharisma() + " (" + character.getCharisma() + " + " + character.getCharismaBoost() + ")",
+                    "Armor:           " + character.getTotalArmor() + " (" + character.getArmor() + " + " + character.getArmorBoost() + ")");
 
             List<Improvement> improvements = character.getImprovements();
             String[] improvementStrings = new String[improvements.size()];
@@ -177,7 +184,7 @@ public class CharacterView {
         Text title = new Text(className + " - " + race + "\n\n");
         title.setFont(new Font(30));
 
-        Text titleStats = new Text("Statistiques" + "\n");
+        Text titleStats = new Text("Statistics" + "\n");
         titleStats.setFont(new Font(20));
 
         list.addAll(title, titleStats);
@@ -191,7 +198,7 @@ public class CharacterView {
         TextFlow improvementsInfo = CharacterController.getInstance().improvementsInfo;
         ObservableList<javafx.scene.Node> list = improvementsInfo.getChildren();
 
-        Text title = new Text("Aptitudes" + "\n\n");
+        Text title = new Text("Improvements" + "\n\n");
         title.setFont(new Font(20));
         list.add(title);
 
