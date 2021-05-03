@@ -8,24 +8,24 @@ import model.race.Race;
 import model.spell.Spell;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Job {
-    private final int BASE_STATS = 10;
-    private final int ADDITIONNAL_STATS = 12;
-    private int armor,
-                level = 1,
+    public final static int BASE_STATS = 10;
+    public final static int ADDITIONAL_STATS = 12;
+
+    private int level,
                 strength,
                 dexterity,
                 intelligence,
                 wisdom,
                 robustness,
                 charisma,
-                speed;
+                armor;
     private Gender gender;
     private int statsPoints = ADDITIONNAL_STATS;
     private Alignment alignment;
-    private List<Language> languages;
     private final Race race;
     private final JobType jobType;
     private final List<Item> inventory;
@@ -37,57 +37,116 @@ public class Job {
     private final List<JobSkill> skills;
     private final List<Improvement> improvements;
 
-    public Job(String name, String description, Gender gender, Alignment alignment, Race race, JobType jobType, List<Item> inventory,
-               int[] spellSlots, List<Improvement> improvements, List<Spell> spellInventory, List<JobSkill> skills) {
-
-        this.race = race;
-        this.jobType = jobType;
+    public Job(String name, String description, Gender gender, Alignment alignment, Race race, JobType jobType) {
         this.name = name;
         this.description = description;
         this.gender = gender;
         this.alignment = alignment;
+        this.race = race;
+        this.jobType = jobType;
+        this.improvements = race.getImprovements();
 
-        this.armor = BASE_STATS;
-        this.strength = BASE_STATS ;
-        this.dexterity = BASE_STATS;
-        this.intelligence = BASE_STATS;
-        this.wisdom = BASE_STATS;
-        this.charisma = BASE_STATS;
-        this.speed = race.getSpeed();
+        inventory = new ArrayList<>();
+        spellInventory = new ArrayList<>();
+        skills = new ArrayList<>();
 
-        this.inventory = inventory;
-        this.spellSlots = spellSlots;
-        this.spellInventory = spellInventory;
-        this.skills = skills;
-        this.improvements = improvements;
+        level = 1;
+        armor = BASE_STATS;
+        strength = BASE_STATS;
+        dexterity = BASE_STATS;
+        intelligence = BASE_STATS;
+        robustness = BASE_STATS;
+        wisdom = BASE_STATS;
+        charisma = BASE_STATS;
+        statsPoints = ADDITIONAL_STATS;
 
-
-
+        setSpellSlots(1);
     }
 
-    public Job(int level, String name, String description, Gender gender, int armor, int strength, int dexterity, int intelligence,
-               int wisdom, int charisma, Race race, JobType jobType, List<Item> inventory, List<Equipment> equippedEquipments,
-               List<Spell> spellInventory, List<Improvement> improvements, List<JobSkill> skills) {
+    public Job(String name, String description, Gender gender, Alignment alignment, Race race, JobType jobType, List<Spell> spellInventory, List<JobSkill> skills,
+               int level, int strength, int dexterity, int intelligence, int robustness, int wisdom, int charisma, int armor,
+               int statsPoints, List<Improvement> improvements, List<Equipment> equippedEquipments, List<Item> inventory) {
 
         this.name = name;
         this.description = description;
-        this.level = level;
         this.gender = gender;
-        this.armor = armor;
+        this.alignment = alignment;
+        this.race = race;
+        this.jobType = jobType;
+        this.spellInventory = spellInventory;
+        this.skills = skills;
+        this.level = level;
         this.strength = strength;
         this.dexterity = dexterity;
+        this.robustness = robustness;
         this.intelligence = intelligence;
         this.wisdom = wisdom;
         this.charisma = charisma;
-        this.race = race;
-        this.jobType = jobType;
-        this.inventory = inventory;
-        this.equippedEquipments = equippedEquipments;
-        this.spellInventory = spellInventory;
+        this.armor = armor;
+        this.statsPoints = statsPoints;
         this.improvements = improvements;
-        this.skills = skills;
+        this.equippedEquipments = equippedEquipments;
+        this.inventory = inventory;
 
+    }
 
+    private void setSpellSlots(int level){
+
+        switch (jobType) {
+            case SORCERER, DRUID, CLERIC, BARD, WIZARD ->{
+                switch (level){
+                    case 1      -> spellSlots = new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 2      -> spellSlots = new int[]{3, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 3      -> spellSlots = new int[]{4, 2, 0, 0, 0, 0, 0, 0, 0};
+                    case 4      -> spellSlots = new int[]{4, 3, 0, 0, 0, 0, 0, 0, 0};
+                    case 5      -> spellSlots = new int[]{4, 3, 2, 0, 0, 0, 0, 0, 0};
+                    case 6      -> spellSlots = new int[]{4, 3, 3, 0, 0, 0, 0, 0, 0};
+                    case 7      -> spellSlots = new int[]{4, 3, 3, 1, 0, 0, 0, 0, 0};
+                    case 8      -> spellSlots = new int[]{4, 3, 3, 2, 0, 0, 0, 0, 0};
+                    case 9      -> spellSlots = new int[]{4, 3, 3, 3, 1, 0, 0, 0, 0};
+                    case 10     -> spellSlots = new int[]{4, 3, 3, 3, 2, 0, 0, 0, 0};
+                    case 11,12  -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 0, 0, 0};
+                    case 13,14  -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 1, 0, 0};
+                    case 15,16  -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 1, 1, 0};
+                    case 17     -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 1, 1, 1};
+                    case 18     -> spellSlots = new int[]{4, 3, 3, 3, 3, 1, 1, 1, 1};
+                    case 19     -> spellSlots = new int[]{4, 3, 3, 3, 3, 2, 1, 1, 1};
+                    default     -> spellSlots = new int[]{4, 3, 3, 3, 3, 2, 2, 1, 1};
+                }
+            }
+            case PALADIN, RANGER ->{
+                switch (level){
+                    case 1      -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 2      -> spellSlots = new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 3,4    -> spellSlots = new int[]{3, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 5,6    -> spellSlots = new int[]{4, 2, 0, 0, 0, 0, 0, 0, 0};
+                    case 7,8    -> spellSlots = new int[]{4, 3, 0, 0, 0, 0, 0, 0, 0};
+                    case 9,10   -> spellSlots = new int[]{4, 3, 2, 0, 0, 0, 0, 0, 0};
+                    case 11,12  -> spellSlots = new int[]{4, 3, 3, 0, 0, 0, 0, 0, 0};
+                    case 13,14  -> spellSlots = new int[]{4, 3, 3, 1, 0, 0, 0, 0, 0};
+                    case 15,16  -> spellSlots = new int[]{4, 3, 3, 2, 0, 0, 0, 0, 0};
+                    case 17,18  -> spellSlots = new int[]{4, 3, 3, 3, 1, 0, 0 ,0, 0};
+                    default     -> spellSlots = new int[]{4, 3, 3, 3, 2, 0, 0 ,0, 0};
+                }
+            }
+            case WARLOCK ->{
+                switch (level){
+                    case 1      -> spellSlots = new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 2      -> spellSlots = new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 3,4    -> spellSlots = new int[]{0, 2, 0, 0, 0, 0, 0, 0, 0};
+                    case 5,6    -> spellSlots = new int[]{0 ,0, 2, 0, 0, 0, 0, 0, 0};
+                    case 7,8    -> spellSlots = new int[]{0, 0, 0, 2, 0, 0, 0, 0, 0};
+                    case 9,10   -> spellSlots = new int[]{0, 0, 0, 0, 2, 0, 0, 0, 0};
+                    case 11,12  -> spellSlots = new int[]{0, 0, 0, 0, 0, 3, 0, 0, 0};
+                    case 13,14  -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 3, 0, 0};
+                    case 15,16  -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 3, 0};
+                    default     -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 4};
+                }
+            }
+            default -> {
+                Arrays.fill(spellSlots, 0);
+            }
+        }
     }
 
     public int getMaxHp(int value) {
