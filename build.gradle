@@ -9,6 +9,9 @@ version '1.0-SNAPSHOT'
 
 mainClassName = "controller.Main"
 
+sourceCompatibility = '15'
+targetCompatibility = '15'
+
 javafx {
     version = "15.0.1"
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.web']
@@ -24,7 +27,6 @@ dependencies {
 
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
-    compile 'com.googlecode.json-simple:json-simple:1.1.1'
 }
 
 

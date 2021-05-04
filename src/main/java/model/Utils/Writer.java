@@ -26,7 +26,7 @@ public class Writer {
             JSONObject consumax = new JSONObject();
             consu.put("name" , consumable.get(index).getName());
             consu.put("description" , consumable.get(index).getDescription());
-            consu.put("effect" , consumable.get(index).getEffect());
+            //consu.put("effect" , consumable.get(index).getEffect());
 
             consumax.put("consumable",consu);
 
@@ -151,7 +151,7 @@ public class Writer {
             JSONObject consumax = new JSONObject();
 
             consu.put("name" , jobskills.get(index).getName());
-            consu.put("characteristic" , jobskills.get(index).getAffectedCharacteristic();
+            consu.put("characteristic" , jobskills.get(index).getAffectedCharacteristic());
             consu.put("mastered" , jobskills.get(index).isMastered());
 
             consumax.put("jobskill",consu);
@@ -177,8 +177,8 @@ public class Writer {
             JSONObject consu = new JSONObject();
             JSONObject consumax = new JSONObject();
 
-            consu.put("name" , improvements.get(index).getName());
-            consu.put("description" , improvements.get(index).getDescription());
+            //consu.put("name" , improvements.get(index).getName());
+            //consu.put("description" , improvements.get(index).getDescription());
 
             consumax.put("improvement",consu);
 
@@ -202,7 +202,7 @@ public class Writer {
             JSONObject consu = new JSONObject();
             JSONObject consumax = new JSONObject();
 
-            consu.put("hp", jobs.getHp());
+            //consu.put("hp", jobs.getHp());
             consu.put("armor", jobs.getArmor());
             consu.put("level", jobs.getLevel());
             consu.put("proficiencyLevel", jobs.getProficiencyLevel());
@@ -215,8 +215,8 @@ public class Writer {
             consu.put("dexterityBoost", jobs.getDexterityBoost());
             consu.put("intelligenceBoost", jobs.getIntelligenceBoost());
             consu.put("wisdomBoost", jobs.getWisdomBoost());
-            consu.put("charismBoost", jobs.getCharismBoost());
-            consu.put("race", jobs.getRace());
+            //consu.put("charismBoost", jobs.getCharismBoost());
+            //consu.put("race", jobs.getRace());
             consu.put("jobtype", jobs.getJobType());
             consu.put("inventory", jobs.getInventory());
             consu.put("name" , jobs.getName());

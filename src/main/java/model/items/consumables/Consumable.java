@@ -7,7 +7,7 @@ public class Consumable implements Item {
     private String name;
     private String description;
 
-    public Consumable(String name, String description) {
+    public Consumable(ConsumableEffect effect, String name, String description) {
         this.name = name;
         this.description = description;
     }

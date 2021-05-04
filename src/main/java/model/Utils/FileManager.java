@@ -1,36 +1,35 @@
 package model.Utils;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class FileManager {
     public final static String SAVE_DIRECTORY = "./data/";
 
-    public static String getFile(String name) throws FileNotFoundException {
+    public static JSONArray getFile(String name) throws FileNotFoundException {
+        String[] parts = name.split(".");
+        JSONParser jsonParser = new JSONParser();
         try {
-            File file = new File(SAVE_DIRECTORY + name);
-            FileInputStream reader = new FileInputStream(file);
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("src/main/ressources/"+ name));
 
-            return new String(reader.readAllBytes(), StandardCharsets.UTF_8);
-        } catch (IOException e) {
+
+            return (JSONArray) jsonObject.get(parts[0]);
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
             System.exit(1);
         }
+
+        return null;
     }
 
     public static String writeFile(String name, String content) {
         // TODO
 
         return null;
-    }
-
-    public static void createFile(String name) {
-        // TODO
-
-        /* Un exemple (à implémenter ailleurs)
-        File file = new File(name);
-        FileWriter writer = new FileWriter(file);
-        writer.write(DefaultFileContent.WEAPONS.toString());
-         */
     }
 }

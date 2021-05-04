@@ -2,6 +2,9 @@ package model.Utils;
 
 public enum DefaultFileContent {
     WEAPONS("[machin, bidule, chouette]");
+    //SPEELS("[machin, bidule, chouette]");
+    //CONSUMABLE("[machin, bidule, chouette]");
+    //EQUIPMENT("");
 
     private String content;
 

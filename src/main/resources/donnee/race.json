@@ -1,4 +1,4 @@
-[
+{"race" :[
   {
     "name" : "Mountain Dwarf",
     "improvements": [
@@ -517,3 +517,4 @@
   "speed": 25
 }
 ]
+}
