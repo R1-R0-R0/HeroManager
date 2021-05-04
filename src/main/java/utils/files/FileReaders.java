@@ -1,15 +1,13 @@
-package model.Utils;
+package utils.files;
 
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
-import model.job.Improvement;
 import model.job.Job;
 import model.race.Race;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;

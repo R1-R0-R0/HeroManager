@@ -1,4 +1,4 @@
-package model.Utils;
+package utils.files;
 
 public enum DefaultFileContent {
     WEAPONS("[machin, bidule, chouette]");

@@ -1,4 +1,4 @@
-package model.Utils;
+package utils.files;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

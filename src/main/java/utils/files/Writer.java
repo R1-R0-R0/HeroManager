@@ -1,4 +1,4 @@
-package model.Utils;
+package utils.files;
 
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;

@@ -1,4 +1,4 @@
-package model.Utils;
+package utils.files;
 
 public class FileWriter {
     public final static String SAVE_DIRECTORY = "./data/";
