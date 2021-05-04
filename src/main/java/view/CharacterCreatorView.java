@@ -85,4 +85,11 @@ public class CharacterCreatorView {
 
         controller.createCharacterButton.setDisable(true);
     }
+
+    public void setUpNewCharacter() {
+        CharacterCreatorController.getInstance().paneCreation1.setVisible(false);
+        CharacterCreatorController.getInstance().paneCreation2.setVisible(true);
+        System.out.println("Set up");
+        System.out.println("CharacterCreatorController.getInstance().paneCreation2.isVisible() = " + CharacterCreatorController.getInstance().paneCreation2.isVisible());
+    }
 }

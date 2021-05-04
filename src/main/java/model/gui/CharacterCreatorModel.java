@@ -63,6 +63,8 @@ public class CharacterCreatorModel {
     }
 
     public void createCharacter() {
+        CharacterCreatorView.getInstance().disableInputs();
+
         CharacterCreatorController controller = CharacterCreatorController.getInstance();
 
         String name = controller.jobNameText.getText();
@@ -70,13 +72,16 @@ public class CharacterCreatorModel {
         Gender gender = controller.genderPicker.getValue();
         Alignment alignment = controller.alignmentPicker.getValue();
         Race race = controller.racePicker.getValue();
+        JobType jobType = controller.jobTypePicker.getValue();
 
         if (name.matches("^(\\s)*$") || gender == null || alignment == null || race == null){
             new Dialog(Alert.AlertType.ERROR, "Required fields not filled", "ALL fields except description are required, please fill them.").showAndWait();
+            CharacterCreatorView.getInstance().enableInputs();
             return;
         }
 
-        // TODO : Job job = new Job();
+        Job createdJob = new Job(name, description, gender, alignment, race, jobType);
+        CharacterCreatorView.getInstance().setUpNewCharacter();
     }
 
     public void close() {
