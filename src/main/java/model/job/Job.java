@@ -21,7 +21,8 @@ public class Job {
                 wisdom,
                 robustness,
                 charisma,
-                armor;
+                armor,
+                healthPoints;
     private Gender gender;
     private int statsPoints;
     private Alignment alignment;
@@ -75,6 +76,7 @@ public class Job {
         this.spellInventory = spellInventory;
         this.skills = skills;
         this.level = level;
+        this.healthPoints = healthPoints;
         this.strength = strength;
         this.dexterity = dexterity;
         this.robustness = robustness;
@@ -149,6 +151,14 @@ public class Job {
     public int getMaxHp(int value) { //TODO: do JOBTYPE enum with values of Dlife to replace value;
         return (int)((value + getModificator(robustness)
                 + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robustness))));
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
     }
 
     public int getModificator(int value){
