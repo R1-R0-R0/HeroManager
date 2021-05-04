@@ -39,7 +39,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0">
+        <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0">
             <tabs>
                 <Tab fx:id="characterTab" text="Character">
                     <content>
@@ -103,15 +103,21 @@
                                                          <cursor>
                                                             <Cursor fx:constant="HAND" />
                                                          </cursor></Pane>
-                                                      <Pane fx:id="hpBar" StackPane.alignment="CENTER_LEFT">
+                                                      <Pane fx:id="hpBar" onMouseClicked="#hpBarOnClick" StackPane.alignment="CENTER_LEFT">
                                                          <StackPane.margin>
                                                             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                                                          </StackPane.margin>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </Pane>
-                                                                    <Text fx:id="hpText" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="100 / 100" textAlignment="CENTER">
+                                                                    <Text fx:id="hpText" boundsType="LOGICAL_VERTICAL_CENTER" onMouseClicked="#hpBarOnClick" strokeType="OUTSIDE" strokeWidth="0.0" text="100 / 100" textAlignment="CENTER">
                                                                         <font>
                                                                             <Font name="System Bold" size="15.0" />
                                                                         </font>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                                     </Text>
                                                    </children>
                                                 </StackPane>
@@ -138,7 +144,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Spells">
+                <Tab fx:id="spellsTabDongle" text="Spells">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
@@ -186,7 +192,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Equipment">
+                <Tab fx:id="equipmentTabDongle" text="Equipment">
                     <content>
                         <AnchorPane fx:id="equipmentTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
@@ -239,7 +245,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Inventory">
+                <Tab fx:id="inventoryTabDongle" text="Inventory">
                     <content>
                         <AnchorPane fx:id="inventoryPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>

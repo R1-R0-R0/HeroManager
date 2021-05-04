@@ -269,6 +269,8 @@ public class CharacterView {
     }
 
     public void setSpellDetails(Spell spell) {
+        if (spell == null) return;
+
         TextArea spellInfo = CharacterController.getInstance().spellInfo;
         TextArea spellDesc = CharacterController.getInstance().spellDesc;
 
