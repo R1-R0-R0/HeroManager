@@ -5,6 +5,8 @@ import controller.CharacterCreatorController;
 import controller.Main;
 import controller.MenuController;
 import javafx.application.Application;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import model.gui.CharacterCreatorModel;
@@ -32,6 +34,9 @@ public class CharacterCreatorTest extends Application {
     @DisplayName("GUI Test for character creation")
     public void characterCreationTest(FxRobot robot) {
         robot.clickOn("#newGameButton");
+
+        Assertions.assertTrue(robot.lookup("#paneCreation1").tryQuery().get().isVisible());
+        Assertions.assertFalse(robot.lookup("#paneCreation2").tryQuery().get().isVisible());
 
         Assertions.assertTrue(robot.lookup("#jobNameText").tryQuery().get().isDisable());
         Assertions.assertTrue(robot.lookup("#jobDescriptionText").tryQuery().get().isDisable());
@@ -72,6 +77,59 @@ public class CharacterCreatorTest extends Application {
 
         robot.clickOn("#createCharacterButton");
 
+        Assertions.assertFalse(robot.lookup("#paneCreation1").tryQuery().get().isVisible());
+        Assertions.assertTrue(robot.lookup("#paneCreation2").tryQuery().get().isVisible());
 
+        Assertions.assertEquals("12", ((Label) robot.lookup("#labelRemainingPoints").tryQuery().get()).getText());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerStrength").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerDexterity").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerIntelligence").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerWisdom").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerRobustness").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerCharisma").tryQuery().get()).getValue()).intValue());
+
+        robot.clickOn("#spinnerStrength");
+        robot.type(KeyCode.LEFT, 5);
+
+        Assertions.assertEquals("14", ((Label) robot.lookup("#labelRemainingPoints").tryQuery().get()).getText());
+        Assertions.assertEquals(8, ((Integer) ((Spinner) robot.lookup("#spinnerStrength").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerDexterity").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerIntelligence").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerWisdom").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerRobustness").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerCharisma").tryQuery().get()).getValue()).intValue());
+
+        robot.clickOn("#spinnerStrength");
+        robot.type(KeyCode.RIGHT, 7);
+
+        Assertions.assertEquals("7", ((Label) robot.lookup("#labelRemainingPoints").tryQuery().get()).getText());
+        Assertions.assertEquals(15, ((Integer) ((Spinner) robot.lookup("#spinnerStrength").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerDexterity").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerIntelligence").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerWisdom").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerRobustness").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerCharisma").tryQuery().get()).getValue()).intValue());
+
+        robot.clickOn("#spinnerIntelligence");
+        robot.type(KeyCode.RIGHT, 5);
+
+        Assertions.assertEquals("2", ((Label) robot.lookup("#labelRemainingPoints").tryQuery().get()).getText());
+        Assertions.assertEquals(15, ((Integer) ((Spinner) robot.lookup("#spinnerStrength").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerDexterity").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(15, ((Integer) ((Spinner) robot.lookup("#spinnerIntelligence").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerWisdom").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerRobustness").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerCharisma").tryQuery().get()).getValue()).intValue());
+
+        robot.clickOn("#spinnerCharisma");
+        robot.type(KeyCode.RIGHT, 5);
+
+        Assertions.assertEquals("0", ((Label) robot.lookup("#labelRemainingPoints").tryQuery().get()).getText());
+        Assertions.assertEquals(15, ((Integer) ((Spinner) robot.lookup("#spinnerStrength").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerDexterity").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(15, ((Integer) ((Spinner) robot.lookup("#spinnerIntelligence").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerWisdom").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerRobustness").tryQuery().get()).getValue()).intValue());
+        Assertions.assertEquals(12, ((Integer) ((Spinner) robot.lookup("#spinnerCharisma").tryQuery().get()).getValue()).intValue());
     }
 }
