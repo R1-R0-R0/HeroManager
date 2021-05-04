@@ -3,6 +3,7 @@ package model.gui;
 import controller.CharacterCreatorController;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import model.Characteristics;
 import model.job.Gender;
 import model.job.Job;
 import model.job.JobType;
@@ -29,8 +30,17 @@ public class CharacterCreatorModel {
 
     private static CharacterCreatorModel instance;
 
+    private int availablePoints;
+    private Job createdJob;
+    /**
+     * This value is used in updateStatistics method to ignore Spinner value changed event when value is modified by method itself, and do not affect anything related on statistics.
+     * (Value is modified by the method when user tries to increment stats but he don't have any stats points left to do so)
+     */
+    private boolean updatedValue = false;
+
     public CharacterCreatorModel(Stage owner) {
         instance = this;
+        availablePoints = 12;
         new CharacterCreatorView(owner);
     }
 
@@ -74,14 +84,53 @@ public class CharacterCreatorModel {
         Race race = controller.racePicker.getValue();
         JobType jobType = controller.jobTypePicker.getValue();
 
-        if (name.matches("^(\\s)*$") || gender == null || alignment == null || race == null){
+        if (name.matches("^(\\s)*$") || gender == null || alignment == null || race == null) {
             new Dialog(Alert.AlertType.ERROR, "Required fields not filled", "ALL fields except description are required, please fill them.").showAndWait();
             CharacterCreatorView.getInstance().enableInputs();
             return;
         }
 
-        Job createdJob = new Job(name, description, gender, alignment, race, jobType);
+        createdJob = new Job(name, description, gender, alignment, race, jobType);
         CharacterCreatorView.getInstance().setUpNewCharacter();
+        CharacterCreatorView.getInstance().updateStatisticsAvailablePoints(availablePoints);
+    }
+
+    public void updateStatistics(Characteristics characteristic, int oldValue, int newValue) {
+        if (updatedValue) {
+            updatedValue = false;
+            return;
+        }
+
+        int value = newValue - oldValue;
+
+        if (value > 0 && availablePoints == 0) {
+            updatedValue = true;
+            CharacterCreatorView.getInstance().setSpinnerStatisticValue(characteristic, oldValue);
+            return;
+        }
+
+        if (value < 0) {
+            switch (characteristic) {
+                case STRENGTH -> createdJob.removeStrength();
+                case DEXTERITY -> createdJob.removeDexterity();
+                case INTELLIGENCE -> createdJob.removeIntelligence();
+                case WISDOM -> createdJob.removeWisdom();
+                case ROBUSTNESS -> createdJob.removeRobustness();
+                case CHARISMA -> createdJob.removeCharisma();
+            }
+        } else if (value > 0) {
+            switch (characteristic) {
+                case STRENGTH -> createdJob.addStrength();
+                case DEXTERITY -> createdJob.addDexterity();
+                case INTELLIGENCE -> createdJob.addIntelligence();
+                case WISDOM -> createdJob.addWisdom();
+                case ROBUSTNESS -> createdJob.addRobustness();
+                case CHARISMA -> createdJob.addCharisma();
+            }
+        }
+
+        availablePoints -= value;
+        CharacterCreatorView.getInstance().updateStatisticsAvailablePoints(availablePoints);
     }
 
     public void close() {

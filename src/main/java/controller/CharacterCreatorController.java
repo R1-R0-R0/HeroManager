@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import model.Characteristics;
 import model.gui.CharacterCreatorModel;
 import model.job.Gender;
 import model.job.JobType;
@@ -46,6 +49,8 @@ public class CharacterCreatorController implements Initializable {
     public VBox paneCreation2;
     @FXML
     public Spinner<Integer> spinnerStrength, spinnerDexterity, spinnerIntelligence, spinnerWisdom, spinnerRobustness, spinnerCharisma;
+    @FXML
+    public Label labelRemainingPoints;
 
     public static CharacterCreatorController getInstance() {
         return instance;
@@ -78,6 +83,13 @@ public class CharacterCreatorController implements Initializable {
         spinnerWisdom.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
         spinnerRobustness.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
         spinnerCharisma.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
+
+        spinnerStrength.valueProperty().addListener((observable, oldValue, newValue) -> CharacterCreatorModel.getInstance().updateStatistics(Characteristics.STRENGTH, oldValue, newValue));
+        spinnerDexterity.valueProperty().addListener(((observable, oldValue, newValue) -> CharacterCreatorModel.getInstance().updateStatistics(Characteristics.DEXTERITY, oldValue, newValue)));
+        spinnerIntelligence.valueProperty().addListener(((observable, oldValue, newValue) -> CharacterCreatorModel.getInstance().updateStatistics(Characteristics.INTELLIGENCE, oldValue, newValue)));
+        spinnerWisdom.valueProperty().addListener(((observable, oldValue, newValue) -> CharacterCreatorModel.getInstance().updateStatistics(Characteristics.WISDOM, oldValue, newValue)));
+        spinnerRobustness.valueProperty().addListener((observable, oldValue, newValue) -> CharacterCreatorModel.getInstance().updateStatistics(Characteristics.ROBUSTNESS, oldValue, newValue));
+        spinnerCharisma.valueProperty().addListener(((observable, oldValue, newValue) -> CharacterCreatorModel.getInstance().updateStatistics(Characteristics.CHARISMA, oldValue, newValue)));
     }
 
     @FXML

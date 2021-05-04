@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Characteristics;
 import model.gui.CharacterCreatorModel;
 import model.job.Gender;
 
@@ -89,7 +90,21 @@ public class CharacterCreatorView {
     public void setUpNewCharacter() {
         CharacterCreatorController.getInstance().paneCreation1.setVisible(false);
         CharacterCreatorController.getInstance().paneCreation2.setVisible(true);
-        System.out.println("Set up");
-        System.out.println("CharacterCreatorController.getInstance().paneCreation2.isVisible() = " + CharacterCreatorController.getInstance().paneCreation2.isVisible());
+    }
+
+    public void updateStatisticsAvailablePoints(int availablePoints) {
+        CharacterCreatorController.getInstance().labelRemainingPoints.setText(Integer.toString(availablePoints));
+    }
+
+    public void setSpinnerStatisticValue(Characteristics characteristic, int value) {
+        assert (value >= 8 && value <= 15);
+        switch (characteristic) {
+            case STRENGTH -> CharacterCreatorController.getInstance().spinnerStrength.getValueFactory().setValue(value);
+            case DEXTERITY -> CharacterCreatorController.getInstance().spinnerDexterity.getValueFactory().setValue(value);
+            case INTELLIGENCE -> CharacterCreatorController.getInstance().spinnerIntelligence.getValueFactory().setValue(value);
+            case WISDOM -> CharacterCreatorController.getInstance().spinnerWisdom.getValueFactory().setValue(value);
+            case ROBUSTNESS -> CharacterCreatorController.getInstance().spinnerRobustness.getValueFactory().setValue(value);
+            case CHARISMA -> CharacterCreatorController.getInstance().spinnerCharisma.getValueFactory().setValue(value);
+        }
     }
 }
