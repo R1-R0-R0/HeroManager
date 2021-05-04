@@ -12,28 +12,24 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.gui.CharacterModel;
 import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.equipments.Equipment;
-import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
-import model.items.weapons.WeaponType;
+import model.job.Gender;
+import model.job.Improvement;
+import model.job.Job;
 import model.job.JobType;
 import model.spell.Spell;
 
-import javax.tools.Tool;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CharacterView {
@@ -52,6 +48,7 @@ public class CharacterView {
     public final static int INVENTORY_SIZE = 8;
     public final static int IMAGE_SIZE = 40;
     public final static String IMAGE_PLUS_PATH = "/images/ui/plus.png";
+    public final static String IMAGES_JOBS_FOLDER = "/images/jobs/pictures/";
 
 
     private static CharacterView instance;
@@ -60,41 +57,54 @@ public class CharacterView {
     public CharacterView() {
         try {
             instance = this;
+            Job character = CharacterModel.getInstance().getCharacter();
 
             stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/character.fxml"));
-            stage.setTitle("HeroManager - Character");
+            stage.setTitle("HeroManager - " + character.getName());
             stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));
             // stage.setResizable(false);
             stage.show();
 
-            stage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
-                updateHPBarWidth(((int) CharacterController.getInstance().borderHPBar.getWidth()));
-            });
+            initResponsiveNodes();
 
-            /* -- */
-            Spell spell = new Spell("A", "Description", "School", "1 minute", "1 minute",
-                    10, 50, JobType.CLERIC, true, null);
-            Spell spell2 = new Spell("B", "Description 2", "No", "1 hour", "1 hour",
-                    20, 40, JobType.DRUID, true, null);
+            Gender gender = character.getGender();
+            JobType jobType = character.getJobType();
 
-            List<Spell> test = new ArrayList<>();
-            test.add(spell);
-            test.add(spell2);
-            setSpellList(test);
+            setJobInfo(jobType.name(), character.getRaceType().name(),
+                    "Strength:      " + character.getTotalStrength() + " (" + character.getStrength() + " + " + character.getStrengthBoost() + ")",
+                    "Dexterity:     " + character.getTotalDexterity() + " (" + character.getDexterity() + " + " + character.getDexterityBoost() + ")",
+                    "Intelligence: " + character.getTotalIntelligence() + " (" + character.getIntelligence() + " + " + character.getIntelligenceBoost() + ")",
+                    "Wisdom:       " + character.getTotalWisdom() + " (" + character.getWisdom() + " + " + character.getWisdomBoost() + ")",
+                    "Robustness:  " + character.getTotalRobustness() + " (" + character.getRobustness() + " + " + character.getRobustnessBoost() + ")",
+                    "Charisma:      " + character.getTotalCharisma() + " (" + character.getCharisma() + " + " + character.getCharismaBoost() + ")",
+                    "Armor:           " + character.getTotalArmor() + " (" + character.getArmor() + " + " + character.getArmorBoost() + ")");
 
-            // TODO : For test only, remove later
-            setJobInfo("Voleuse", "Humain", "Force 8 (+2)", "Agilité 20 (+10)", "Charisme 69 (+69)");
-            setImprovementsInfo("Vol", "Camouflage", "Assassin");
-            setCharacterName("Hiraye");
-            setHP(50, 100);
-            setLevel(3);
-            List<Item> items = new ArrayList<>();
-            items.add(new Weapon("Épée", "Une épée", "Propriétés", WeaponType.COMMON, DamageType.SLASHING));
-            items.add(new Weapon("Hache", "Une hache", "Propriétés", WeaponType.COMMON, DamageType.BLUDGEONING));
-            items.add(new Weapon("Arc", "Un arc", "Propriétés", WeaponType.COMMON, DamageType.PIERCING));
-            setInventory(items);
+            List<Improvement> improvements = character.getImprovements();
+            String[] improvementStrings = new String[improvements.size()];
+            System.out.println("improvements.size() = " + improvements.size());
+            for (int i = 0; i < improvements.size(); i++)
+                improvementStrings[i] = improvements.get(i).name();
+
+            setImprovements(improvementStrings);
+            setCharacterName(character.getName());
+            setHP(50, 100); // TODO
+            setLevel(character.getLevel());
+            setInventory(character.getInventory());
+            setSpellList(character.getSpellInventory());
+
+            String pictureNameJobType = jobType.name().toLowerCase();
+            String pictureNameGender = (gender == Gender.MAN) ? "_m.jpg" : "_f.jpg";
+            String pictureJobPath = ".." + IMAGES_JOBS_FOLDER + pictureNameJobType + pictureNameGender;
+            Image pictureJob = new Image(getClass().getResourceAsStream(pictureJobPath));
+
+            BackgroundImage bgImg = new BackgroundImage(pictureJob,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.CENTER,
+                    new BackgroundSize(100, 100, true, true, true, false));
+            CharacterController.getInstance().imageJob.setBackground(new Background(bgImg));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -108,21 +118,64 @@ public class CharacterView {
         return stage;
     }
 
+    private void initResponsiveNodes() {
+        CharacterController.getInstance().borderHpBar.widthProperty().addListener((observable, oldValue, newValue) -> {
+            Pane hpBar = CharacterController.getInstance().hpBar;
+            hpBar.setMaxWidth(newValue.doubleValue() * hpBar.getMaxWidth() / oldValue.doubleValue());
+        });
+
+        CharacterController.getInstance().equipmentTab.widthProperty().addListener((observable, oldValue, newValue) -> {
+            ImageView
+                    headImage = CharacterController.getInstance().headImage,
+                    bodyImage = CharacterController.getInstance().bodyImage,
+                    mantleImage = CharacterController.getInstance().mantleImage,
+                    beltImage = CharacterController.getInstance().beltImage,
+                    legsImage = CharacterController.getInstance().legsImage,
+                    feetImage = CharacterController.getInstance().feetImage,
+                    amuletImage = CharacterController.getInstance().amuletImage,
+                    ringImage1 = CharacterController.getInstance().ringImage1,
+                    ringImage2 = CharacterController.getInstance().ringImage2;
+
+
+            headImage.setLayoutX(newValue.doubleValue() * headImage.getLayoutX() / oldValue.doubleValue());
+            bodyImage.setLayoutX(newValue.doubleValue() * bodyImage.getLayoutX() / oldValue.doubleValue());
+            mantleImage.setLayoutX(newValue.doubleValue() * mantleImage.getLayoutX() / oldValue.doubleValue());
+            beltImage.setLayoutX(newValue.doubleValue() * beltImage.getLayoutX() / oldValue.doubleValue());
+            legsImage.setLayoutX(newValue.doubleValue() * legsImage.getLayoutX() / oldValue.doubleValue());
+            feetImage.setLayoutX(newValue.doubleValue() * feetImage.getLayoutX() / oldValue.doubleValue());
+            amuletImage.setLayoutX(newValue.doubleValue() * amuletImage.getLayoutX() / oldValue.doubleValue());
+            ringImage1.setLayoutX(newValue.doubleValue() * ringImage1.getLayoutX() / oldValue.doubleValue());
+            ringImage2.setLayoutX(newValue.doubleValue() * ringImage2.getLayoutX() / oldValue.doubleValue());
+        });
+
+        CharacterController.getInstance().equipmentTab.heightProperty().addListener((observable, oldValue, newValue) -> {
+            ImageView
+                    headImage = CharacterController.getInstance().headImage,
+                    bodyImage = CharacterController.getInstance().bodyImage,
+                    mantleImage = CharacterController.getInstance().mantleImage,
+                    beltImage = CharacterController.getInstance().beltImage,
+                    legsImage = CharacterController.getInstance().legsImage,
+                    feetImage = CharacterController.getInstance().feetImage,
+                    amuletImage = CharacterController.getInstance().amuletImage,
+                    ringImage1 = CharacterController.getInstance().ringImage1,
+                    ringImage2 = CharacterController.getInstance().ringImage2;
+
+
+            headImage.setLayoutY(newValue.doubleValue() * headImage.getLayoutY() / oldValue.doubleValue());
+            bodyImage.setLayoutY(newValue.doubleValue() * bodyImage.getLayoutY() / oldValue.doubleValue());
+            mantleImage.setLayoutY(newValue.doubleValue() * mantleImage.getLayoutY() / oldValue.doubleValue());
+            beltImage.setLayoutY(newValue.doubleValue() * beltImage.getLayoutY() / oldValue.doubleValue());
+            legsImage.setLayoutY(newValue.doubleValue() * legsImage.getLayoutY() / oldValue.doubleValue());
+            feetImage.setLayoutY(newValue.doubleValue() * feetImage.getLayoutY() / oldValue.doubleValue());
+            amuletImage.setLayoutY(newValue.doubleValue() * amuletImage.getLayoutY() / oldValue.doubleValue());
+            ringImage1.setLayoutY(newValue.doubleValue() * ringImage1.getLayoutY() / oldValue.doubleValue());
+            ringImage2.setLayoutY(newValue.doubleValue() * ringImage2.getLayoutY() / oldValue.doubleValue());
+        });
+    }
+
     /**
      * Character Tab
      **/
-    public void updateHPBarWidth(int newMaxHP) {
-
-        Rectangle borderHPBar = CharacterController.getInstance().borderHPBar;
-        Rectangle hpBar = CharacterController.getInstance().hpBar;
-        Text hpText = CharacterController.getInstance().hpText;
-
-        double newWidth = (((double) newMaxHP * ((double) MAX_HP_BAR_SIZE)) / ((double) DEFAULT_WINDOW_WIDTH));
-
-        hpBar.setWidth(newWidth * hpBar.getWidth() / borderHPBar.getWidth());
-        hpText.setTranslateX((borderHPBar.getWidth() / 2) - 20);
-        borderHPBar.setWidth(newWidth);
-    }
 
     public void setJobInfo(String className, String race, String... statistics) {
         TextFlow jobInfo = CharacterController.getInstance().jobInfo;
@@ -131,7 +184,7 @@ public class CharacterView {
         Text title = new Text(className + " - " + race + "\n\n");
         title.setFont(new Font(30));
 
-        Text titleStats = new Text("Statistiques" + "\n");
+        Text titleStats = new Text("Statistics" + "\n");
         titleStats.setFont(new Font(20));
 
         list.addAll(title, titleStats);
@@ -141,11 +194,11 @@ public class CharacterView {
         }
     }
 
-    public void setImprovementsInfo(String... improvements) {
+    public void setImprovements(String... improvements) {
         TextFlow improvementsInfo = CharacterController.getInstance().improvementsInfo;
         ObservableList<javafx.scene.Node> list = improvementsInfo.getChildren();
 
-        Text title = new Text("Aptitudes" + "\n\n");
+        Text title = new Text("Improvements" + "\n\n");
         title.setFont(new Font(20));
         list.add(title);
 
@@ -155,11 +208,11 @@ public class CharacterView {
     }
 
     public void setHP(int hp, int maxHP) {
-        Rectangle hpBar = CharacterController.getInstance().hpBar;
-        Rectangle maxHpBar = CharacterController.getInstance().borderHPBar;
+        Pane hpBar = CharacterController.getInstance().hpBar;
+        Pane maxHPBar = CharacterController.getInstance().borderHpBar;
         Text hpText = CharacterController.getInstance().hpText;
 
-        hpBar.setWidth((((double) hp) / ((double) maxHP)) * maxHpBar.getWidth());
+        hpBar.setMaxWidth(((double) hp) / maxHP * maxHPBar.getWidth());
         hpText.setText(hp + " / " + maxHP);
     }
 

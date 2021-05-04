@@ -33,6 +33,10 @@ public class NewGameView {
         }
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
     public static NewGameView getInstance() {
         return instance;
     }

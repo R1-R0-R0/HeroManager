@@ -13,12 +13,12 @@ public class ItemPickerModel {
 
     public ItemPickerModel(Stage owner) {
         instance = this;
-        new ItemPickerView();
+        new ItemPickerView(owner);
     }
 
     public ItemPickerModel(Stage owner, ItemType itemType) {
         instance = this;
-        new ItemPickerView();
+        new ItemPickerView(owner);
 
         ItemPickerView.getInstance().setItemType(itemType);
     }

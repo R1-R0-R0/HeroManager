@@ -1,5 +1,6 @@
 package model.gui;
 
+import controller.NewGameController;
 import view.NewGameView;
 
 public class NewGameModel {
@@ -17,5 +18,9 @@ public class NewGameModel {
 
     public static NewGameModel getInstance() {
         return instance;
+    }
+
+    public void createNewCharacter() {
+        new CharacterCreatorModel(NewGameView.getInstance().getStage());
     }
 }

@@ -8,9 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -31,15 +29,11 @@ public class CharacterController implements Initializable {
      * Character Tab
      **/
     @FXML
-    public ImageView imageJob;
-    @FXML
-    public AnchorPane paneImageJob;
+    public AnchorPane imageJob;
     @FXML
     public TextFlow jobInfo;
     @FXML
     public TextFlow improvementsInfo;
-    @FXML
-    public Rectangle hpBar;
     @FXML
     public Text hpText;
     @FXML
@@ -47,7 +41,9 @@ public class CharacterController implements Initializable {
     @FXML
     public VBox window;
     @FXML
-    public Rectangle borderHPBar;
+    public StackPane hpBarContainer;
+    @FXML
+    public Pane hpBar, borderHpBar;
     @FXML
     public Tab characterTab;
 
@@ -64,6 +60,8 @@ public class CharacterController implements Initializable {
     /**
      * Equipment Tab
      **/
+    @FXML
+    public AnchorPane equipmentTab;
     @FXML
     public ImageView headImage, bodyImage, mantleImage, beltImage, legsImage, feetImage, amuletImage, ringImage1, ringImage2;
 
@@ -85,13 +83,6 @@ public class CharacterController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
 
-        // imageJob.fitWidthProperty().bind(paneImageJob.widthProperty());
-        // imageJob.fitHeightProperty().bind(paneImageJob.heightProperty());
-
-        window.widthProperty().addListener(((observable, oldValue, newValue) -> {
-            CharacterView.getInstance().updateHPBarWidth(newValue.intValue());
-        }));
-
         GridPane inventory = CharacterView.getInstance().createInventoryGrid();
 
         AnchorPane.setTopAnchor(inventory, 10.0);
@@ -102,15 +93,15 @@ public class CharacterController implements Initializable {
 
         spellList.setOnMouseClicked(event -> CharacterView.getInstance().setSpellDetails(spellList.getSelectionModel().getSelectedItem()));
 
-        headImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        bodyImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        mantleImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        beltImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        legsImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        feetImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        amuletImage.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        ringImage1.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
-        ringImage2.setImage(new Image(CharacterView.IMAGE_PLUS_PATH));
+        headImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        bodyImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        mantleImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        beltImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        legsImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        feetImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        amuletImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        ringImage1.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        ringImage2.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
 
         Tooltip headTip = new Tooltip("Head");
         headTip.setShowDelay(Duration.ONE);
