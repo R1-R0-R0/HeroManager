@@ -398,7 +398,7 @@ public class Job {
         return skills;
     }
 
-    public void addStrength(){
+    public void increaseStrength(){
         if(level == 1 && statsPoints !=0) {
             if (strength < 15) {
                 strength++;
@@ -408,7 +408,7 @@ public class Job {
 
     }
 
-    public void removeStrength(){
+    public void decreaseStrength(){
         if(level == 1){
             if (strength >8 && strength <= 10){
                 strength--;
@@ -419,7 +419,7 @@ public class Job {
         }
     }
 
-    public void addDexterity(){
+    public void increaseDexterity(){
         if(level == 1 && statsPoints !=0) {
             if (dexterity < 15) {
                 dexterity++;
@@ -429,7 +429,7 @@ public class Job {
 
     }
 
-    public void removeDexterity(){
+    public void decreaseDexterity(){
         if(level == 1){
             if (dexterity >8 && dexterity <= 10){
                 dexterity--;
@@ -440,7 +440,7 @@ public class Job {
         }
     }
 
-    public void addRobustness(){
+    public void increaseRobustness(){
         if(level == 1 && statsPoints !=0) {
             if (robustness < 15) {
                 robustness++;
@@ -450,7 +450,7 @@ public class Job {
 
     }
 
-    public void removeRobustness(){
+    public void decreaseRobustness(){
         if(level == 1){
             if (robustness >8 && intelligence <= 10){
                 robustness--;
@@ -461,7 +461,7 @@ public class Job {
         }
     }
 
-    public void addIntelligence(){
+    public void increaseIntelligence(){
         if(level == 1 && statsPoints !=0) {
             if (intelligence < 15) {
                 intelligence++;
@@ -471,7 +471,7 @@ public class Job {
 
     }
 
-    public void removeIntelligence(){
+    public void decreaseIntelligence(){
         if(level == 1){
             if (intelligence >8 && intelligence <= 10){
                 intelligence--;
@@ -482,7 +482,7 @@ public class Job {
         }
     }
 
-    public void addWisdom(){
+    public void increaseWisdom(){
         if(level == 1 && statsPoints !=0) {
             if (wisdom < 15) {
                 wisdom++;
@@ -492,7 +492,7 @@ public class Job {
 
     }
 
-    public void removeWisdom(){
+    public void decreaseWisdom(){
         if(level == 1){
             if (wisdom >8 && wisdom <= 10){
                 strength--;
@@ -503,7 +503,7 @@ public class Job {
         }
     }
 
-    public void addCharisma(){
+    public void increaseCharisma(){
         if(level == 1 && statsPoints !=0) {
             if (charisma < 15) {
                 charisma++;
@@ -513,7 +513,7 @@ public class Job {
 
     }
 
-    public void removeCharisma(){
+    public void decreaseCharisma(){
         if(level == 1){
             if (charisma > 8 && charisma <= 10){
                 charisma--;
