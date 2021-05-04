@@ -51,6 +51,8 @@ public class CharacterCreatorController implements Initializable {
     public Spinner<Integer> spinnerStrength, spinnerDexterity, spinnerIntelligence, spinnerWisdom, spinnerRobustness, spinnerCharisma;
     @FXML
     public Label labelRemainingPoints;
+    @FXML
+    public Tab statsTab, skillsTab, spellsTab;
 
     public static CharacterCreatorController getInstance() {
         return instance;
