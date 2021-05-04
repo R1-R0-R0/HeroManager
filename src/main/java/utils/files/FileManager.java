@@ -6,6 +6,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 
 public class FileManager {
@@ -20,16 +21,21 @@ public class FileManager {
 
             return jsonObject;
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
-            System.exit(1);
+            utils.files.FileWriter.createFile(name);
         }
 
         return null;
     }
 
-    public static String writeFile(String name, String content) {
-        // TODO
-
-        return null;
+    public static void writeFile(String name, JSONObject jsonArray) throws IOException {
+        try{
+            java.io.FileWriter file = new FileWriter("src/main/resources/donnee/" + name +".json");
+            file.write(jsonArray.toJSONString());
+            file.flush();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package utils.files;
 
 import model.items.consumables.Consumable;
+import model.items.consumables.ConsumableEffect;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
 import model.job.Improvement;
@@ -12,197 +13,129 @@ import org.json.simple.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Writer {
 
-    public static void WriterConsumable (List<Consumable> consumable){
+    public static void WriterConsumable (List<Consumable> consumable) throws IOException {
+        JSONObject consu = new JSONObject();
         JSONArray consumableList = new JSONArray();
 
 
         for (int index = 0; index<consumable.size(); index++){
 
-            JSONObject consu = new JSONObject();
-            JSONObject consumax = new JSONObject();
-            consu.put("name" , consumable.get(index).getName());
-            consu.put("description" , consumable.get(index).getDescription());
-            //consu.put("effect" , consumable.get(index).getEffect());
 
-            consumax.put("consumable",consu);
+            consumableList.add(consumable.get(index).getName());
+            consumableList.add(consumable.get(index).getDescription());
 
-            consumableList.add(consumax);
 
         }
 
-        try (FileWriter file = new FileWriter("/HeroManager/resources/consumable.json")) {
-            file.write(consumableList.toJSONString());
-            file.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        consu.put("consumable",consumableList);
+        FileManager.writeFile("consumable",consu);
     }
 
-    public static void WriterWeapon (List<Weapon> weapons){
+    public static void WriterWeapon (List<Weapon> weapons) throws IOException {
         JSONArray weaponList = new JSONArray();
+        JSONObject consu = new JSONObject();
 
         for (int index = 0; index<weapons.size(); index++){
 
-            JSONObject consu = new JSONObject();
+            JSONObject test = new JSONObject();
             JSONObject consumax = new JSONObject();
 
-            consu.put("name" , weapons.get(index).getName());
-            consu.put("description" , weapons.get(index).getDescription());
-            consu.put("type" , weapons.get(index).getWeaponType());
-            consu.put("properties" , weapons.get(index).getProperties());
-            consu.put("damagetype" , weapons.get(index).getDamageType());
+            test.put("name" , weapons.get(index).getName());
+            test.put("description" , weapons.get(index).getDescription());
+            test.put("type" , weapons.get(index).getWeaponType());
+            test.put("properties" , weapons.get(index).getProperties());
+            test.put("damagetype" , weapons.get(index).getDamageType());
 
-            consumax.put("weapon", consu);
+            consumax.put("weapon", test);
 
             weaponList.add(consumax);
 
         }
+        FileManager.writeFile("weapon",consu);
 
-        try (FileWriter file = new FileWriter("/HeroManager/resources/weapon.json")) {
-            file.write(weaponList.toJSONString());
-            file.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    public static void WriterEquipment (List<Equipment> equipements){
+    public static void WriterEquipment (List<Equipment> equipements) throws IOException{
         JSONArray equipmentList = new JSONArray();
+        JSONObject consu = new JSONObject();
 
         for (int index = 0; index<equipements.size(); index++){
 
-            JSONObject consu = new JSONObject();
+            JSONObject test = new JSONObject();
             JSONObject consumax = new JSONObject();
 
-            consu.put("name" , equipements.get(index).getName());
-            consu.put("description" , equipements.get(index).getDescription());
-            consu.put("armorbonus" , equipements.get(index).getArmorBonus());
-            consu.put("effect" , equipements.get(index).getEquipmentEffect());
-            consu.put("type" , equipements.get(index).getEquipmentType());
+            test.put("name" , equipements.get(index).getName());
+            test.put("description" , equipements.get(index).getDescription());
+            test.put("armorbonus" , equipements.get(index).getArmorBonus());
+            test.put("effect" , equipements.get(index).getEquipmentEffect());
+            test.put("strengthboost" , equipements.get(index).getStrengthBoost());
+            test.put("dexterityboost" , equipements.get(index).getDexterityBoost());
+            test.put("robustnessboost" , equipements.get(index).getRobustnessBoost());
+            test.put("intelligenceboost" , equipements.get(index).getIntelligenceBoost());
+            test.put("wisdomboost" , equipements.get(index).getWisdomBoost());
+            test.put("charismaboost" , equipements.get(index).getCharismaBoost());
+            test.put("speedboost" , equipements.get(index).getSpeedBoost());
 
-            consumax.put("equipment", consu);
+            consumax.put("equipment", test);
 
             equipmentList.add(consumax);
 
         }
 
-        try (FileWriter file = new FileWriter("/HeroManager/resources/equipment.json")) {
-            file.write(equipmentList.toJSONString());
-            file.flush();
+        FileManager.writeFile("equipment",consu);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    public static void WriterSpell (List<Spell> spells){
+    public static void WriterSpell (List<Spell> spells) throws IOException{
         JSONArray spellList = new JSONArray();
+        JSONObject consu = new JSONObject();
 
         for (int index = 0; index<spells.size(); index++){
 
-            JSONObject consu = new JSONObject();
+            JSONObject test = new JSONObject();
             JSONObject consumax = new JSONObject();
 
-            consu.put("name" , spells.get(index).getName());
-            consu.put("description" , spells.get(index).getDescription());
-            consu.put("level" , spells.get(index).getLevel());
-            consu.put("school" , spells.get(index).getSchool());
-            consu.put("castingtime" , spells.get(index).getCastingTime());
-            consu.put("range" , spells.get(index).getRange());
+            test.put("name" , spells.get(index).getName());
+            test.put("description" , spells.get(index).getDescription());
+            test.put("level" , spells.get(index).getLevel());
+            test.put("school" , spells.get(index).getSchool());
+            test.put("castingtime" , spells.get(index).getCastingTime());
+            test.put("range" , spells.get(index).getRange());
             for (int x = 0 ; x < spells.get(index).getComponents().size(); x++){
                 switch (spells.get(index).getComponents().get(x)){
-                    case VOCAL: consu.put("components","V");
-                    case MATERIAL:consu.put("components","S");
-                    case MOVEMENT:consu.put("components","M");
+                    case VOCAL: test.put("components","V");
+                    case MATERIAL:test.put("components","S");
+                    case MOVEMENT:test.put("components","M");
                 }
             }
-            consu.put("duration" , spells.get(index).getDuration());
-            consu.put("jobtype" , spells.get(index).getJobType());
-            consu.put("dodamage" , spells.get(index).isDoDamages());
+            test.put("duration" , spells.get(index).getDuration());
+            test.put("jobtype" , spells.get(index).getJobType());
+            test.put("dodamage" , spells.get(index).isDoDamages());
 
-            consumax.put("spell",consu);
+            consumax.put("spell",test);
 
 
             spellList.add(consumax);
 
         }
 
-        try (FileWriter file = new FileWriter("/HeroManager/resources/spells.json")) {
-            file.write(spellList.toJSONString());
-            file.flush();
+        FileManager.writeFile("spell",consu);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    public static void WriterJobSkill (List<JobSkill> jobskills){
-        JSONArray jobskillList = new JSONArray();
-
-        for (int index = 0; index<jobskills.size(); index++){
-
-            JSONObject consu = new JSONObject();
-            JSONObject consumax = new JSONObject();
-
-            consu.put("name" , jobskills.get(index).getName());
-            consu.put("characteristic" , jobskills.get(index).getAffectedCharacteristic());
-            consu.put("mastered" , jobskills.get(index).isMastered());
-
-            consumax.put("jobskill",consu);
-
-            jobskillList.add(consumax);
-
-        }
-
-        try (FileWriter file = new FileWriter("/HeroManager/resources/jobskill.json")) {
-            file.write(jobskillList.toJSONString());
-            file.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void WriterImprovement (List<Improvement> improvements){
-        JSONArray improvementsList = new JSONArray();
-
-        for (int index = 0; index<improvements.size(); index++){
-
-            JSONObject consu = new JSONObject();
-            JSONObject consumax = new JSONObject();
-
-            //consu.put("name" , improvements.get(index).getName());
-            //consu.put("description" , improvements.get(index).getDescription());
-
-            consumax.put("improvement",consu);
-
-            improvementsList.add(consumax);
-
-        }
-
-        try (FileWriter file = new FileWriter("/HeroManager/resources/improvement.json")) {
-            file.write(improvementsList.toJSONString());
-            file.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void WriterJob (Job jobs){
+    public static void WriterJob (Job jobs) throws IOException{
         JSONArray jobList = new JSONArray();
 
 
             JSONObject consu = new JSONObject();
             JSONObject consumax = new JSONObject();
 
-            //consu.put("hp", jobs.getHp());
+            consu.put("hp", jobs.getMaxHp(8));
             consu.put("armor", jobs.getArmor());
             consu.put("level", jobs.getLevel());
             consu.put("proficiencyLevel", jobs.getProficiencyLevel());
@@ -210,13 +143,14 @@ public class Writer {
             consu.put("dexterity", jobs.getDexterity());
             consu.put("intelligence", jobs.getIntelligence());
             consu.put("wisdom", jobs.getWisdom());
+            consu.put("robustness",jobs.getRobustness());
             consu.put("charism", jobs.getCharisma());
             consu.put("strengthBoost", jobs.getStrengthBoost());
             consu.put("dexterityBoost", jobs.getDexterityBoost());
             consu.put("intelligenceBoost", jobs.getIntelligenceBoost());
             consu.put("wisdomBoost", jobs.getWisdomBoost());
-            //consu.put("charismBoost", jobs.getCharismBoost());
-            //consu.put("race", jobs.getRace());
+            consu.put("charismBoost", jobs.getCharismaBoost());
+            consu.put("race", jobs.getRaceType());
             consu.put("jobtype", jobs.getJobType());
             consu.put("inventory", jobs.getInventory());
             consu.put("name" , jobs.getName());
@@ -231,14 +165,17 @@ public class Writer {
 
             jobList.add(consumax);
 
-        try (FileWriter file = new FileWriter("/HeroManager/resources/" + jobs.getName()
-                +".json")) {
-            file.write(jobList.toJSONString());
-            file.flush();
+        FileManager.writeFile(jobs.getName(),consu);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        List<Consumable> consumables = new ArrayList<>();
+        for (int x = 0 ; x < 3 ; x++){
+            consumables.add(new Consumable(new ConsumableEffect(), ""+x,"ici c'est silmi "+x));
         }
+        WriterConsumable(consumables);
     }
 
 

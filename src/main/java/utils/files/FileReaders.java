@@ -36,7 +36,24 @@ public class FileReaders {
         return null;
     }
 
-    public static List<Consumable> getConsumable() {return null;}
+    public static List<Consumable> getConsumable() {
+        try{
+        JSONObject obj = FileManager.getFile("consumable");
+
+        JSONArray jsonArray = (JSONArray) obj.get("consumable");
+
+        Iterator<String> iterator = jsonArray.iterator();
+
+            while(iterator.hasNext()) {
+                System.out.println(iterator.next());
+            }
+
+
+    }
+    catch (FileNotFoundException e){
+        FileWriter.createFile("consumable.json");
+    }
+        return null;}
 
     public static List<Equipment> getEquipement() {return null;}
 
@@ -46,7 +63,6 @@ public class FileReaders {
         try{
             JSONObject obj = FileManager.getFile("race");
 
-            JSONArray jsonArray = (JSONArray) obj.get("race");
 
 
         }
@@ -60,9 +76,9 @@ public class FileReaders {
         return null;
     }
 
-    /*public static void main(String[] args) throws IOException {
-        List<Race> races = getRaces();
-    }*/
+    public static void main(String[] args) throws IOException {
+        List<Consumable> consumable = getConsumable();
+    }
 
 
 }
