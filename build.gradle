@@ -24,6 +24,9 @@ dependencies {
 
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
+
+    testCompile "org.testfx:testfx-junit5:4.0.15-alpha"
+    testRuntime "org.testfx:openjfx-monocle:jdk-11+26"
 }
 
 
