@@ -3,6 +3,7 @@ package utils.files;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
+import model.job.Job;
 import model.spell.Spell;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class HeroManagerDB {
     private static List<Spell> spells;
     private static List<Consumable> consumables;
     private static List<Equipment> equipments;
+    private static Job job;
 
 
     public static void init() throws IOException {
@@ -21,6 +23,7 @@ public class HeroManagerDB {
         spells = FileReaders.getSpells();
         consumables = FileReaders.getConsumable();
         equipments = FileReaders.getEquipement();
+        job = FileReaders.getFiche();
     }
 
     public static List<Weapon> getWeapons() {
@@ -39,6 +42,8 @@ public class HeroManagerDB {
     public static List<Equipment> getEquipments() {
         return equipments;
     }
+
+    public static Job getFiche() {return job;}
 
     public static Weapon getWeapon(String name) {
         for (Weapon weapon : weapons) {

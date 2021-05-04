@@ -11,14 +11,14 @@ import java.nio.charset.StandardCharsets;
 public class FileManager {
     public final static String SAVE_DIRECTORY = "./data/";
 
-    public static JSONArray getFile(String name) throws FileNotFoundException {
-        String[] parts = name.split(".");
+    public static JSONObject getFile(String name) throws FileNotFoundException {
+
         JSONParser jsonParser = new JSONParser();
         try {
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("src/main/ressources/"+ name));
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("src/main/resources/donnee/"+name+".json"));
 
 
-            return (JSONArray) jsonObject.get(parts[0]);
+            return jsonObject;
         } catch (IOException | ParseException e) {
             e.printStackTrace();
             System.exit(1);

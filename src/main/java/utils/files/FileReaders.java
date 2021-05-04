@@ -7,6 +7,7 @@ import model.job.Job;
 import model.race.Race;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,7 +18,7 @@ public class FileReaders {
 
     public static List<Weapon> getWeapons() throws IOException {
         try {
-            JSONArray weaponsString = FileManager.getFile("weapons.json");
+            JSONObject weaponsString = FileManager.getFile("weapons.json");
         } catch (FileNotFoundException e) {
             /*
             File file = new File(name);
@@ -39,15 +40,15 @@ public class FileReaders {
 
     public static List<Equipment> getEquipement() {return null;}
 
+    public static Job getFiche(){return null;}
+
     public static List<Race> getRaces() throws IOException{
         try{
-            JSONArray jsonArray = FileManager.getFile("race.json");
+            JSONObject obj = FileManager.getFile("race");
 
-            Iterator<String> iterator = jsonArray.iterator();
+            JSONArray jsonArray = (JSONArray) obj.get("race");
 
-            while (iterator.hasNext()){
-                System.out.println(iterator.next());
-            }
+
         }
         catch (FileNotFoundException e){
             FileWriter.createFile("race.json");
