@@ -587,4 +587,9 @@ public class Job {
     public Gender getGender() {
         return gender;
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }
