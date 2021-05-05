@@ -258,7 +258,5 @@ public class CharacterCreatorTest extends Application {
 
         robot.clickOn("#spellsTabDongle");
         Assertions.assertEquals(spells.size(), ((ListView) robot.lookup("#spellList").tryQuery().get()).getItems().size());
-
-        Thread.sleep(99999);
     }
 }
