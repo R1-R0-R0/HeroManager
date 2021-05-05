@@ -1,5 +1,9 @@
 package model.gui;
 
+import exceptions.UnsupportedJobTypeException;
+import javafx.scene.control.Alert;
+import model.job.Job;
+import utils.gui.Dialog;
 import view.LoadGameView;
 
 /**
@@ -12,6 +16,7 @@ import view.LoadGameView;
 public class LoadGameModel {
 
     private static LoadGameModel instance;
+    private Job selectedCharacter;
 
     /**
      * When called, init view and its components
@@ -19,6 +24,26 @@ public class LoadGameModel {
     public LoadGameModel() {
         instance = this;
         new LoadGameView();
+
+        // TODO : set up saves when saving methods are implemented
+    }
+
+    /**
+     * Event triggered when user selected a job in list, and allows to show its information
+     * @param selectedCharacter selected character
+     */
+    public void selectedCharacter(Job selectedCharacter) {
+        try {
+            this.selectedCharacter = selectedCharacter;
+
+            LoadGameView.getInstance().setJobImageClass(selectedCharacter);
+            LoadGameView.getInstance().setJobImage(selectedCharacter);
+        } catch (UnsupportedJobTypeException e) {
+            e.printStackTrace();
+            Dialog err = new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
+            err.showAndWait();
+            System.exit(1);
+        }
     }
 
     /**
