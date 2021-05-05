@@ -25,72 +25,70 @@ import java.util.ResourceBundle;
  */
 public class ItemManagerController implements Initializable {
 
+    private static ItemManagerController instance;
     /**
      * Picker (ComboBox) of item type to choose
      */
     @FXML
     public ComboBox<ItemType> typePicker;
-
     /**
      * List view of selected items by picker
      */
     @FXML
     public ListView<Item> itemList;
-
     /**
      * Label of item name selected
      */
     @FXML
     public Label itemNameLabel;
-
     /**
      * Pane's view corresponding of each type of equipment.
      * Because Weapons, Equipement... don't have same attributes, view's changes according to selected item type
      */
     @FXML
     public GridPane weaponsPane, equipmentPane, consumablePane;
-
     /**
      * Name's field of selected item, to view or change it
      */
     @FXML
     public TextField weaponNameText, equipmentNameText, consumableNameText;
-
     /**
      * Description's field of selected item, to view or change it
      */
     @FXML
     public TextArea weaponDescriptionText, weaponPropertiesText, equipmentDescriptionText, consumableDescriptionText;
-
     /**
      * Picker (ChoiceBox) to choose what type of weapon selected weapon is
      */
     @FXML
     public ChoiceBox<WeaponType> weaponTypePicker;
-
     /**
      * Picker (ChoiceBox) to choose what type of damage selected weapon inflict
      */
     @FXML
     public ChoiceBox<DamageType> damageTypePicker;
-
     /**
      * Picker (ChoiceBox) to choose what kind of equipment is (head, body, ...)
      */
     @FXML
     public ChoiceBox<ItemManagerModel.EquipmentPart> equipmentPartPicker;
-
     /**
      * Picker(ChoiceBox) to select what kind of equipment is (weight)
      */
     @FXML
     public ChoiceBox<EquipmentType> equipmentTypePicker;
-
     /**
      * Picker (ChoiceBox) to select what kind of equipment effect to inflict
      */
     @FXML
     public ChoiceBox<?> equipmentEffectPicker;
+
+    /**
+     * @return instance of this class
+     */
+    public static ItemManagerController getInstance() {
+        return instance;
+    }
 
     /**
      * Entry point of controller.
@@ -101,6 +99,8 @@ public class ItemManagerController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        instance = this;
+
         ObservableList<ItemType> itemTypeObservableList = FXCollections.observableArrayList(ItemType.values());
         typePicker.setItems(itemTypeObservableList);
 
