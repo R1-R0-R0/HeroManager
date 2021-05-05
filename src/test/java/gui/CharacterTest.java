@@ -1,4 +1,4 @@
-package controller.gui;
+package gui;
 
 import controller.CharacterController;
 import javafx.scene.control.ListView;

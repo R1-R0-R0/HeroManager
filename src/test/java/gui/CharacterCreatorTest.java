@@ -1,4 +1,4 @@
-package controller.gui;
+package gui;
 
 import com.sun.javafx.fxml.builder.JavaFXSceneBuilder;
 import controller.CharacterCreatorController;
