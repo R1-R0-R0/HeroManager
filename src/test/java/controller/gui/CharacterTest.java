@@ -1,5 +1,6 @@
 package controller.gui;
 
+import controller.CharacterController;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -36,6 +37,38 @@ public class CharacterTest {
         job.getInventory().add(new Weapon("Weapon", "Description", "Properties", WeaponType.WAR, DamageType.SLASHING));
 
         new CharacterModel(job);
+    }
+
+    @Test
+    public void characterViewHpTest(FxRobot robot) {
+        Job character = CharacterModel.getInstance().getCharacter();
+        character.setHealthPoints(50);
+        Assertions.assertEquals(50, character.getHealthPoints());
+
+        robot.clickOn("#hpBar");
+        robot.clickOn("#newHPInput");
+        robot.write("25");
+        robot.clickOn("#setButton");
+
+        Assertions.assertEquals(25, character.getHealthPoints());
+        Assertions.assertEquals("25 / 100", CharacterController.getInstance().hpText.getText());
+    }
+
+    @Test
+    public void characterDiceThrower(FxRobot robot) {
+        robot.clickOn("#tableMenu");
+        robot.clickOn("#diceThrowerMenuItem");
+        robot.clickOn("#dicesText");
+        robot.write("3d4 + 2D2+3d3");
+        robot.clickOn("#rollDicesButton");
+
+        int res = Integer.parseInt(((Text) robot.lookup("#diceResultText").tryQuery().get()).getText());
+        Assertions.assertTrue(res >= 9 && res <= 25);
+
+        String details = ((Text) robot.lookup("#diceResultDetailsText").tryQuery().get()).getText();
+        Assertions.assertEquals(24, details.length());
+
+        robot.clickOn("#howItWorksButton");
     }
 
     @Test
