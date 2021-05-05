@@ -2,6 +2,8 @@ package view;
 
 import controller.CharacterCreatorController;
 import controller.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,9 +14,14 @@ import model.Characteristics;
 import model.gui.CharacterCreatorModel;
 import model.job.Gender;
 import model.job.Job;
+import model.job.JobSkill;
 import model.job.JobType;
+import model.spell.Spell;
+import utils.gui.character_creator.JobSkillItem;
+import utils.gui.character_creator.SpellItem;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * View manager of Character cration's view.
@@ -172,5 +179,33 @@ public class CharacterCreatorView {
             case ROBUSTNESS -> CharacterCreatorController.getInstance().spinnerRobustness.getValueFactory().setValue(value);
             case CHARISMA -> CharacterCreatorController.getInstance().spinnerCharisma.getValueFactory().setValue(value);
         }
+    }
+
+    /**
+     * Allows to define skill list view elements
+     *
+     * @param jobSkills skills to show
+     */
+    public void setJobSkillsListView(List<JobSkill> jobSkills) {
+        ObservableList<JobSkillItem> items = FXCollections.observableArrayList();
+
+        for (JobSkill jobSkill : jobSkills)
+            items.add(new JobSkillItem(jobSkill));
+
+        CharacterCreatorController.getInstance().skillsListView.setItems(items);
+    }
+
+    /**
+     * Allows to define spells list view elements
+     *
+     * @param spells spells to show
+     */
+    public void setSpellsListView(List<Spell> spells) {
+        ObservableList<SpellItem> items = FXCollections.observableArrayList();
+
+        for (Spell spell : spells)
+            items.add(new SpellItem(spell));
+
+        CharacterCreatorController.getInstance().spellsListView.setItems(items);
     }
 }

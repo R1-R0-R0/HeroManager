@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,6 +18,8 @@ import model.job.Gender;
 import model.job.JobType;
 import model.race.Alignment;
 import model.race.Race;
+import utils.gui.character_creator.JobSkillItem;
+import utils.gui.character_creator.SpellItem;
 import view.CharacterCreatorView;
 
 import java.net.URL;
@@ -115,6 +118,12 @@ public class CharacterCreatorController implements Initializable {
     @FXML
     public Tab statsTab, skillsTab, spellsTab;
 
+    @FXML
+    public ListView<JobSkillItem> skillsListView;
+
+    @FXML
+    public ListView<SpellItem> spellsListView;
+
     /**
      * @return instance of this class
      */
@@ -162,6 +171,9 @@ public class CharacterCreatorController implements Initializable {
         spinnerWisdom.valueProperty().addListener(((observable, oldValue, newValue) -> CharacterCreatorModel.getInstance().updateStatistics(Characteristics.WISDOM, oldValue, newValue)));
         spinnerRobustness.valueProperty().addListener((observable, oldValue, newValue) -> CharacterCreatorModel.getInstance().updateStatistics(Characteristics.ROBUSTNESS, oldValue, newValue));
         spinnerCharisma.valueProperty().addListener(((observable, oldValue, newValue) -> CharacterCreatorModel.getInstance().updateStatistics(Characteristics.CHARISMA, oldValue, newValue)));
+
+        skillsListView.setCellFactory(CheckBoxListCell.forListView(JobSkillItem::selectedProperty));
+        spellsListView.setCellFactory(CheckBoxListCell.forListView(SpellItem::selectedProperty));
     }
 
     /**

@@ -68,7 +68,13 @@ public class CharacterCreatorModel {
     public CharacterCreatorModel(Stage owner) {
         instance = this;
         availablePoints = MAX_AVAILABLE_STATS_POINTS;
-        new CharacterCreatorView(owner);
+        CharacterCreatorView view = new CharacterCreatorView(owner);
+
+        /*
+        view.setJobSkillsListView(all skills);
+        view.setSpellsListView(all spells);
+        TODO: Define when all skills and spells are available
+         */
     }
 
     /**
