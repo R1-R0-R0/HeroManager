@@ -39,6 +39,11 @@ public class CharacterCreatorModel {
             WIZARD_LOGO_PATH = "/images/jobs/logo/wizard.jpg";
 
     /**
+     * Jobs who can possess spells, useful to activate spell tab or not
+     */
+    public final static JobType[] JOBS_SPELLS_AUTHORIZED = {JobType.WARLOCK, JobType.PALADIN, JobType.RANGER, JobType.SORCERER, JobType.DRUID, JobType.CLERIC, JobType.BARD, JobType.WIZARD};
+
+    /**
      * Value to set how much user can assign extra points in statistics while creating his character
      */
     public final static int MAX_AVAILABLE_STATS_POINTS = 12;
@@ -176,6 +181,13 @@ public class CharacterCreatorModel {
 
         availablePoints -= value;
         CharacterCreatorView.getInstance().updateStatisticsAvailablePoints(availablePoints);
+    }
+
+    /**
+     * @return created job in 1st creation phase
+     */
+    public Job getCreatedJob() {
+        return createdJob;
     }
 
     /**

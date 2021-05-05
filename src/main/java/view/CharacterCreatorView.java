@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import model.Characteristics;
 import model.gui.CharacterCreatorModel;
 import model.job.Gender;
+import model.job.Job;
+import model.job.JobType;
 
 import java.io.IOException;
 
@@ -129,11 +131,20 @@ public class CharacterCreatorView {
     }
 
     /**
-     * When called, switch first step of creation to the second step, to assign character's stats points, skills and spells
+     * When called, switch first step of creation to the second step, to assign character's stats points, skills and spells.
+     * Spell tab is activated only if character's class allows it
      */
     public void setUpNewCharacter() {
         CharacterCreatorController.getInstance().paneCreation1.setVisible(false);
         CharacterCreatorController.getInstance().paneCreation2.setVisible(true);
+
+        Job createdJob = CharacterCreatorModel.getInstance().getCreatedJob();
+        for (JobType jobType : CharacterCreatorModel.JOBS_SPELLS_AUTHORIZED) {
+            if (createdJob.getJobType().equals(jobType)) {
+                CharacterCreatorController.getInstance().spellsTab.setDisable(false);
+                return;
+            }
+        }
     }
 
     /**
