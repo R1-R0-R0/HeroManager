@@ -7,7 +7,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import model.gui.CharacterModel;
 import model.gui.MenuModel;
+import model.job.Job;
 import model.job.JobSkill;
 import model.job.JobType;
 import model.spell.Component;
@@ -23,6 +25,7 @@ import utils.gui.character_creator.JobSkillItem;
 import utils.gui.character_creator.SpellItem;
 import view.CharacterCreatorView;
 import view.CharacterView;
+import view.MenuView;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -143,6 +146,7 @@ public class CharacterCreatorTest extends Application {
 
     /**
      * Used to create warlock for spell tab test
+     *
      * @param robot fx robot
      */
     private void createWarlock(FxRobot robot) {
@@ -243,5 +247,18 @@ public class CharacterCreatorTest extends Application {
 
         robot.clickOn("#launchGameButton");
         Assertions.assertTrue(CharacterView.getInstance().getStage().isShowing());
+        Assertions.assertFalse(CharacterCreatorView.getInstance().getStage().isShowing());
+        Assertions.assertFalse(MenuView.getInstance().getStage().isShowing());
+
+        Job character = CharacterModel.getInstance().getCharacter();
+        Assertions.assertEquals(1, character.getLevel());
+        Assertions.assertEquals(0, character.getInventory().size());
+        Assertions.assertEquals(skills.size(), character.getSkills().size());
+        Assertions.assertEquals(spells.size(), character.getSpellInventory().size());
+
+        robot.clickOn("#spellsTabDongle");
+        Assertions.assertEquals(spells.size(), ((ListView) robot.lookup("#spellList").tryQuery().get()).getItems().size());
+
+        Thread.sleep(99999);
     }
 }
