@@ -71,4 +71,10 @@ public class Spell {
     public List<Component> getComponents() {
         return components;
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
+
 }

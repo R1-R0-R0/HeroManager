@@ -21,7 +21,8 @@ public class Job {
                 wisdom,
                 robustness,
                 charisma,
-                armor;
+                armor,
+                healthPoints;
     private Gender gender;
     private int statsPoints;
     private Alignment alignment;
@@ -75,6 +76,7 @@ public class Job {
         this.spellInventory = spellInventory;
         this.skills = skills;
         this.level = level;
+        this.healthPoints = healthPoints;
         this.strength = strength;
         this.dexterity = dexterity;
         this.robustness = robustness;
@@ -149,6 +151,14 @@ public class Job {
     public int getMaxHp(int value) { //TODO: do JOBTYPE enum with values of Dlife to replace value;
         return (int)((value + getModificator(robustness)
                 + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robustness))));
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
     }
 
     public int getModificator(int value){
@@ -398,17 +408,21 @@ public class Job {
         return skills;
     }
 
-    public void addStrength(){
-        if(level == 1 && statsPoints !=0) {
-            if (strength < 15) {
+    public void increaseStrength(){
+        if(statsPoints > 0) {
+            if (level == 1) {
+                if (strength < 15) {
+                    strength++;
+                    statsPoints--;
+                }
+            } else {
                 strength++;
                 statsPoints--;
             }
         }
-
     }
 
-    public void removeStrength(){
+    public void decreaseStrength(){
         if(level == 1){
             if (strength >8 && strength <= 10){
                 strength--;
@@ -419,9 +433,14 @@ public class Job {
         }
     }
 
-    public void addDexterity(){
-        if(level == 1 && statsPoints !=0) {
-            if (dexterity < 15) {
+    public void increaseDexterity(){
+        if(statsPoints > 0) {
+            if (level == 1) {
+                if (dexterity < 15) {
+                    dexterity++;
+                    statsPoints--;
+                }
+            } else {
                 dexterity++;
                 statsPoints--;
             }
@@ -429,7 +448,7 @@ public class Job {
 
     }
 
-    public void removeDexterity(){
+    public void decreaseDexterity(){
         if(level == 1){
             if (dexterity >8 && dexterity <= 10){
                 dexterity--;
@@ -440,9 +459,14 @@ public class Job {
         }
     }
 
-    public void addRobustness(){
-        if(level == 1 && statsPoints !=0) {
-            if (robustness < 15) {
+    public void increaseRobustness(){
+        if(statsPoints > 0) {
+            if (level == 1) {
+                if (robustness < 15) {
+                    robustness++;
+                    statsPoints--;
+                }
+            } else {
                 robustness++;
                 statsPoints--;
             }
@@ -450,7 +474,7 @@ public class Job {
 
     }
 
-    public void removeRobustness(){
+    public void decreaseRobustness(){
         if(level == 1){
             if (robustness >8 && intelligence <= 10){
                 robustness--;
@@ -461,9 +485,14 @@ public class Job {
         }
     }
 
-    public void addIntelligence(){
-        if(level == 1 && statsPoints !=0) {
-            if (intelligence < 15) {
+    public void increaseIntelligence(){
+        if(statsPoints > 0) {
+            if (level == 1) {
+                if (intelligence < 15) {
+                    intelligence++;
+                    statsPoints--;
+                }
+            } else {
                 intelligence++;
                 statsPoints--;
             }
@@ -471,7 +500,7 @@ public class Job {
 
     }
 
-    public void removeIntelligence(){
+    public void decreaseIntelligence(){
         if(level == 1){
             if (intelligence >8 && intelligence <= 10){
                 intelligence--;
@@ -482,9 +511,14 @@ public class Job {
         }
     }
 
-    public void addWisdom(){
-        if(level == 1 && statsPoints !=0) {
-            if (wisdom < 15) {
+    public void increaseWisdom(){
+        if(statsPoints > 0) {
+            if (level == 1) {
+                if (wisdom < 15) {
+                    wisdom++;
+                    statsPoints--;
+                }
+            } else {
                 wisdom++;
                 statsPoints--;
             }
@@ -492,7 +526,7 @@ public class Job {
 
     }
 
-    public void removeWisdom(){
+    public void decreaseWisdom(){
         if(level == 1){
             if (wisdom >8 && wisdom <= 10){
                 strength--;
@@ -503,9 +537,14 @@ public class Job {
         }
     }
 
-    public void addCharisma(){
-        if(level == 1 && statsPoints !=0) {
-            if (charisma < 15) {
+    public void increaseCharisma(){
+        if(statsPoints > 0) {
+            if (level == 1) {
+                if (charisma < 15) {
+                    charisma++;
+                    statsPoints--;
+                }
+            } else {
                 charisma++;
                 statsPoints--;
             }
@@ -513,7 +552,7 @@ public class Job {
 
     }
 
-    public void removeCharisma(){
+    public void decreaseCharisma(){
         if(level == 1){
             if (charisma > 8 && charisma <= 10){
                 charisma--;
@@ -527,6 +566,10 @@ public class Job {
     public void levelUp(){
         level++;
         setSpellSlots(level);
+    }
+
+    public void setStatsPoints(int statsPoints) {
+        this.statsPoints = statsPoints;
     }
 
     public void addImprovement(Improvement improvement){
