@@ -34,8 +34,6 @@ import java.util.List;
 @ExtendWith(ApplicationExtension.class)
 public class CharacterCreatorTest extends Application {
 
-    private int testID;
-
     @Start
     public void start(Stage primaryStage) throws Exception {
         new MenuModel();
