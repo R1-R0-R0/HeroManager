@@ -1,6 +1,5 @@
 package view;
 
-import controller.CharacterCreatorController;
 import controller.LoadGameController;
 import controller.Main;
 import exceptions.UnsupportedJobTypeException;
@@ -11,6 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.gui.CharacterCreatorModel;
@@ -63,6 +65,7 @@ public class LoadGameView {
 
     /**
      * Allows to fill up all saved games in list
+     *
      * @param jobs
      */
     public void setGamesList(List<Job> jobs) {
@@ -72,6 +75,7 @@ public class LoadGameView {
 
     /**
      * Allows to show given character class image
+     *
      * @param character character class image to show
      * @throws UnsupportedJobTypeException if character class is not handled by method
      */
@@ -101,7 +105,8 @@ public class LoadGameView {
 
     /**
      * Allows to show given character image
-     * @param character selected character to show its image
+     *
+     * @param character selected character
      */
     public void setJobImage(Job character) {
         ImageView imgView = LoadGameController.getInstance().imageJob;
@@ -111,6 +116,36 @@ public class LoadGameView {
         String imageJobPath = "/images/jobs/pictures/" + classNameFile + genderNameFile;
 
         imgView.setImage(new Image(getClass().getResourceAsStream(imageJobPath)));
+    }
+
+    /**
+     * Allows to show information about selected character
+     *
+     * @param character selected character
+     */
+    public void setJobDescription(Job character) {
+        TextFlow textView = LoadGameController.getInstance().textJobDesc;
+        textView.getChildren().clear();
+
+        Text name = new Text(character.getName() + "\n");
+        name.setFont(new Font(42));
+
+        Text lvlTypeAndClass = new Text("LVL " + character.getLevel() + " - " + character.getJobType() + " - " + character.getRaceType() + "\n");
+        lvlTypeAndClass.setFont(new Font(28));
+
+        Text statistics = new Text(
+                "- Strength:\t" + character.getTotalStrength() + " (" + character.getStrength() + "+" + character.getStrengthBoost() + ")\n" +
+                        "- Dexterity:\t" + character.getTotalDexterity() + " (" + character.getDexterity() + "+" + character.getDexterityBoost() + ")\n" +
+                        "- Intelligence:\t" + character.getTotalIntelligence() + " (" + character.getIntelligence() + "+" + character.getIntelligenceBoost() + ")\n" +
+                        "- Wisdom:\t" + character.getTotalWisdom() + " (" + character.getWisdom() + "+" + character.getWisdomBoost() + ")\n" +
+                        "- Robustness:\t" + character.getTotalRobustness() + " (" + character.getRobustness() + "+" + character.getRobustnessBoost() + ")\n" +
+                        "- Charisma:\t" + character.getTotalCharisma() + " (" + character.getCharisma() + "+" + character.getCharismaBoost() + ")\n" +
+                        "- Armor:\t" + character.getTotalArmor() + " (" + character.getArmor() + "+" + character.getArmorBoost() + ")\n"
+        );
+
+        Text description = new Text("\nDescription:\n" + character.getDescription());
+
+        textView.getChildren().addAll(name, lvlTypeAndClass, statistics, description);
     }
 
     /**

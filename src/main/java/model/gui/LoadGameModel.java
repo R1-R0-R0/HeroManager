@@ -38,6 +38,7 @@ public class LoadGameModel {
 
             LoadGameView.getInstance().setJobImageClass(selectedCharacter);
             LoadGameView.getInstance().setJobImage(selectedCharacter);
+            LoadGameView.getInstance().setJobDescription(selectedCharacter);
         } catch (UnsupportedJobTypeException e) {
             e.printStackTrace();
             Dialog err = new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
