@@ -156,21 +156,21 @@ public class CharacterCreatorModel {
 
         if (value < 0) {
             switch (characteristic) {
-                case STRENGTH -> createdJob.removeStrength();
-                case DEXTERITY -> createdJob.removeDexterity();
-                case INTELLIGENCE -> createdJob.removeIntelligence();
-                case WISDOM -> createdJob.removeWisdom();
-                case ROBUSTNESS -> createdJob.removeRobustness();
-                case CHARISMA -> createdJob.removeCharisma();
+                case STRENGTH -> createdJob.decreaseStrength();
+                case DEXTERITY -> createdJob.decreaseDexterity();
+                case INTELLIGENCE -> createdJob.decreaseIntelligence();
+                case WISDOM -> createdJob.decreaseWisdom();
+                case ROBUSTNESS -> createdJob.decreaseRobustness();
+                case CHARISMA -> createdJob.decreaseCharisma();
             }
         } else if (value > 0) {
             switch (characteristic) {
-                case STRENGTH -> createdJob.addStrength();
-                case DEXTERITY -> createdJob.addDexterity();
-                case INTELLIGENCE -> createdJob.addIntelligence();
-                case WISDOM -> createdJob.addWisdom();
-                case ROBUSTNESS -> createdJob.addRobustness();
-                case CHARISMA -> createdJob.addCharisma();
+                case STRENGTH -> createdJob.increaseStrength();
+                case DEXTERITY -> createdJob.increaseDexterity();
+                case INTELLIGENCE -> createdJob.increaseIntelligence();
+                case WISDOM -> createdJob.increaseIntelligence();
+                case ROBUSTNESS -> createdJob.increaseRobustness();
+                case CHARISMA -> createdJob.increaseCharisma();
             }
         }
 

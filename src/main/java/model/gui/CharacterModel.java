@@ -54,14 +54,15 @@ public class CharacterModel {
      * @param newHP New HP to set
      */
     public void hpBarOnClickEventDone(int newHP) {
-        // TODO
+        character.setHealthPoints(newHP);
+        CharacterView.getInstance().setHP(newHP, 100); // TODO
     }
 
     /**
      * When new hp pop-up updater canceled
      */
     public void hpBarOnClickEventCancel() {
-        // TODO
+        // do nothing
     }
 
     /**

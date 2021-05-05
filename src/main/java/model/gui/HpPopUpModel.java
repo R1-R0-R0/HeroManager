@@ -43,8 +43,6 @@ public class HpPopUpModel {
         try {
             int hp = Integer.parseInt(newHP);
 
-            System.out.println("hp = " + hp);
-
             if (hp < 0)
                 new Dialog(Alert.AlertType.ERROR, "Invalid amount", "New HP value can't be lower than 0").showAndWait();
             else if (hp > 100)// TODO : Set MAX HP later

@@ -112,7 +112,7 @@ public class CharacterView {
             setSkills(skillStrings);
 
             setCharacterName(character.getName());
-            setHP(50, 100); // TODO
+            setHP(character.getHealthPoints(), 100); // TODO
             setLevel(character.getLevel());
             setInventory(character.getInventory());
             setSpellList(character.getSpellInventory());
