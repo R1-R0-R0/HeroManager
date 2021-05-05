@@ -1,13 +1,11 @@
 package controller;
 
-import com.sun.javafx.scene.control.LabeledText;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import model.gui.ItemManagerModel;
 import model.items.Item;
 import model.items.ItemType;
@@ -16,35 +14,91 @@ import model.items.weapons.DamageType;
 import model.items.weapons.WeaponType;
 import utils.gui.Dialog;
 
-import javax.security.auth.callback.ChoiceCallback;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of Item Manager view
+ *
+ * @see view.ItemManagerView associated class view (MVC pattern)
+ * @see ItemManagerModel associated class model (MVC pattern)
+ */
 public class ItemManagerController implements Initializable {
 
+    /**
+     * Picker (ComboBox) of item type to choose
+     */
     @FXML
     public ComboBox<ItemType> typePicker;
+
+    /**
+     * List view of selected items by picker
+     */
     @FXML
     public ListView<Item> itemList;
+
+    /**
+     * Label of item name selected
+     */
     @FXML
     public Label itemNameLabel;
+
+    /**
+     * Pane's view corresponding of each type of equipment.
+     * Because Weapons, Equipement... don't have same attributes, view's changes according to selected item type
+     */
     @FXML
     public GridPane weaponsPane, equipmentPane, consumablePane;
+
+    /**
+     * Name's field of selected item, to view or change it
+     */
     @FXML
     public TextField weaponNameText, equipmentNameText, consumableNameText;
+
+    /**
+     * Description's field of selected item, to view or change it
+     */
     @FXML
     public TextArea weaponDescriptionText, weaponPropertiesText, equipmentDescriptionText, consumableDescriptionText;
+
+    /**
+     * Picker (ChoiceBox) to choose what type of weapon selected weapon is
+     */
     @FXML
     public ChoiceBox<WeaponType> weaponTypePicker;
+
+    /**
+     * Picker (ChoiceBox) to choose what type of damage selected weapon inflict
+     */
     @FXML
     public ChoiceBox<DamageType> damageTypePicker;
+
+    /**
+     * Picker (ChoiceBox) to choose what kind of equipment is (head, body, ...)
+     */
     @FXML
     public ChoiceBox<ItemManagerModel.EquipmentPart> equipmentPartPicker;
+
+    /**
+     * Picker(ChoiceBox) to select what kind of equipment is (weight)
+     */
     @FXML
     public ChoiceBox<EquipmentType> equipmentTypePicker;
+
+    /**
+     * Picker (ChoiceBox) to select what kind of equipment effect to inflict
+     */
     @FXML
     public ChoiceBox<?> equipmentEffectPicker;
 
+    /**
+     * Entry point of controller.
+     * When called, initializes all item's selectors
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<ItemType> itemTypeObservableList = FXCollections.observableArrayList(ItemType.values());
@@ -61,6 +115,9 @@ public class ItemManagerController implements Initializable {
         equipmentTypePicker.setItems(equipmentTypeObservableList);
     }
 
+    /**
+     * Event picker triggered when item type (weapon, equipment...) is selected
+     */
     @FXML
     public void itemTypeSelectedEvent() {
         ItemType selectedType = typePicker.getValue();
@@ -71,11 +128,15 @@ public class ItemManagerController implements Initializable {
 
         switch (selectedType) {
             case WEAPONS -> weaponsPane.setVisible(true);
-            case EQUIPMENTS ->  equipmentPane.setVisible(true);
+            case EQUIPMENTS -> equipmentPane.setVisible(true);
             case CONSUMABLES -> consumablePane.setVisible(true);
         }
     }
 
+    /**
+     * Event triggered when user click on button to create item.
+     * If some required fields are empty, an error pop up will be throw
+     */
     @FXML
     public void newItemButtonOnClick() {
 
@@ -105,6 +166,10 @@ public class ItemManagerController implements Initializable {
         }
     }
 
+    /**
+     * Event triggered when user click on button to update an existant item.
+     * If some required fields are empty, an error pop up will be throw
+     */
     @FXML
     public void updateItemButtonOnClick() {
         switch (typePicker.getValue()) {
@@ -119,6 +184,7 @@ public class ItemManagerController implements Initializable {
                     return;
                 }
 
+                // TODO When database is created
                 /*
                 ItemManagerModel.getInstance().updateItem(
                         weaponNameText.getText(),
@@ -133,6 +199,10 @@ public class ItemManagerController implements Initializable {
         }
     }
 
+    /**
+     * Event triggered when user clicks on button to delete item.
+     * If name's field is empty, an error pop up will be throw
+     */
     @FXML
     public void deleteItemButtonOnClick() {
         switch (typePicker.getValue()) {
@@ -148,6 +218,9 @@ public class ItemManagerController implements Initializable {
         }
     }
 
+    /**
+     * Event triggered when user clicks on back button to return to menu
+     */
     @FXML
     public void backButtonOnClick() {
         ItemManagerModel.getInstance().returnToMenu();

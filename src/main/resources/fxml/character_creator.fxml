@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CharacterCreatorController">
-    <GridPane fx:id="paneCreation1" alignment="CENTER" visible="false">
+    <GridPane fx:id="paneCreation1" alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -101,7 +101,7 @@
             </GridPane>
         </children>
     </GridPane>
-    <VBox fx:id="paneCreation2" prefHeight="200.0" prefWidth="100.0">
+    <VBox fx:id="paneCreation2" prefHeight="200.0" prefWidth="100.0" visible="false">
         <children>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                 <tabs>

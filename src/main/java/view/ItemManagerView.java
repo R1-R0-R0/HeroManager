@@ -4,17 +4,27 @@ import controller.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.gui.CharacterCreatorModel;
 import model.gui.ItemManagerModel;
 
 import java.io.IOException;
 
+/**
+ * View manager of Item manager's view
+ *
+ * @see ItemManagerModel associated class model (MVC pattern)
+ * @see controller.ItemManagerController associated class controller (MVC pattern)
+ */
 public class ItemManagerView {
 
-    private Stage stage;
     private static ItemManagerView instance;
+    private Stage stage;
 
+    /**
+     * Should NOT BE CALLED directly, its corresponding model will call it automatically.
+     * When called, load item manager's fxml
+     */
     public ItemManagerView() {
         try {
             stage = new Stage();
@@ -31,11 +41,17 @@ public class ItemManagerView {
         }
     }
 
-    public void close() {
-        stage.close();
-    }
-
+    /**
+     * @return instance of this class
+     */
     public static ItemManagerView getInstance() {
         return instance;
+    }
+
+    /**
+     * To close view
+     */
+    public void close() {
+        stage.close();
     }
 }

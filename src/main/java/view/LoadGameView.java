@@ -9,11 +9,22 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * View manager of Load Game view
+ *
+ * @see model.gui.LoadGameModel associated class model (MVC pattern)
+ * @see controller.LoadGameController associated class controller (MVC pattern)
+ */
 public class LoadGameView {
 
-    private Stage stage;
     private static LoadGameView instance;
+    private Stage stage;
 
+    /**
+     * Constructor of this class.
+     * Should NEVER BE CALLED directly, always called by its model class.
+     * When called, init fxml view
+     */
     public LoadGameView() {
         try {
             stage = new Stage();
@@ -32,10 +43,16 @@ public class LoadGameView {
         }
     }
 
+    /**
+     * @return instance of this class
+     */
     public static LoadGameView getInstance() {
         return instance;
     }
 
+    /**
+     * To close view
+     */
     public void close() {
         stage.close();
     }

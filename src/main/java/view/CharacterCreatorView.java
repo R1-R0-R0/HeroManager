@@ -14,11 +14,24 @@ import model.job.Gender;
 
 import java.io.IOException;
 
+/**
+ * View manager of Character cration's view.
+ *
+ * @see CharacterCreatorModel associated class model (MVC pattern)
+ * @see CharacterCreatorController associated class controller (MVC pattern)
+ */
 public class CharacterCreatorView {
 
-    private Stage stage;
     private static CharacterCreatorView instance;
+    private Stage stage;
 
+    /**
+     * Constructor of this class.
+     * Should NOT BE CALLED directly, CharacterCreatorModel automatically calls it.
+     * When called, fxml view, its stage is set up
+     *
+     * @param owner window's caller of this view (theorically Menu view)
+     */
     public CharacterCreatorView(Stage owner) {
         try {
             stage = new Stage();
@@ -37,18 +50,37 @@ public class CharacterCreatorView {
         }
     }
 
+
+    /**
+     * @return instance of this class
+     */
     public static CharacterCreatorView getInstance() {
         return instance;
     }
 
+    /**
+     * Used to update image view who represents character class
+     *
+     * @param path path to image
+     */
     public void changeJobTypeImage(String path) {
         CharacterCreatorController.getInstance().jobTypeImage.setImage(new Image(getClass().getResourceAsStream(path)));
     }
 
+    /**
+     * Used to update image view who represents character
+     *
+     * @param path path to image
+     */
     public void changeJobImage(String path) {
         CharacterCreatorController.getInstance().jobImage.setImage(new Image(getClass().getResourceAsStream(path)));
     }
 
+    /**
+     * Called when user selected his character's gender, to change character's image representation
+     *
+     * @param gender selected gender
+     */
     public void selectedGender(Gender gender) {
         CharacterCreatorView view = CharacterCreatorView.getInstance();
 
@@ -59,10 +91,16 @@ public class CharacterCreatorView {
         view.changeJobImage(imageJobPath);
     }
 
+    /**
+     * To close window
+     */
     public void close() {
         stage.close();
     }
 
+    /**
+     * Enable all inputs of first step of creation
+     */
     public void enableInputs() {
         CharacterCreatorController controller = CharacterCreatorController.getInstance();
 
@@ -75,6 +113,9 @@ public class CharacterCreatorView {
         controller.createCharacterButton.setDisable(false);
     }
 
+    /**
+     * Disable all inputs of first step of creation
+     */
     public void disableInputs() {
         CharacterCreatorController controller = CharacterCreatorController.getInstance();
 
@@ -87,15 +128,29 @@ public class CharacterCreatorView {
         controller.createCharacterButton.setDisable(true);
     }
 
+    /**
+     * When called, switch first step of creation to the second step, to assign character's stats points, skills and spells
+     */
     public void setUpNewCharacter() {
         CharacterCreatorController.getInstance().paneCreation1.setVisible(false);
         CharacterCreatorController.getInstance().paneCreation2.setVisible(true);
     }
 
+    /**
+     * When called, update available points label to statistics distribution
+     *
+     * @param availablePoints number of available points
+     */
     public void updateStatisticsAvailablePoints(int availablePoints) {
         CharacterCreatorController.getInstance().labelRemainingPoints.setText(Integer.toString(availablePoints));
     }
 
+    /**
+     * Method used to force specific spinner statistic value
+     *
+     * @param characteristic statistic to update
+     * @param value          value to assign to spinner
+     */
     public void setSpinnerStatisticValue(Characteristics characteristic, int value) {
         assert (value >= 8 && value <= 15);
         switch (characteristic) {
