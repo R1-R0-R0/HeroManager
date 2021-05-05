@@ -1,15 +1,11 @@
 package gui;
 
-import com.sun.javafx.fxml.builder.JavaFXSceneBuilder;
 import controller.CharacterCreatorController;
-import controller.Main;
-import controller.MenuController;
 import javafx.application.Application;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import model.gui.CharacterCreatorModel;
 import model.gui.MenuModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +14,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.testfx.service.query.impl.NodeQueryImpl;
 
 @ExtendWith(ApplicationExtension.class)
 public class CharacterCreatorTest extends Application {
@@ -131,5 +126,62 @@ public class CharacterCreatorTest extends Application {
         Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerWisdom").tryQuery().get()).getValue()).intValue());
         Assertions.assertEquals(10, ((Integer) ((Spinner) robot.lookup("#spinnerRobustness").tryQuery().get()).getValue()).intValue());
         Assertions.assertEquals(12, ((Integer) ((Spinner) robot.lookup("#spinnerCharisma").tryQuery().get()).getValue()).intValue());
+    }
+
+    /**
+     * Used to create warlock for spell tab test
+     * @param robot fx robot
+     */
+    private void createWarlock(FxRobot robot) {
+        robot.clickOn("#newGameButton");
+
+        Assertions.assertTrue(robot.lookup("#paneCreation1").tryQuery().get().isVisible());
+        Assertions.assertFalse(robot.lookup("#paneCreation2").tryQuery().get().isVisible());
+
+        Assertions.assertTrue(robot.lookup("#jobNameText").tryQuery().get().isDisable());
+        Assertions.assertTrue(robot.lookup("#jobDescriptionText").tryQuery().get().isDisable());
+        Assertions.assertTrue(robot.lookup("#genderPicker").tryQuery().get().isDisable());
+        Assertions.assertTrue(robot.lookup("#alignmentPicker").tryQuery().get().isDisable());
+        Assertions.assertTrue(robot.lookup("#racePicker").tryQuery().get().isDisable());
+
+        robot.clickOn("#jobTypePicker");
+        robot.type(KeyCode.DOWN, 11);
+        robot.type(KeyCode.ENTER);
+
+        Assertions.assertFalse(robot.lookup("#jobNameText").tryQuery().get().isDisable());
+        Assertions.assertFalse(robot.lookup("#jobDescriptionText").tryQuery().get().isDisable());
+        Assertions.assertFalse(robot.lookup("#genderPicker").tryQuery().get().isDisable());
+        Assertions.assertFalse(robot.lookup("#alignmentPicker").tryQuery().get().isDisable());
+        Assertions.assertFalse(robot.lookup("#racePicker").tryQuery().get().isDisable());
+
+        robot.clickOn("#jobNameText");
+        robot.write("Hiraye");
+
+        robot.type(KeyCode.TAB);
+        robot.write("A perfect woman");
+
+        robot.clickOn("#genderPicker");
+        robot.type(KeyCode.DOWN, KeyCode.DOWN, KeyCode.ENTER);
+
+        robot.clickOn("#alignmentPicker");
+        robot.type(KeyCode.DOWN, KeyCode.ENTER);
+
+        robot.clickOn("#racePicker");
+        robot.type(KeyCode.DOWN, KeyCode.ENTER);
+    }
+
+    @Test
+    @DisplayName("GUI Character creation test spell tab enabled for specific job type")
+    public void spellTabTest(FxRobot robot) throws InterruptedException {
+        characterCreationTest(robot);
+
+        robot.clickOn("#createCharacterButton");
+        Assertions.assertTrue(CharacterCreatorController.getInstance().spellsTab.isDisabled());
+        robot.clickOn("#backButton2");
+
+        createWarlock(robot);
+
+        robot.clickOn("#createCharacterButton");
+        Assertions.assertFalse(CharacterCreatorController.getInstance().spellsTab.isDisabled());
     }
 }

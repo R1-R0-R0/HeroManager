@@ -224,6 +224,8 @@
                 <items>
                     <Pane HBox.Hgrow="ALWAYS" />
                     <Button mnemonicParsing="false" text="Launch game" />
+                    <Separator />
+                    <Button fx:id="backButton2" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backButtonOnClick" prefWidth="52.0" text="Back" />
                 </items>
             </ToolBar>
         </children>
