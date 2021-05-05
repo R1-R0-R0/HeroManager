@@ -1,7 +1,9 @@
 package model.gui;
 
 import controller.CharacterCreatorController;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Characteristics;
 import model.job.Gender;
@@ -10,7 +12,10 @@ import model.job.JobType;
 import model.race.Alignment;
 import model.race.Race;
 import utils.gui.Dialog;
+import utils.gui.character_creator.JobSkillItem;
+import utils.gui.character_creator.SpellItem;
 import view.CharacterCreatorView;
+import view.MenuView;
 
 /**
  * Model of Character creator view.
@@ -187,6 +192,32 @@ public class CharacterCreatorModel {
 
         availablePoints -= value;
         CharacterCreatorView.getInstance().updateStatisticsAvailablePoints(availablePoints);
+    }
+
+    /**
+     * Called when user finished to create his character and wants to launch the game.
+     * Assign selected skills and spells, and open character view
+     */
+    public void launchGame() {
+        ListView<JobSkillItem> jobSkillItemListView = CharacterCreatorController.getInstance().skillsListView;
+        ListView<SpellItem> spellItemListView = CharacterCreatorController.getInstance().spellsListView;
+
+        ObservableList<JobSkillItem> jobSkillItems = jobSkillItemListView.getItems();
+        for (JobSkillItem jobSkillItem : jobSkillItems) {
+            if (jobSkillItem.isSelected())
+                createdJob.addJobSkills(jobSkillItem.getSkill());
+        }
+
+        ObservableList<SpellItem> spellItems = spellItemListView.getItems();
+        for (SpellItem spellItem : spellItems) {
+            if (spellItem.isSelected())
+                createdJob.addSpell(spellItem.getSpell());
+        }
+
+        new CharacterModel(createdJob);
+
+        close();
+        MenuView.getInstance().close();
     }
 
     /**

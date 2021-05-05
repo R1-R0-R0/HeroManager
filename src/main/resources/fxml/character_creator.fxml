@@ -229,7 +229,7 @@
             <ToolBar prefHeight="40.0" prefWidth="200.0">
                 <items>
                     <Pane HBox.Hgrow="ALWAYS" />
-                    <Button mnemonicParsing="false" text="Launch game" />
+                    <Button fx:id="launchGameButton" mnemonicParsing="false" onAction="#launchGameButtonOnClick" text="Launch game" />
                     <Separator />
                     <Button fx:id="backButton2" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backButtonOnClick" prefWidth="52.0" text="Back" />
                 </items>

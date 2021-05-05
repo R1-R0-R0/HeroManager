@@ -208,4 +208,11 @@ public class CharacterCreatorView {
 
         CharacterCreatorController.getInstance().spellsListView.setItems(items);
     }
+
+    /**
+     * @return stage of this view
+     */
+    public Stage getStage() {
+        return stage;
+    }
 }

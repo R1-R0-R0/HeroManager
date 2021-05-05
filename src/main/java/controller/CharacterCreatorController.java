@@ -207,4 +207,12 @@ public class CharacterCreatorController implements Initializable {
     public void createCharacterButtonOnClick() {
         CharacterCreatorModel.getInstance().createCharacter();
     }
+
+    /**
+     * Event handler when user finished character creation and launch game
+     */
+    @FXML
+    public void launchGameButtonOnClick() {
+        CharacterCreatorModel.getInstance().launchGame();
+    }
 }
