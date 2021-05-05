@@ -149,6 +149,14 @@ public class LoadGameView {
     }
 
     /**
+     *
+     * @return stage's view
+     */
+    public Stage getStage() {
+        return stage;
+    }
+
+    /**
      * To close view
      */
     public void close() {

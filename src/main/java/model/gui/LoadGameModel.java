@@ -1,10 +1,12 @@
 package model.gui;
 
+import controller.LoadGameController;
 import exceptions.UnsupportedJobTypeException;
 import javafx.scene.control.Alert;
 import model.job.Job;
 import utils.gui.Dialog;
 import view.LoadGameView;
+import view.MenuView;
 
 /**
  * Model of Load Game view
@@ -39,12 +41,23 @@ public class LoadGameModel {
             LoadGameView.getInstance().setJobImageClass(selectedCharacter);
             LoadGameView.getInstance().setJobImage(selectedCharacter);
             LoadGameView.getInstance().setJobDescription(selectedCharacter);
+
+            LoadGameController.getInstance().loadButton.setDisable(false);
         } catch (UnsupportedJobTypeException e) {
             e.printStackTrace();
             Dialog err = new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
             err.showAndWait();
             System.exit(1);
         }
+    }
+
+    /**
+     * Called when user click on load button, and load selected character
+     */
+    public void loadGame() {
+        new CharacterModel(selectedCharacter);
+        close();
+        MenuView.getInstance().close();
     }
 
     /**

@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.image.Image;
@@ -48,6 +49,13 @@ public class LoadGameController implements Initializable {
     public TextFlow textJobDesc;
 
     /**
+     * Load button, used to load game when character is selected
+     */
+    @FXML
+    public Button loadButton;
+
+
+    /**
      * @return instance of this class
      */
     public static LoadGameController getInstance() {
@@ -84,7 +92,7 @@ public class LoadGameController implements Initializable {
      */
     @FXML
     public void loadButtonOnClick() {
-        // TODO
+        LoadGameModel.getInstance().loadGame();
     }
 
     /**
