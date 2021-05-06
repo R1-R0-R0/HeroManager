@@ -72,7 +72,6 @@ public class Writer {
             test.put("name", equipements.get(index).getName());
             test.put("description", equipements.get(index).getDescription());
             test.put("armorbonus", equipements.get(index).getArmorBonus());
-            test.put("effect", equipements.get(index).getEquipmentEffect());
             test.put("strengthboost", equipements.get(index).getStrengthBoost());
             test.put("dexterityboost", equipements.get(index).getDexterityBoost());
             test.put("robustnessboost", equipements.get(index).getRobustnessBoost());
