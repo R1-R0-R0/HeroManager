@@ -1,9 +1,9 @@
 package model.job;
 
 
-import model.items.Item;
 import model.items.equipments.Equipment;
-import model.items.equipments.HeadEquipment;
+import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentType;
 import model.race.Alignment;
 import model.race.Race;
 import model.spell.Component;
@@ -11,15 +11,13 @@ import model.spell.Spell;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JobTest {
 
-    Equipment head = new HeadEquipment("helmet", "protects from arrows",1,null,null,
+    Equipment head = new Equipment("helmet", "protects from arrows", EquipmentParts.HEAD,1, EquipmentType.HEAVY,
             5,4,3,2,1,5,4);
 
 
@@ -47,6 +45,12 @@ public class JobTest {
         wizard.levelUp(); // level 5
         assertEquals(wizard.getLevel(),level5);
 
+    }
+
+    @Test
+    public void getProficiencyLevelTest(){
+        assertEquals(wizard.getProficiencyLevel(),2);
+        assertEquals(alreadyExistingBard.getProficiencyLevel(),5);
     }
 
     @Test
@@ -284,6 +288,18 @@ public class JobTest {
         assertEquals(wizard.getName(), grosflan);
         assertEquals(warlock.getName(),airels);
         assertEquals(alreadyExistingBard.getName(), hatsune);
+
+        assertEquals(wizard.toString(),grosflan);
+    }
+
+    @Test
+    public void getGenderTest(){
+        Gender man = Gender.MAN;
+        Gender woman = Gender.WOMAN;
+
+        assertEquals(warlock.getGender(), man);
+        assertEquals(alreadyExistingBard.getGender(), woman);
+
     }
 
     @Test
