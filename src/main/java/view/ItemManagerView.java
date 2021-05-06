@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.gui.CharacterCreatorModel;
 import model.gui.ItemManagerModel;
 
 import java.io.IOException;
@@ -40,6 +39,7 @@ public class ItemManagerView {
             e.printStackTrace();
         }
     }
+
 
     /**
      * @return instance of this class

@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.UnsupportedItemException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -134,87 +135,33 @@ public class ItemManagerController implements Initializable {
     }
 
     /**
-     * Event triggered when user click on button to create item.
-     * If some required fields are empty, an error pop up will be throw
+     * Event triggered when user click on button to create item
      */
     @FXML
     public void newItemButtonOnClick() {
-
-        switch (typePicker.getValue()) {
-            case WEAPONS -> {
-                if (weaponNameText.getText().matches("^(\\s)*$")
-                        || weaponDescriptionText.getText().matches("^(\\s)*$")
-                        || weaponDescriptionText.getText().matches("^(\\s)*$")
-                        || weaponTypePicker.getValue() == null
-                        || damageTypePicker.getValue() == null) {
-                    Dialog errDialog = new Dialog(Alert.AlertType.ERROR, "Some values are empty", "Please fill all values to create your new item");
-                    errDialog.showAndWait();
-                    return;
-                }
-
-                /*
-                ItemManagerModel.getInstance().newItem(
-                        weaponNameText.getText(),
-                        weaponDescriptionText.getText(),
-                        weaponPropertiesText.getText(),
-                        weaponTypePicker.getValue(),
-                        damageTypePicker.getValue()
-                );
-
-                 */
-            }
-        }
+        ItemManagerModel.getInstance().createItem();
     }
 
     /**
-     * Event triggered when user click on button to update an existant item.
-     * If some required fields are empty, an error pop up will be throw
+     * Event triggered when user click on button to update an existent item
      */
     @FXML
     public void updateItemButtonOnClick() {
-        switch (typePicker.getValue()) {
-            case WEAPONS -> {
-                if (weaponNameText.getText().matches("^(\\s)*$")
-                        || weaponDescriptionText.getText().matches("^(\\s)*$")
-                        || weaponDescriptionText.getText().matches("^(\\s)*$")
-                        || weaponTypePicker.getValue() == null
-                        || damageTypePicker.getValue() == null) {
-                    Dialog errDialog = new Dialog(Alert.AlertType.ERROR, "Some values are empty", "Please fill all values to update your item");
-                    errDialog.showAndWait();
-                    return;
-                }
-
-                // TODO When database is created
-                /*
-                ItemManagerModel.getInstance().updateItem(
-                        weaponNameText.getText(),
-                        weaponDescriptionText.getText(),
-                        weaponPropertiesText.getText(),
-                        weaponTypePicker.getValue(),
-                        damageTypePicker.getValue()
-                );
-
-                 */
-            }
-        }
+        ItemManagerModel.getInstance().updateItem();
     }
 
     /**
-     * Event triggered when user clicks on button to delete item.
-     * If name's field is empty, an error pop up will be throw
+     * Event triggered when user clicks on button to delete item
      */
     @FXML
     public void deleteItemButtonOnClick() {
-        switch (typePicker.getValue()) {
-            case WEAPONS -> {
-                if (weaponNameText.getText().matches("^(\\s)*$")) {
-                    Dialog errDialog = new Dialog(Alert.AlertType.ERROR, "Name's value empty", "Please enter at least name of item you want to delete");
-                    errDialog.showAndWait();
-                    return;
-                }
-
-                ItemManagerModel.getInstance().deleteItemEvent(weaponNameText.getText());
-            }
+        try {
+            ItemManagerModel.getInstance().deleteItem();
+        } catch (UnsupportedItemException e) {
+            e.printStackTrace();
+            Dialog errDialog = new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
+            errDialog.showAndWait();
+            System.exit(1);
         }
     }
 
