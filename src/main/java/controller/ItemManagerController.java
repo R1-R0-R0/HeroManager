@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import model.gui.ItemManagerModel;
 import model.items.Item;
 import model.items.ItemType;
+import model.items.equipments.EquipmentEffect;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.WeaponType;
@@ -82,7 +83,7 @@ public class ItemManagerController implements Initializable {
      * Picker (ChoiceBox) to select what kind of equipment effect to inflict
      */
     @FXML
-    public ChoiceBox<?> equipmentEffectPicker;
+    public ChoiceBox<EquipmentEffect> equipmentEffectPicker;
 
     /**
      * @return instance of this class
