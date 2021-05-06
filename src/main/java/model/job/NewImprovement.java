@@ -2,6 +2,11 @@ package model.job;
 
 public class NewImprovement {
 
+    /**
+     * Allow you to create new Improvement in order to complete the enum
+     * @see Improvement
+     */
+
     private final String  name;
     private final String description;
     private final int[] statBoost = new int[7];
@@ -27,38 +32,65 @@ public class NewImprovement {
 
     }
 
+    /**
+     * @return name of the Improvement
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return description of the Improvement
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * @return boost of Strength given by the improvement
+     */
     public int getStrengthBoost(){
         return statBoost[0];
     }
 
+    /**
+     * @return boost of Dexterity given by the improvement
+     */
     public int getDexterityBoost(){
         return statBoost[1];
     }
 
+    /**
+     * @return boost of Robustness given by the improvement
+     */
     public int getRobustnessBoost(){
         return statBoost[2];
     }
 
+    /**
+     * @return boost of Intelligence given by the improvement
+     */
     public int getIntelligenceBoost(){
         return statBoost[3];
     }
 
+    /**
+     * @return boost of Wisdom given by the improvement
+     */
     public int getWisdomBoost(){
         return statBoost[4];
     }
 
+    /**
+     * @return boost of Charisma given by the improvement
+     */
     public int getCharismaBoost(){
         return statBoost[5];
     }
 
+    /**
+     * @return boost of Speed given by the improvement
+     */
     public int getSpeedBoost(){
         return statBoost[6];
     }
