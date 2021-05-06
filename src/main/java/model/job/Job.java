@@ -22,7 +22,8 @@ public class Job {
                 robustness,
                 charisma,
                 armor,
-                healthPoints;
+                healthPoints,
+                speed;
     private Gender gender;
     private int statsPoints;
     private Alignment alignment;
@@ -59,12 +60,13 @@ public class Job {
         wisdom = BASE_STATS;
         charisma = BASE_STATS;
         statsPoints = ADDITIONAL_STATS;
+        speed = race.getSpeed();
 
         setSpellSlots(1);
     }
 
     public Job(String name, String description, Gender gender, Alignment alignment, Race race, JobType jobType, List<Spell> spellInventory, List<JobSkill> skills,
-               int level, int strength, int dexterity, int intelligence, int robustness, int wisdom, int charisma, int armor,
+               int level, int strength, int dexterity, int intelligence, int robustness, int wisdom, int charisma,int speed,int healthPoints, int armor,
                int statsPoints, List<Improvement> improvements, List<Equipment> equippedEquipments, List<Item> inventory) {
 
         this.name = name;
@@ -77,6 +79,7 @@ public class Job {
         this.skills = skills;
         this.level = level;
         this.healthPoints = healthPoints;
+        this.speed = speed;
         this.strength = strength;
         this.dexterity = dexterity;
         this.robustness = robustness;
@@ -148,9 +151,11 @@ public class Job {
         }
     }
 
-    public int getMaxHp(int value) { //TODO: do JOBTYPE enum with values of Dlife to replace value;
-        return (int)((value + getModificator(robustness)
-                + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robustness))));
+    public int getMaxHp() { //TODO: do JOBTYPE enum with values of Dlife to replace value;
+
+        return 100;
+        // return (int)((value + getModificator(robustness)
+              //  + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robustness))));
     }
 
     public int getHealthPoints() {
@@ -161,8 +166,8 @@ public class Job {
         this.healthPoints = healthPoints;
     }
 
-    public int getModificator(int value){
-        return switch (value) {
+    public int getModificator(int statValue){
+        return switch (statValue) {
             case 2, 3 -> -4;
             case 4, 5 -> -3;
             case 6, 7 -> -2;
@@ -185,8 +190,8 @@ public class Job {
     }
 
     public int getProficiencyLevel() {
-        double proficiency = 1 + (double) (level/4);
-        return (int) Math.nextUp(proficiency);
+        double proficiency = 1 + (double)(level/4);
+        return (int) Math.ceil(proficiency);
 
     }
 
@@ -214,7 +219,7 @@ public class Job {
         return robustness;
     }
 
-    public int getSpeed(){ return race.getSpeed(); }
+    public int getSpeed(){ return speed; }
 
     public int getArmorBoost(){
         int result = 0;
@@ -568,7 +573,13 @@ public class Job {
         setSpellSlots(level);
     }
 
+    public int getStatsPoints() {
+        return statsPoints;
+    }
+
     public void setStatsPoints(int statsPoints) {
+        if(statsPoints < 0)
+            return;
         this.statsPoints = statsPoints;
     }
 

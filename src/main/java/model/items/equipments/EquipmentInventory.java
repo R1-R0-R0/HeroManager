@@ -1,20 +1,11 @@
 package model.items.equipments;
 
 public class EquipmentInventory {
-    private HeadEquipment head;
-    private BodyEquipment body;
-    private LegsEquipment legs;
-    private FeetEquipment feet;
-    private HandsEquipment hands;
-    private BeltEquipment belt;
-    private MantleEquipment mantle;
-    private AmuletEquipment amulet;
-    private RingEquipment leftRing;
-    private RingEquipment rightRing;
+    private Equipment head,body,legs,feet,hands,belt,mantle,amulet,leftRing,rightRing;
 
-    public EquipmentInventory(HeadEquipment head, BodyEquipment body, LegsEquipment legs, FeetEquipment feet,
-                              HandsEquipment hands, BeltEquipment belt, MantleEquipment mantle, AmuletEquipment amulet,
-                              RingEquipment leftRing, RingEquipment rightRing) {
+    public EquipmentInventory(Equipment head, Equipment body, Equipment legs, Equipment feet,
+                              Equipment hands, Equipment belt, Equipment mantle, Equipment amulet,
+                              Equipment leftRing, Equipment rightRing) {
         this.head = head;
         this.body = body;
         this.legs = legs;
@@ -27,43 +18,43 @@ public class EquipmentInventory {
         this.rightRing = rightRing;
     }
 
-    public HeadEquipment getHead() {
+    public Equipment getHead() {
         return head;
     }
 
-    public BodyEquipment getBody() {
+    public Equipment getBody() {
         return body;
     }
 
-    public LegsEquipment getLegs() {
+    public Equipment getLegs() {
         return legs;
     }
 
-    public FeetEquipment getFeet() {
+    public Equipment getFeet() {
         return feet;
     }
 
-    public HandsEquipment getHands() {
+    public Equipment getHands() {
         return hands;
     }
 
-    public BeltEquipment getBelt() {
+    public Equipment getBelt() {
         return belt;
     }
 
-    public MantleEquipment getMantle() {
+    public Equipment getMantle() {
         return mantle;
     }
 
-    public AmuletEquipment getAmulet() {
+    public Equipment getAmulet() {
         return amulet;
     }
 
-    public RingEquipment getLeftRing() {
+    public Equipment getLeftRing() {
         return leftRing;
     }
 
-    public RingEquipment getRightRing() {
+    public Equipment getRightRing() {
         return rightRing;
     }
 }
