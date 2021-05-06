@@ -1,13 +1,17 @@
 package view;
 
+import controller.ItemManagerController;
 import controller.Main;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.gui.ItemManagerModel;
+import model.items.Item;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * View manager of Item manager's view
@@ -40,12 +44,20 @@ public class ItemManagerView {
         }
     }
 
-
     /**
      * @return instance of this class
      */
     public static ItemManagerView getInstance() {
         return instance;
+    }
+
+    /**
+     * To show items in list view ui
+     *
+     * @param items items to show
+     */
+    public void setItemsListView(List<Item> items) {
+        ItemManagerController.getInstance().itemList.setItems(FXCollections.observableArrayList(items));
     }
 
     /**
