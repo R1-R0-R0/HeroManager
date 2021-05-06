@@ -139,7 +139,7 @@ public class ItemManagerController implements Initializable {
             case CONSUMABLES -> consumablePane.setVisible(true);
         }
 
-
+        newItemButton.setDisable(false);
     }
 
     /**
