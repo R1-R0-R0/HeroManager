@@ -10,12 +10,11 @@ import javafx.scene.layout.GridPane;
 import model.gui.ItemManagerModel;
 import model.items.Item;
 import model.items.ItemType;
-import model.items.equipments.EquipmentEffect;
+import model.items.equipments.EquipmentParts;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.WeaponType;
 import utils.gui.Dialog;
-import view.CharacterView;
 import view.ItemManagerView;
 
 import java.net.URL;
@@ -75,17 +74,12 @@ public class ItemManagerController implements Initializable {
      * Picker (ChoiceBox) to choose what kind of equipment is (head, body, ...)
      */
     @FXML
-    public ChoiceBox<ItemManagerModel.EquipmentPart> equipmentPartPicker;
+    public ChoiceBox<EquipmentParts> equipmentPartPicker;
     /**
      * Picker(ChoiceBox) to select what kind of equipment is (weight)
      */
     @FXML
     public ChoiceBox<EquipmentType> equipmentTypePicker;
-    /**
-     * Picker (ChoiceBox) to select what kind of equipment effect to inflict
-     */
-    @FXML
-    public ChoiceBox<EquipmentEffect> equipmentEffectPicker;
     /**
      * Buttons related to performable actions on items
      */
@@ -120,7 +114,7 @@ public class ItemManagerController implements Initializable {
         ObservableList<DamageType> damageTypeObservableList = FXCollections.observableArrayList(DamageType.values());
         damageTypePicker.setItems(damageTypeObservableList);
 
-        ObservableList<ItemManagerModel.EquipmentPart> equipmentPartObservableList = FXCollections.observableArrayList(ItemManagerModel.EquipmentPart.values());
+        ObservableList<EquipmentParts> equipmentPartObservableList = FXCollections.observableArrayList(EquipmentParts.values());
         equipmentPartPicker.setItems(equipmentPartObservableList);
         ObservableList<EquipmentType> equipmentTypeObservableList = FXCollections.observableArrayList(EquipmentType.values());
         equipmentTypePicker.setItems(equipmentTypeObservableList);
