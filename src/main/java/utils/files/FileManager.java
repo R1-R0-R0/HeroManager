@@ -16,7 +16,7 @@ public class FileManager {
 
         JSONParser jsonParser = new JSONParser();
         try {
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("src/main/resources/donnee/"+name+".json"));
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("src/main/resources/donnee/" + name + ".json"));
 
 
             return jsonObject;
@@ -28,12 +28,11 @@ public class FileManager {
     }
 
     public static void writeFile(String name, JSONObject jsonArray) throws IOException {
-        try{
-            java.io.FileWriter file = new FileWriter("src/main/resources/donnee/" + name +".json");
+        try {
+            java.io.FileWriter file = new FileWriter("src/main/resources/donnee/" + name + ".json");
             file.write(jsonArray.toJSONString());
             file.flush();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
         }

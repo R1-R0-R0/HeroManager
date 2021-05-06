@@ -37,27 +37,29 @@ public class FileReaders {
     }
 
     public static List<Consumable> getConsumable() {
-        try{
-        JSONObject obj = FileManager.getFile("consumable");
+        try {
+            JSONObject obj = FileManager.getFile("consumable");
 
-        JSONArray jsonArray = (JSONArray) obj.get("consumable");
+            JSONArray jsonArray = (JSONArray) obj.get("consumable");
 
-        Iterator<String> iterator = jsonArray.iterator();
+            Iterator<String> iterator = jsonArray.iterator();
 
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
                 System.out.println(iterator.next());
             }
 
 
+        } catch (FileNotFoundException e) {
+            FileWriter.createFile("consumable.json");
+        }
+        return null;
     }
-    catch (FileNotFoundException e){
-        FileWriter.createFile("consumable.json");
+
+    public static List<Equipment> getEquipement() {
+        return null;
     }
-        return null;}
 
-    public static List<Equipment> getEquipement() {return null;}
-
-    public static List<Job> getCaracters (){
+    public static List<Job> getCaracters() {
         return null;
     }
 
