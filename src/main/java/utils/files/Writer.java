@@ -1,7 +1,6 @@
 package utils.files;
 
 import model.items.consumables.Consumable;
-import model.items.consumables.ConsumableEffect;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
 import model.job.Improvement;

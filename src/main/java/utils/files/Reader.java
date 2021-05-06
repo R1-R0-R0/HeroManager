@@ -4,7 +4,6 @@ package utils.files;
 import model.Characteristics;
 import model.items.Item;
 import model.items.consumables.Consumable;
-import model.items.consumables.ConsumableEffect;
 import model.items.equipments.Equipment;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
