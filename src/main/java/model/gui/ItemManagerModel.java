@@ -3,8 +3,6 @@ package model.gui;
 import controller.ItemManagerController;
 import exceptions.UnsupportedItemException;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import model.items.ItemType;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.equipments.EquipmentEffect;
@@ -16,8 +14,6 @@ import utils.gui.Dialog;
 import view.ItemManagerView;
 
 import java.util.List;
-
-import static model.items.ItemType.WEAPONS;
 
 /**
  * Model of Item Manager view.
@@ -69,6 +65,14 @@ public class ItemManagerModel {
     }
 
     /**
+     * @return setted up weapon list for list view ui
+     * @see ItemManagerModel#setWeaponList(List) to set returned list
+     */
+    public List<Weapon> getWeaponsList() {
+        return weapons;
+    }
+
+    /**
      * Used to set equipment list to show when user select equipment
      *
      * @param equipments list of equipments to set
@@ -78,12 +82,28 @@ public class ItemManagerModel {
     }
 
     /**
+     * @return setted up equipment list for list view ui
+     * @see ItemManagerModel#setEquipmentList(List) to set returned list
+     */
+    public List<Equipment> getEquipmentsList() {
+        return equipments;
+    }
+
+    /**
      * Used to set consumable list to show when user select consumables
      *
      * @param consumables list of consumables to set
      */
     public void setConsumableList(List<Consumable> consumables) {
         this.consumables = consumables;
+    }
+
+    /**
+     * @return setted up consumables list for list view ui
+     * @see ItemManagerModel#setConsumableList(List) to set returned list
+     */
+    public List<Consumable> getConsumablesList() {
+        return consumables;
     }
 
     /**
@@ -233,7 +253,7 @@ public class ItemManagerModel {
 
                 deleteItem(controller.equipmentNameText.getText());
             }
-            case  CONSUMABLES -> {
+            case CONSUMABLES -> {
                 if (controller.consumableNameText.getText().matches("^(\\s)*$")) {
                     errDialog.showAndWait();
                     return;
