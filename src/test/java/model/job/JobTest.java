@@ -91,15 +91,15 @@ public class JobTest {
     @Test
     public void statPointsTest(){
 
-        int actualBardPoints = alreadyExistingBard.getStatsPoints();
-        wizard.setStatsPoints(15);
-        alreadyExistingBard.setStatsPoints(-5); // Impossible value, statsPoints must be higher or equal than 0
+        int actualBardPoints = alreadyExistingBard.getAdditionalStatPoints();
+        wizard.setAdditionalStatPoints(15);
+        alreadyExistingBard.setAdditionalStatPoints(-5); // Impossible value, statsPoints must be higher or equal than 0
 
-        assertEquals(wizard.getStatsPoints(), 15);
-        assertEquals(alreadyExistingBard.getStatsPoints(), actualBardPoints);
+        assertEquals(wizard.getAdditionalStatPoints(), 15);
+        assertEquals(alreadyExistingBard.getAdditionalStatPoints(), actualBardPoints);
 
-        alreadyExistingBard.setStatsPoints(4);
-        assertEquals(alreadyExistingBard.getStatsPoints(), 4);
+        alreadyExistingBard.setAdditionalStatPoints(4);
+        assertEquals(alreadyExistingBard.getAdditionalStatPoints(), 4);
     }
 
     @Test
@@ -128,7 +128,7 @@ public class JobTest {
         alreadyExistingBard.increaseStrength(); // not increasing because alreadyExistingBard have 0 stats points
         assertNotEquals(wantedBaseStr15, alreadyExistingBard.getStrength());
 
-        alreadyExistingBard.setStatsPoints(1);
+        alreadyExistingBard.setAdditionalStatPoints(1);
         alreadyExistingBard.increaseStrength();
 
         assertEquals(wantedBaseStr15, alreadyExistingBard.getStrength());
@@ -148,7 +148,7 @@ public class JobTest {
         alreadyExistingBard.increaseDexterity(); // not increasing because alreadyExistingBard have 0 stats points
         assertNotEquals(wantedDex14, alreadyExistingBard.getDexterity());
 
-        alreadyExistingBard.setStatsPoints(1);
+        alreadyExistingBard.setAdditionalStatPoints(1);
         alreadyExistingBard.increaseDexterity();
 
         assertEquals(wantedDex14, alreadyExistingBard.getDexterity());
@@ -167,7 +167,7 @@ public class JobTest {
         alreadyExistingBard.increaseRobustness(); // not increasing because alreadyExistingBard have 0 stats points
         assertNotEquals(wantedRob12, alreadyExistingBard.getRobustness());
 
-        alreadyExistingBard.setStatsPoints(1);
+        alreadyExistingBard.setAdditionalStatPoints(1);
         alreadyExistingBard.increaseRobustness();
 
         assertEquals(wantedRob12, alreadyExistingBard.getRobustness());
@@ -187,7 +187,7 @@ public class JobTest {
         alreadyExistingBard.increaseIntelligence(); // not increasing because alreadyExistingBard have 0 stats points
         assertNotEquals(wantedInt13, alreadyExistingBard.getIntelligence());
 
-        alreadyExistingBard.setStatsPoints(1);
+        alreadyExistingBard.setAdditionalStatPoints(1);
         alreadyExistingBard.increaseIntelligence();
 
         assertEquals(wantedInt13, alreadyExistingBard.getIntelligence());
@@ -208,7 +208,7 @@ public class JobTest {
         alreadyExistingBard.increaseWisdom(); // not increasing because alreadyExistingBard have 0 stats points
         assertNotEquals(wantedWisdom11, alreadyExistingBard.getWisdom());
 
-        alreadyExistingBard.setStatsPoints(1);
+        alreadyExistingBard.setAdditionalStatPoints(1);
         alreadyExistingBard.increaseWisdom();
 
         assertEquals(wantedWisdom11, alreadyExistingBard.getWisdom());
@@ -229,7 +229,7 @@ public class JobTest {
         alreadyExistingBard.increaseCharisma(); // not increasing because alreadyExistingBard have 0 stats points
         assertNotEquals(wantedCha10, alreadyExistingBard.getCharisma());
 
-        alreadyExistingBard.setStatsPoints(1);
+        alreadyExistingBard.setAdditionalStatPoints(1);
         alreadyExistingBard.increaseCharisma();
 
         assertEquals(wantedCha10, alreadyExistingBard.getCharisma());

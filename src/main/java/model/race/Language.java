@@ -1,5 +1,8 @@
 package model.race;
 
+/**
+ * Spoken languages in the game
+ */
 public enum Language {
     COMMON,
     SWARVISH,

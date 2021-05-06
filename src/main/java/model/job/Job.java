@@ -7,9 +7,11 @@ import model.race.Race;
 import model.spell.Spell;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Definition of a character
+ */
 public class Job {
     public final static int BASE_STATS = 10;
     public final static int ADDITIONAL_STATS = 12;
@@ -25,7 +27,7 @@ public class Job {
                 healthPoints,
                 speed;
     private Gender gender;
-    private int statsPoints;
+    private int additionalStatPoints;
     private Alignment alignment;
     private final Race race;
     private final JobType jobType;
@@ -59,7 +61,7 @@ public class Job {
         robustness = BASE_STATS;
         wisdom = BASE_STATS;
         charisma = BASE_STATS;
-        statsPoints = ADDITIONAL_STATS;
+        additionalStatPoints = ADDITIONAL_STATS + race.getBonusStats();
         speed = race.getSpeed();
 
         setSpellSlots(1);
@@ -87,13 +89,17 @@ public class Job {
         this.wisdom = wisdom;
         this.charisma = charisma;
         this.armor = armor;
-        this.statsPoints = statsPoints;
+        this.additionalStatPoints = statsPoints;
         this.improvements = improvements;
         this.equippedEquipments = equippedEquipments;
         this.inventory = inventory;
 
     }
 
+    /**
+     * allow to define the number of spell you can use for each level and each class
+     * @param level
+     */
     private void setSpellSlots(int level){
 
         switch (jobType) {
@@ -151,6 +157,10 @@ public class Job {
         }
     }
 
+    /**
+     *
+     * @return the maximum health points of a character
+     */
     public int getMaxHp() { //TODO: do JOBTYPE enum with values of Dlife to replace value;
 
         return 100;
@@ -158,14 +168,27 @@ public class Job {
               //  + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robustness))));
     }
 
+    /**
+     *
+     * @return current health points of a character
+     */
     public int getHealthPoints() {
         return healthPoints;
     }
 
+    /**
+     * allow you to set the amount of health points of a character
+     * @param healthPoints
+     */
     public void setHealthPoints(int healthPoints) {
         this.healthPoints = healthPoints;
     }
 
+    /**
+     *
+     * @param statValue
+     * @return a value proportional to the parameter
+     */
     public int getModificator(int statValue){
         return switch (statValue) {
             case 2, 3 -> -4;
@@ -181,46 +204,86 @@ public class Job {
         };
     }
 
+    /**
+     *
+     * @return amount of base armor of the character
+     */
     public int getArmor() {
         return armor;
     }
 
+    /**
+     *
+     * @return level of the character
+     */
     public int getLevel() {
         return level;
     }
 
+    /**
+     * Value used in addition to the level (for dice rolls as an example)
+     * @return value of proficiency level
+     */
     public int getProficiencyLevel() {
         double proficiency = 1 + (double)(level/4);
         return (int) Math.ceil(proficiency);
 
     }
 
+    /**
+     * @return base strength of the character
+     */
     public int getStrength() {
         return strength;
     }
 
+    /**
+     * @return base dexterity of the character
+     */
     public int getDexterity() {
         return dexterity;
     }
 
+    /**
+     * @return base Intelligence of the character
+     */
     public int getIntelligence() {
         return intelligence;
     }
 
+    /**
+     *
+     * @return base wisdom of the character
+     */
     public int getWisdom() {
         return wisdom;
     }
 
+    /**
+     *
+     * @return base charisma of the character
+     */
     public int getCharisma() {
         return charisma;
     }
 
+    /**
+     * @return base robustness of the character
+     */
     public int getRobustness(){
         return robustness;
     }
 
+    /**
+     *
+     * @return base speed of the character
+     */
     public int getSpeed(){ return speed; }
 
+    /**
+     *
+     * @return armorBoost coming from equipments
+     */
     public int getArmorBoost(){
         int result = 0;
         for (Equipment equip: equippedEquipments) {
@@ -229,6 +292,10 @@ public class Job {
         return result;
     }
 
+    /**
+     *
+     * @return strength boost coming from equipments and improvements
+     */
     public int getStrengthBoost() {
         int result = 0;
 
@@ -244,7 +311,10 @@ public class Job {
         }
         return result;
     }
-
+    /**
+     *
+     * @return dexterity boost coming from equipments and improvements
+     */
     public int getDexterityBoost() {
         int result = 0;
 
@@ -260,7 +330,10 @@ public class Job {
         }
         return result;
     }
-
+    /**
+     *
+     * @return robustness boost coming from equipments and improvements
+     */
     public int getRobustnessBoost() {
         int result = 0;
 
@@ -276,7 +349,10 @@ public class Job {
         }
         return result;
     }
-
+    /**
+     *
+     * @return intelligence boost coming from equipments and improvements
+     */
     public int getIntelligenceBoost() {
         int result = 0;
 
@@ -292,7 +368,10 @@ public class Job {
         }
         return result;
     }
-
+    /**
+     *
+     * @return wisdom boost coming from equipments and improvements
+     */
     public int getWisdomBoost() {
         int result = 0;
 
@@ -308,7 +387,10 @@ public class Job {
         }
         return result;
     }
-
+    /**
+     *
+     * @return charisma boost coming from equipments and improvements
+     */
     public int getCharismaBoost() {
         int result = 0;
 
@@ -324,7 +406,10 @@ public class Job {
         }
         return result;
     }
-
+    /**
+     *
+     * @return speed boost coming from equipments and improvements
+     */
     public int getSpeedBoost(){
         int result = 0;
 
@@ -341,264 +426,386 @@ public class Job {
         return result;
     }
 
+    /**
+     * set the armor value
+     * @param value
+     */
     public void setArmor(int value){
         armor = value;
     }
 
+    /**
+     * Calculate the total amount of armor
+     * @return base armor + armor boost
+     */
     public int getTotalArmor(){
         return getArmor() + getArmorBoost();
     }
 
+    /**
+     * Calculate the total amount of strength
+     * @return base strength + armor strength
+     */
     public int getTotalStrength(){
         return getStrength() + getStrengthBoost();
     }
-
+    /**
+     * Calculate the total amount of dexterity
+     * @return base dexterity + armor dexterity
+     */
     public int getTotalDexterity(){
         return getDexterity() + getDexterityBoost();
     }
 
+    /**
+     * Calculate the total amount of robustness
+     * @return base robustness + armor robustness
+     */
     public int getTotalRobustness(){
         return getRobustness() + getRobustnessBoost();
     }
 
+    /**
+     * Calculate the total amount of intelligence
+     * @return base intelligence + armor intelligence
+     */
     public int getTotalIntelligence(){
         return getIntelligence() + getIntelligenceBoost();
     }
-
+    /**
+     * Calculate the total amount of wisdom
+     * @return base wisdom + armor wisdom
+     */
     public int getTotalWisdom(){
         return getWisdom() + getWisdomBoost();
     }
 
+    /**
+     * Calculate the total amount of charisma
+     * @return base charisma + armor charisma
+     */
     public int getTotalCharisma(){
         return getCharisma() + getCharismaBoost();
     }
 
+    /**
+     * Calculate the total amount of speed
+     * @return base speed + armor speed
+     */
     public int getTotalSpeed(){
         return getSpeed() + getSpeedBoost();
     }
 
+    /**
+     * @return race of the character
+     */
     public Race getRaceType() {
         return race;
     }
 
+    /**
+     * @return jobtype of the character
+     */
     public JobType getJobType() {
         return jobType;
     }
 
+    /**
+     * @return the inventory of the character
+     */
     public List<Item> getInventory() {
         return inventory;
     }
 
+    /**
+     * @return name of the character
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return description of the character
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @return spell slots of the character
+     */
     public int[] getSpellSlots() {
         return spellSlots;
     }
 
+    /**
+     *
+     * @return list of spells of the character
+     */
     public List<Spell> getSpellInventory() {
         return spellInventory;
     }
 
+    /**
+     *
+     * @return list of improvements of the character
+     */
     public List<Improvement> getImprovements() {
         return improvements;
     }
 
+    /**
+     *
+     * @return list of jobskills of the character
+     */
     public List<JobSkill> getSkills() {
         return skills;
     }
 
+    /**
+     * allow to increase base Strength can't be superior from 15 at character creation
+     */
     public void increaseStrength(){
-        if(statsPoints > 0) {
+        if(additionalStatPoints > 0) {
             if (level == 1) {
                 if (strength < 15) {
                     strength++;
-                    statsPoints--;
+                    additionalStatPoints--;
                 }
             } else {
                 strength++;
-                statsPoints--;
+                additionalStatPoints--;
             }
         }
     }
-
+    /**
+     * allow to decrease base Strength can't be inferior from 8 at character creation
+     */
     public void decreaseStrength(){
         if(level == 1){
             if (strength >8 && strength <= 10){
                 strength--;
-                statsPoints++;
+                additionalStatPoints++;
             }
         }else{
             strength--;
         }
     }
-
+    /**
+     * allow to increase base dexterity can't be superior from 15 at character creation
+     */
     public void increaseDexterity(){
-        if(statsPoints > 0) {
+        if(additionalStatPoints > 0) {
             if (level == 1) {
                 if (dexterity < 15) {
                     dexterity++;
-                    statsPoints--;
+                    additionalStatPoints--;
                 }
             } else {
                 dexterity++;
-                statsPoints--;
+                additionalStatPoints--;
             }
         }
 
     }
-
+    /**
+     * allow to decrease base dexterity can't be inferior from 8 at character creation
+     */
     public void decreaseDexterity(){
         if(level == 1){
             if (dexterity >8 && dexterity <= 10){
                 dexterity--;
-                statsPoints++;
+                additionalStatPoints++;
             }
         }else{
             dexterity--;
         }
     }
 
+    /**
+     * allow to increase base Robustness can't be superior from 15 at character creation
+     */
     public void increaseRobustness(){
-        if(statsPoints > 0) {
+        if(additionalStatPoints > 0) {
             if (level == 1) {
                 if (robustness < 15) {
                     robustness++;
-                    statsPoints--;
+                    additionalStatPoints--;
                 }
             } else {
                 robustness++;
-                statsPoints--;
+                additionalStatPoints--;
             }
         }
 
     }
-
+    /**
+     * allow to decrease base robustness can't be inferior from 8 at character creation
+     */
     public void decreaseRobustness(){
         if(level == 1){
             if (robustness >8 && intelligence <= 10){
                 robustness--;
-                statsPoints++;
+                additionalStatPoints++;
             }
         }else{
             robustness--;
         }
     }
-
+    /**
+     * allow to increase base intelligence can't be superior from 15 at character creation
+     */
     public void increaseIntelligence(){
-        if(statsPoints > 0) {
+        if(additionalStatPoints > 0) {
             if (level == 1) {
                 if (intelligence < 15) {
                     intelligence++;
-                    statsPoints--;
+                    additionalStatPoints--;
                 }
             } else {
                 intelligence++;
-                statsPoints--;
+                additionalStatPoints--;
             }
         }
 
     }
-
+    /**
+     * allow to decrease base intelligence can't be inferior from 8 at character creation
+     */
     public void decreaseIntelligence(){
         if(level == 1){
             if (intelligence >8 && intelligence <= 10){
                 intelligence--;
-                statsPoints++;
+                additionalStatPoints++;
             }
         }else{
             intelligence--;
         }
     }
-
+    /**
+     * allow to increase base wisdom can't be superior from 15 at character creation
+     */
     public void increaseWisdom(){
-        if(statsPoints > 0) {
+        if(additionalStatPoints > 0) {
             if (level == 1) {
                 if (wisdom < 15) {
                     wisdom++;
-                    statsPoints--;
+                    additionalStatPoints--;
                 }
             } else {
                 wisdom++;
-                statsPoints--;
+                additionalStatPoints--;
             }
         }
 
     }
-
+    /**
+     * allow to decrease base wisdom can't be inferior from 8 at character creation
+     */
     public void decreaseWisdom(){
         if(level == 1){
             if (wisdom >8 && wisdom <= 10){
                 strength--;
-                statsPoints++;
+                additionalStatPoints++;
             }
         }else{
             wisdom--;
         }
     }
-
+    /**
+     * allow to increase base charisma can't be superior from 15 at character creation
+     */
     public void increaseCharisma(){
-        if(statsPoints > 0) {
+        if(additionalStatPoints > 0) {
             if (level == 1) {
                 if (charisma < 15) {
                     charisma++;
-                    statsPoints--;
+                    additionalStatPoints--;
                 }
             } else {
                 charisma++;
-                statsPoints--;
+                additionalStatPoints--;
             }
         }
 
     }
-
+    /**
+     * allow to decrease base charisma can't be inferior from 8 at character creation
+     */
     public void decreaseCharisma(){
         if(level == 1){
             if (charisma > 8 && charisma <= 10){
                 charisma--;
-                statsPoints++;
+                additionalStatPoints++;
             }
         }else{
             charisma--;
         }
     }
 
+    /**
+     * Increase the value of level by 1 and update the spell slots of the character
+     */
     public void levelUp(){
         level++;
         setSpellSlots(level);
     }
 
-    public int getStatsPoints() {
-        return statsPoints;
+    /**
+     *
+     * @return the amount of statistics points
+     */
+    public int getAdditionalStatPoints() {
+        return additionalStatPoints;
     }
 
-    public void setStatsPoints(int statsPoints) {
-        if(statsPoints < 0)
+    /**
+     * set the statistics point to parameter value
+     * @param additionalStatPoints
+     */
+    public void setAdditionalStatPoints(int additionalStatPoints) {
+        if(additionalStatPoints < 0)
             return;
-        this.statsPoints = statsPoints;
+        this.additionalStatPoints = additionalStatPoints;
     }
 
+    /**
+     * add an improvement to the list of improvement of the character
+     * @param improvement
+     */
     public void addImprovement(Improvement improvement){
         improvements.add(improvement);
     }
 
+    /**
+     * add a spell in the spellList of the character
+     * @param spell
+     */
     public void addSpell(Spell spell){
         spellInventory.add(spell);
     }
 
+    /**
+     * add a jobSkill in skills of the character
+     * @param jobSkill
+     */
     public void addJobSkills(JobSkill jobSkill){
         skills.add(jobSkill);
     }
 
+    /**
+     *
+     * @return the gender of the character
+     */
     public Gender getGender() {
         return gender;
     }
 
+    /**
+     * @return name of the Character
+     */
     @Override
     public String toString(){
         return name;

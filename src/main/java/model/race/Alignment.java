@@ -1,5 +1,9 @@
 package model.race;
 
+/**
+ * List of alignement of a character
+ * @see model.job.Job
+ */
 public enum Alignment {
     NEUTRAL_GOOD,
     NEUTRAL_NEUTRAL,
