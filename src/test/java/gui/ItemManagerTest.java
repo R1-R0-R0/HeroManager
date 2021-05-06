@@ -65,7 +65,7 @@ public class ItemManagerTest {
     }
 
     @Test
-    @DisplayName("Test if list views contains goods values")
+    @DisplayName("Test if list view contains goods values")
     public void listViewTest(FxRobot robot) {
         ItemManagerModel model = ItemManagerModel.getInstance();
         model.setWeaponList(Collections.singletonList(new Weapon("Axe", "An axe", "She's sharp", WeaponType.COMMON, DamageType.SLASHING)));
