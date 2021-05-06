@@ -16,6 +16,7 @@ public enum DefaultFileContent {
 
     /**
      * Set a default content
+     *
      * @param content needed string
      */
     DefaultFileContent(String content) {
@@ -24,6 +25,7 @@ public enum DefaultFileContent {
 
     /**
      * Return a Enum to a string
+     *
      * @return String
      */
     @Override

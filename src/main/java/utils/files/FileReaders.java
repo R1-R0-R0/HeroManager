@@ -20,6 +20,7 @@ import java.util.List;
 public class FileReaders {
     /**
      * Call for FileManager and return a List of Weapon
+     *
      * @return List of weapon
      * @throws IOException
      */
@@ -41,6 +42,7 @@ public class FileReaders {
 
     /**
      * Call for FileManager and return a List of Spells
+     *
      * @return List<Spell>
      */
     public static List<Spell> getSpells() {
@@ -49,6 +51,7 @@ public class FileReaders {
 
     /**
      * Call for FileManager and return a List of Consumable
+     *
      * @return List of consumable
      */
     public static List<Consumable> getConsumable() {
@@ -72,6 +75,7 @@ public class FileReaders {
 
     /**
      * Call for FileManager and return a List of Equipment
+     *
      * @return List of Equipement
      */
     public static List<Equipment> getEquipement() {
@@ -80,6 +84,7 @@ public class FileReaders {
 
     /**
      * Call for FileManager and return a List of Caracters
+     *
      * @return Lits of Job
      */
     public static List<Job> getCaracters() {

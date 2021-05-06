@@ -20,6 +20,7 @@ public class FileManager {
 
     /**
      * Get designed file
+     *
      * @param name Name of the file
      * @return JsonObjet to be use by other method
      * @throws FileNotFoundException
@@ -41,7 +42,8 @@ public class FileManager {
 
     /**
      * Write a specifed file
-     * @param name name of the file
+     *
+     * @param name      name of the file
      * @param jsonArray contend that will be write in the file
      * @throws IOException
      */
