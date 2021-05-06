@@ -15,7 +15,7 @@ public class HeroManagerDB {
     private static List<Spell> spells;
     private static List<Consumable> consumables;
     private static List<Equipment> equipments;
-    private static Job job;
+    private static List<Job> jobs;
 
 
     public static void init() throws IOException {
@@ -23,7 +23,7 @@ public class HeroManagerDB {
         spells = FileReaders.getSpells();
         consumables = FileReaders.getConsumable();
         equipments = FileReaders.getEquipement();
-        job = FileReaders.getFiche();
+        jobs = FileReaders.getCaracters();
     }
 
     public static List<Weapon> getWeapons() {
@@ -43,7 +43,7 @@ public class HeroManagerDB {
         return equipments;
     }
 
-    public static Job getFiche() {return job;}
+    public static List<Job> getFiche() {return jobs;}
 
     public static Weapon getWeapon(String name) {
         for (Weapon weapon : weapons) {
@@ -53,4 +53,37 @@ public class HeroManagerDB {
 
         return null;
     }
+
+    public static Spell getSpell (String name) {return null;}
+
+    public static Consumable getConsumable (String name) {return null;}
+
+    public static Equipment getEquipment (String name) {return null;}
+
+    public static Job getJob (String name) {return null;}
+
+    public static void modifyWeapon (Weapon weapon) {}
+
+    public static void modifySpell (Spell spell) {}
+
+    public static void modifyConsumable (Consumable consumable) {}
+
+    public static void modifyEquipment (Equipment equipment) {}
+
+    public static void modifyJob (Job job) {}
+
+    public static void addWeapons (Weapon weapon) {}
+
+    public static void addSpell (Spell spell) {}
+
+    public static void addConsumable (Consumable consumable) {}
+
+    public static void addEquipment (Equipment equipment) {}
+
+    public static void addJob (Job job) {}
+
+    public static void Save (){
+    }
+
+
 }

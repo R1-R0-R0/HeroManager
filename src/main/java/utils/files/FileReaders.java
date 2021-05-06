@@ -57,9 +57,11 @@ public class FileReaders {
 
     public static List<Equipment> getEquipement() {return null;}
 
-    public static Job getFiche(){return null;}
+    public static List<Job> getCaracters (){
+        return null;
+    }
 
-    public static List<Race> getRaces() throws IOException{
+    /*public static List<Race> getRaces() throws IOException{
         try{
             JSONObject obj = FileManager.getFile("race");
 
@@ -72,13 +74,11 @@ public class FileReaders {
         return null;
     }
 
-    public static Job getCaracter (){
-        return null;
-    }
+
 
     public static void main(String[] args) throws IOException {
         List<Consumable> consumable = getConsumable();
-    }
+    }*/
 
 
 }
