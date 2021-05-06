@@ -23,9 +23,8 @@ public class Writer {
      * Methode to write the Consumable file
      *
      * @param consumable List of consumable to be write on the file
-     * @throws IOException
      */
-    public static void writerConsumable(List<Consumable> consumable) throws IOException {
+    public static void writerConsumable(List<Consumable> consumable) {
         JSONObject consu = new JSONObject();
         JSONArray consumableList = new JSONArray();
 
@@ -47,9 +46,8 @@ public class Writer {
      * Methode to write the Weapons file
      *
      * @param weapons List of weapons to be write on the file
-     * @throws IOException
      */
-    public static void writerWeapon(List<Weapon> weapons) throws IOException {
+    public static void writerWeapon(List<Weapon> weapons) {
         JSONArray weaponList = new JSONArray();
         JSONObject consu = new JSONObject();
 
@@ -77,9 +75,8 @@ public class Writer {
      * Methode to write the Equipments file
      *
      * @param equipment List of equipment to be write on the file
-     * @throws IOException
      */
-    public static void writerEquipment(List<Equipment> equipment) throws IOException {
+    public static void writerEquipment(List<Equipment> equipment) {
         JSONArray equipmentList = new JSONArray();
         JSONObject consu = new JSONObject();
 
@@ -113,9 +110,8 @@ public class Writer {
      * Methode to write the Spell file
      *
      * @param spells List of spells to be write on the file
-     * @throws IOException
      */
-    public static void writerSpell(List<Spell> spells) throws IOException {
+    public static void writerSpell(List<Spell> spells) {
         JSONArray spellList = new JSONArray();
         JSONObject consu = new JSONObject();
 
@@ -159,9 +155,8 @@ public class Writer {
      * Methode to write the Characters file
      *
      * @param jobs List of jobs to be write on the file
-     * @throws IOException
      */
-    public static void writerJob(Job jobs) throws IOException {
+    public static void writerJob(Job jobs) {
         JSONArray jobList = new JSONArray();
 
 

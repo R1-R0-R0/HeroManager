@@ -54,6 +54,10 @@ public class CharacterCreatorModel {
     public final static int MAX_AVAILABLE_STATS_POINTS = 12;
 
     private static CharacterCreatorModel instance;
+
+    /**
+     * Created job in 1st creation step
+     */
     private Job createdJob;
     /**
      * Number of available statistics points remaining on statistics points distribution on 2nd part of character creation

@@ -37,7 +37,7 @@ public class HpPopUpModel {
      * When used, check if entered value is valid (value > 0 AND value < maxHP),
      * if yes, value is returned to character view to update
      *
-     * @param newHP
+     * @param newHP new amount of hp to define
      */
     public void defineNewHP(String newHP) {
         try {

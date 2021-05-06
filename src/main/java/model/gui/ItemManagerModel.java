@@ -109,6 +109,8 @@ public class ItemManagerModel {
     /**
      * Called when event item creation is triggered by view.
      * If some required fields are empty, an error pop up will be throw
+     *
+     * @throws UnsupportedItemException when item isn't handled
      */
     public void createItem() throws UnsupportedItemException {
         ItemManagerController controller = ItemManagerController.getInstance();
@@ -168,6 +170,8 @@ public class ItemManagerModel {
     /**
      * Called when event item modification is triggered by view.
      * If some required fields are empty, an error pop up will be throw
+     *
+     * @throws UnsupportedItemException when item isn't handled
      */
     public void updateItem() throws UnsupportedItemException {
         ItemManagerController controller = ItemManagerController.getInstance();
@@ -227,6 +231,8 @@ public class ItemManagerModel {
     /**
      * Called when event item deletion is triggered by view.
      * If name's field is empty, an error pop up will be throw
+     *
+     * @throws UnsupportedItemException when item isn't handled
      */
     public void deleteItem() throws UnsupportedItemException {
         ItemManagerController controller = ItemManagerController.getInstance();
@@ -324,8 +330,8 @@ public class ItemManagerModel {
     /**
      * Method used to update an existing consumable in software's database
      *
-     * @param name
-     * @param description
+     * @param name        name of consumable
+     * @param description description of consumable
      */
     public void updateConsumable(String name, String description) {
         // TODO

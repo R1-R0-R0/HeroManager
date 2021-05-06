@@ -59,7 +59,7 @@ public class Equipment implements Item {
     /**
      * Says on which part of the body you can equip the equipment
      *
-     * @return
+     * @return EquipmentParts part of body
      */
     public EquipmentParts getEquipmentParts() {
         return equipmentParts;
