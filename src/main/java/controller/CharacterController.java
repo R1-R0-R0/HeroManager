@@ -34,9 +34,9 @@ public class CharacterController implements Initializable {
      */
     private static CharacterController instance;
 
-    /**
-     * Character Tab
-     **/
+    /*
+      Character Tab
+     */
 
     /**
      * Image location of character's picture in character tab
@@ -80,9 +80,9 @@ public class CharacterController implements Initializable {
     @FXML
     public Tab characterTab;
 
-    /**
-     * Spell Tab
-     **/
+    /*
+      Spell Tab
+     */
 
     /**
      * List of spells that characters possess
@@ -102,9 +102,9 @@ public class CharacterController implements Initializable {
     @FXML
     public TextArea spellDesc;
 
-    /**
-     * Equipment Tab
-     **/
+    /*
+      Equipment Tab
+     */
 
     /**
      * Node containing ImageView and all nodes related to equipment tab
@@ -118,9 +118,9 @@ public class CharacterController implements Initializable {
     @FXML
     public ImageView headImage, bodyImage, mantleImage, beltImage, legsImage, feetImage, amuletImage, ringImage1, ringImage2;
 
-    /**
-     * Inventory Tab
-     **/
+    /*
+      Inventory Tab
+     */
 
     /**
      * Node containing all sub-nodes related to inventory tab. Its content is created when view is loading
@@ -135,9 +135,9 @@ public class CharacterController implements Initializable {
         return instance;
     }
 
-    /**
-     * ----
-     **/
+    /*
+      ----
+     */
 
     /**
      * Entry of controller, called when view is loading.
@@ -198,9 +198,9 @@ public class CharacterController implements Initializable {
         Tooltip.install(ringImage2, ringTip);
     }
 
-    /**
-     * EVENTS
-     **/
+    /*
+      EVENTS
+     */
 
     /**
      * Called when Dice thrower is clicked on Table menu
