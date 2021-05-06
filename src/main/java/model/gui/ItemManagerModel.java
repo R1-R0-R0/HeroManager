@@ -90,17 +90,17 @@ public class ItemManagerModel {
      * Called when event item creation is triggered by view.
      * If some required fields are empty, an error pop up will be throw
      */
-    public void createItem() {
+    public void createItem() throws UnsupportedItemException {
         ItemManagerController controller = ItemManagerController.getInstance();
+        Dialog errDialog = new Dialog(Alert.AlertType.ERROR, "Some values are empty", "Please fill all values to create your new item");
 
         switch (controller.typePicker.getValue()) {
             case WEAPONS -> {
                 if (controller.weaponNameText.getText().matches("^(\\s)*$")
                         || controller.weaponDescriptionText.getText().matches("^(\\s)*$")
-                        || controller.weaponDescriptionText.getText().matches("^(\\s)*$")
+                        || controller.weaponPropertiesText.getText().matches("^(\\s)*$")
                         || controller.weaponTypePicker.getValue() == null
                         || controller.damageTypePicker.getValue() == null) {
-                    Dialog errDialog = new Dialog(Alert.AlertType.ERROR, "Some values are empty", "Please fill all values to create your new item");
                     errDialog.showAndWait();
                     return;
                 }
@@ -113,6 +113,37 @@ public class ItemManagerModel {
                         controller.damageTypePicker.getValue()
                 );
             }
+            case EQUIPMENTS -> {
+                if (controller.equipmentNameText.getText().matches("^(\\s)*$")
+                        || controller.equipmentDescriptionText.getText().matches("^(\\s)*$")
+                        || controller.equipmentPartPicker.getValue() == null
+                        || controller.equipmentTypePicker.getValue() == null
+                        || controller.equipmentEffectPicker.getValue() == null) {
+                    errDialog.showAndWait();
+                    return;
+                }
+
+                newEquipment(
+                        controller.equipmentNameText.getText(),
+                        controller.equipmentDescriptionText.getText(),
+                        controller.equipmentPartPicker.getValue(),
+                        controller.equipmentTypePicker.getValue(),
+                        controller.equipmentEffectPicker.getValue()
+                );
+            }
+            case CONSUMABLES -> {
+                if (controller.consumableNameText.getText().matches("^(\\s)*$")
+                        || controller.consumableDescriptionText.getText().matches("^(\\s)*$")) {
+                    errDialog.showAndWait();
+                    return;
+                }
+
+                newConsumable(
+                        controller.consumableNameText.getText(),
+                        controller.consumableDescriptionText.getText()
+                );
+            }
+            default -> throw new UnsupportedItemException(controller.typePicker.getValue());
         }
     }
 
@@ -120,17 +151,17 @@ public class ItemManagerModel {
      * Called when event item modification is triggered by view.
      * If some required fields are empty, an error pop up will be throw
      */
-    public void updateItem() {
+    public void updateItem() throws UnsupportedItemException {
         ItemManagerController controller = ItemManagerController.getInstance();
+        Dialog errDialog = new Dialog(Alert.AlertType.ERROR, "Some values are empty", "Please fill all values to update your item");
 
         switch (controller.typePicker.getValue()) {
             case WEAPONS -> {
                 if (controller.weaponNameText.getText().matches("^(\\s)*$")
                         || controller.weaponDescriptionText.getText().matches("^(\\s)*$")
-                        || controller.weaponDescriptionText.getText().matches("^(\\s)*$")
+                        || controller.weaponPropertiesText.getText().matches("^(\\s)*$")
                         || controller.weaponTypePicker.getValue() == null
                         || controller.damageTypePicker.getValue() == null) {
-                    Dialog errDialog = new Dialog(Alert.AlertType.ERROR, "Some values are empty", "Please fill all values to update your item");
                     errDialog.showAndWait();
                     return;
                 }
@@ -143,6 +174,37 @@ public class ItemManagerModel {
                         controller.damageTypePicker.getValue()
                 );
             }
+            case EQUIPMENTS -> {
+                if (controller.equipmentNameText.getText().matches("^(\\s)*$")
+                        || controller.equipmentDescriptionText.getText().matches("^(\\s)*$")
+                        || controller.equipmentPartPicker.getValue() == null
+                        || controller.equipmentTypePicker.getValue() == null
+                        || controller.equipmentEffectPicker.getValue() == null) {
+                    errDialog.showAndWait();
+                    return;
+                }
+
+                updateEquipment(
+                        controller.equipmentNameText.getText(),
+                        controller.equipmentDescriptionText.getText(),
+                        controller.equipmentPartPicker.getValue(),
+                        controller.equipmentTypePicker.getValue(),
+                        controller.equipmentEffectPicker.getValue()
+                );
+            }
+            case CONSUMABLES -> {
+                if (controller.consumableNameText.getText().matches("^(\\s)*$")
+                        || controller.consumableDescriptionText.getText().matches("^(\\s)*$")) {
+                    errDialog.showAndWait();
+                    return;
+                }
+
+                updateConsumable(
+                        controller.consumableNameText.getText(),
+                        controller.consumableDescriptionText.getText()
+                );
+            }
+            default -> throw new UnsupportedItemException(controller.typePicker.getValue());
         }
     }
 

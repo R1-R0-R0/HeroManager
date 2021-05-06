@@ -140,7 +140,14 @@ public class ItemManagerController implements Initializable {
      */
     @FXML
     public void newItemButtonOnClick() {
-        ItemManagerModel.getInstance().createItem();
+        try {
+            ItemManagerModel.getInstance().createItem();
+        } catch (UnsupportedItemException e) {
+            e.printStackTrace();
+            Dialog errDialog = new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
+            errDialog.showAndWait();
+            System.exit(1);
+        }
     }
 
     /**
@@ -148,7 +155,14 @@ public class ItemManagerController implements Initializable {
      */
     @FXML
     public void updateItemButtonOnClick() {
-        ItemManagerModel.getInstance().updateItem();
+        try {
+            ItemManagerModel.getInstance().updateItem();
+        } catch (UnsupportedItemException e) {
+            e.printStackTrace();
+            Dialog errDialog = new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
+            errDialog.showAndWait();
+            System.exit(1);
+        }
     }
 
     /**
