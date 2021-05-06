@@ -127,19 +127,7 @@ public class ItemManagerController implements Initializable {
      */
     @FXML
     public void itemTypeSelectedEvent() {
-        ItemType selectedType = typePicker.getValue();
-
-        weaponsPane.setVisible(false);
-        equipmentPane.setVisible(false);
-        consumablePane.setVisible(false);
-
-        switch (selectedType) {
-            case WEAPONS -> weaponsPane.setVisible(true);
-            case EQUIPMENTS -> equipmentPane.setVisible(true);
-            case CONSUMABLES -> consumablePane.setVisible(true);
-        }
-
-        newItemButton.setDisable(false);
+        ItemManagerView.getInstance().itemTypeSelectedEvent();
     }
 
     /**
