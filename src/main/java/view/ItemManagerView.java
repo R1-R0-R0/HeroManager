@@ -12,7 +12,6 @@ import model.items.Item;
 import model.items.ItemType;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * View manager of Item manager's view
@@ -43,6 +42,13 @@ public class ItemManagerView {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * @return instance of this class
+     */
+    public static ItemManagerView getInstance() {
+        return instance;
     }
 
     /**
