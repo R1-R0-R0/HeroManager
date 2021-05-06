@@ -7,18 +7,16 @@ public class AmuletEquipment implements Equipment{
     private final String name;
     private final String description;
     private final int armorBonus;
-    private final EquipmentEffect effect;
     private final EquipmentType type;
     private final int[] characteristicsBoost = new int[7];
 
 
-    public AmuletEquipment(String name, String description, int armorBonus, EquipmentEffect effect, EquipmentType type,
+    public AmuletEquipment(String name, String description, int armorBonus, EquipmentType type,
                            int strengthBoost, int dexterityBoost, int robustnessBoost, int intelligenceBoost, int wisdomBoost,
                            int charismaBoost, int speedBoost) {
         this.name = name;
         this.description = description;
         this.armorBonus = armorBonus;
-        this.effect = effect;
         this.type = type;
 
         characteristicsBoost[0] = strengthBoost;
@@ -43,11 +41,6 @@ public class AmuletEquipment implements Equipment{
     @Override
     public int getArmorBonus() {
         return armorBonus;
-    }
-
-    @Override
-    public EquipmentEffect getEquipmentEffect() {
-        return effect;
     }
 
     @Override
