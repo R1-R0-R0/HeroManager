@@ -216,7 +216,7 @@ public class HeroManagerDB {
     }
 
     /**
-     * Methode that call on FileManager to save all the DataBase on Json save file
+     * Methode that call on Writer to save all the DataBase on Json save file
      */
     public static void Save() {
     }
