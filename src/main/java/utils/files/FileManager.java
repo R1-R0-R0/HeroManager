@@ -9,9 +9,21 @@ import java.io.*;
 import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Class to manage the save files
+ */
 public class FileManager {
+    /**
+     * Default save point
+     */
     public final static String SAVE_DIRECTORY = "./data/";
 
+    /**
+     * Get designed file
+     * @param name Name of the file
+     * @return JsonObjet to be use by other method
+     * @throws FileNotFoundException
+     */
     public static JSONObject getFile(String name) throws FileNotFoundException {
 
         JSONParser jsonParser = new JSONParser();
@@ -27,6 +39,12 @@ public class FileManager {
         return null;
     }
 
+    /**
+     * Write a specifed file
+     * @param name name of the file
+     * @param jsonArray contend that will be write in the file
+     * @throws IOException
+     */
     public static void writeFile(String name, JSONObject jsonArray) throws IOException {
         try {
             java.io.FileWriter file = new FileWriter("src/main/resources/donnee/" + name + ".json");
