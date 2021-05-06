@@ -163,8 +163,8 @@ public class Job {
         this.healthPoints = healthPoints;
     }
 
-    public int getModificator(int value){
-        return switch (value) {
+    public int getModificator(int statValue){
+        return switch (statValue) {
             case 2, 3 -> -4;
             case 4, 5 -> -3;
             case 6, 7 -> -2;
