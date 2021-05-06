@@ -32,14 +32,14 @@
                         <MenuItem mnemonicParsing="false" text="Level up" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Table">
+                <Menu fx:id="tableMenu" mnemonicParsing="false" text="Table">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#diceMenuOnAction" text="Dice thrower" />
+                        <MenuItem fx:id="diceThrowerMenuItem" mnemonicParsing="false" onAction="#diceMenuOnAction" text="Dice thrower" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
-        <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0">
+        <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0">
             <tabs>
                 <Tab fx:id="characterTab" text="Character">
                     <content>
@@ -63,16 +63,12 @@
                                         <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="1">
                                             <items>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                                    <children>
-                                                        <Label layoutX="14.0" layoutY="14.0" text="Dernières compétences utilisés" wrapText="true" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
-                                                            <font>
-                                                                <Font name="System Bold" size="15.0" />
-                                                            </font>
-                                                        </Label>
-                                                    </children>
                                                     <padding>
                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                     </padding>
+                                       <children>
+                                          <TextFlow fx:id="skillsInfo" layoutX="-17.0" layoutY="61.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
                                                 </AnchorPane>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                     <children>
@@ -107,15 +103,21 @@
                                                          <cursor>
                                                             <Cursor fx:constant="HAND" />
                                                          </cursor></Pane>
-                                                      <Pane fx:id="hpBar" StackPane.alignment="CENTER_LEFT">
+                                                      <Pane fx:id="hpBar" onMouseClicked="#hpBarOnClick" StackPane.alignment="CENTER_LEFT">
                                                          <StackPane.margin>
                                                             <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                                                          </StackPane.margin>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                       </Pane>
-                                                                    <Text fx:id="hpText" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="100 / 100" textAlignment="CENTER">
+                                                                    <Text fx:id="hpText" boundsType="LOGICAL_VERTICAL_CENTER" onMouseClicked="#hpBarOnClick" strokeType="OUTSIDE" strokeWidth="0.0" text="100 / 100" textAlignment="CENTER">
                                                                         <font>
                                                                             <Font name="System Bold" size="15.0" />
                                                                         </font>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
                                                                     </Text>
                                                    </children>
                                                 </StackPane>
@@ -142,7 +144,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Spells">
+                <Tab fx:id="spellsTabDongle" text="Spells">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
@@ -190,7 +192,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Equipment">
+                <Tab fx:id="equipmentTabDongle" text="Equipment">
                     <content>
                         <AnchorPane fx:id="equipmentTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
@@ -243,7 +245,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Inventory">
+                <Tab fx:id="inventoryTabDongle" text="Inventory">
                     <content>
                         <AnchorPane fx:id="inventoryPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>

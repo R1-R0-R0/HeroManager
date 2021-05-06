@@ -8,18 +8,29 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.gui.ItemManagerModel;
 import model.items.Item;
 import model.items.ItemType;
-import model.items.equipments.Equipment;
 
 import java.io.IOException;
 
+/**
+ * View manager of Item Picker view.
+ *
+ * @see model.gui.ItemPickerModel associated class model (MVC pattern)
+ * @see ItemPickerController associated class controller (MVC pattern)
+ */
 public class ItemPickerView {
 
-    private Stage stage;
     private static ItemPickerView instance;
+    private Stage stage;
 
+    /**
+     * 1st constructor of this class, with another view as owner.
+     * Should NOT BE CALLED directly, ItemPickerModel automatically calls it.
+     * When called, init view and its fxml.
+     *
+     * @param owner caller of view
+     */
     public ItemPickerView(Stage owner) {
         try {
             stage = new Stage();
@@ -38,6 +49,11 @@ public class ItemPickerView {
         }
     }
 
+    /**
+     * 2nd constructor of this class, without another view as owner.
+     * Should NOT BE CALLED directly, ItemPickerModel automatically calls it.
+     * When called, init view and its fxml.
+     */
     public ItemPickerView() {
         try {
             stage = new Stage();
@@ -55,21 +71,35 @@ public class ItemPickerView {
         }
     }
 
+    /**
+     * @return instance of this class
+     */
+    public static ItemPickerView getInstance() {
+        return instance;
+    }
+
+    /**
+     * To close view
+     */
     public void close() {
         stage.close();
     }
 
+    /**
+     * Called when user selected an item type, and enables all another fields.
+     *
+     * @param itemType selected item type
+     */
     public void setItemType(ItemType itemType) {
         ItemPickerController.getInstance().typePicker.setDisable(true);
         ItemPickerController.getInstance().typePicker.setValue(itemType);
     }
 
+    /**
+     * To update item list view
+     */
     public void updateList() {
         ListView<Item> listView = ItemPickerController.getInstance().itemList;
         // TODO
-    }
-
-    public static ItemPickerView getInstance() {
-        return instance;
     }
 }

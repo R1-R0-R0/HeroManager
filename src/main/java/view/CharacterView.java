@@ -18,27 +18,26 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.gui.CharacterCreatorModel;
 import model.gui.CharacterModel;
 import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
-import model.job.Gender;
-import model.job.Improvement;
-import model.job.Job;
-import model.job.JobType;
+import model.job.*;
 import model.spell.Spell;
 
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * View manager of Character Card view.
+ * Used to update view and its components
+ *
+ * @see CharacterModel associated class model (MVC pattern)
+ * @see CharacterController associated class controller (MVC pattern)
+ */
 public class CharacterView {
-
-    /* GENERAL SETTINGS */
-    public final static int DEFAULT_WINDOW_WIDTH = 800;
-
-    /* CHARACTER TAB SETTINGS */
-    public final static int MAX_HP_BAR_SIZE = 300;
 
     /* INVENTORY TAB SETTINGS */
     /**
@@ -46,14 +45,33 @@ public class CharacterView {
      * This value is square root of number of created cells
      */
     public final static int INVENTORY_SIZE = 8;
-    public final static int IMAGE_SIZE = 40;
+
+    /**
+     * Defines the size of images in inventory
+     */
+    public final static int INVENTORY_ITEM_IMAGE_SIZE = 40;
+
+    /**
+     * Path to PLUS (+) image
+     */
     public final static String IMAGE_PLUS_PATH = "/images/ui/plus.png";
+
+    /**
+     * Path folder which contains all characters pictures
+     */
     public final static String IMAGES_JOBS_FOLDER = "/images/jobs/pictures/";
 
 
     private static CharacterView instance;
     private Stage stage;
 
+    /**
+     * Constructor of this class.
+     * Should NOT BE CALLED directly, CharacterModel automatically calls it.
+     * When called, fxml view, its stage and all additional information, such as picture, or character's info is set up
+     *
+     * @see CharacterController manager of all view
+     */
     public CharacterView() {
         try {
             instance = this;
@@ -83,13 +101,18 @@ public class CharacterView {
 
             List<Improvement> improvements = character.getImprovements();
             String[] improvementStrings = new String[improvements.size()];
-            System.out.println("improvements.size() = " + improvements.size());
             for (int i = 0; i < improvements.size(); i++)
                 improvementStrings[i] = improvements.get(i).name();
-
             setImprovements(improvementStrings);
+
+            List<JobSkill> skills = character.getSkills();
+            String[] skillStrings = new String[skills.size()];
+            for (int i = 0; i < skills.size(); i++)
+                skillStrings[i] = skills.get(i).getName();
+            setSkills(skillStrings);
+
             setCharacterName(character.getName());
-            setHP(50, 100); // TODO
+            setHP(character.getHealthPoints(), 100); // TODO
             setLevel(character.getLevel());
             setInventory(character.getInventory());
             setSpellList(character.getSpellInventory());
@@ -110,14 +133,23 @@ public class CharacterView {
         }
     }
 
+    /**
+     * @return instance of this class
+     */
     public static CharacterView getInstance() {
         return instance;
     }
 
+    /**
+     * @return handled stage
+     */
     public Stage getStage() {
         return stage;
     }
 
+    /**
+     * Called by constructor to initialize responsive nodes, such as hp bar or or equipment tab
+     */
     private void initResponsiveNodes() {
         CharacterController.getInstance().borderHpBar.widthProperty().addListener((observable, oldValue, newValue) -> {
             Pane hpBar = CharacterController.getInstance().hpBar;
@@ -177,11 +209,18 @@ public class CharacterView {
      * Character Tab
      **/
 
-    public void setJobInfo(String className, String race, String... statistics) {
+    /**
+     * Used to show up character's general information
+     *
+     * @param name       name of character
+     * @param race       race of character
+     * @param statistics all statistics of character
+     */
+    public void setJobInfo(String name, String race, String... statistics) {
         TextFlow jobInfo = CharacterController.getInstance().jobInfo;
         ObservableList list = jobInfo.getChildren();
 
-        Text title = new Text(className + " - " + race + "\n\n");
+        Text title = new Text(name + " - " + race + "\n\n");
         title.setFont(new Font(30));
 
         Text titleStats = new Text("Statistics" + "\n");
@@ -194,19 +233,58 @@ public class CharacterView {
         }
     }
 
+    /**
+     * Used to show up character's skills
+     *
+     * @param skills skills to show
+     */
+    public void setSkills(String... skills) {
+        TextFlow skillsInfo = CharacterController.getInstance().skillsInfo;
+        ObservableList list = skillsInfo.getChildren();
+
+        Text title = new Text("Skills" + "\n\n");
+        title.setFont(new Font(20));
+        list.add(title);
+
+        if (skills.length == 0) {
+            list.add(new Text("None"));
+            return;
+        }
+
+        for (String skill : skills) {
+            list.add(new Text("    - " + skill + "\n"));
+        }
+    }
+
+    /**
+     * Used to show up character's improvements
+     *
+     * @param improvements improvements to show
+     */
     public void setImprovements(String... improvements) {
         TextFlow improvementsInfo = CharacterController.getInstance().improvementsInfo;
-        ObservableList<javafx.scene.Node> list = improvementsInfo.getChildren();
+        ObservableList list = improvementsInfo.getChildren();
 
         Text title = new Text("Improvements" + "\n\n");
         title.setFont(new Font(20));
         list.add(title);
+
+        if (improvements.length == 0) {
+            list.add(new Text("None"));
+            return;
+        }
 
         for (String improvement : improvements) {
             list.add(new Text("    - " + improvement + "\n"));
         }
     }
 
+    /**
+     * Used to show up character's current health points and max health points
+     *
+     * @param hp    health points
+     * @param maxHP max health points
+     */
     public void setHP(int hp, int maxHP) {
         Pane hpBar = CharacterController.getInstance().hpBar;
         Pane maxHPBar = CharacterController.getInstance().borderHpBar;
@@ -216,6 +294,12 @@ public class CharacterView {
         hpText.setText(hp + " / " + maxHP);
     }
 
+    /**
+     * Used to show up character's current level
+     *
+     * @param level level of character
+     * @throws IllegalArgumentException if level is above 99
+     */
     public void setLevel(int level) throws IllegalArgumentException {
         if (level > 99) throw new IllegalArgumentException("Level cannot be higher than 99");
 
@@ -230,6 +314,11 @@ public class CharacterView {
         levelText.setText("LVL " + sLevel);
     }
 
+    /**
+     * Used to show up character name on character's tab
+     *
+     * @param name name of character
+     */
     public void setCharacterName(String name) {
         CharacterController.getInstance().characterTab.setText(name);
     }
@@ -237,13 +326,26 @@ public class CharacterView {
     /**
      * Spell Tab
      **/
+
+    /**
+     * Used to show up all spells of character
+     *
+     * @param spells List of possessed spells
+     */
     public void setSpellList(List<Spell> spells) {
         ListView list = CharacterController.getInstance().spellList;
         ObservableList items = list.getItems();
         items.addAll(spells);
     }
 
+    /**
+     * Used to show up spell details when a spell is selected on list view
+     *
+     * @param spell selected spell
+     */
     public void setSpellDetails(Spell spell) {
+        if (spell == null) return;
+
         TextArea spellInfo = CharacterController.getInstance().spellInfo;
         TextArea spellDesc = CharacterController.getInstance().spellDesc;
 
@@ -258,6 +360,13 @@ public class CharacterView {
     /**
      * Inventory Tab
      **/
+
+    /**
+     * Called to create inventory grid wanted by INVENTORY_SIZE parameter
+     *
+     * @return inventory grid
+     * @see CharacterView#INVENTORY_SIZE size of inventory
+     */
     public GridPane createInventoryGrid() {
         GridPane inventory = new GridPane();
         inventory.setGridLinesVisible(true);
@@ -277,8 +386,8 @@ public class CharacterView {
 
                 ImageView img = new ImageView();
                 img.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
-                img.setFitHeight(IMAGE_SIZE);
-                img.setFitWidth(IMAGE_SIZE);
+                img.setFitHeight(INVENTORY_ITEM_IMAGE_SIZE);
+                img.setFitWidth(INVENTORY_ITEM_IMAGE_SIZE);
 
                 pane.getChildren().add(img);
                 inventory.add(pane, j, i);
@@ -299,6 +408,11 @@ public class CharacterView {
         return inventory;
     }
 
+    /**
+     * Used to show up all character's inventory in inventory grid
+     *
+     * @param items items to show
+     */
     public void setInventory(List<Item> items) {
         int counter = 0;
 
@@ -321,6 +435,12 @@ public class CharacterView {
     }
 
     // TODO : To implement when item pickers are here
+
+    /**
+     * Method event called when item in inventory is clicked and show up contextual menu or open item picker
+     *
+     * @param event mouse event captured
+     */
     private void inventoryMouseClickedEvent(MouseEvent event) {
         System.out.println("event = " + event);
         StackPane source = ((StackPane) event.getSource());

@@ -10,11 +10,17 @@ import model.gui.MenuModel;
 
 import java.io.IOException;
 
+/**
+ * @Deprecated User will just directly create his character. This class will be removed soon.
+ */
 public class NewGameView {
 
     private Stage stage;
     private static NewGameView instance;
 
+    /**
+     * @Deprecated User will just directly create his character. This class will be removed soon.
+     */
     public NewGameView() {
         try {
             stage = new Stage();
