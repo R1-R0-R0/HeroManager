@@ -15,6 +15,8 @@ import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.WeaponType;
 import utils.gui.Dialog;
+import view.CharacterView;
+import view.ItemManagerView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -108,6 +110,8 @@ public class ItemManagerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
 
+        itemList.setOnMouseClicked(event -> itemSelectedEvent());
+
         ObservableList<ItemType> itemTypeObservableList = FXCollections.observableArrayList(ItemType.values());
         typePicker.setItems(itemTypeObservableList);
 
@@ -128,6 +132,13 @@ public class ItemManagerController implements Initializable {
     @FXML
     public void itemTypeSelectedEvent() {
         ItemManagerView.getInstance().itemTypeSelectedEvent();
+    }
+
+    /**
+     * Event triggered when an item has been selected in list view
+     */
+    public void itemSelectedEvent() {
+
     }
 
     /**
