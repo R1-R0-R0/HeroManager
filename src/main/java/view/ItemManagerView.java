@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.gui.ItemManagerModel;
 import model.items.Item;
+import model.items.ItemType;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,6 +43,35 @@ public class ItemManagerView {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * To update view when user selected an item type in picker (combobox)
+     */
+    public void itemTypeSelectedEvent() {
+        ItemManagerController controller = ItemManagerController.getInstance();
+        ItemType selectedType = controller.typePicker.getValue();
+
+        controller.weaponsPane.setVisible(false);
+        controller.equipmentPane.setVisible(false);
+        controller.consumablePane.setVisible(false);
+
+        switch (selectedType) {
+            case WEAPONS -> {
+                controller.weaponsPane.setVisible(true);
+                controller.itemList.setItems(FXCollections.observableArrayList(ItemManagerModel.getInstance().getWeaponsList()));
+            }
+            case EQUIPMENTS -> {
+                controller.equipmentPane.setVisible(true);
+                controller.itemList.setItems(FXCollections.observableArrayList(ItemManagerModel.getInstance().getEquipmentsList()));
+            }
+            case CONSUMABLES -> {
+                controller.consumablePane.setVisible(true);
+                controller.itemList.setItems(FXCollections.observableArrayList(ItemManagerModel.getInstance().getConsumablesList()));
+            }
+        }
+
+        controller.newItemButton.setDisable(false);
     }
 
     /**
