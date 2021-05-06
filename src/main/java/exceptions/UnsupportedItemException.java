@@ -1,14 +1,22 @@
 package exceptions;
 
 import model.items.ItemType;
-import model.job.JobType;
 
+/**
+ * Exception for methods who cannot handle specific item type exception
+ */
 public class UnsupportedItemException extends Exception {
 
+    /**
+     * @param itemType unsupported item type
+     */
     public UnsupportedItemException(ItemType itemType) {
         super("Unsupported item " + itemType.name());
     }
 
+    /**
+     * @param err string error
+     */
     public UnsupportedItemException(String err) {
         super(err);
     }

@@ -21,7 +21,7 @@ public class FileManager {
      *
      * @param name Name of the file
      * @return JsonObjet to be use by other method
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException if file do not exist
      */
     public static JSONObject getFile(String name) throws FileNotFoundException {
 
@@ -43,9 +43,8 @@ public class FileManager {
      *
      * @param name      name of the file
      * @param jsonArray contend that will be write in the file
-     * @throws IOException
      */
-    public static void writeFile(String name, JSONObject jsonArray) throws IOException {
+    public static void writeFile(String name, JSONObject jsonArray) {
         try {
             java.io.FileWriter file = new FileWriter("src/main/resources/donnee/" + name + ".json");
             file.write(jsonArray.toJSONString());

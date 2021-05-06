@@ -21,9 +21,8 @@ public class FileReaders {
      * Call for FileManager and return a List of Weapon
      *
      * @return List of weapon
-     * @throws IOException
      */
-    public static List<Weapon> getWeapons() throws IOException {
+    public static List<Weapon> getWeapons() {
         try {
             JSONObject weaponsString = FileManager.getFile("weapons.json");
         } catch (FileNotFoundException e) {

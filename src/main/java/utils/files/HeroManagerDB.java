@@ -23,9 +23,7 @@ public class HeroManagerDB {
     private static List<Job> jobs;
 
     /**
-     * Methode witch call on FileReaders getter to initialize the DataBase
-     *
-     * @throws IOException
+     * Method witch call on FileReaders getter to initialize the DataBase
      */
     public static void init() throws IOException {
         weapons = FileReaders.getWeapons();

@@ -1,7 +1,7 @@
 package model.items;
 
 /**
- * Definition of item
+ * Definition of an item
  */
 public interface Item {
     String getName();

@@ -118,9 +118,15 @@ public class CharacterCreatorController implements Initializable {
     @FXML
     public Tab statsTab, skillsTab, spellsTab;
 
+    /**
+     * List view of job skills
+     */
     @FXML
     public ListView<JobSkillItem> skillsListView;
 
+    /**
+     * List view of spells
+     */
     @FXML
     public ListView<SpellItem> spellsListView;
 
@@ -132,7 +138,7 @@ public class CharacterCreatorController implements Initializable {
     }
 
     /**
-     * Entry of controller, which loads all pictures and pickers & spinners event handlers
+     * Entry of controller, which loads all pictures, pickers and spinners event handlers
      *
      * @param location
      * @param resources

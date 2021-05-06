@@ -78,7 +78,7 @@ public class CharacterModel {
     /**
      * Event handler when user clicks on equipment slot in equipment tab
      *
-     * @param equipment
+     * @param equipmentPart part of equipment
      */
     public void equipmentImageOnClick(EquipmentParts equipmentPart) {
         // TODO

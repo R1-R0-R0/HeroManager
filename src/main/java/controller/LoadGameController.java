@@ -81,10 +81,12 @@ public class LoadGameController implements Initializable {
 
     /**
      * Event triggered when user selected character in list
+     *
+     * @param selectedCharacter selected character by user
      */
     @FXML
-    public void characterSelected(Job selectedItem) {
-        LoadGameModel.getInstance().selectedCharacter(selectedItem);
+    public void characterSelected(Job selectedCharacter) {
+        LoadGameModel.getInstance().selectedCharacter(selectedCharacter);
     }
 
     /**
