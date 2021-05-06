@@ -137,7 +137,7 @@ public class Writer {
         JSONObject consu = new JSONObject();
         JSONObject consumax = new JSONObject();
 
-        consu.put("hp", jobs.getMaxHp(8));
+        //consu.put("hp", jobs.getMaxHp(8));
         consu.put("armor", jobs.getArmor());
         consu.put("level", jobs.getLevel());
         consu.put("proficiencyLevel", jobs.getProficiencyLevel());
