@@ -1,13 +1,11 @@
 package utils.files;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.io.FileWriter;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Class to manage the save files
@@ -34,7 +32,7 @@ public class FileManager {
 
             return jsonObject;
         } catch (IOException | ParseException e) {
-            utils.files.FileWriter.createFile(name);
+            FileCreator.createFile(name);
         }
 
         return null;

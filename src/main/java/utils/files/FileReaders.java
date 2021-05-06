@@ -4,7 +4,6 @@ import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
 import model.job.Job;
-import model.race.Race;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -68,7 +67,7 @@ public class FileReaders {
 
 
         } catch (FileNotFoundException e) {
-            FileWriter.createFile("consumable.json");
+            FileCreator.createFile("consumable.json");
         }
         return null;
     }
