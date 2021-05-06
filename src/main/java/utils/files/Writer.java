@@ -16,9 +16,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class of differents writer to call to write the jsonfile
+ */
 public class Writer {
-
-    public static void WriterConsumable(List<Consumable> consumable) throws IOException {
+    /**
+     * Methode to write the Consumable file
+     *
+     * @param consumable List of consumable to be write on the file
+     * @throws IOException
+     */
+    public static void writerConsumable(List<Consumable> consumable) throws IOException {
         JSONObject consu = new JSONObject();
         JSONArray consumableList = new JSONArray();
 
@@ -36,7 +44,13 @@ public class Writer {
         FileManager.writeFile("consumable", consu);
     }
 
-    public static void WriterWeapon(List<Weapon> weapons) throws IOException {
+    /**
+     * Methode to write the Weapons file
+     *
+     * @param weapons List of weapons to be write on the file
+     * @throws IOException
+     */
+    public static void writerWeapon(List<Weapon> weapons) throws IOException {
         JSONArray weaponList = new JSONArray();
         JSONObject consu = new JSONObject();
 
@@ -60,26 +74,31 @@ public class Writer {
 
     }
 
-    public static void WriterEquipment(List<Equipment> equipements) throws IOException {
+    /**
+     * Methode to write the Equipments file
+     *
+     * @param equipment List of equipment to be write on the file
+     * @throws IOException
+     */
+    public static void writerEquipment(List<Equipment> equipment) throws IOException {
         JSONArray equipmentList = new JSONArray();
         JSONObject consu = new JSONObject();
 
-        for (int index = 0; index < equipements.size(); index++) {
+        for (int index = 0; index < equipment.size(); index++) {
 
             JSONObject test = new JSONObject();
             JSONObject consumax = new JSONObject();
 
-            test.put("name", equipements.get(index).getName());
-            test.put("description", equipements.get(index).getDescription());
-            test.put("armorbonus", equipements.get(index).getArmorBonus());
-            test.put("effect", equipements.get(index).getEquipmentEffect());
-            test.put("strengthboost", equipements.get(index).getStrengthBoost());
-            test.put("dexterityboost", equipements.get(index).getDexterityBoost());
-            test.put("robustnessboost", equipements.get(index).getRobustnessBoost());
-            test.put("intelligenceboost", equipements.get(index).getIntelligenceBoost());
-            test.put("wisdomboost", equipements.get(index).getWisdomBoost());
-            test.put("charismaboost", equipements.get(index).getCharismaBoost());
-            test.put("speedboost", equipements.get(index).getSpeedBoost());
+            test.put("name", equipment.get(index).getName());
+            test.put("description", equipment.get(index).getDescription());
+            test.put("armorbonus", equipment.get(index).getArmorBonus());
+            test.put("strengthboost", equipment.get(index).getStrengthBoost());
+            test.put("dexterityboost", equipment.get(index).getDexterityBoost());
+            test.put("robustnessboost", equipment.get(index).getRobustnessBoost());
+            test.put("intelligenceboost", equipment.get(index).getIntelligenceBoost());
+            test.put("wisdomboost", equipment.get(index).getWisdomBoost());
+            test.put("charismaboost", equipment.get(index).getCharismaBoost());
+            test.put("speedboost", equipment.get(index).getSpeedBoost());
 
             consumax.put("equipment", test);
 
@@ -91,7 +110,13 @@ public class Writer {
 
     }
 
-    public static void WriterSpell(List<Spell> spells) throws IOException {
+    /**
+     * Methode to write the Spell file
+     *
+     * @param spells List of spells to be write on the file
+     * @throws IOException
+     */
+    public static void writerSpell(List<Spell> spells) throws IOException {
         JSONArray spellList = new JSONArray();
         JSONObject consu = new JSONObject();
 
@@ -131,14 +156,20 @@ public class Writer {
 
     }
 
-    public static void WriterJob(Job jobs) throws IOException {
+    /**
+     * Methode to write the Characters file
+     *
+     * @param jobs List of jobs to be write on the file
+     * @throws IOException
+     */
+    public static void writerJob(Job jobs) throws IOException {
         JSONArray jobList = new JSONArray();
 
 
         JSONObject consu = new JSONObject();
         JSONObject consumax = new JSONObject();
 
-        consu.put("hp", jobs.getMaxHp(8));
+        //consu.put("hp", jobs.getMaxHp(8));
         consu.put("armor", jobs.getArmor());
         consu.put("level", jobs.getLevel());
         consu.put("proficiencyLevel", jobs.getProficiencyLevel());
@@ -173,13 +204,13 @@ public class Writer {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         List<Consumable> consumables = new ArrayList<>();
         for (int x = 0; x < 3; x++) {
             consumables.add(new Consumable(new ConsumableEffect(), "" + x, "ici c'est silmi " + x));
         }
         WriterConsumable(consumables);
-    }
+    }*/
 
 
 }

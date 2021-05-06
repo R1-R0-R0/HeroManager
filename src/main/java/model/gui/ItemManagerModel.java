@@ -5,7 +5,7 @@ import exceptions.UnsupportedItemException;
 import javafx.scene.control.Alert;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentEffect;
+import model.items.equipments.EquipmentParts;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
@@ -137,8 +137,7 @@ public class ItemManagerModel {
                 if (controller.equipmentNameText.getText().matches("^(\\s)*$")
                         || controller.equipmentDescriptionText.getText().matches("^(\\s)*$")
                         || controller.equipmentPartPicker.getValue() == null
-                        || controller.equipmentTypePicker.getValue() == null
-                        || controller.equipmentEffectPicker.getValue() == null) {
+                        || controller.equipmentTypePicker.getValue() == null) {
                     errDialog.showAndWait();
                     return;
                 }
@@ -147,8 +146,7 @@ public class ItemManagerModel {
                         controller.equipmentNameText.getText(),
                         controller.equipmentDescriptionText.getText(),
                         controller.equipmentPartPicker.getValue(),
-                        controller.equipmentTypePicker.getValue(),
-                        controller.equipmentEffectPicker.getValue()
+                        controller.equipmentTypePicker.getValue()
                 );
             }
             case CONSUMABLES -> {
@@ -198,8 +196,7 @@ public class ItemManagerModel {
                 if (controller.equipmentNameText.getText().matches("^(\\s)*$")
                         || controller.equipmentDescriptionText.getText().matches("^(\\s)*$")
                         || controller.equipmentPartPicker.getValue() == null
-                        || controller.equipmentTypePicker.getValue() == null
-                        || controller.equipmentEffectPicker.getValue() == null) {
+                        || controller.equipmentTypePicker.getValue() == null) {
                     errDialog.showAndWait();
                     return;
                 }
@@ -208,8 +205,7 @@ public class ItemManagerModel {
                         controller.equipmentNameText.getText(),
                         controller.equipmentDescriptionText.getText(),
                         controller.equipmentPartPicker.getValue(),
-                        controller.equipmentTypePicker.getValue(),
-                        controller.equipmentEffectPicker.getValue()
+                        controller.equipmentTypePicker.getValue()
                 );
             }
             case CONSUMABLES -> {
@@ -294,51 +290,25 @@ public class ItemManagerModel {
     /**
      * Method used to create a new equipment in software's database
      *
-     * @param name            name of equipment
-     * @param description     description of equipment
-     * @param equipmentPart   body part or equipment must be worn
-     * @param equipmentType   type of equipment
-     * @param equipmentEffect effect of equipment (if null, considered as no effect)
+     * @param name          name of equipment
+     * @param description   description of equipment
+     * @param equipmentPart body part or equipment must be worn
+     * @param equipmentType type of equipment
      */
-    public void newEquipment(String name, String description, EquipmentPart equipmentPart, EquipmentType equipmentType, EquipmentEffect equipmentEffect) {
+    public void newEquipment(String name, String description, EquipmentParts equipmentPart, EquipmentType equipmentType) {
         // TODO
     }
 
     /**
-     * Method used to update an existing equipment in software's database.
-     *
-     * @param name            name of equipment
-     * @param description     description of equipment
-     * @param equipmentPart   body part or equipment must be worn
-     * @param equipmentType   type of equipment
-     * @param equipmentEffect effect of equipment (if null, considered as no effect)
-     */
-    public void updateEquipment(String name, String description, EquipmentPart equipmentPart, EquipmentType equipmentType, EquipmentEffect equipmentEffect) {
-        // TODO
-    }
-
-    /**
-     * Method used to create a new equipment without effect in software's database
+     * Method used to update an existing equipment in software's database
      *
      * @param name          name of equipment
      * @param description   description of equipment
      * @param equipmentPart body part or equipment must be worn
      * @param equipmentType type of equipment
      */
-    public void newEquipment(String name, String description, EquipmentPart equipmentPart, EquipmentType equipmentType) {
-        newEquipment(name, description, equipmentPart, equipmentType, null);
-    }
-
-    /**
-     * Method used to update an existing equipment without effect in software's database
-     *
-     * @param name          name of equipment
-     * @param description   description of equipment
-     * @param equipmentPart body part or equipment must be worn
-     * @param equipmentType type of equipment
-     */
-    public void updateEquipment(String name, String description, EquipmentPart equipmentPart, EquipmentType equipmentType) {
-        updateEquipment(name, description, equipmentPart, equipmentType, null);
+    public void updateEquipment(String name, String description, EquipmentParts equipmentPart, EquipmentType equipmentType) {
+        // TODO
     }
 
     /**
@@ -376,20 +346,5 @@ public class ItemManagerModel {
     public void returnToMenu() {
         ItemManagerView.getInstance().close();
         new MenuModel();
-    }
-
-    /**
-     * Used to list all equipement parts of body
-     */
-    public enum EquipmentPart {
-        HEAD,
-        BODY,
-        BELT,
-        LEGS,
-        FEET,
-        AMULET,
-        HANDS,
-        MANTLE,
-        RING
     }
 }
