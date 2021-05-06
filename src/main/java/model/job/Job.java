@@ -148,9 +148,11 @@ public class Job {
         }
     }
 
-    public int getMaxHp(int value) { //TODO: do JOBTYPE enum with values of Dlife to replace value;
-        return (int)((value + getModificator(robustness)
-                + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robustness))));
+    public int getMaxHp() { //TODO: do JOBTYPE enum with values of Dlife to replace value;
+
+        return 100;
+        // return (int)((value + getModificator(robustness)
+              //  + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robustness))));
     }
 
     public int getHealthPoints() {
