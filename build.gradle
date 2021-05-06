@@ -22,8 +22,13 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
+
+    testCompile "org.testfx:testfx-junit5:4.0.15-alpha"
+    testRuntime "org.testfx:openjfx-monocle:jdk-11+26"
 }
 
 

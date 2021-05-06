@@ -8,16 +8,42 @@ import view.DiceView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Model of Dice Thrower view.
+ * Implements all logic and reactions of view
+ *
+ * @see DiceView associated class view (MVC pattern)
+ * @see controller.DiceController associated class controller (MVC pattern)
+ */
 public class DiceModel {
 
     private static DiceModel instance;
 
+    /**
+     * Constructor of this class.
+     * When called, shows view.
+     */
     public DiceModel() {
         instance = this;
 
         new DiceView();
     }
 
+    /**
+     * @return instance of this class
+     */
+    public static DiceModel getInstance() {
+        return instance;
+    }
+
+    /**
+     * With given formula, allows to rolls asked dices and gives result to the view, and details of result.
+     * If formula is incorrect, error dialog will show up.
+     * Example of formula : 3d4 + 1d20 (3 dices with range of 4, and 1 dice with range of 20)
+     *
+     * @param sDices formula to process
+     * @see Dice implementation of a dice
+     */
     public void rollDices(String sDices) {
         sDices = sDices.replaceAll(" ", "");
         sDices = sDices.toLowerCase();
@@ -46,6 +72,12 @@ public class DiceModel {
         DiceView.getInstance().setDiceDetails(detailsResult);
     }
 
+    /**
+     * Allows to convert a string from a list of wanted dices
+     *
+     * @param dices string to parse
+     * @return list of parsed dices
+     */
     private List<Dice> dicesParser(String dices) {
         List<Dice> diceList = new ArrayList<>();
 
@@ -64,6 +96,9 @@ public class DiceModel {
         return diceList;
     }
 
+    /**
+     * When called, shows up dialog to explain how dice thrower works
+     */
     public void howItWorksEvent() {
         Dialog dialog = new Dialog(
                 Alert.AlertType.INFORMATION,
@@ -75,9 +110,5 @@ public class DiceModel {
                         "If your entered formula don't respect syntax, an error will pop up to warn you.");
 
         dialog.show();
-    }
-
-    public static DiceModel getInstance() {
-        return instance;
     }
 }

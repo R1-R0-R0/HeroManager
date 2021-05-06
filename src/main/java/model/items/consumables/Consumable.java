@@ -2,6 +2,9 @@ package model.items.consumables;
 
 import model.items.Item;
 
+/**
+ * Creation of consumable items
+ */
 public class Consumable implements Item {
 
     private String name;
@@ -12,11 +15,19 @@ public class Consumable implements Item {
         this.description = description;
     }
 
+    /**
+     *
+     * @return name of the consumable
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return description of the consumable
+     */
     @Override
     public String getDescription() {
         return description;

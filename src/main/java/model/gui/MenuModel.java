@@ -4,7 +4,9 @@ import model.items.Item;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
 import model.items.weapons.WeaponType;
-import model.job.*;
+import model.job.Gender;
+import model.job.Job;
+import model.job.JobType;
 import model.race.Alignment;
 import model.race.Race;
 import model.spell.Spell;
@@ -13,19 +15,36 @@ import view.MenuView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Model of Menu view.
+ * Main view of program, this class is the first view called by the software at startup
+ *
+ * @see MenuView associated class view (MVC pattern)
+ * @see controller.MenuController associated class controller (MVC pattern)
+ */
 public class MenuModel {
 
     private static MenuModel instance;
 
+    /**
+     * Constructor. When called, show Menu view
+     */
     public MenuModel() {
         instance = this;
         new MenuView();
     }
 
+    /**
+     * @return instance of this class
+     */
     public static MenuModel getInstance() {
         return instance;
     }
 
+    /**
+     * Event triggered when user clicks on resume button.
+     * It allows to open Character view with last game saved
+     */
     public void resumeGame() {
 
         // Job expl = new Job("Hiraye", "A human", 100, 100, 1, 2, 3, 4, 5, )
@@ -45,24 +64,41 @@ public class MenuModel {
         Job hiraye = new Job("Hiraye", "A woman", Gender.WOMAN, Alignment.NEUTRAL_NEUTRAL, Race.HUMAN, JobType.ROGUE);
         Job airels = new Job("Airels", "A man", Gender.MAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.WARLOCK);
 
-        new CharacterModel(airels);
+        new CharacterModel(hiraye);
         MenuView.getInstance().close();
     }
 
+    /**
+     * Event triggered when user clicks on new game button.
+     * When called, shows up character's creation view
+     */
     public void newGame() {
-        new NewGameModel();
+        new CharacterCreatorModel(MenuView.getInstance().getStage());
     }
 
+    /**
+     * Event tiggered when user clicks on load game button.
+     * When called, shows up view to load a saved character
+     */
     public void loadGame() {
         new LoadGameModel();
     }
 
+    /**
+     * Event triggered when user clicks on item manager's button.
+     * When called, open view to manage items
+     */
     public void openItemManager() {
         MenuView.getInstance().close();
         new ItemManagerModel();
     }
 
+    /**
+     * Event triggered when user clicks on quit button.
+     * When called, just close the whole program
+     */
     public void quitProgram() {
+        MenuView.getInstance().close();
         System.exit(0);
     }
 }

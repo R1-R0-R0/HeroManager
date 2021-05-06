@@ -1,5 +1,10 @@
 package model.job;
 
+/**
+ * This enum lists innate improvement for each Race
+ * @see model.race.Race
+ *
+ */
 public enum Improvement {
     DARKVISION("Darkvision",
             "Accustomed to life underground, you have superior vision in dark and dim conditions." +
@@ -99,30 +104,51 @@ public enum Improvement {
         characteristicsBoost[6] = speedBoost;
     }
 
+    /**
+     * @return the boost in Strength statistic given by the improvement
+     */
     public int getStrengthBoost(){
         return characteristicsBoost[0];
     }
 
+    /**
+     * @return the boost in Dexterity statistic given by the improvement
+     */
     public int getDexterityBoost(){
         return characteristicsBoost[1];
     }
 
+    /**
+     * @return the boost in Robustness statistic given by the improvement
+     */
     public int getRobustnessBoost(){
         return characteristicsBoost[2];
     }
 
+    /**
+     * @return the boost in Intelligence statistic given by the improvement
+     */
     public int getIntelligenceBoost(){
         return characteristicsBoost[3];
     }
 
+    /**
+     * @return the boost in Wisdom statistic given by the improvement
+     */
     public int getWisdomBoost(){
         return characteristicsBoost[4];
     }
 
+    /**
+     * @return the boost in Charisma statistic given by the improvement
+     */
     public int getCharismaBoost(){
         return characteristicsBoost[5];
     }
 
+    /**
+     * @return the boost in Speed statistic given by the improvement
+     */
     public int getSpeedBoost(){
         return characteristicsBoost[6];
     }

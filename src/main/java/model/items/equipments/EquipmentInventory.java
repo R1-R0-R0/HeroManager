@@ -1,20 +1,15 @@
 package model.items.equipments;
 
-public class EquipmentInventory {
-    private HeadEquipment head;
-    private BodyEquipment body;
-    private LegsEquipment legs;
-    private FeetEquipment feet;
-    private HandsEquipment hands;
-    private BeltEquipment belt;
-    private MantleEquipment mantle;
-    private AmuletEquipment amulet;
-    private RingEquipment leftRing;
-    private RingEquipment rightRing;
 
-    public EquipmentInventory(HeadEquipment head, BodyEquipment body, LegsEquipment legs, FeetEquipment feet,
-                              HandsEquipment hands, BeltEquipment belt, MantleEquipment mantle, AmuletEquipment amulet,
-                              RingEquipment leftRing, RingEquipment rightRing) {
+/**
+ * Contains all the equipped equipments.
+ */
+public class EquipmentInventory {
+    private Equipment head,body,legs,feet,hands,belt,mantle,amulet,leftRing,rightRing;
+
+    public EquipmentInventory(Equipment head, Equipment body, Equipment legs, Equipment feet,
+                              Equipment hands, Equipment belt, Equipment mantle, Equipment amulet,
+                              Equipment leftRing, Equipment rightRing) {
         this.head = head;
         this.body = body;
         this.legs = legs;
@@ -27,43 +22,83 @@ public class EquipmentInventory {
         this.rightRing = rightRing;
     }
 
-    public HeadEquipment getHead() {
+    /**
+     *
+     * @return head equipped
+     */
+    public Equipment getHead() {
         return head;
     }
 
-    public BodyEquipment getBody() {
+    /**
+     *
+     * @return body equipped
+     */
+    public Equipment getBody() {
         return body;
     }
 
-    public LegsEquipment getLegs() {
+    /**
+     *
+     * @return legs equipped
+     */
+    public Equipment getLegs() {
         return legs;
     }
 
-    public FeetEquipment getFeet() {
+    /**
+     *
+     * @return feet equipped
+     */
+    public Equipment getFeet() {
         return feet;
     }
 
-    public HandsEquipment getHands() {
+    /**
+     *
+     * @return hands equipped
+     */
+    public Equipment getHands() {
         return hands;
     }
 
-    public BeltEquipment getBelt() {
+    /**
+     *
+     * @return belt equipped
+     */
+    public Equipment getBelt() {
         return belt;
     }
 
-    public MantleEquipment getMantle() {
+    /**
+     *
+     * @return mantle equipped
+     */
+    public Equipment getMantle() {
         return mantle;
     }
 
-    public AmuletEquipment getAmulet() {
+    /**
+     *
+     * @return amulet equipped
+     */
+    public Equipment getAmulet() {
         return amulet;
     }
 
-    public RingEquipment getLeftRing() {
+    /**
+     *
+     * @return leftRing equipped
+     */
+    public Equipment getLeftRing() {
         return leftRing;
     }
 
-    public RingEquipment getRightRing() {
+    /**
+     *
+     * @return rightRing equipped
+     */
+    public Equipment getRightRing() {
         return rightRing;
     }
 }

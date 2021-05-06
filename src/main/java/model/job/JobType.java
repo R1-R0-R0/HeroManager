@@ -1,5 +1,8 @@
 package model.job;
 
+/**
+ * Lists all the existing JobType
+ */
 public enum JobType {
     BARBARIAN,
     BARD,

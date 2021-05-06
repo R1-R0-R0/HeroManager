@@ -10,10 +10,23 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * View manager of Hp Pop Up window
+ *
+ * @see model.gui.HpPopUpModel associated class model (MVC pattern)
+ * @see HpPopUpController associated class controller (MVC pattern)
+ */
 public class HpPopUpView {
 
     private static HpPopUpView instance;
 
+    /**
+     * Constructor of this class.
+     * Should NEVER BE CALLED directly, always called by model class HpPopUpModel.
+     * Initialize pop up view and associated text
+     *
+     * @param maxHP character's max health points
+     */
     public HpPopUpView(int maxHP) {
         try {
             Stage stage = new Stage();
@@ -34,10 +47,16 @@ public class HpPopUpView {
         }
     }
 
+    /**
+     * @return instance of this class
+     */
     public static HpPopUpView getInstance() {
         return instance;
     }
 
+    /**
+     * To close pop up
+     */
     public void closeStage() {
         Stage stage = ((Stage) HpPopUpController.getInstance().maxHPText.getScene().getWindow());
         stage.close();

@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Different Races that a character can incarnate
+ */
 public enum Race {
     DWARF(0,0,2,0,0,0,Height.MEDIUM,25,
             Improvement.DARKVISION,
@@ -87,41 +90,82 @@ public enum Race {
         this.bonusStats = bonusStats;
     }
 
+    /**
+     *
+     * @return innate improvements of each Race
+     */
     public List<Improvement> getImprovements() {
         return new ArrayList<>(Arrays.asList(improvements));
     }
 
+    /**
+     *
+     * @return strengthBoost given by the race
+     */
     public int getStrengthBoost(){
         return valueToImprove[0];
     }
+    /**
+     *
+     * @return DexterityBoost given by the race
+     */
     public int getDexterityBoost(){
         return valueToImprove[1];
     }
 
+    /**
+     *
+     * @return Robustness boost given by the race
+     */
     public int getRobustnessBoost(){
         return valueToImprove[2];
     }
 
+    /**
+     *
+     * @return Intelligence boost given by the race
+     */
     public int getIntelligenceBoost(){
         return valueToImprove[3];
     }
 
+    /**
+     *
+     * @return wisdom boost given by the race
+     */
     public int getWisdomBoost(){
         return valueToImprove[4];
     }
 
+    /**
+     *
+     * @return charisma boost given by the race
+     */
     public int getCharismaBoost(){
         return valueToImprove[4];
     }
 
+    /**
+     *
+     * @return height of the race
+     */
     public Height getHeight() {
         return height;
     }
 
+    /**
+     *
+     * @return additional stats points allowable by the character
+     * @see model.job.Job
+     */
     public int getBonusStats() {
         return bonusStats;
     }
 
+    /**
+     *
+     * @return speed of the race
+     */
     public int getSpeed() {
         return speed;
     }
