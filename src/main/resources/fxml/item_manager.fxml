@@ -23,7 +23,7 @@
         <ListView fx:id="itemList" GridPane.rowIndex="1">
 
         </ListView>
-        <Label fx:id="itemNameLabel" text="Item name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+        <Label fx:id="itemNameLabel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
@@ -40,7 +40,7 @@
                 <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <items>
                         <Pane HBox.hgrow="ALWAYS" />
-                        <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newItemButtonOnClick" prefWidth="100.0" text="New Item" />
+                        <Button fx:id="newItemButton" disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newItemButtonOnClick" prefWidth="100.0" text="New Item" />
                         <Separator />
                         <Button fx:id="updateItemButton" disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateItemButtonOnClick" prefWidth="100.0" text="Update Item" />
                         <Button fx:id="deleteItemButton" disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteItemButtonOnClick" prefWidth="100.0" text="Delete item" />

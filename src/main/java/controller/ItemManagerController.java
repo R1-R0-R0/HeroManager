@@ -84,6 +84,11 @@ public class ItemManagerController implements Initializable {
      */
     @FXML
     public ChoiceBox<EquipmentEffect> equipmentEffectPicker;
+    /**
+     * Buttons related to performable actions on items
+     */
+    @FXML
+    public Button newItemButton, updateItemButton, deleteItemButton;
 
     /**
      * @return instance of this class
@@ -133,6 +138,8 @@ public class ItemManagerController implements Initializable {
             case EQUIPMENTS -> equipmentPane.setVisible(true);
             case CONSUMABLES -> consumablePane.setVisible(true);
         }
+
+
     }
 
     /**
