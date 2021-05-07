@@ -22,6 +22,7 @@ import view.MenuView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 @ExtendWith(ApplicationExtension.class)
 public class LoadGameTest {
@@ -34,9 +35,9 @@ public class LoadGameTest {
         Job wizard = new Job("Grosflan", "A big Flan", Gender.MAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.WIZARD);
         Job warlock = new Job("Airels", "Airels nothing more to say", Gender.MAN, Alignment.NEUTRAL_GOOD, Race.GNOME, JobType.WARLOCK);
         Job paladin = new Job("M.", "I love open shoes", Gender.MAN, Alignment.LAWFUL_EVIL, Race.HALFLING, JobType.PALADIN);
-        Job alreadyExistingBard = new Job("Hatsune", "Young vitual singer", Gender.WOMAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.BARD,
-                new ArrayList<>(), new ArrayList<>(), 15, 14, 13, 12, 11, 10, 9, 8,
-                0, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        Job alreadyExistingBard = new Job("Hatsune", "Young virtual singer",Gender.WOMAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.BARD,
+                new ArrayList<>(),new ArrayList<>(), 15,14, 13, 12, 11, 10, 9, 40,35,5,
+                0, new ArrayList<>() , new ArrayList<>(), new ArrayList<>());
 
         LoadGameView.getInstance().setGamesList(Arrays.asList(wizard, warlock, paladin, alreadyExistingBard));
     }
