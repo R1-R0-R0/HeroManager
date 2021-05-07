@@ -33,6 +33,10 @@ public class Consumable implements Item {
         return description;
     }
 
+    /**
+     *
+     * @return name of the consumable
+     */
     @Override
     public String toString(){return name;}
 }
