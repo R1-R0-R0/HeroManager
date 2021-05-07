@@ -28,21 +28,21 @@ public enum JobSkill {
     INSIGHT("Insight", "Your Wisdom check decides whether you can determine the true intentions of a creature, such as when searching" +
             " out a lie or predicting someone’s next move. Doing so involves gleaning clues from body language, speech habits, and changes in mannerisms."),
     MEDICINE("Medicine", "A Wisdom check lets you try to stabilize a dying companion or diagnose an illness."),
-    NATURE("Nature","Your Intelligence check measures your ability to recall lore about terrain, plants and animals, the weather, and natural cycles."),
-    PERCEPTION("Perception","Your Wisdom check lets you spot, hear, or otherwise detect the presence of something. It measures your general" +
+    NATURE("Nature", "Your Intelligence check measures your ability to recall lore about terrain, plants and animals, the weather, and natural cycles."),
+    PERCEPTION("Perception", "Your Wisdom check lets you spot, hear, or otherwise detect the presence of something. It measures your general" +
             " awareness of your surroundings and the keenness of your senses. For example, you might try to hear a conversation through a closed door, eavesdrop under an open window," +
             " or hear monsters moving stealthily in the forest. Or you might try to spot things that are obscured or easy to miss, whether they are orcs lying in ambush on a road," +
             " thugs hiding in the shadows of an alley, or candlelight under a closed secret door."),
-    PERFORMANCE("Performance"," Your Charisma check determines how well you can delight an audience with music, dance," +
+    PERFORMANCE("Performance", " Your Charisma check determines how well you can delight an audience with music, dance," +
             " acting, storytelling, or some other form of entertainment."),
-    PERSUASION("Persuasion","When you attempt to influence someone or a group of people with tact," +
+    PERSUASION("Persuasion", "When you attempt to influence someone or a group of people with tact," +
             " social graces, or good nature, the DM might ask you to make a Charisma check." +
             " Typically, you use persuasion when acting in good faith, to foster friendships, make cordial requests, or exhibit proper etiquette." +
             " Examples of persuading others include convincing a chamberlain to let your party see the king, negotiating peace between warring tribes," +
             " or inspiring a crowd of townsfolk."),
     RELIGION("Religion", "Your Intelligence check measures your ability to recall lore about deities, rites and prayers, religious hierarchies, holy symbols," +
             " and the practices of secret cults."),
-    SLEIGHT_OF_HAND("Sleight of hand","Whenever you attempt an act of legerdemain or manual trickery, such as planting something on someone else or concealing an object" +
+    SLEIGHT_OF_HAND("Sleight of hand", "Whenever you attempt an act of legerdemain or manual trickery, such as planting something on someone else or concealing an object" +
             " on your person, make a Dexterity check. The DM might also call for a Dexterity check to determine whether you can lift a coin purse off another person or slip something" +
             " out of another person's pocket."),
     STEALTH("Stealth", "Make a Dexteritycheck when you attempt to conceal yourself from enemies, " +
@@ -55,14 +55,13 @@ public enum JobSkill {
     private final String description;
     private boolean mastered = false;
 
-    JobSkill(String name,String description) {
+    JobSkill(String name, String description) {
         this.name = name;
         this.description = description;
 
     }
 
     /**
-     *
      * @return name of the jobSkill
      */
     public String getName() {
@@ -70,7 +69,6 @@ public enum JobSkill {
     }
 
     /**
-     *
      * @return description of the jobSkill
      */
     public String getDescription() {
@@ -79,6 +77,7 @@ public enum JobSkill {
 
     /**
      * Says if the jobSkill have been mastered by the character or not
+     *
      * @return boolean
      */
     public boolean isMastered() {
@@ -87,17 +86,17 @@ public enum JobSkill {
 
     /**
      * Allow the user to set a skill to mastered or not
+     *
      * @param mastered
      */
-    public void setMastered(boolean mastered){
+    public void setMastered(boolean mastered) {
         this.mastered = mastered;
     }
 
     /**
-     *
      * @return name of the jobSkill
      */
-    public String toString(){
+    public String toString() {
         return name;
     }
 

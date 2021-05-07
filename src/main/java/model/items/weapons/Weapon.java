@@ -19,7 +19,6 @@ public class Weapon implements Item {
     }
 
     /**
-     *
      * @return properties of the character
      */
     public String getProperties() {
@@ -27,7 +26,6 @@ public class Weapon implements Item {
     }
 
     /**
-     *
      * @return type of weapon
      * @see WeaponType
      */
@@ -36,7 +34,6 @@ public class Weapon implements Item {
     }
 
     /**
-     *
      * @return damage type of the weapon
      */
     public DamageType getDamageType() {
@@ -44,7 +41,6 @@ public class Weapon implements Item {
     }
 
     /**
-     *
      * @return name of the weapon
      */
     @Override
@@ -53,7 +49,6 @@ public class Weapon implements Item {
     }
 
     /**
-     *
      * @return description of the weapon
      */
     @Override
@@ -62,7 +57,7 @@ public class Weapon implements Item {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 }
