@@ -330,6 +330,9 @@ public enum Improvement {
         return characteristicsBoost[6];
     }
 
+    /**
+     * @return name of the improvement
+     */
     @Override
     public String toString() {
         return name;

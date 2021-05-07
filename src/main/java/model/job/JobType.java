@@ -36,10 +36,18 @@ public enum JobType {
 
     }
 
+    /**
+     *
+     * @return the list of improvements given by the JobType
+     */
     public List<Improvement> getImprovements() {
         return Arrays.asList(improvements);
     }
 
+    /**
+     *
+     * @return Dlife given by the JobType
+     */
     public int getDLife() {
         return dLife;
     }
