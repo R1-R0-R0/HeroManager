@@ -2,6 +2,7 @@ package model.job;
 
 import model.items.Item;
 import model.items.equipments.Equipment;
+import model.items.equipments.EquipmentParts;
 import model.race.Alignment;
 import model.race.Race;
 import model.spell.Spell;
@@ -26,9 +27,9 @@ public class Job {
             armor,
             healthPoints,
             speed;
-    private Gender gender;
+    private final Gender gender;
     private int additionalStatPoints;
-    private Alignment alignment;
+    private final Alignment alignment;
     private final Race race;
     private final JobType jobType;
     private final List<Item> inventory;
@@ -282,6 +283,14 @@ public class Job {
      */
     public int getSpeed() {
         return speed;
+    }
+
+    /**
+     * allow use to set the speed of the character
+     * @param speed
+     */
+    public void setSpeed(int speed){
+        this.speed = speed;
     }
 
     /**
@@ -570,6 +579,49 @@ public class Job {
      */
     public List<JobSkill> getSkills() {
         return skills;
+    }
+
+    /**
+     *
+     * @return the list of equipped equipments
+     */
+    public List<Equipment> getEquippedEquipments() {
+        return equippedEquipments;
+    }
+
+    /**
+     * remove an equipped equipment from the list
+     * @param equipment
+     */
+    public void removeEquippedEquipment(Equipment equipment){
+        List<Equipment> newEquipped = new ArrayList<>();
+        for (Equipment equipped: equippedEquipments) {
+
+            if(!equipped.getName().equals(equipment.getName())){
+                newEquipped.add(equipped);
+            }
+        }
+        equippedEquipments = newEquipped;
+    }
+
+    /**
+     * add new equipped equipment if there's no equipped equipment of same EquipmentParts yet
+     * @param equipment
+     */
+    public void addEquippedEquipment(Equipment equipment){
+        int ringCount = 0;
+        for (Equipment equipped: equippedEquipments) {
+            if(equipped.getEquipmentParts() == EquipmentParts.RING){
+                ringCount++;
+            }
+            if(equipped.getEquipmentParts() != equipment.getEquipmentParts()){
+                equippedEquipments.add(equipment);
+            }
+        }
+
+        if(ringCount<2 && equipment.getEquipmentParts() == EquipmentParts.RING){
+            equippedEquipments.add(equipment);
+        }
     }
 
     /**
