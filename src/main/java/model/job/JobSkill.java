@@ -74,5 +74,9 @@ public enum JobSkill {
         this.mastered = mastered;
     }
 
+    public String toString(){
+        return name;
+    }
+
 
 }
