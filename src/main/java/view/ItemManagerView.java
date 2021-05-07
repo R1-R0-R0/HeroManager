@@ -82,6 +82,8 @@ public class ItemManagerView {
         }
 
         controller.newItemButton.setDisable(false);
+
+        clearItemInformation();
     }
 
     /**
