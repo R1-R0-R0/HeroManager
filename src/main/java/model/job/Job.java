@@ -62,6 +62,7 @@ public class Job {
         robustness = BASE_STATS;
         wisdom = BASE_STATS;
         charisma = BASE_STATS;
+        healthPoints = getMaxHp();
         additionalStatPoints = ADDITIONAL_STATS + race.getBonusStats();
         speed = race.getSpeed();
 
@@ -175,12 +176,17 @@ public class Job {
     }
 
     /**
-     * allow you to set the amount of health points of a character
-     *
+     * allow you to set the amount of health points of a character can't be superior than max HealthPoint
      * @param healthPoints
      */
     public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
+        int max = getMaxHp();
+        if(healthPoints<max) {
+            this.healthPoints = healthPoints;
+        }else{
+            this.healthPoints = max;
+        }
+
     }
 
     /**
