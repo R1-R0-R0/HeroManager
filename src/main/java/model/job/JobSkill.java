@@ -1,5 +1,8 @@
 package model.job;
 
+/**
+ * List of all the jobSkills
+ */
 
 public enum JobSkill {
     ACROBATICS("Acrobatics", "Your dexterity check covers your attempt to stay on your feet in a tricky situation"),
@@ -58,22 +61,42 @@ public enum JobSkill {
 
     }
 
+    /**
+     *
+     * @return name of the jobSkill
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return description of the jobSkill
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Says if the jobSkill have been mastered by the character or not
+     * @return boolean
+     */
     public boolean isMastered() {
         return mastered;
     }
 
+    /**
+     * Allow the user to set a skill to mastered or not
+     * @param mastered
+     */
     public void setMastered(boolean mastered){
         this.mastered = mastered;
     }
 
+    /**
+     *
+     * @return name of the jobSkill
+     */
     public String toString(){
         return name;
     }
