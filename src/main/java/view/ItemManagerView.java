@@ -85,6 +85,17 @@ public class ItemManagerView {
     }
 
     /**
+     * To toggle if update and delete buttons are disabled or not
+     *
+     * @param disabled TRUE to disable them, FALSE otherwise
+     */
+    public void setDisableUpdateAndDeleteButtons(boolean disabled) {
+        ItemManagerController controller = ItemManagerController.getInstance();
+        controller.updateItemButton.setDisable(disabled);
+        controller.deleteItemButton.setDisable(disabled);
+    }
+
+    /**
      * To show information about item, by specifying its type
      * @param itemType item type
      * @param item item to show
@@ -96,6 +107,8 @@ public class ItemManagerView {
             case CONSUMABLES -> setItemInformation(((Consumable) item));
             default -> throw new UnsupportedItemException(itemType);
         }
+
+        setDisableUpdateAndDeleteButtons(false);
     }
 
     /**
