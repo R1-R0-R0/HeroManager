@@ -114,6 +114,8 @@ public class ItemManagerView {
 
         controller.consumableNameText.clear();
         controller.consumableDescriptionText.clear();
+
+        setDisableUpdateAndDeleteButtons(true);
     }
 
     /**
