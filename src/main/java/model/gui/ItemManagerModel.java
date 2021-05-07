@@ -107,6 +107,20 @@ public class ItemManagerModel {
     }
 
     /**
+     * Logical method when user selected an item in list view
+     */
+    public void itemSelectedEvent() {
+        ItemManagerController controller = ItemManagerController.getInstance();
+        try {
+            ItemManagerView.getInstance().setItemInformation(controller.typePicker.getValue(), controller.itemList.getSelectionModel().getSelectedItem());
+        } catch (UnsupportedItemException e) {
+            e.printStackTrace();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            System.exit(1);
+        }
+    }
+
+    /**
      * Called when event item creation is triggered by view.
      * If some required fields are empty, an error pop up will be throw
      *
