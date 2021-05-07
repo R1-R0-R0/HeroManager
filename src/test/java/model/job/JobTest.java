@@ -37,6 +37,8 @@ public class JobTest {
 
         assertEquals(wizard.getLevel(), level1);
         wizard.levelUp(); // level 2
+
+        assertEquals(warlock.getLevel(), level1);
         assertEquals(wizard.getLevel(), level2);
         wizard.levelUp(); // level 3
         wizard.levelUp(); // level 4
@@ -84,8 +86,35 @@ public class JobTest {
 
     @Test
     public void getHealthPointTest() {
-        //TODO: Wait implementation of JobType enum
+        int wizardHealthPoints = wizard.getHealthPoints();
+        int wizardMaxHealthPoints = wizard.getMaxHp();
+
+        int bardHp = alreadyExistingBard.getHealthPoints(); //35
+        int bardMaxHp = alreadyExistingBard.getMaxHp();     // hp calcul : 8+0 + 14*(5 + 0) = 78
+
+
+        assertEquals(wizardHealthPoints,wizardMaxHealthPoints);
+        assertTrue(bardHp<=bardMaxHp);
+        assertEquals(bardMaxHp,78);
+
+        alreadyExistingBard.levelUp();
+        bardMaxHp = alreadyExistingBard.getMaxHp(); // Hp calcul : 8+0 + 15*5 + 0 = 83
+        assertEquals(bardMaxHp,83);
+
+        alreadyExistingBard.setAdditionalStatPoints(3);
+        alreadyExistingBard.increaseRobustness();
+        alreadyExistingBard.increaseRobustness();
+        alreadyExistingBard.increaseRobustness();
+
+        assertEquals(alreadyExistingBard.getRobustness(),14); // getModificator(Robustness) should be equal 2
+        assertEquals(alreadyExistingBard.getModificator(alreadyExistingBard.getRobustness()),2);
+
+        bardMaxHp = alreadyExistingBard.getMaxHp(); // 8 + 2 + 15 * (5 + 2) = 115
+
+        assertEquals(bardMaxHp,115);
+
     }
+
 
     @Test
     public void statPointsTest() {
