@@ -161,11 +161,9 @@ public class Job {
      *
      * @return the maximum health points of a character
      */
-    public int getMaxHp() { //TODO: do JOBTYPE enum with values of Dlife to replace value;
-
-        return 100;
-        // return (int)((value + getModificator(robustness)
-              //  + (level - 1)*((Math.nextUp(((double) value + 1)/2)) + getModificator(robustness))));
+    public int getMaxHp() {
+        return (int)((jobType.getDLife() + getModificator(robustness)
+                + (level - 1)*((Math.ceil(((double) jobType.getDLife() + 1)/2)) + getModificator(robustness))));
     }
 
     /**
