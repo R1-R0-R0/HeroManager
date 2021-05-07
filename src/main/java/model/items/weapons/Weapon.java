@@ -56,6 +56,10 @@ public class Weapon implements Item {
         return description;
     }
 
+    /**
+     *
+     * @return name of the weapon
+     */
     @Override
     public String toString() {
         return name;
