@@ -1,6 +1,8 @@
 package controller;
 
 import exceptions.UnsupportedItemException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -132,7 +134,7 @@ public class ItemManagerController implements Initializable {
      * Event triggered when an item has been selected in list view
      */
     public void itemSelectedEvent() {
-        ItemManagerView.getInstance().setItemInformation(typePicker.getValue(), itemList.getSelectionModel().getSelectedItem());
+        ItemManagerModel.getInstance().itemSelectedEvent();
     }
 
     /**
