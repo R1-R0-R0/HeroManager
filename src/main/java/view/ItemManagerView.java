@@ -96,9 +96,31 @@ public class ItemManagerView {
     }
 
     /**
+     * To clear all information in item edition view
+     */
+    public void clearItemInformation() {
+        ItemManagerController controller = ItemManagerController.getInstance();
+
+        controller.weaponNameText.clear();
+        controller.weaponDescriptionText.clear();
+        controller.weaponPropertiesText.clear();
+        controller.weaponTypePicker.setValue(null);
+        controller.damageTypePicker.setValue(null);
+
+        controller.equipmentNameText.clear();
+        controller.equipmentDescriptionText.clear();
+        controller.equipmentPartPicker.setValue(null);
+        controller.equipmentTypePicker.setValue(null);
+
+        controller.consumableNameText.clear();
+        controller.consumableDescriptionText.clear();
+    }
+
+    /**
      * To show information about item, by specifying its type
+     *
      * @param itemType item type
-     * @param item item to show
+     * @param item     item to show
      */
     public void setItemInformation(ItemType itemType, Item item) throws UnsupportedItemException {
         switch (itemType) {
@@ -113,10 +135,14 @@ public class ItemManagerView {
 
     /**
      * To show information about item in view
+     *
      * @param weapon weapon to show
      */
     public void setItemInformation(Weapon weapon) {
-        if (weapon == null) return;
+        if (weapon == null) {
+            clearItemInformation();
+            return;
+        }
 
         ItemManagerController controller = ItemManagerController.getInstance();
 
@@ -129,10 +155,14 @@ public class ItemManagerView {
 
     /**
      * To show information about item in view
+     *
      * @param equipment equipment to show
      */
     public void setItemInformation(Equipment equipment) {
-        if (equipment == null) return;
+        if (equipment == null) {
+            clearItemInformation();
+            return;
+        }
 
         ItemManagerController controller = ItemManagerController.getInstance();
 
@@ -144,10 +174,14 @@ public class ItemManagerView {
 
     /**
      * To show information about item in view
+     *
      * @param consumable consumable to show
      */
     public void setItemInformation(Consumable consumable) {
-        if (consumable == null) return;
+        if (consumable == null) {
+            clearItemInformation();
+            return;
+        }
 
         ItemManagerController controller = ItemManagerController.getInstance();
 
