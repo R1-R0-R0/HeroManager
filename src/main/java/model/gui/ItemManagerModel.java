@@ -398,7 +398,21 @@ public class ItemManagerModel {
      * @param description description of consumable
      */
     public void updateConsumable(String name, String description) {
-        // TODO
+        Consumable selectedConsumable = (Consumable) ItemManagerController.getInstance().itemList.getSelectionModel().getSelectedItem();
+        Consumable newConsumable = new Consumable(name, description);
+
+        int size = consumables.size();
+        for (int index = 0; index < size; index++) {
+            if (consumables.get(index) == selectedConsumable) {
+                consumables.set(index, newConsumable);
+            }
+        }
+
+        if (selectedConsumable.getName().equals(name)) {
+            // TODO Update item in database
+        } else {
+            // TODO Delete and recreate item in database
+        }
     }
 
     /**
