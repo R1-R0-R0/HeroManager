@@ -1,6 +1,7 @@
 package model.job;
 
 
+import model.items.Item;
 import model.items.equipments.Equipment;
 import model.items.equipments.EquipmentParts;
 import model.items.equipments.EquipmentType;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,7 +28,7 @@ public class JobTest {
     Job paladin = new Job("M.", "I love open shoes", Gender.MAN, Alignment.LAWFUL_EVIL, Race.HALFLING, JobType.PALADIN);
     Job alreadyExistingBard = new Job("Hatsune", "Young virtual singer", Gender.WOMAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.BARD,
             new ArrayList<>(), new ArrayList<>(), 15, 14, 13, 12, 11, 10, 9, 40, 35, 5,
-            0, new ArrayList<>(), new ArrayList<>(), Collections.singletonList(head));
+            0, new ArrayList<>(), Collections.singletonList(head), new ArrayList<>());
 
 
     @Test
@@ -151,6 +153,7 @@ public class JobTest {
 
         int wantedBaseStr14 = 14;
         int wantedBaseStr15 = 15;
+
         assertEquals(wantedBaseStr14, alreadyExistingBard.getStrength());
 
         alreadyExistingBard.increaseStrength(); // not increasing because alreadyExistingBard have 0 stats points
@@ -164,6 +167,21 @@ public class JobTest {
         alreadyExistingBard.decreaseStrength();
 
         assertEquals(wantedBaseStr14, alreadyExistingBard.getStrength());
+    }
+
+    @Test
+    public void getStrengthBonusTest(){
+
+        int wantedBoostStr2 = 2; // DragonBornBonus
+        int wantedBoostStr7 = 5 + 2; // head bonus + DragonBorn bonus
+
+        assertTrue(alreadyExistingBard.getEquippedEquipments().contains(head));
+        assertEquals(wantedBoostStr7,alreadyExistingBard.getStrengthBoost());
+
+        alreadyExistingBard.removeEquippedEquipment(head);
+
+        assertFalse(alreadyExistingBard.getEquippedEquipments().contains(head));
+        assertEquals(wantedBoostStr2,alreadyExistingBard.getStrengthBoost());
     }
 
     @Test
