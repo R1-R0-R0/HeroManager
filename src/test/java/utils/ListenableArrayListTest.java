@@ -124,6 +124,7 @@ class ListenableArrayListTest {
     }
 
     @Test
+    @DisplayName("Check getters returns correct lists")
     public void testGetterListeners() {
         Assertions.assertEquals(1, list.getAddListeners().size());
         Assertions.assertEquals(1, list.getSetListeners().size());
@@ -141,5 +142,30 @@ class ListenableArrayListTest {
         Assertions.assertEquals(1, list.getAddListeners().size());
         Assertions.assertEquals(2, list.getSetListeners().size());
         Assertions.assertEquals(3, list.getRemoveListeners().size());
+    }
+
+    @Test
+    @DisplayName("Check add listener method for all actions")
+    public void testListenerAddAll() {
+        AtomicBoolean boolA = new AtomicBoolean(false);
+        SimpleListener a = () -> boolA.set(true);
+
+        list.addListenerForAllActions(a);
+        Assertions.assertFalse(boolA.get());
+
+        list.add(10);
+        Assertions.assertTrue(boolA.get());
+
+        boolA.set(false);
+        Assertions.assertFalse(boolA.get());
+
+        list.remove(0);
+        Assertions.assertTrue(boolA.get());
+
+        boolA.set(false);
+        Assertions.assertFalse(boolA.get());
+
+        list.set(0, 0);
+        Assertions.assertTrue(boolA.get());
     }
 }
