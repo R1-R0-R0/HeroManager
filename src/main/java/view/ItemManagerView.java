@@ -87,6 +87,13 @@ public class ItemManagerView {
     }
 
     /**
+     * To reload ListViews after their modifications
+     */
+    public void updateListViews() {
+        itemTypeSelectedEvent();
+    }
+
+    /**
      * To toggle if update and delete buttons are disabled or not
      *
      * @param disabled TRUE to disable them, FALSE otherwise
