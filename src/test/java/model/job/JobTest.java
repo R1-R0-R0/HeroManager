@@ -1,9 +1,8 @@
 package model.job;
 
 
-import model.items.Item;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentPart;
 import model.items.equipments.EquipmentType;
 import model.race.Alignment;
 import model.race.Race;
@@ -13,13 +12,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JobTest {
 
-    Equipment head = new Equipment("helmet", "protects from arrows", EquipmentParts.HEAD, 1, EquipmentType.HEAVY,
+    Equipment head = new Equipment("helmet", "protects from arrows", EquipmentPart.HEAD, 1, EquipmentType.HEAVY,
             5, 4, 3, 2, 1, 5, 4);
 
 

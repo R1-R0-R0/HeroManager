@@ -3,7 +3,7 @@ package model.gui;
 import model.items.Item;
 import model.items.ItemType;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentPart;
 import model.job.Job;
 import view.CharacterView;
 
@@ -80,7 +80,7 @@ public class CharacterModel {
      *
      * @param equipmentPart part of equipment
      */
-    public void equipmentImageOnClick(EquipmentParts equipmentPart) {
+    public void equipmentImageOnClick(EquipmentPart equipmentPart) {
         // TODO
     }
 

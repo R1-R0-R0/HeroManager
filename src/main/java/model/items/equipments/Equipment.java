@@ -9,18 +9,18 @@ public class Equipment implements Item {
 
     private final String name;
     private final String description;
-    private final EquipmentParts equipmentParts;
+    private final EquipmentPart equipmentPart;
     private final int armorBonus;
     private final EquipmentType type;
     private final int[] characteristicsBoost = new int[7];
 
 
-    public Equipment(String name, String description, EquipmentParts equipmentParts, int armorBonus, EquipmentType type,
+    public Equipment(String name, String description, EquipmentPart equipmentPart, int armorBonus, EquipmentType type,
                      int strengthBoost, int dexterityBoost, int robustnessBoost, int intelligenceBoost, int wisdomBoost,
                      int charismaBoost, int speedBoost) {
         this.name = name;
         this.description = description;
-        this.equipmentParts = equipmentParts;
+        this.equipmentPart = equipmentPart;
         this.armorBonus = armorBonus;
         this.type = type;
 
@@ -61,8 +61,8 @@ public class Equipment implements Item {
      *
      * @return EquipmentParts part of body
      */
-    public EquipmentParts getEquipmentParts() {
-        return equipmentParts;
+    public EquipmentPart getEquipmentParts() {
+        return equipmentPart;
     }
 
 

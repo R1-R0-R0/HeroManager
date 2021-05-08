@@ -3,7 +3,7 @@ package model.items.equipments;
 /**
  * Different parts of the equipments
  */
-public enum EquipmentParts {
+public enum EquipmentPart {
     HEAD,
     BODY,
     BELT,

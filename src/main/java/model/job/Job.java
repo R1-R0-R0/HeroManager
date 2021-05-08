@@ -2,7 +2,7 @@ package model.job;
 
 import model.items.Item;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentPart;
 import model.race.Alignment;
 import model.race.Race;
 import model.spell.Spell;
@@ -611,7 +611,7 @@ public class Job {
     public void addEquippedEquipment(Equipment equipment){
         int ringCount = 0;
         for (Equipment equipped: equippedEquipments) {
-            if(equipped.getEquipmentParts() == EquipmentParts.RING){
+            if(equipped.getEquipmentParts() == EquipmentPart.RING){
                 ringCount++;
             }
             if(equipped.getEquipmentParts() != equipment.getEquipmentParts()){
@@ -619,7 +619,7 @@ public class Job {
             }
         }
 
-        if(ringCount<2 && equipment.getEquipmentParts() == EquipmentParts.RING){
+        if(ringCount<2 && equipment.getEquipmentParts() == EquipmentPart.RING){
             equippedEquipments.add(equipment);
         }
     }

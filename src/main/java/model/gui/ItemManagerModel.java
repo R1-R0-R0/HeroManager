@@ -5,7 +5,7 @@ import exceptions.UnsupportedItemException;
 import javafx.scene.control.Alert;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentPart;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
@@ -301,7 +301,7 @@ public class ItemManagerModel {
      * @param equipmentPart body part or equipment must be worn
      * @param equipmentType type of equipment
      */
-    public void newEquipment(String name, String description, EquipmentParts equipmentPart, EquipmentType equipmentType) {
+    public void newEquipment(String name, String description, EquipmentPart equipmentPart, EquipmentType equipmentType) {
         // TODO
     }
 
@@ -313,7 +313,7 @@ public class ItemManagerModel {
      * @param equipmentPart body part or equipment must be worn
      * @param equipmentType type of equipment
      */
-    public void updateEquipment(String name, String description, EquipmentParts equipmentPart, EquipmentType equipmentType) {
+    public void updateEquipment(String name, String description, EquipmentPart equipmentPart, EquipmentType equipmentType) {
         // TODO
     }
 
