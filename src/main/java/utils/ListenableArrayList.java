@@ -188,6 +188,17 @@ public class ListenableArrayList<T> extends ArrayList<T> {
         return removeListeners;
     }
 
+    /**
+     * Adding a listener for all modifications methods (ADD, SET and REMOVE)
+     *
+     * @param listener listener to add
+     */
+    public void addListenerForAllActions(SimpleListener listener) {
+        addAddListener(listener);
+        addSetListener(listener);
+        addRemoveListener(listener);
+    }
+
 
     /**
      * To trigger all "add" listeners
