@@ -93,7 +93,7 @@
                   </AnchorPane>
                </children>
             </GridPane>
-            <GridPane fx:id="equipmentPane" layoutX="10.0" layoutY="10.0" visible="false">
+            <GridPane fx:id="equipmentPane" layoutX="10.0" layoutY="10.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -103,6 +103,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="43.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="43.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <Label text="Name" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
@@ -129,6 +131,40 @@
                         <ChoiceBox fx:id="equipmentPartPicker" layoutX="175.0" layoutY="39.0" prefWidth="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                      </children>
                   </AnchorPane>
+                  <Label text="Armor bonus" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Spinner fx:id="spinnerArmorBonus" editable="true" initialValue="0" max="2147483647" min="-2147483648" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Label text="Characteristics bonuses" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <GridPane gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Strength" GridPane.halignment="CENTER" />
+                        <Label text="Dexterity" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Label text="Robustness" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <Label text="Intelligence" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                        <Label text="Wisdom" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+                        <Label text="Charisma" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
+                        <Label text="Speed" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
+                        <Spinner fx:id="spinnerStrength" editable="true" initialValue="0" max="2147483647" min="-2147483648" GridPane.rowIndex="1" />
+                        <Spinner fx:id="spinnerDexterity" editable="true" initialValue="0" max="2147483647" min="-2147483648" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Spinner fx:id="spinnerRobustness" editable="true" initialValue="0" max="2147483647" min="-2147483648" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Spinner fx:id="spinnerIntelligence" editable="true" initialValue="0" max="2147483647" min="-2147483648" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Spinner fx:id="spinnerWisdom" editable="true" initialValue="0" max="2147483647" min="-2147483648" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Spinner fx:id="spinnerCharisma" editable="true" initialValue="0" max="2147483647" min="-2147483648" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <Spinner fx:id="spinnerSpeed" editable="true" initialValue="0" max="2147483647" min="-2147483648" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
             <GridPane fx:id="consumablePane" layoutX="10.0" layoutY="10.0" visible="false">

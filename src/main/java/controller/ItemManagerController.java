@@ -1,8 +1,6 @@
 package controller;
 
 import exceptions.UnsupportedItemException;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -87,6 +85,18 @@ public class ItemManagerController implements Initializable {
      */
     @FXML
     public Button newItemButton, updateItemButton, deleteItemButton;
+
+    /**
+     * Spinner used to set armor bonus value to equipments
+     */
+    @FXML
+    public Spinner<Integer> spinnerArmorBonus;
+
+    /**
+     * Spinners related to characteristics bonuses applied to equipments
+     */
+    @FXML
+    public Spinner<Integer> spinnerStrength, spinnerDexterity, spinnerRobustness, spinnerIntelligence, spinnerWisdom, spinnerCharisma, spinnerSpeed;
 
     /**
      * @return instance of this class

@@ -163,7 +163,15 @@ public class ItemManagerModel {
                         controller.equipmentNameText.getText(),
                         controller.equipmentDescriptionText.getText(),
                         controller.equipmentPartPicker.getValue(),
-                        controller.equipmentTypePicker.getValue()
+                        controller.equipmentTypePicker.getValue(),
+                        controller.spinnerArmorBonus.getValue(),
+                        controller.spinnerStrength.getValue(),
+                        controller.spinnerDexterity.getValue(),
+                        controller.spinnerRobustness.getValue(),
+                        controller.spinnerIntelligence.getValue(),
+                        controller.spinnerWisdom.getValue(),
+                        controller.spinnerCharisma.getValue(),
+                        controller.spinnerSpeed.getValue()
                 );
             }
             case CONSUMABLES -> {
@@ -224,7 +232,15 @@ public class ItemManagerModel {
                         controller.equipmentNameText.getText(),
                         controller.equipmentDescriptionText.getText(),
                         controller.equipmentPartPicker.getValue(),
-                        controller.equipmentTypePicker.getValue()
+                        controller.equipmentTypePicker.getValue(),
+                        controller.spinnerArmorBonus.getValue(),
+                        controller.spinnerStrength.getValue(),
+                        controller.spinnerDexterity.getValue(),
+                        controller.spinnerRobustness.getValue(),
+                        controller.spinnerIntelligence.getValue(),
+                        controller.spinnerWisdom.getValue(),
+                        controller.spinnerCharisma.getValue(),
+                        controller.spinnerSpeed.getValue()
                 );
             }
             case CONSUMABLES -> {
@@ -330,7 +346,9 @@ public class ItemManagerModel {
      * @param equipmentPart body part or equipment must be worn
      * @param equipmentType type of equipment
      */
-    public void newEquipment(String name, String description, EquipmentParts equipmentPart, EquipmentType equipmentType) {
+    public void newEquipment(String name, String description, EquipmentParts equipmentPart, EquipmentType equipmentType,
+                             int armorBonus, int strengthBoost, int dexterityBoost, int robustnessBoost,
+                             int intelligenceBoost, int wisdomBoost, int charismaBoost, int speedBoost) {
         // TODO
     }
 
@@ -342,8 +360,25 @@ public class ItemManagerModel {
      * @param equipmentPart body part or equipment must be worn
      * @param equipmentType type of equipment
      */
-    public void updateEquipment(String name, String description, EquipmentParts equipmentPart, EquipmentType equipmentType) {
-        // TODO
+    public void updateEquipment(String name, String description, EquipmentParts equipmentPart, EquipmentType equipmentType,
+                                int armorBonus, int strengthBoost, int dexterityBoost, int robustnessBoost,
+                                int intelligenceBoost, int wisdomBoost, int charismaBoost, int speedBoost) {
+        Equipment selectedEquipment = (Equipment) ItemManagerController.getInstance().itemList.getSelectionModel().getSelectedItem();
+        Equipment newEquipment = new Equipment(name, description, equipmentPart, armorBonus, equipmentType,
+                strengthBoost, dexterityBoost, robustnessBoost, intelligenceBoost, wisdomBoost, charismaBoost, speedBoost);
+
+        int size = equipments.size();
+        for (int index = 0; index < size; index++) {
+            if (equipments.get(index) == selectedEquipment) {
+                equipments.set(index, newEquipment);
+            }
+        }
+
+        if (selectedEquipment.getName().equals(name)) {
+            // TODO Update item in database
+        } else {
+            // TODO Delete and recreate item in database
+        }
     }
 
     /**

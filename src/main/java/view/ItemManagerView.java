@@ -113,6 +113,13 @@ public class ItemManagerView {
         controller.equipmentDescriptionText.clear();
         controller.equipmentPartPicker.setValue(null);
         controller.equipmentTypePicker.setValue(null);
+        controller.spinnerStrength.getValueFactory().setValue(0);
+        controller.spinnerDexterity.getValueFactory().setValue(0);
+        controller.spinnerRobustness.getValueFactory().setValue(0);
+        controller.spinnerIntelligence.getValueFactory().setValue(0);
+        controller.spinnerWisdom.getValueFactory().setValue(0);
+        controller.spinnerCharisma.getValueFactory().setValue(0);
+        controller.spinnerSpeed.getValueFactory().setValue(0);
 
         controller.consumableNameText.clear();
         controller.consumableDescriptionText.clear();
@@ -174,6 +181,15 @@ public class ItemManagerView {
         controller.equipmentDescriptionText.setText(equipment.getDescription());
         controller.equipmentPartPicker.setValue(equipment.getEquipmentParts());
         controller.equipmentTypePicker.setValue(equipment.getEquipmentType());
+
+        controller.spinnerArmorBonus.getValueFactory().setValue(equipment.getArmorBonus());
+        controller.spinnerStrength.getValueFactory().setValue(equipment.getStrengthBoost());
+        controller.spinnerDexterity.getValueFactory().setValue(equipment.getDexterityBoost());
+        controller.spinnerRobustness.getValueFactory().setValue(equipment.getRobustnessBoost());
+        controller.spinnerIntelligence.getValueFactory().setValue(equipment.getIntelligenceBoost());
+        controller.spinnerWisdom.getValueFactory().setValue(equipment.getWisdomBoost());
+        controller.spinnerCharisma.getValueFactory().setValue(equipment.getCharismaBoost());
+        controller.spinnerSpeed.getValueFactory().setValue(equipment.getSpeedBoost());
     }
 
     /**
