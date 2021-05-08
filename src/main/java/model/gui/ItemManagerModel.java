@@ -13,6 +13,7 @@ import model.items.weapons.WeaponType;
 import utils.gui.Dialog;
 import view.ItemManagerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,15 +59,15 @@ public class ItemManagerModel {
     /**
      * Used to set weapons list to show when user select weapons
      *
-     * @param weapons list of weapons to set
+     * @param weapons array list of weapons to set
      */
-    public void setWeaponList(List<Weapon> weapons) {
+    public void setWeaponList(ArrayList<Weapon> weapons) {
         this.weapons = weapons;
     }
 
     /**
      * @return setted up weapon list for list view ui
-     * @see ItemManagerModel#setWeaponList(List) to set returned list
+     * @see ItemManagerModel#setWeaponList(ArrayList) to set returned list
      */
     public List<Weapon> getWeaponsList() {
         return weapons;
@@ -77,13 +78,13 @@ public class ItemManagerModel {
      *
      * @param equipments list of equipments to set
      */
-    public void setEquipmentList(List<Equipment> equipments) {
+    public void setEquipmentList(ArrayList<Equipment> equipments) {
         this.equipments = equipments;
     }
 
     /**
      * @return setted up equipment list for list view ui
-     * @see ItemManagerModel#setEquipmentList(List) to set returned list
+     * @see ItemManagerModel#setEquipmentList(ArrayList) to set returned list
      */
     public List<Equipment> getEquipmentsList() {
         return equipments;
@@ -94,13 +95,13 @@ public class ItemManagerModel {
      *
      * @param consumables list of consumables to set
      */
-    public void setConsumableList(List<Consumable> consumables) {
+    public void setConsumableList(ArrayList<Consumable> consumables) {
         this.consumables = consumables;
     }
 
     /**
      * @return setted up consumables list for list view ui
-     * @see ItemManagerModel#setConsumableList(List) to set returned list
+     * @see ItemManagerModel#setConsumableList(ArrayList) to set returned list
      */
     public List<Consumable> getConsumablesList() {
         return consumables;
@@ -304,7 +305,21 @@ public class ItemManagerModel {
      * @param damageType  damages that weapon inflict
      */
     public void updateWeapon(String name, String description, String properties, WeaponType weaponType, DamageType damageType) {
-        // TODO
+        Weapon selectedWeapon = (Weapon) ItemManagerController.getInstance().itemList.getSelectionModel().getSelectedItem();
+        Weapon newWeapon = new Weapon(name, description, properties, weaponType, damageType);
+
+        int size = weapons.size();
+        for (int index = 0; index < size; index++) {
+            if (weapons.get(index) == selectedWeapon) {
+                weapons.set(index, newWeapon);
+            }
+        }
+
+        if (selectedWeapon.getName().equals(name)) {
+            // TODO Update item in database
+        } else {
+            // TODO Delete and recreate item in database
+        }
     }
 
     /**
