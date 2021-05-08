@@ -1,4 +1,4 @@
-package gui;
+package model.gui;
 
 import controller.ItemManagerController;
 import javafx.scene.control.*;

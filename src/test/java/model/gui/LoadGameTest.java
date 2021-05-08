@@ -1,4 +1,4 @@
-package gui;
+package model.gui;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
