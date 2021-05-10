@@ -76,6 +76,8 @@ public class ItemPickerController implements Initializable {
         instance = this;
         ObservableList<ItemType> list = FXCollections.observableArrayList(ItemType.values());
         typePicker.setItems(list);
+
+        itemList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> ItemPickerModel.getInstance().setSelectedItem(newValue));
     }
 
     /**
