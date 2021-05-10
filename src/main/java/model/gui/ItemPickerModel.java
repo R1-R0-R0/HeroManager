@@ -104,6 +104,8 @@ public class ItemPickerModel {
         ItemPickerView view = ItemPickerView.getInstance();
         ItemType selectedType = ItemPickerController.getInstance().typePicker.getValue();
 
+        if (selectedType == null) return;
+
         switch (selectedType) {
             case WEAPONS -> view.setListView(weapons);
             case EQUIPMENTS -> view.setListView(equipments);
