@@ -198,6 +198,7 @@ public class ItemPickerModel {
      * Cancel Item pick
      */
     public void back() {
+        selectedItem = null;
         ItemPickerView.getInstance().close();
     }
 }
