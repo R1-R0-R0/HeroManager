@@ -40,9 +40,22 @@ public class ItemPickerModel {
     public ItemPickerModel(Stage owner) {
         instance = this;
 
-        weapons = new ArrayList<>();
-        equipments = new ArrayList<>();
-        consumables = new ArrayList<>();
+        weapons = new ListenableArrayList<>();
+        equipments = new ListenableArrayList<>();
+        consumables = new ListenableArrayList<>();
+
+        SimpleListener updateListener = () -> {
+            try {
+                itemTypeSelectedEvent();
+            } catch (UnsupportedItemException e) {
+                e.printStackTrace();
+                new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
+            }
+        };
+
+        weapons.addListenerForAllActions(updateListener);
+        equipments.addListenerForAllActions(updateListener);
+        consumables.addListenerForAllActions(updateListener);
 
         /*
             TODO
