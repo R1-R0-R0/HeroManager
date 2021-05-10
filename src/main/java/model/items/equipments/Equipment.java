@@ -61,7 +61,7 @@ public class Equipment implements Item {
      *
      * @return EquipmentParts part of body
      */
-    public EquipmentPart getEquipmentParts() {
+    public EquipmentPart getEquipmentPart() {
         return equipmentPart;
     }
 

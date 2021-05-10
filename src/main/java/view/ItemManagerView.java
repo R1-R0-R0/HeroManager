@@ -186,7 +186,7 @@ public class ItemManagerView {
 
         controller.equipmentNameText.setText(equipment.getName());
         controller.equipmentDescriptionText.setText(equipment.getDescription());
-        controller.equipmentPartPicker.setValue(equipment.getEquipmentParts());
+        controller.equipmentPartPicker.setValue(equipment.getEquipmentPart());
         controller.equipmentTypePicker.setValue(equipment.getEquipmentType());
 
         controller.spinnerArmorBonus.getValueFactory().setValue(equipment.getArmorBonus());

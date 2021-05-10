@@ -191,7 +191,7 @@ public class ItemPickerView {
         ObservableList<Node> info = ItemPickerController.getInstance().itemInfoPane.getChildren();
 
         Text mainInfo = new Text(
-                "Can be worn on: " + equipment.getEquipmentParts() +
+                "Can be worn on: " + equipment.getEquipmentPart() +
                         "\nEquipment type: " + equipment.getEquipmentType()
         );
 

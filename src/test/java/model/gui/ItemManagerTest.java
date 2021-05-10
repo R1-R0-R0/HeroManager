@@ -4,7 +4,6 @@ import controller.ItemManagerController;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import model.gui.ItemManagerModel;
 import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
@@ -123,7 +122,7 @@ public class ItemManagerTest {
 
         Assertions.assertEquals(equipment.getName(), ((TextField) robot.lookup("#equipmentNameText").tryQuery().get()).getText());
         Assertions.assertEquals(equipment.getDescription(), ((TextArea) robot.lookup("#equipmentDescriptionText").tryQuery().get()).getText());
-        Assertions.assertEquals(equipment.getEquipmentParts(), ((ChoiceBox<EquipmentPart>) robot.lookup("#equipmentPartPicker").tryQuery().get()).getValue());
+        Assertions.assertEquals(equipment.getEquipmentPart(), ((ChoiceBox<EquipmentPart>) robot.lookup("#equipmentPartPicker").tryQuery().get()).getValue());
         Assertions.assertEquals(equipment.getEquipmentType(), ((ChoiceBox<EquipmentType>) robot.lookup("#equipmentTypePicker").tryQuery().get()).getValue());
         Assertions.assertEquals(equipment.getArmorBonus(), ((Spinner<Integer>) robot.lookup("#spinnerArmorBonus").tryQuery().get()).getValue());
         Assertions.assertEquals(equipment.getStrengthBoost(), ((Spinner<Integer>) robot.lookup("#spinnerStrength").tryQuery().get()).getValue());
@@ -366,7 +365,7 @@ public class ItemManagerTest {
         Equipment e = ((Equipment) ((ListView<Item>) robot.lookup("#itemList").tryQuery().get()).getItems().get(0));
         Assertions.assertNotEquals(equipment.getName(), e.getName());
         Assertions.assertNotEquals(equipment.getDescription(), e.getDescription());
-        Assertions.assertNotEquals(equipment.getEquipmentParts(), e.getEquipmentParts());
+        Assertions.assertNotEquals(equipment.getEquipmentPart(), e.getEquipmentPart());
         Assertions.assertNotEquals(equipment.getEquipmentType(), e.getEquipmentType());
         Assertions.assertNotEquals(equipment.getArmorBonus(), e.getArmorBonus());
         Assertions.assertNotEquals(equipment.getStrengthBoost(), e.getStrengthBoost());

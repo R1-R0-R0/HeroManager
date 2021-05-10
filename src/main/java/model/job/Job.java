@@ -611,15 +611,15 @@ public class Job {
     public void addEquippedEquipment(Equipment equipment){
         int ringCount = 0;
         for (Equipment equipped: equippedEquipments) {
-            if(equipped.getEquipmentParts() == EquipmentPart.RING){
+            if(equipped.getEquipmentPart() == EquipmentPart.RING){
                 ringCount++;
             }
-            if(equipped.getEquipmentParts() != equipment.getEquipmentParts()){
+            if(equipped.getEquipmentPart() != equipment.getEquipmentPart()){
                 equippedEquipments.add(equipment);
             }
         }
 
-        if(ringCount<2 && equipment.getEquipmentParts() == EquipmentPart.RING){
+        if(ringCount<2 && equipment.getEquipmentPart() == EquipmentPart.RING){
             equippedEquipments.add(equipment);
         }
     }
