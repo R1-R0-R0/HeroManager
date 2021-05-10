@@ -83,12 +83,45 @@ public class CharacterModel {
         if (item != null) {
             ContextMenu clickMenu = new ContextMenu();
 
-            if (item instanceof Weapon || item instanceof Equipment) {
+            if (item instanceof Equipment) {
                 MenuItem equip = new MenuItem("Equip");
+                equip.setId("equipAction");
+                equip.setOnAction(event1 -> {
+                    // TODO wait guillaume implementation
+                });
+
                 clickMenu.getItems().add(equip);
             }
 
             MenuItem info = new MenuItem("Info");
+            info.setId("infoAction");
+            info.setOnAction(event1 -> {
+                StringBuilder description = new StringBuilder();
+
+                if (item instanceof Weapon) {
+                    description.append("Weapon Type: ").append(((Weapon) item).getWeaponType())
+                            .append("\nDamage type inflicted: ").append(((Weapon) item).getDamageType())
+                            .append("\n\nProperties: ").append(((Weapon) item).getProperties())
+                            .append("\n\n---\n\n");
+                }
+                else if (item instanceof Equipment) {
+                    description.append("Can be worn on: ").append(((Equipment) item).getEquipmentPart())
+                            .append("\nEquipment type: ").append(((Equipment) item).getEquipmentPart())
+                            .append("\n\nStatistics:")
+                            .append("\n\t- Armor Bonus:\t\t").append(((Equipment) item).getArmorBonus())
+                            .append("\n\t- Strength Boost:\t\t").append(((Equipment) item).getStrengthBoost())
+                            .append("\n\t- Dexterity Boost: \t\t").append(((Equipment) item).getDexterityBoost())
+                            .append("\n\t- Robustness Boost: \t").append(((Equipment) item).getRobustnessBoost())
+                            .append("\n\t- Intelligence Boost: \t").append(((Equipment) item).getIntelligenceBoost())
+                            .append("\n\t- Wisdom Boost: \t\t").append(((Equipment) item).getWisdomBoost())
+                            .append("\n\t- Charisma Boost: \t\t").append(((Equipment) item).getCharismaBoost())
+                            .append("\n\t- Speed Boost: \t\t").append(((Equipment) item).getSpeedBoost())
+                            .append("\n\n---\n\n");
+                }
+
+                description.append(item.getDescription());
+                new Dialog(Alert.AlertType.INFORMATION, item.getName(), description.toString()).show();
+            });
 
             SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
             MenuItem discard = new MenuItem("Discard");
