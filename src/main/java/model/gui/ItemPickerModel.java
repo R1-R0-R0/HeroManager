@@ -37,6 +37,19 @@ public class ItemPickerModel {
      */
     public ItemPickerModel(Stage owner) {
         instance = this;
+
+        weapons = new ArrayList<>();
+        equipments = new ArrayList<>();
+        consumables = new ArrayList<>();
+
+        /*
+            TODO
+
+             setWeaponsList(get depuis bdd)
+             setEquipmentList(get depuis bdd)
+             setConsumablesList(...)
+         */
+
         new ItemPickerView(owner);
     }
 
@@ -49,8 +62,7 @@ public class ItemPickerModel {
      * @param itemType item type user needs to select
      */
     public ItemPickerModel(Stage owner, ItemType itemType) {
-        instance = this;
-        new ItemPickerView(owner);
+        this(owner);
 
         ItemPickerView.getInstance().setItemType(itemType);
     }
