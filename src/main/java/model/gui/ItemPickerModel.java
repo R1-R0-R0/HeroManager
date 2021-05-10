@@ -68,6 +68,74 @@ public class ItemPickerModel {
     }
 
     /**
+     * Called when user selected an item type
+     */
+    public void itemTypeSelectedEvent() {
+        ItemPickerView view = ItemPickerView.getInstance();
+        ItemType selectedType = ItemPickerController.getInstance().typePicker.getValue();
+
+        switch (selectedType) {
+            case WEAPONS -> view.setListView(weapons);
+            case EQUIPMENTS -> view.setListView(equipments);
+            case CONSUMABLES -> view.setListView(consumables);
+        }
+    }
+
+    /**
+     * Used to set weapons list to show when user select weapons
+     *
+     * @param weapons array list of weapons to set
+     */
+    public void setWeaponList(List<Weapon> weapons) {
+        this.weapons.clear();
+        this.weapons.addAll(weapons);
+    }
+
+    /**
+     * @return setted up weapon list for list view ui
+     * @see ItemManagerModel#setWeaponList(List) to set returned list
+     */
+    public List<Weapon> getWeaponsList() {
+        return weapons;
+    }
+
+    /**
+     * Used to set equipment list to show when user select equipment
+     *
+     * @param equipments list of equipments to set
+     */
+    public void setEquipmentList(List<Equipment> equipments) {
+        this.equipments.clear();
+        this.equipments.addAll(equipments);
+    }
+
+    /**
+     * @return setted up equipment list for list view ui
+     * @see ItemManagerModel#setEquipmentList(List) to set returned list
+     */
+    public List<Equipment> getEquipmentsList() {
+        return equipments;
+    }
+
+    /**
+     * Used to set consumable list to show when user select consumables
+     *
+     * @param consumables list of consumables to set
+     */
+    public void setConsumableList(List<Consumable> consumables) {
+        this.consumables.clear();
+        this.consumables.addAll(consumables);
+    }
+
+    /**
+     * @return setted up consumables list for list view ui
+     * @see ItemManagerModel#setConsumableList(List) to set returned list
+     */
+    public List<Consumable> getConsumablesList() {
+        return consumables;
+    }
+
+    /**
      * @return instance of this class
      */
     public static ItemPickerModel getInstance() {
