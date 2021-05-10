@@ -99,6 +99,7 @@ public class ItemPickerModel {
             case WEAPONS -> view.setListView(weapons);
             case EQUIPMENTS -> view.setListView(equipments);
             case CONSUMABLES -> view.setListView(consumables);
+            default -> throw new UnsupportedItemException(selectedType);
         }
     }
 
