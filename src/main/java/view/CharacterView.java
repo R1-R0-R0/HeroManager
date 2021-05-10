@@ -26,6 +26,7 @@ import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
 import model.job.*;
 import model.spell.Spell;
+import utils.gui.ContainerPane;
 
 import java.io.IOException;
 import java.util.List;
@@ -378,7 +379,7 @@ public class CharacterView {
 
         for (int i = 0; i < INVENTORY_SIZE; i++) {
             for (int j = 0; j < INVENTORY_SIZE; j++) {
-                StackPane pane = new StackPane();
+                ContainerPane<Item> pane = new ContainerPane<>();
                 pane.setId("inventorySlot" + counter);
                 pane.setOnMouseClicked(this::inventoryMouseClickedEvent);
                 pane.setCursor(Cursor.HAND);
@@ -416,7 +417,7 @@ public class CharacterView {
     public void setInventory(List<Item> items) {
         int counter = 0;
 
-        StackPane pane;
+        ContainerPane<Item> pane;
         Tooltip tooltip;
         String selector;
         for (Item item : items) {
@@ -424,9 +425,8 @@ public class CharacterView {
             tooltip = new Tooltip(item.getDescription());
             tooltip.setShowDelay(Duration.ONE);
 
-            pane = ((StackPane) CharacterController.getInstance().inventoryPane.getScene().lookup(selector));
-            pane.getChildren().clear();
-            pane.getChildren().add(new Text(item.getName()));
+            pane = ((ContainerPane<Item>) CharacterController.getInstance().inventoryPane.getScene().lookup(selector));
+            pane.setContainedObject(item);
 
             Tooltip.install(pane, tooltip);
 
@@ -434,37 +434,14 @@ public class CharacterView {
         }
     }
 
-    // TODO : To implement when item pickers are here
-
     /**
      * Method event called when item in inventory is clicked and show up contextual menu or open item picker
      *
      * @param event mouse event captured
      */
     private void inventoryMouseClickedEvent(MouseEvent event) {
-        System.out.println("event = " + event);
-        StackPane source = ((StackPane) event.getSource());
-        System.out.println("source.getId() = " + source.getId());
-
-        ContextMenu clickMenu = new ContextMenu();
-        Item item = null; // new Weapon("Épée", "Une épée", "Propriétés", WeaponType.COMMON, DamageType.SLASHING);
-
-        if (item != null) {
-            if (item instanceof Weapon || item instanceof Equipment) {
-                MenuItem equip = new MenuItem("Equip");
-                clickMenu.getItems().add(equip);
-            }
-
-            MenuItem info = new MenuItem("Info");
-
-            SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
-            MenuItem discard = new MenuItem("Discard");
-
-            clickMenu.getItems().addAll(info, separatorMenuItem, discard);
-        } else {
-            new ItemPickerModel(getStage());
-        }
-
-        clickMenu.show((Node) event.getSource(), event.getScreenX(), event.getScreenY());
+        ContainerPane<Item> source = ((ContainerPane<Item>) event.getSource());
+        Item item = source.getContainedObject();
+        CharacterModel.getInstance().inventoryClickedEvent(item, event);
     }
 }
