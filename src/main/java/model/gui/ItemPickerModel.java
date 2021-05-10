@@ -32,15 +32,18 @@ public class ItemPickerModel {
     private final ListenableArrayList<Equipment> equipments;
     private final ListenableArrayList<Consumable> consumables;
     private Item selectedItem;
+    private final SimpleListener closeListener;
 
     /**
      * 1st constructor of this class.
      * When called, init Item Picker view and calling view.
      *
      * @param owner calling view
+     * @param closeListener listener to call when context is closing
      */
-    public ItemPickerModel(Stage owner) {
+    public ItemPickerModel(Stage owner, SimpleListener closeListener) {
         instance = this;
+        this.closeListener = closeListener;
 
         weapons = new ListenableArrayList<>();
         equipments = new ListenableArrayList<>();
@@ -77,9 +80,10 @@ public class ItemPickerModel {
      *
      * @param owner    calling view
      * @param itemType item type user needs to select
+     * @param closeListener listener to call when context is closing
      */
-    public ItemPickerModel(Stage owner, ItemType itemType) {
-        this(owner);
+    public ItemPickerModel(Stage owner, ItemType itemType, SimpleListener closeListener) {
+        this(owner, closeListener);
 
         try {
             ItemPickerView.getInstance().setItemType(itemType);
@@ -197,6 +201,7 @@ public class ItemPickerModel {
      */
     public void confirmItemSelection() {
         ItemPickerView.getInstance().close();
+        closeListener.event();
     }
 
     /**
@@ -205,5 +210,6 @@ public class ItemPickerModel {
     public void back() {
         selectedItem = null;
         ItemPickerView.getInstance().close();
+        closeListener.event();
     }
 }
