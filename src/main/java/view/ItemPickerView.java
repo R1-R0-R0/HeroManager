@@ -96,6 +96,14 @@ public class ItemPickerView {
     }
 
     /**
+     * Allows to block item type selection
+     * @param disabled TRUE to disable, FALSE to enable
+     */
+    public void setTypePickerDisabled(boolean disabled) {
+        ItemPickerController.getInstance().typePicker.setDisable(disabled);
+    }
+
+    /**
      * To update item list view
      */
     public void updateList() {
