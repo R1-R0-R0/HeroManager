@@ -27,13 +27,22 @@
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
-        <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-            <items>
-                <Pane HBox.hgrow="ALWAYS" />
-                <Button disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectItemButtonOnClick" prefWidth="75.0" text="Select item" />
-                <Separator />
-                <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backButtonOnClick" prefWidth="75.0" text="Back" />
-            </items>
-        </ToolBar>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+              <content>
+                <AnchorPane fx:id="itemInfoPane" />
+              </content>
+            </ScrollPane>
+              <ToolBar prefHeight="40.0" prefWidth="200.0">
+                  <items>
+                      <Pane HBox.hgrow="ALWAYS" />
+                      <Button disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectItemButtonOnClick" prefWidth="75.0" text="Select item" />
+                      <Separator />
+                      <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backButtonOnClick" prefWidth="75.0" text="Back" />
+                  </items>
+              </ToolBar>
+         </children>
+      </VBox>
     </children>
 </GridPane>
