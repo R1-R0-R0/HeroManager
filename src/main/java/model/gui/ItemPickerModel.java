@@ -16,7 +16,6 @@ import utils.gui.Dialog;
 import view.CharacterCreatorView;
 import view.ItemPickerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,12 +28,10 @@ import java.util.List;
 public class ItemPickerModel {
 
     private static ItemPickerModel instance;
-
-    private Item selectedItem;
-
     private final ListenableArrayList<Weapon> weapons;
     private final ListenableArrayList<Equipment> equipments;
     private final ListenableArrayList<Consumable> consumables;
+    private Item selectedItem;
 
     /**
      * 1st constructor of this class.
@@ -91,6 +88,13 @@ public class ItemPickerModel {
             new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
             System.exit(1);
         }
+    }
+
+    /**
+     * @return instance of this class
+     */
+    public static ItemPickerModel getInstance() {
+        return instance;
     }
 
     /**
@@ -163,14 +167,15 @@ public class ItemPickerModel {
     }
 
     /**
-     * @return instance of this class
+     * @return user selected item
      */
-    public static ItemPickerModel getInstance() {
-        return instance;
+    public Item getSelectedItem() {
+        return selectedItem;
     }
 
     /**
      * Save selected item and show its information
+     *
      * @param item
      */
     public void setSelectedItem(Item item) {
@@ -183,13 +188,6 @@ public class ItemPickerModel {
             new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
             System.exit(1);
         }
-    }
-
-    /**
-     * @return user selected item
-     */
-    public Item getSelectedItem() {
-        return selectedItem;
     }
 
     /**

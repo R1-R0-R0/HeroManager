@@ -9,8 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
@@ -110,6 +108,7 @@ public class ItemPickerView {
 
     /**
      * Allows to block item type selection
+     *
      * @param disabled TRUE to disable, FALSE to enable
      */
     public void setTypePickerDisabled(boolean disabled) {
@@ -125,6 +124,7 @@ public class ItemPickerView {
 
     /**
      * Show information about given item
+     *
      * @param item to show information about
      * @throws UnsupportedItemException if type of selected item isn't recognized
      */
@@ -160,6 +160,7 @@ public class ItemPickerView {
 
     /**
      * Show information about a weapon, with its unique item properties
+     *
      * @param weapon to show information about
      */
     private void showWeaponInfo(Weapon weapon) {
@@ -183,6 +184,7 @@ public class ItemPickerView {
 
     /**
      * Show information about an equipment, with its unique item properties
+     *
      * @param equipment to show information about
      */
     private void showEquipmentInfo(Equipment equipment) {
@@ -215,6 +217,7 @@ public class ItemPickerView {
 
     /**
      * Show information about a consumable, with its unique item properties
+     *
      * @param consumable to show information about
      */
     private void showConsumableInfo(Consumable consumable) {
@@ -225,6 +228,7 @@ public class ItemPickerView {
 
     /**
      * Enable or disable select button
+     *
      * @param disabled TRUE to disable it, FALSE otherwise
      */
     public void setSelectItemButtonDisable(boolean disabled) {
@@ -232,7 +236,6 @@ public class ItemPickerView {
     }
 
     /**
-     *
      * @return stage of view
      */
     public Stage getStage() {
