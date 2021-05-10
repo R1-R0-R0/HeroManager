@@ -1,6 +1,8 @@
 package controller;
 
 import exceptions.UnsupportedItemException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -116,7 +118,7 @@ public class ItemManagerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
 
-        itemList.setOnMouseClicked(event -> itemSelectedEvent());
+        itemList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> itemSelectedEvent());
 
         ObservableList<ItemType> itemTypeObservableList = FXCollections.observableArrayList(ItemType.values());
         typePicker.setItems(itemTypeObservableList);

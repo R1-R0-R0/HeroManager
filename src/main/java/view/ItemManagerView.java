@@ -62,6 +62,8 @@ public class ItemManagerView {
         ItemManagerController controller = ItemManagerController.getInstance();
         ItemType selectedType = controller.typePicker.getValue();
 
+        if (selectedType == null) return;
+
         controller.weaponsPane.setVisible(false);
         controller.equipmentPane.setVisible(false);
         controller.consumablePane.setVisible(false);

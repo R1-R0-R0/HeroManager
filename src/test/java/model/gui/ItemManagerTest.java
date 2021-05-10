@@ -108,7 +108,6 @@ public class ItemManagerTest {
     public void fieldsOnItemSelectionTest(FxRobot robot) throws InterruptedException {
         robot.clickOn("#typePicker");
         robot.type(KeyCode.DOWN, KeyCode.ENTER, KeyCode.TAB, KeyCode.ENTER);
-        robot.clickOn("#itemList");
 
         Assertions.assertEquals(weapon.getName(), ((TextField) robot.lookup("#weaponNameText").tryQuery().get()).getText());
         Assertions.assertEquals(weapon.getDescription(), ((TextArea) robot.lookup("#weaponDescriptionText").tryQuery().get()).getText());
@@ -118,7 +117,6 @@ public class ItemManagerTest {
 
         robot.clickOn("#typePicker");
         robot.type(KeyCode.DOWN, KeyCode.ENTER, KeyCode.TAB, KeyCode.ENTER);
-        robot.clickOn("#itemList");
 
         Assertions.assertEquals(equipment.getName(), ((TextField) robot.lookup("#equipmentNameText").tryQuery().get()).getText());
         Assertions.assertEquals(equipment.getDescription(), ((TextArea) robot.lookup("#equipmentDescriptionText").tryQuery().get()).getText());
@@ -135,13 +133,11 @@ public class ItemManagerTest {
 
         robot.clickOn("#typePicker");
         robot.type(KeyCode.DOWN, KeyCode.ENTER, KeyCode.TAB, KeyCode.ENTER);
-        robot.clickOn("#itemList");
 
         Assertions.assertEquals(consumable1.getName(), ((TextField) robot.lookup("#consumableNameText").tryQuery().get()).getText());
         Assertions.assertEquals(consumable1.getDescription(), ((TextArea) robot.lookup("#consumableDescriptionText").tryQuery().get()).getText());
 
         robot.type(KeyCode.DOWN);
-        robot.clickOn("#itemList");
 
         Assertions.assertEquals(consumable2.getName(), ((TextField) robot.lookup("#consumableNameText").tryQuery().get()).getText());
         Assertions.assertEquals(consumable2.getDescription(), ((TextArea) robot.lookup("#consumableDescriptionText").tryQuery().get()).getText());
