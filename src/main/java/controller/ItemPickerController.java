@@ -51,9 +51,10 @@ public class ItemPickerController implements Initializable {
     public AnchorPane itemInfoPane;
 
     /**
-     * Selected item by user
+     * Button to confirm user selection and close dialog
      */
-    public Item selectedItem;
+    @FXML
+    public Button selectItemButton;
 
     /**
      * @return instance of this class
