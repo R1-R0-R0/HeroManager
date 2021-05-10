@@ -1,10 +1,16 @@
 package model.gui;
 
 import controller.CharacterController;
+import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
@@ -20,6 +26,7 @@ import model.race.Alignment;
 import model.race.Race;
 import model.spell.Spell;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -27,6 +34,7 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
 @ExtendWith(ApplicationExtension.class)
+@DisplayName("Character view tests")
 public class CharacterTest {
 
     @Start
@@ -40,7 +48,8 @@ public class CharacterTest {
     }
 
     @Test
-    public void characterViewHpTest(FxRobot robot) {
+    @DisplayName("Test setting up new hp amount")
+    public void characterHpViewTest(FxRobot robot) {
         Job character = CharacterModel.getInstance().getCharacter();
         character.setHealthPoints(50);
         Assertions.assertEquals(50, character.getHealthPoints());
@@ -55,6 +64,7 @@ public class CharacterTest {
     }
 
     @Test
+    @DisplayName("Dice thrower tests")
     public void characterDiceThrower(FxRobot robot) {
         robot.clickOn("#tableMenu");
         robot.clickOn("#diceThrowerMenuItem");
@@ -72,7 +82,8 @@ public class CharacterTest {
     }
 
     @Test
-    public void characterViewTest(FxRobot robot) throws InterruptedException {
+    @DisplayName("")
+    public void characterViewTest(FxRobot robot) {
         TabPane tabPane = ((TabPane) robot.lookup("#tabPane").tryQuery().get());
 
         Assertions.assertEquals("Hiraye", tabPane.getTabs().get(0).getText());
@@ -88,16 +99,26 @@ public class CharacterTest {
 
         robot.clickOn("#spellsTabDongle");
         robot.clickOn("#spellList");
-        System.out.println("((ListView) robot.lookup(\"#spellList\").tryQuery().get()).getChildrenUnmodifiable().get(0) = " + ((ListView) robot.lookup("#spellList").tryQuery().get()).getChildrenUnmodifiable().get(0));
-        robot.clickOn();
+        robot.type(KeyCode.ENTER, KeyCode.DOWN);
 
-        Thread.sleep(1000000);
+        Assertions.assertEquals("B spell", ((TextArea) robot.lookup("#spellDesc").tryQuery().get()).getText());
 
+        
+        robot.clickOn("#inventoryTabDongle");
+        Assertions.assertFalse(((StackPane) robot.lookup("#inventorySlot0").tryQuery().get()).getChildren().get(0) instanceof ImageView);
+        Assertions.assertEquals("Weapon", ((Text) ((StackPane) robot.lookup("#inventorySlot0").tryQuery().get()).getChildren().get(0)).getText());
+        Assertions.assertTrue(((StackPane) robot.lookup("#inventorySlot1").tryQuery().get()).getChildren().get(0) instanceof ImageView);
+
+        while (true);
+
+        /*
         robot.clickOn("#equipmentTabDongle");
 
-        robot.clickOn("#inventoryTabDongle");
+        
 
         robot.clickOn("#characterTab");
+
+         */
 
     }
 }
