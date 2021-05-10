@@ -13,6 +13,9 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.gui.CharacterModel;
 import model.gui.MenuModel;
+import model.items.equipments.Equipment;
+import model.items.equipments.EquipmentPart;
+import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
 import model.items.weapons.WeaponType;
@@ -153,11 +156,13 @@ public class CharacterTest {
         robot.clickOn("#inventoryTabDongle");
         robot.clickOn("#inventorySlot1");
 
-        ItemPickerModel.getInstance().setWeaponList(Collections.singletonList(new Weapon("Axe", "An axe", "She's sharp", WeaponType.COMMON, DamageType.SLASHING)));
+        ItemPickerModel.getInstance().setEquipmentList(Collections.singletonList(new Equipment("Headphones", "A simple pair of headphones, useless in fight", EquipmentPart.HEAD, 11, EquipmentType.LIGHT, 22, 33, 44, 55, 66, 77, 88)));
         robot.clickOn("#typePicker");
-        robot.type(KeyCode.DOWN, KeyCode.ENTER, KeyCode.TAB, KeyCode.ENTER);
+        robot.type(KeyCode.DOWN, KeyCode.DOWN, KeyCode.ENTER, KeyCode.TAB, KeyCode.ENTER);
         robot.clickOn("#selectItemButton");
         robot.clickOn("#inventorySlot1");
+
+        robot.clickOn("#equipAction");
 
         while (true);
     }
