@@ -106,8 +106,7 @@ public class ItemPickerView {
     /**
      * To update item list view
      */
-    public void updateList() {
-        ListView<Item> listView = ItemPickerController.getInstance().itemList;
-        // TODO
+    public void setListView(List<? extends Item> items) {
+        ItemPickerController.getInstance().itemList.setItems(FXCollections.observableArrayList(items));
     }
 }
