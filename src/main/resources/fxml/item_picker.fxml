@@ -37,9 +37,9 @@
               <ToolBar prefHeight="40.0" prefWidth="200.0">
                   <items>
                       <Pane HBox.hgrow="ALWAYS" />
-                      <Button disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectItemButtonOnClick" prefWidth="75.0" text="Select item" />
+                      <Button fx:id="selectItemButton" disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectItemButtonOnClick" prefWidth="75.0" text="Select item" />
                       <Separator />
-                      <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backButtonOnClick" prefWidth="75.0" text="Back" />
+                      <Button fx:id="backButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backButtonOnClick" prefWidth="75.0" text="Back" />
                   </items>
               </ToolBar>
          </children>
