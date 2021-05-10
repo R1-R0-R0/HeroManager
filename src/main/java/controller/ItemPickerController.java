@@ -82,13 +82,7 @@ public class ItemPickerController implements Initializable {
      */
     @FXML
     public void itemTypeSelectedEvent() {
-        ItemType selectedType = typePicker.getValue();
-
-        switch (selectedType) {
-            case WEAPONS:
-            case EQUIPMENTS:
-            case CONSUMABLES:
-        }
+        ItemPickerModel.getInstance().itemTypeSelectedEvent();
     }
 
     /**
