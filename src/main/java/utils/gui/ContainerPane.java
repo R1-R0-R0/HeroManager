@@ -49,7 +49,10 @@ public class ContainerPane<T> extends StackPane {
     public void setContainedObject(T containedObject) {
         this.containedObject = containedObject;
         super.getChildren().clear();
-        super.getChildren().add(new Text(containedObject.toString()));
+
+        Text text = new Text(containedObject.toString());
+        text.setWrappingWidth(super.getWidth());
+        super.getChildren().add(text);
     }
 
     /**
