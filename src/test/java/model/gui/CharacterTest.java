@@ -33,6 +33,8 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import java.util.Collections;
+
 @ExtendWith(ApplicationExtension.class)
 @DisplayName("Character view tests")
 public class CharacterTest {
@@ -83,7 +85,7 @@ public class CharacterTest {
 
     @Test
     @DisplayName("")
-    public void characterViewTest(FxRobot robot) {
+    public void characterViewTest(FxRobot robot) throws InterruptedException {
         TabPane tabPane = ((TabPane) robot.lookup("#tabPane").tryQuery().get());
 
         Assertions.assertEquals("Hiraye", tabPane.getTabs().get(0).getText());
@@ -106,8 +108,19 @@ public class CharacterTest {
         
         robot.clickOn("#inventoryTabDongle");
         Assertions.assertFalse(((StackPane) robot.lookup("#inventorySlot0").tryQuery().get()).getChildren().get(0) instanceof ImageView);
-        Assertions.assertEquals("Weapon", ((Text) ((StackPane) robot.lookup("#inventorySlot0").tryQuery().get()).getChildren().get(0)).getText());
+        // Assertions.assertEquals("Weapon", ((Text) ((StackPane) robot.lookup("#inventorySlot0").tryQuery().get()).getChildren().get(0)).getText());
         Assertions.assertTrue(((StackPane) robot.lookup("#inventorySlot1").tryQuery().get()).getChildren().get(0) instanceof ImageView);
+
+        robot.clickOn("#inventorySlot1");
+
+        ItemPickerModel.getInstance().setWeaponList(Collections.singletonList(new Weapon("Axe", "An axe", "She's sharp", WeaponType.COMMON, DamageType.SLASHING)));
+        robot.clickOn("#typePicker");
+        robot.type(KeyCode.DOWN, KeyCode.ENTER, KeyCode.TAB, KeyCode.ENTER);
+        robot.clickOn("#selectItemButton");
+
+        Assertions.assertFalse(((StackPane) robot.lookup("#inventorySlot1").tryQuery().get()).getChildren().get(0) instanceof ImageView);
+
+        robot.clickOn("#inventorySlot1");
 
         while (true);
 

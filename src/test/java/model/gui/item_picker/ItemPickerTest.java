@@ -39,7 +39,7 @@ class ItemPickerTest {
 
     @Start
     public void start(Stage primaryStage) {
-        ItemPickerModel model = new ItemPickerModel(primaryStage);
+        ItemPickerModel model = new ItemPickerModel(primaryStage, () -> {});
         model.setWeaponList(Collections.singletonList(weapon));
         model.setEquipmentList(Collections.singletonList(equipment));
         model.setConsumableList(Arrays.asList(consumable1, consumable2));
