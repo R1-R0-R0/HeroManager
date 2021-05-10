@@ -2,6 +2,7 @@ package view;
 
 import controller.ItemPickerController;
 import controller.Main;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ import model.items.Item;
 import model.items.ItemType;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * View manager of Item Picker view.
