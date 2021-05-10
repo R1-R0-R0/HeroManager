@@ -385,12 +385,12 @@ public class CharacterView {
                 pane.setCursor(Cursor.HAND);
                 Tooltip.install(pane, tooltip);
 
-                ImageView img = new ImageView();
-                img.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
-                img.setFitHeight(INVENTORY_ITEM_IMAGE_SIZE);
-                img.setFitWidth(INVENTORY_ITEM_IMAGE_SIZE);
+                ImageView imgPlus = new ImageView();
+                imgPlus.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
+                imgPlus.setFitHeight(INVENTORY_ITEM_IMAGE_SIZE);
+                imgPlus.setFitWidth(INVENTORY_ITEM_IMAGE_SIZE);
 
-                pane.getChildren().add(img);
+                pane.getChildren().add(imgPlus);
                 inventory.add(pane, j, i);
                 counter++;
             }
@@ -417,6 +417,9 @@ public class CharacterView {
     public void setInventory(List<Item> items) {
         int counter = 0;
 
+        Tooltip emptyTooltip = new Tooltip("Empty slot");
+        emptyTooltip.setShowDelay(Duration.ONE);
+
         ContainerPane<Item> pane;
         Tooltip tooltip;
         String selector;
@@ -431,6 +434,18 @@ public class CharacterView {
             Tooltip.install(pane, tooltip);
 
             counter++;
+        }
+
+        for (int i = counter; i < INVENTORY_SIZE*INVENTORY_SIZE; i++) {
+            selector = "#inventorySlot" + counter;
+            pane = ((ContainerPane<Item>) CharacterController.getInstance().inventoryPane.getScene().lookup(selector));
+            pane.clearContainedObject();
+
+            ImageView imgPlus = new ImageView();
+            imgPlus.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
+            imgPlus.setFitHeight(INVENTORY_ITEM_IMAGE_SIZE);
+            imgPlus.setFitWidth(INVENTORY_ITEM_IMAGE_SIZE);
+            pane.getChildren().add(imgPlus);
         }
     }
 
