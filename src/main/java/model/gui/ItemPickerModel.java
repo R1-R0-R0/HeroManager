@@ -79,7 +79,13 @@ public class ItemPickerModel {
     public ItemPickerModel(Stage owner, ItemType itemType) {
         this(owner);
 
-        ItemPickerView.getInstance().setItemType(itemType);
+        try {
+            ItemPickerView.getInstance().setItemType(itemType);
+        } catch (UnsupportedItemException e) {
+            e.printStackTrace();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            System.exit(1);
+        }
     }
 
     /**
