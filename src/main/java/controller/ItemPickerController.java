@@ -85,7 +85,13 @@ public class ItemPickerController implements Initializable {
      */
     @FXML
     public void itemTypeSelectedEvent() {
-        ItemPickerModel.getInstance().itemTypeSelectedEvent();
+        try {
+            ItemPickerModel.getInstance().itemTypeSelectedEvent();
+        } catch (UnsupportedItemException e) {
+            e.printStackTrace();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            System.exit(1);
+        }
     }
 
     /**
