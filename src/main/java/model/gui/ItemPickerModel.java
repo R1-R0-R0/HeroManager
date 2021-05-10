@@ -184,7 +184,14 @@ public class ItemPickerModel {
      * @return user selected item
      */
     public Item getSelectedItem() {
-        return ItemPickerController.getInstance().selectedItem;
+        return selectedItem;
+    }
+
+    /**
+     * To confirm user selection and close view
+     */
+    public void confirmItemSelection() {
+        ItemPickerView.getInstance().close();
     }
 
     /**
