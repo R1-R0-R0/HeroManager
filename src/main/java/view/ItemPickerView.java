@@ -91,7 +91,7 @@ public class ItemPickerView {
      * @param itemType selected item type
      */
     public void setItemType(ItemType itemType) {
-        ItemPickerController.getInstance().typePicker.setDisable(true);
+        setTypePickerDisabled(true);
         ItemPickerController.getInstance().typePicker.setValue(itemType);
     }
 
