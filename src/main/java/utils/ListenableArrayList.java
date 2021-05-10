@@ -1,6 +1,7 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -33,6 +34,32 @@ public class ListenableArrayList<T> extends ArrayList<T> {
     @Override
     public boolean add(T object) {
         boolean res = super.add(object);
+        addListenersEvent();
+        return res;
+    }
+
+    /**
+     * Adding a collection to list, same as ADDALL method in ArrayList, but add listeners will be triggered when called
+     *
+     * @param c collection to add
+     * @return TRUE if object was added correctly, FALSE otherwise
+     */
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        boolean res = super.addAll(c);
+        addListenersEvent();
+        return res;
+    }
+
+    /**
+     * Adding a collection to list, same as ADDALL method in ArrayList, but add listeners will be triggered when called
+     *
+     * @param c collection to add
+     * @return TRUE if object was added correctly, FALSE otherwise
+     */
+    @Override
+    public boolean addAll(int index, Collection<? extends T> c) {
+        boolean res = super.addAll(index, c);
         addListenersEvent();
         return res;
     }
