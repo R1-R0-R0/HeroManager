@@ -25,9 +25,11 @@ public class ItemPickerModel {
 
     private static ItemPickerModel instance;
 
-    private final List<Weapon> weapons;
-    private final List<Equipment> equipments;
-    private final List<Consumable> consumables;
+    private Item selectedItem;
+
+    private final ListenableArrayList<Weapon> weapons;
+    private final ListenableArrayList<Equipment> equipments;
+    private final ListenableArrayList<Consumable> consumables;
 
     /**
      * 1st constructor of this class.
