@@ -89,9 +89,9 @@ public class ItemPickerModel {
     }
 
     /**
-     * Called when user selected an item type
+     * Called when user selected an item type. (Also called by model if item lists are updated)
      */
-    public void itemTypeSelectedEvent() {
+    public void itemTypeSelectedEvent() throws UnsupportedItemException {
         ItemPickerView view = ItemPickerView.getInstance();
         ItemType selectedType = ItemPickerController.getInstance().typePicker.getValue();
 
