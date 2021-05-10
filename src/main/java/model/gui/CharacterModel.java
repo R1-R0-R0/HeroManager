@@ -1,11 +1,23 @@
 package model.gui;
 
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.WindowEvent;
 import model.items.Item;
 import model.items.ItemType;
 import model.items.equipments.Equipment;
 import model.items.equipments.EquipmentParts;
+import model.items.weapons.Weapon;
 import model.job.Job;
+import utils.gui.Dialog;
 import view.CharacterView;
+import view.ItemPickerView;
+
+import java.util.Optional;
 
 /**
  * Model of Character Card view.
@@ -70,9 +82,47 @@ public class CharacterModel {
      * Event handler when user clicks on item slot in inventory tab
      *
      * @param item selected item
+     * @param event information about event click
      */
-    public void inventoryClickedEvent(Item item) {
-        // TODO
+    public void inventoryClickedEvent(Item item, MouseEvent event) {
+        if (item != null) {
+            ContextMenu clickMenu = new ContextMenu();
+
+            if (item instanceof Weapon || item instanceof Equipment) {
+                MenuItem equip = new MenuItem("Equip");
+                clickMenu.getItems().add(equip);
+            }
+
+            MenuItem info = new MenuItem("Info");
+
+            SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
+            MenuItem discard = new MenuItem("Discard");
+            discard.setId("discardAction");
+
+            discard.setOnAction(event1 -> {
+                Dialog confirmation = new Dialog(
+                        Alert.AlertType.CONFIRMATION,
+                        "Discard " + item.getName(),
+                        "Are you sure you want to drop " + item.getName() + " ?");
+
+                confirmation.getButtons().clear();
+                confirmation.getButtons().addAll(new ButtonType("Yes", ButtonBar.ButtonData.YES), new ButtonType("No", ButtonBar.ButtonData.NO));
+                Optional<ButtonType> result = confirmation.showAndWait();
+                if (result.get().getButtonData() == ButtonBar.ButtonData.YES) {
+                    getCharacter().getInventory().remove(item);
+                    CharacterView.getInstance().setInventory(getCharacter().getInventory());
+                }
+            });
+
+            clickMenu.getItems().addAll(info, separatorMenuItem, discard);
+            clickMenu.show((Node) event.getSource(), event.getScreenX(), event.getScreenY());
+        } else {
+            new ItemPickerModel(CharacterView.getInstance().getStage(), () -> {
+                Item selectedItem = ItemPickerModel.getInstance().getSelectedItem();
+                getCharacter().getInventory().add(selectedItem);
+                CharacterView.getInstance().setInventory(getCharacter().getInventory());
+            });
+        }
     }
 
     /**
@@ -90,8 +140,8 @@ public class CharacterModel {
      * @param itemType item type to select
      */
     public void openItemPicker(ItemType itemType) {
-        ItemPickerModel itemPicker = new ItemPickerModel(CharacterView.getInstance().getStage(), itemType);
-        Item selectedItem = itemPicker.getSelectedItem();
+        // ItemPickerModel itemPicker = new ItemPickerModel(CharacterView.getInstance().getStage(), itemType);
+        // Item selectedItem = itemPicker.getSelectedItem();
 
         // TODO
     }
@@ -102,8 +152,8 @@ public class CharacterModel {
      * @param equipmentType equipment type to select
      */
     public void openItemPicker(Class<? extends Equipment> equipmentType) {
-        ItemPickerModel itemPicker = new ItemPickerModel(CharacterView.getInstance().getStage(), ItemType.EQUIPMENTS);
-        Item selectedItem = itemPicker.getSelectedItem();
+        // ItemPickerModel itemPicker = new ItemPickerModel(CharacterView.getInstance().getStage(), ItemType.EQUIPMENTS);
+        // Item selectedItem = itemPicker.getSelectedItem();
 
         // TODO
     }
