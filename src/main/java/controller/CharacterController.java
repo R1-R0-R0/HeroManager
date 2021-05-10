@@ -158,7 +158,7 @@ public class CharacterController implements Initializable {
         AnchorPane.setLeftAnchor(inventory, 10.0);
         inventoryPane.getChildren().add(inventory);
 
-        spellList.setOnMouseClicked(event -> CharacterView.getInstance().setSpellDetails(spellList.getSelectionModel().getSelectedItem()));
+        spellList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> CharacterView.getInstance().setSpellDetails(newValue));
 
         headImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
         bodyImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
