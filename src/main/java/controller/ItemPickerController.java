@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.ItemType;
 
@@ -23,21 +25,31 @@ import java.util.ResourceBundle;
 public class ItemPickerController implements Initializable {
 
     private static ItemPickerController instance;
+
     /**
      * Picker (ComboBox) of item type to choose
      */
     @FXML
     public ComboBox<ItemType> typePicker;
+
     /**
      * List of selected items type
      */
     @FXML
     public ListView<Item> itemList;
+
     /**
      * Label view to show selected item name
      */
     @FXML
     public Label itemNameLabel;
+
+    /**
+     * Pane to show all information about selected item
+     */
+    @FXML
+    public AnchorPane itemInfoPane;
+
     /**
      * Selected item by user
      */
