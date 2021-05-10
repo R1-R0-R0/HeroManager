@@ -2,10 +2,7 @@ package model.gui;
 
 import controller.CharacterController;
 import javafx.scene.Node;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +22,8 @@ import model.job.JobType;
 import model.race.Alignment;
 import model.race.Race;
 import model.spell.Spell;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,6 +31,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.robot.Motion;
+import utils.gui.Dialog;
 
 import java.util.Collections;
 
@@ -105,7 +106,20 @@ public class CharacterTest {
 
         Assertions.assertEquals("B spell", ((TextArea) robot.lookup("#spellDesc").tryQuery().get()).getText());
 
+        /*
+        robot.clickOn("#equipmentTabDongle");
+
         
+
+        robot.clickOn("#characterTab");
+
+         */
+
+    }
+
+    @Test
+    @DisplayName("Inventory adding item tests")
+    public void inventoryAddItemTest(FxRobot robot) {
         robot.clickOn("#inventoryTabDongle");
         Assertions.assertFalse(((StackPane) robot.lookup("#inventorySlot0").tryQuery().get()).getChildren().get(0) instanceof ImageView);
         // Assertions.assertEquals("Weapon", ((Text) ((StackPane) robot.lookup("#inventorySlot0").tryQuery().get()).getChildren().get(0)).getText());
@@ -121,17 +135,30 @@ public class CharacterTest {
         Assertions.assertFalse(((StackPane) robot.lookup("#inventorySlot1").tryQuery().get()).getChildren().get(0) instanceof ImageView);
 
         robot.clickOn("#inventorySlot1");
+        robot.clickOn("#discardAction");
+        robot.clickOn(robot.lookup(node -> node instanceof Button && ((Button) node).getText().equals("No")).tryQuery().get());
+
+        Assertions.assertFalse(((StackPane) robot.lookup("#inventorySlot1").tryQuery().get()).getChildren().get(0) instanceof ImageView);
+
+        robot.clickOn("#inventorySlot1");
+        robot.clickOn("#discardAction");
+        robot.clickOn(robot.lookup(node -> node instanceof Button && ((Button) node).getText().equals("Yes")).tryQuery().get());
+
+        Assertions.assertTrue(((StackPane) robot.lookup("#inventorySlot1").tryQuery().get()).getChildren().get(0) instanceof ImageView);
+    }
+
+    @Test
+    @DisplayName("Equip equipment in inventory test")
+    public void equipEquipmentInventoryTest(FxRobot robot) {
+        robot.clickOn("#inventoryTabDongle");
+        robot.clickOn("#inventorySlot1");
+
+        ItemPickerModel.getInstance().setWeaponList(Collections.singletonList(new Weapon("Axe", "An axe", "She's sharp", WeaponType.COMMON, DamageType.SLASHING)));
+        robot.clickOn("#typePicker");
+        robot.type(KeyCode.DOWN, KeyCode.ENTER, KeyCode.TAB, KeyCode.ENTER);
+        robot.clickOn("#selectItemButton");
+        robot.clickOn("#inventorySlot1");
 
         while (true);
-
-        /*
-        robot.clickOn("#equipmentTabDongle");
-
-        
-
-        robot.clickOn("#characterTab");
-
-         */
-
     }
 }
