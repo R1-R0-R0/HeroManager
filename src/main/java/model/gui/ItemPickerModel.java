@@ -2,12 +2,17 @@ package model.gui;
 
 import controller.CharacterCreatorController;
 import controller.ItemPickerController;
+import exceptions.UnsupportedItemException;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.items.Item;
 import model.items.ItemType;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
+import utils.ListenableArrayList;
+import utils.SimpleListener;
+import utils.gui.Dialog;
 import view.CharacterCreatorView;
 import view.ItemPickerView;
 

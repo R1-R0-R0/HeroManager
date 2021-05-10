@@ -1,16 +1,16 @@
 package controller;
 
+import exceptions.UnsupportedItemException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.ItemType;
+import utils.gui.Dialog;
 
 import java.net.URL;
 import java.util.ResourceBundle;

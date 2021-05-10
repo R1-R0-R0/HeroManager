@@ -2,15 +2,25 @@ package view;
 
 import controller.ItemPickerController;
 import controller.Main;
+import exceptions.UnsupportedItemException;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.ItemType;
+import model.items.consumables.Consumable;
+import model.items.equipments.Equipment;
+import model.items.weapons.Weapon;
 
 import java.io.IOException;
 import java.util.List;
