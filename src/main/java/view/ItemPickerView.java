@@ -88,13 +88,14 @@ public class ItemPickerView {
     }
 
     /**
-     * Called when user selected an item type, and enables all another fields.
+     * Used to force an item type to user
      *
      * @param itemType selected item type
      */
-    public void setItemType(ItemType itemType) {
+    public void setItemType(ItemType itemType) throws UnsupportedItemException {
         setTypePickerDisabled(true);
         ItemPickerController.getInstance().typePicker.setValue(itemType);
+        ItemPickerModel.getInstance().itemTypeSelectedEvent();
     }
 
     /**
