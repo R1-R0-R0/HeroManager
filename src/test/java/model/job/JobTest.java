@@ -2,7 +2,7 @@ package model.job;
 
 
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentPart;
 import model.items.equipments.EquipmentType;
 import model.race.Alignment;
 import model.race.Race;
@@ -17,44 +17,45 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class JobTest {
 
-    Equipment head = new Equipment("helmet", "protects from arrows", EquipmentParts.HEAD,1, EquipmentType.HEAVY,
-            5,4,3,2,1,5,4);
+    Equipment head = new Equipment("helmet", "protects from arrows", EquipmentPart.HEAD, 1, EquipmentType.HEAVY,
+            5, 4, 3, 2, 1, 5, 4);
 
 
-
-    Job wizard = new Job("Grosflan", "A big Flan", Gender.MAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN,JobType.WIZARD);
-    Job warlock = new Job("Airels", "Airels nothing more to say", Gender.MAN, Alignment.NEUTRAL_GOOD, Race.GNOME,JobType.WARLOCK);
-    Job paladin = new Job("M.", "I love open shoes", Gender.MAN, Alignment.LAWFUL_EVIL, Race.HALFLING,JobType.PALADIN);
-    Job alreadyExistingBard = new Job("Hatsune", "Young virtual singer",Gender.WOMAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.BARD,
-            new ArrayList<>(),new ArrayList<>(), 15,14, 13, 12, 11, 10, 9, 40,35,5,
-         0, new ArrayList<>() , new ArrayList<>(), Collections.singletonList(head));
+    Job wizard = new Job("Grosflan", "A big Flan", Gender.MAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.WIZARD);
+    Job warlock = new Job("Airels", "Airels nothing more to say", Gender.MAN, Alignment.NEUTRAL_GOOD, Race.GNOME, JobType.WARLOCK);
+    Job paladin = new Job("M.", "I love open shoes", Gender.MAN, Alignment.LAWFUL_EVIL, Race.HALFLING, JobType.PALADIN);
+    Job alreadyExistingBard = new Job("Hatsune", "Young virtual singer", Gender.WOMAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.BARD,
+            new ArrayList<>(), new ArrayList<>(), 15, 14, 13, 12, 11, 10, 9, 40, 35, 5,
+            0, new ArrayList<>(), Collections.singletonList(head), new ArrayList<>());
 
 
     @Test
-    public void levelUpTest(){
+    public void levelUpTest() {
         int level1 = 1;
         int level2 = 2;
         int level5 = 5;
 
-        assertEquals(wizard.getLevel(),level1);
+        assertEquals(wizard.getLevel(), level1);
         wizard.levelUp(); // level 2
-        assertEquals(wizard.getLevel(),level2);
+
+        assertEquals(warlock.getLevel(), level1);
+        assertEquals(wizard.getLevel(), level2);
         wizard.levelUp(); // level 3
         wizard.levelUp(); // level 4
         assertNotEquals(wizard.getLevel(), level5);
         wizard.levelUp(); // level 5
-        assertEquals(wizard.getLevel(),level5);
+        assertEquals(wizard.getLevel(), level5);
 
     }
 
     @Test
-    public void getProficiencyLevelTest(){
-        assertEquals(wizard.getProficiencyLevel(),2);
-        assertEquals(alreadyExistingBard.getProficiencyLevel(),5);
+    public void getProficiencyLevelTest() {
+        assertEquals(wizard.getProficiencyLevel(), 2);
+        assertEquals(alreadyExistingBard.getProficiencyLevel(), 5);
     }
 
     @Test
-    public void spellSlotsTest(){
+    public void spellSlotsTest() {
 
         int level2 = 2;
         int[] spellSlotLevel1Wizard = new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -84,12 +85,39 @@ public class JobTest {
     }
 
     @Test
-    public void getHealthPointTest(){
-        //TODO: Wait implementation of JobType enum
+    public void getHealthPointTest() {
+        int wizardHealthPoints = wizard.getHealthPoints();
+        int wizardMaxHealthPoints = wizard.getMaxHp();
+
+        int bardHp = alreadyExistingBard.getHealthPoints(); //35
+        int bardMaxHp = alreadyExistingBard.getMaxHp();     // hp calcul : 8+0 + 14*(5 + 0) = 78
+
+
+        assertEquals(wizardHealthPoints,wizardMaxHealthPoints);
+        assertTrue(bardHp<=bardMaxHp);
+        assertEquals(bardMaxHp,78);
+
+        alreadyExistingBard.levelUp();
+        bardMaxHp = alreadyExistingBard.getMaxHp(); // Hp calcul : 8+0 + 15*5 + 0 = 83
+        assertEquals(bardMaxHp,83);
+
+        alreadyExistingBard.setAdditionalStatPoints(3);
+        alreadyExistingBard.increaseRobustness();
+        alreadyExistingBard.increaseRobustness();
+        alreadyExistingBard.increaseRobustness();
+
+        assertEquals(alreadyExistingBard.getRobustness(),14); // getModificator(Robustness) should be equal 2
+        assertEquals(alreadyExistingBard.getModificator(alreadyExistingBard.getRobustness()),2);
+
+        bardMaxHp = alreadyExistingBard.getMaxHp(); // 8 + 2 + 15 * (5 + 2) = 115
+
+        assertEquals(bardMaxHp,115);
+
     }
 
+
     @Test
-    public void statPointsTest(){
+    public void statPointsTest() {
 
         int actualBardPoints = alreadyExistingBard.getAdditionalStatPoints();
         wizard.setAdditionalStatPoints(15);
@@ -103,7 +131,7 @@ public class JobTest {
     }
 
     @Test
-    public void getModificatorTest(){
+    public void getModificatorTest() {
         int pointInStat5 = 5;
         int pointInStat14 = 14;
         int pointInStat18 = 18;
@@ -115,15 +143,16 @@ public class JobTest {
         assertEquals(wizard.getModificator(pointInStat5), wantedModifMinus3);
         assertEquals(wizard.getModificator(pointInStat14), wantedModifPlus2);
         assertEquals(wizard.getModificator(pointInStat18), wantedModifPlus4);
-        assertEquals(wizard.getModificator(120),0); // 120 should not be possible default return 0
+        assertEquals(wizard.getModificator(120), 0); // 120 should not be possible default return 0
     }
 
     @Test
-    public void getStrengthTest(){
+    public void getStrengthTest() {
 
         int wantedBaseStr14 = 14;
         int wantedBaseStr15 = 15;
-        assertEquals(wantedBaseStr14,alreadyExistingBard.getStrength());
+
+        assertEquals(wantedBaseStr14, alreadyExistingBard.getStrength());
 
         alreadyExistingBard.increaseStrength(); // not increasing because alreadyExistingBard have 0 stats points
         assertNotEquals(wantedBaseStr15, alreadyExistingBard.getStrength());
@@ -139,11 +168,26 @@ public class JobTest {
     }
 
     @Test
-    public void getDexterityTest(){
+    public void getStrengthBonusTest(){
+
+        int wantedBoostStr2 = 2; // DragonBornBonus
+        int wantedBoostStr7 = 5 + 2; // head bonus + DragonBorn bonus
+
+        assertTrue(alreadyExistingBard.getEquippedEquipments().contains(head));
+        assertEquals(wantedBoostStr7,alreadyExistingBard.getStrengthBoost());
+
+        alreadyExistingBard.removeEquippedEquipment(head);
+
+        assertFalse(alreadyExistingBard.getEquippedEquipments().contains(head));
+        assertEquals(wantedBoostStr2,alreadyExistingBard.getStrengthBoost());
+    }
+
+    @Test
+    public void getDexterityTest() {
 
         int wantedDex13 = 13;
         int wantedDex14 = 14;
-        assertEquals(wantedDex13,alreadyExistingBard.getDexterity());
+        assertEquals(wantedDex13, alreadyExistingBard.getDexterity());
 
         alreadyExistingBard.increaseDexterity(); // not increasing because alreadyExistingBard have 0 stats points
         assertNotEquals(wantedDex14, alreadyExistingBard.getDexterity());
@@ -177,6 +221,7 @@ public class JobTest {
         assertEquals(wantedRob11, alreadyExistingBard.getRobustness());
 
     }
+
     @Test
     public void getIntelligenceTest() {
 
@@ -241,16 +286,16 @@ public class JobTest {
     }
 
     @Test
-    public void getSpeedTest(){
+    public void getSpeedTest() {
         int wantedSpeedBard = 40;
         int wantedSpeedDragonBorn = 30;
 
-        assertEquals(alreadyExistingBard.getSpeed(),wantedSpeedBard);
+        assertEquals(alreadyExistingBard.getSpeed(), wantedSpeedBard);
         assertEquals(wizard.getSpeed(), wantedSpeedDragonBorn);
     }
 
     @Test
-    public void getArmor(){
+    public void getArmor() {
         int wantedArmor10 = 10;
         int wantedArmor20 = 20;
 
@@ -260,16 +305,16 @@ public class JobTest {
     }
 
     @Test
-    public void getRaceTest(){
+    public void getRaceTest() {
         Race dragonBorn = Race.DRAGONBORN;
         Race gnome = Race.GNOME;
 
-        assertEquals(wizard.getRaceType(),dragonBorn);
+        assertEquals(wizard.getRaceType(), dragonBorn);
         assertEquals(warlock.getRaceType(), gnome);
     }
 
     @Test
-    public void getJobType(){
+    public void getJobType() {
         JobType wizard = JobType.WIZARD;
         JobType warlock = JobType.WARLOCK;
         JobType bard = JobType.BARD;
@@ -280,20 +325,20 @@ public class JobTest {
     }
 
     @Test
-    public void getNameTest(){
+    public void getNameTest() {
         String grosflan = "Grosflan";
         String airels = "Airels";
         String hatsune = "Hatsune";
 
         assertEquals(wizard.getName(), grosflan);
-        assertEquals(warlock.getName(),airels);
+        assertEquals(warlock.getName(), airels);
         assertEquals(alreadyExistingBard.getName(), hatsune);
 
-        assertEquals(wizard.toString(),grosflan);
+        assertEquals(wizard.toString(), grosflan);
     }
 
     @Test
-    public void getGenderTest(){
+    public void getGenderTest() {
         Gender man = Gender.MAN;
         Gender woman = Gender.WOMAN;
 
@@ -303,15 +348,16 @@ public class JobTest {
     }
 
     @Test
-    public void getDescriptionTest(){
+    public void getDescriptionTest() {
         String airels = "Airels nothing more to say";
         String hatsune = "Young virtual singer";
 
         assertEquals(warlock.getDescription(), airels);
         assertEquals(alreadyExistingBard.getDescription(), hatsune);
     }
+
     @Test
-    public void getInventoryTest(){
+    public void getInventoryTest() {
 
         assertTrue(alreadyExistingBard.getInventory().contains(head));
 
@@ -320,10 +366,10 @@ public class JobTest {
     }
 
     @Test
-    public void spellInventoryTest(){
+    public void spellInventoryTest() {
 
-        Spell fireBall = new Spell("Fireball","Launch a ball of fire dealing magical damages","Fire","1 turn",
-                "no duration",5,35, JobType.WIZARD,true,
+        Spell fireBall = new Spell("Fireball", "Launch a ball of fire dealing magical damages", "Fire", "1 turn",
+                "no duration", 5, 35, JobType.WIZARD, true,
                 Collections.singletonList(Component.VOCAL));
 
         assertFalse(wizard.getSpellInventory().contains(fireBall)); //shouldn't contain the spell yet
@@ -333,9 +379,9 @@ public class JobTest {
     }
 
     @Test
-    public void improvementTest(){
-        Improvement dragonAncestry   = Improvement.DRACONIC_ANCESTRY;
-        Improvement breathWeapon     = Improvement.BREATH_WEAPON;
+    public void improvementTest() {
+        Improvement dragonAncestry = Improvement.DRACONIC_ANCESTRY;
+        Improvement breathWeapon = Improvement.BREATH_WEAPON;
         Improvement damageResistance = Improvement.DAMAGE_RESISTANCE;
 
         assertTrue(wizard.getImprovements().contains(dragonAncestry));

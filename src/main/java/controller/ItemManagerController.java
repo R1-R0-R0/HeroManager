@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
 import model.gui.ItemManagerModel;
 import model.items.Item;
 import model.items.ItemType;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentPart;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.WeaponType;
@@ -74,7 +74,7 @@ public class ItemManagerController implements Initializable {
      * Picker (ChoiceBox) to choose what kind of equipment is (head, body, ...)
      */
     @FXML
-    public ChoiceBox<EquipmentParts> equipmentPartPicker;
+    public ChoiceBox<EquipmentPart> equipmentPartPicker;
     /**
      * Picker(ChoiceBox) to select what kind of equipment is (weight)
      */
@@ -126,7 +126,7 @@ public class ItemManagerController implements Initializable {
         ObservableList<DamageType> damageTypeObservableList = FXCollections.observableArrayList(DamageType.values());
         damageTypePicker.setItems(damageTypeObservableList);
 
-        ObservableList<EquipmentParts> equipmentPartObservableList = FXCollections.observableArrayList(EquipmentParts.values());
+        ObservableList<EquipmentPart> equipmentPartObservableList = FXCollections.observableArrayList(EquipmentPart.values());
         equipmentPartPicker.setItems(equipmentPartObservableList);
         ObservableList<EquipmentType> equipmentTypeObservableList = FXCollections.observableArrayList(EquipmentType.values());
         equipmentTypePicker.setItems(equipmentTypeObservableList);

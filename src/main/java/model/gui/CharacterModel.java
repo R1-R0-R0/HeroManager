@@ -1,17 +1,9 @@
 package model.gui;
 
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.WindowEvent;
 import model.items.Item;
 import model.items.ItemType;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentParts;
-import model.items.weapons.Weapon;
+import model.items.equipments.EquipmentPart;
 import model.job.Job;
 import utils.gui.Dialog;
 import view.CharacterView;
@@ -130,7 +122,7 @@ public class CharacterModel {
      *
      * @param equipmentPart part of equipment
      */
-    public void equipmentImageOnClick(EquipmentParts equipmentPart) {
+    public void equipmentImageOnClick(EquipmentPart equipmentPart) {
         // TODO
     }
 

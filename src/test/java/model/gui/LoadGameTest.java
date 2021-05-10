@@ -22,6 +22,7 @@ import view.MenuView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 @ExtendWith(ApplicationExtension.class)
 public class LoadGameTest {

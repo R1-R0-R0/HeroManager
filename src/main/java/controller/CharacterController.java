@@ -228,7 +228,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void headImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.HEAD);
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.HEAD);
     }
 
     /**
@@ -236,7 +236,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void bodyImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.BODY);
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.BODY);
     }
 
     /**
@@ -244,7 +244,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void mantleImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.MANTLE);
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.MANTLE);
     }
 
     /**
@@ -252,7 +252,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void beltImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.BELT);
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.BELT);
     }
 
     /**
@@ -260,7 +260,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void legsImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.LEGS);
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.LEGS);
     }
 
     /**
@@ -268,7 +268,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void feetImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.FEET);
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.FEET);
     }
 
     /**
@@ -276,7 +276,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void amuletImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.AMULET);
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.AMULET);
     }
 
     /**
@@ -284,7 +284,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void ring1ImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.RING);
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.RING);
     }
 
     /**
@@ -292,6 +292,6 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void ring2ImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.RING);
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.RING);
     }
 }
