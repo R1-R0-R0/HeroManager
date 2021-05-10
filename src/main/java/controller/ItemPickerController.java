@@ -93,7 +93,7 @@ public class ItemPickerController implements Initializable {
      */
     @FXML
     public void selectItemButtonOnClick() {
-        if (selectedItem == null) return;
+        ItemPickerModel.getInstance().confirmItemSelection();
     }
 
     /**
