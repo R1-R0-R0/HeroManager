@@ -107,6 +107,6 @@ public class ItemPickerController implements Initializable {
      */
     @FXML
     public void backButtonOnClick() {
-
+        ItemPickerModel.getInstance().back();
     }
 }
