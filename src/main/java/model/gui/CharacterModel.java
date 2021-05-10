@@ -1,13 +1,16 @@
 package model.gui;
 
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import model.items.Item;
 import model.items.ItemType;
 import model.items.equipments.Equipment;
 import model.items.equipments.EquipmentPart;
+import model.items.weapons.Weapon;
 import model.job.Job;
 import utils.gui.Dialog;
 import view.CharacterView;
-import view.ItemPickerView;
 
 import java.util.Optional;
 
@@ -73,7 +76,7 @@ public class CharacterModel {
     /**
      * Event handler when user clicks on item slot in inventory tab
      *
-     * @param item selected item
+     * @param item  selected item
      * @param event information about event click
      */
     public void inventoryClickedEvent(Item item, MouseEvent event) {

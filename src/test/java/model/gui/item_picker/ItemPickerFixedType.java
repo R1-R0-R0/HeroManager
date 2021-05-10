@@ -8,7 +8,7 @@ import model.items.Item;
 import model.items.ItemType;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentPart;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
@@ -29,7 +29,7 @@ import java.util.Collections;
 public class ItemPickerFixedType {
 
     private static final Weapon weapon = new Weapon("Axe", "An axe", "She's sharp", WeaponType.COMMON, DamageType.SLASHING);
-    private static final Equipment equipment = new Equipment("Headphones", "A simple pair of headphones, useless in fight", EquipmentParts.HEAD, 11, EquipmentType.LIGHT, 22, 33, 44, 55, 66, 77, 88);
+    private static final Equipment equipment = new Equipment("Headphones", "A simple pair of headphones, useless in fight", EquipmentPart.HEAD, 11, EquipmentType.LIGHT, 22, 33, 44, 55, 66, 77, 88);
     private static final Consumable
             consumable1 = new Consumable("A potion", "Unknown potion. Will you drink it ?"),
             consumable2 = new Consumable("Gameboy", "A simple gameboy.");
