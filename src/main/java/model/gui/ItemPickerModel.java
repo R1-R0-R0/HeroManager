@@ -165,6 +165,22 @@ public class ItemPickerModel {
     }
 
     /**
+     * Save selected item and show its information
+     * @param item
+     */
+    public void setSelectedItem(Item item) {
+        selectedItem = item;
+
+        try {
+            ItemPickerView.getInstance().showItemInfo(item);
+        } catch (UnsupportedItemException e) {
+            e.printStackTrace();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            System.exit(1);
+        }
+    }
+
+    /**
      * @return user selected item
      */
     public Item getSelectedItem() {
