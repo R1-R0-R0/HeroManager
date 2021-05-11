@@ -736,8 +736,7 @@ public class Job {
             }
             default -> {
                 equipped = equippedEquipments.getLeftRing();
-                removeLeftRing();
-                addLeftRing(equipment);
+                replaceLeftRing(equipment);
             }
 
         }
@@ -745,6 +744,37 @@ public class Job {
             removeFromInventory(equipment);
         inventory.add(equipped);
     }
+
+    /**
+     * Replace equipped Left ring by param
+     * @param equipment
+     */
+    public void replaceLeftRing(Equipment equipment){
+        if(equipment.getEquipmentPart() != EquipmentPart.RING)
+            return;
+
+        removeLeftRing();
+        addLeftRing(equipment);
+    }
+
+    /**
+     * Replace equipped right ring by param
+     * @param equipment
+     */
+    public void replaceRightRing(Equipment equipment){
+
+        if(equipment.getEquipmentPart() != EquipmentPart.RING)
+            return;
+
+        Equipment equipped = equippedEquipments.getLeftRing();
+        removeRightRing();
+        addRightRing(equipment);
+
+        if(equippedEquipments.getEquippedList().contains(equipment))
+            removeFromInventory(equipment);
+        inventory.add(equipped);
+    }
+
 
     /**
      * allow to increase base Strength can't be superior from 15 at character creation
