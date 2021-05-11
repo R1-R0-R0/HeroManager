@@ -541,9 +541,12 @@ public class Job {
     }
 
     public void removeFromInventory(Equipment equipment){
+        if(equipment == null){
+            return;
+        }
         List<Item> newInventory = new ArrayList<>();
         for (Item item: inventory) {
-            if(!item.getName().equals(equipment.getName())){
+            if(item != null && !item.getName().equals(equipment.getName())){
                 newInventory.add(item);
             }
 
@@ -755,8 +758,15 @@ public class Job {
         if(equipment.getEquipmentPart() != EquipmentPart.RING)
             return;
 
+        Equipment equipped = equippedEquipments.getLeftRing();
         removeLeftRing();
         addLeftRing(equipment);
+
+        if(equippedEquipments.getEquippedList().contains(equipment))
+            removeFromInventory(equipment);
+        if(!inventory.contains(equipped)) {
+            inventory.add(equipped);
+        }
     }
 
     /**
@@ -768,7 +778,7 @@ public class Job {
         if(equipment.getEquipmentPart() != EquipmentPart.RING)
             return;
 
-        Equipment equipped = equippedEquipments.getLeftRing();
+        Equipment equipped = equippedEquipments.getRightRing();
         removeRightRing();
         addRightRing(equipment);
 
