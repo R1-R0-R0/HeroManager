@@ -445,7 +445,6 @@ public class Job {
             result += improve.getSpeedBoost();
         }
 
-        result += race.getSpeed();
         if(equippedEquipments.getEquippedList() != null) {
             for (Equipment equip : equippedEquipments.getEquippedList()) {
                 if(equip != null)
