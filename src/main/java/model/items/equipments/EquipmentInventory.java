@@ -199,7 +199,7 @@ public class EquipmentInventory {
      * @param equipment
      */
     public void addHead(Equipment equipment){
-        if (equipment.getEquipmentPart() == EquipmentPart.HEAD)
+        if (head == null && equipment.getEquipmentPart() == EquipmentPart.HEAD)
             this.head = equipment;
     }
     /**
@@ -207,7 +207,7 @@ public class EquipmentInventory {
      * @param equipment
      */
     public void addHands(Equipment equipment){
-        if(equipment.getEquipmentPart() == EquipmentPart.HANDS)
+        if(hands == null && equipment.getEquipmentPart() == EquipmentPart.HANDS)
             this.hands = equipment;
     }
     /**
@@ -215,7 +215,7 @@ public class EquipmentInventory {
      * @param equipment
      */
     public void addBelt(Equipment equipment){
-        if(equipment.getEquipmentPart() == EquipmentPart.BELT)
+        if(belt == null && equipment.getEquipmentPart() == EquipmentPart.BELT)
             this.belt = equipment;
     }
     /**
@@ -223,7 +223,7 @@ public class EquipmentInventory {
      * @param equipment
      */
     public void addFeet(Equipment equipment){
-        if(equipment.getEquipmentPart() == EquipmentPart.FEET)
+        if(feet == null && equipment.getEquipmentPart() == EquipmentPart.FEET)
             this.feet = equipment;
     }
     /**
@@ -231,7 +231,7 @@ public class EquipmentInventory {
      * @param equipment
      */
     public void addLegs(Equipment equipment){
-        if(equipment.getEquipmentPart() == EquipmentPart.LEGS)
+        if(legs == null && equipment.getEquipmentPart() == EquipmentPart.LEGS)
             this.legs = equipment;
     }
     /**
@@ -239,7 +239,7 @@ public class EquipmentInventory {
      * @param equipment
      */
     public void addMantle(Equipment equipment){
-        if(equipment.getEquipmentPart() == EquipmentPart.MANTLE)
+        if(mantle == null && equipment.getEquipmentPart() == EquipmentPart.MANTLE)
             this.mantle = equipment;
     }
     /**
@@ -247,7 +247,7 @@ public class EquipmentInventory {
      * @param equipment
      */
     public void addAmulet(Equipment equipment){
-        if(equipment.getEquipmentPart() == EquipmentPart.AMULET)
+        if(amulet == null && equipment.getEquipmentPart() == EquipmentPart.AMULET)
             this.amulet = equipment;
     }
     /**
@@ -255,7 +255,7 @@ public class EquipmentInventory {
      * @param equipment
      */
     public void addLeftRing(Equipment equipment){
-        if(equipment.getEquipmentPart() == EquipmentPart.RING)
+        if(leftRing == null && equipment.getEquipmentPart() == EquipmentPart.RING)
             this.leftRing = equipment;
     }
     /**
@@ -263,7 +263,7 @@ public class EquipmentInventory {
      * @param equipment
      */
     public void addRightRing(Equipment equipment){
-        if(equipment.getEquipmentPart() == EquipmentPart.RING)
+        if(rightRing == null && equipment.getEquipmentPart() == EquipmentPart.RING)
         this.rightRing = equipment;
     }
     /**
@@ -271,7 +271,7 @@ public class EquipmentInventory {
      * @param equipment
      */
     public void addBody(Equipment equipment){
-        if(equipment.getEquipmentPart() == EquipmentPart.BODY)
+        if(body ==null && equipment.getEquipmentPart() == EquipmentPart.BODY)
             this.body = equipment;
     }
 
