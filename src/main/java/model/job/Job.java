@@ -2,6 +2,7 @@ package model.job;
 
 import model.items.Item;
 import model.items.equipments.Equipment;
+import model.items.equipments.EquipmentInventory;
 import model.items.equipments.EquipmentPart;
 import model.race.Alignment;
 import model.race.Race;
@@ -32,8 +33,8 @@ public class Job {
     private final Alignment alignment;
     private final Race race;
     private final JobType jobType;
-    private final List<Item> inventory;
-    private List<Equipment> equippedEquipments = new ArrayList<>();
+    private List<Item> inventory;
+    private EquipmentInventory equippedEquipments;
     private final String name;
     private final String description;
     private int[] spellSlots;
@@ -72,7 +73,7 @@ public class Job {
 
     public Job(String name, String description, Gender gender, Alignment alignment, Race race, JobType jobType, List<Spell> spellInventory, List<JobSkill> skills,
                int level, int strength, int dexterity, int intelligence, int robustness, int wisdom, int charisma, int speed, int healthPoints, int armor,
-               int statsPoints, List<Improvement> improvements, List<Equipment> equippedEquipments, List<Item> inventory) {
+               int statsPoints, List<Improvement> improvements, EquipmentInventory equippedEquipments, List<Item> inventory) {
 
         this.name = name;
         this.description = description;
@@ -182,7 +183,7 @@ public class Job {
      */
     public void setHealthPoints(int healthPoints) {
         int max = getMaxHp();
-        if(healthPoints<max) {
+        if(healthPoints < max) {
             this.healthPoints = healthPoints;
         }else{
             this.healthPoints = max;
@@ -298,7 +299,7 @@ public class Job {
      */
     public int getArmorBoost() {
         int result = 0;
-        for (Equipment equip : equippedEquipments) {
+        for (Equipment equip : equippedEquipments.getEquippedList()) {
             result += equip.getArmorBonus();
         }
         return result;
@@ -316,7 +317,7 @@ public class Job {
 
         result += race.getStrengthBoost();
 
-        for (Equipment equip : equippedEquipments) {
+        for (Equipment equip : equippedEquipments.getEquippedList()) {
             result += equip.getStrengthBoost();
 
         }
@@ -335,7 +336,7 @@ public class Job {
 
         result += race.getDexterityBoost();
 
-        for (Equipment equip : equippedEquipments) {
+        for (Equipment equip : equippedEquipments.getEquippedList()) {
             result += equip.getDexterityBoost();
 
         }
@@ -354,7 +355,7 @@ public class Job {
 
         result += race.getRobustnessBoost();
 
-        for (Equipment equip : equippedEquipments) {
+        for (Equipment equip : equippedEquipments.getEquippedList()) {
             result += equip.getRobustnessBoost();
 
         }
@@ -373,7 +374,7 @@ public class Job {
 
         result += race.getIntelligenceBoost();
 
-        for (Equipment equip : equippedEquipments) {
+        for (Equipment equip : equippedEquipments.getEquippedList()) {
             result += equip.getIntelligenceBoost();
 
         }
@@ -392,7 +393,7 @@ public class Job {
 
         result += race.getWisdomBoost();
 
-        for (Equipment equip : equippedEquipments) {
+        for (Equipment equip : equippedEquipments.getEquippedList()) {
             result += equip.getWisdomBoost();
 
         }
@@ -411,7 +412,7 @@ public class Job {
 
         result += race.getCharismaBoost();
 
-        for (Equipment equip : equippedEquipments) {
+        for (Equipment equip : equippedEquipments.getEquippedList()) {
             result += equip.getCharismaBoost();
 
         }
@@ -430,7 +431,7 @@ public class Job {
 
         result += race.getSpeed();
 
-        for (Equipment equip : equippedEquipments) {
+        for (Equipment equip : equippedEquipments.getEquippedList()) {
             result += equip.getSpeedBoost();
 
         }
@@ -539,6 +540,17 @@ public class Job {
         return inventory;
     }
 
+    public void removeFromInventory(Equipment equipment){
+        List<Item> newInventory = new ArrayList<>();
+        for (Item item: inventory) {
+            if(!item.getName().equals(equipment.getName())){
+                newInventory.add(item);
+            }
+
+        }
+        inventory = newInventory;
+    }
+
     /**
      * @return name of the character
      */
@@ -585,42 +597,138 @@ public class Job {
      *
      * @return the list of equipped equipments
      */
-    public List<Equipment> getEquippedEquipments() {
+    public EquipmentInventory getEquippedEquipments() {
         return equippedEquipments;
     }
 
     /**
-     * remove an equipped equipment from the list
+     * remove an equipped equipment from the EquipmentInventory
      * @param equipment
      */
-    public void removeEquippedEquipment(Equipment equipment){
-        List<Equipment> newEquipped = new ArrayList<>();
-        for (Equipment equipped: equippedEquipments) {
-
-            if(!equipped.getName().equals(equipment.getName())){
-                newEquipped.add(equipped);
-            }
+    public void removeEquippedEquipment(Equipment equipment) {
+        if (equipment == null) {
+            return;
         }
-        equippedEquipments = newEquipped;
+        switch (equipment.getEquipmentPart()){
+            case BELT -> equippedEquipments.removeBelt();
+            case BODY -> equippedEquipments.removeBody();
+            case FEET -> equippedEquipments.removeFeet();
+            case HEAD -> equippedEquipments.removeHead();
+            case LEGS -> equippedEquipments.removeLegs();
+            case HANDS -> equippedEquipments.removeHands();
+            case AMULET -> equippedEquipments.removeAmulet();
+            case MANTLE -> equippedEquipments.removeMantle();
+            default -> removeLeftRing();
+        }
+
+        inventory.add(equipment);
     }
 
     /**
-     * add new equipped equipment if there's no equipped equipment of same EquipmentParts yet
+     * remove Left ring equipment
+     */
+    public void removeLeftRing(){
+        equippedEquipments.removeLeftRing();
+    }
+    /**
+     * remove Right ring equipment
+     */
+    public void removeRightRing(){
+        equippedEquipments.removeRightRing();
+    }
+
+    /**
+     * add new equipped equipment if there's no equipped equipment of same EquipmentPart yet and remove it from inventory
      * @param equipment
      */
     public void addEquippedEquipment(Equipment equipment){
-        int ringCount = 0;
-        for (Equipment equipped: equippedEquipments) {
-            if(equipped.getEquipmentPart() == EquipmentPart.RING){
-                ringCount++;
-            }
-            if(equipped.getEquipmentPart() != equipment.getEquipmentPart()){
-                equippedEquipments.add(equipment);
-            }
+        if(equipment == null){
+            return;
         }
+        switch (equipment.getEquipmentPart()){
+            case BELT -> equippedEquipments.addBelt(equipment);
+            case BODY -> equippedEquipments.addBody(equipment);
+            case FEET -> equippedEquipments.addFeet(equipment);
+            case HEAD -> equippedEquipments.addHead(equipment);
+            case LEGS -> equippedEquipments.addLegs(equipment);
+            case HANDS -> equippedEquipments.addHands(equipment);
+            case AMULET -> equippedEquipments.addAmulet(equipment);
+            case MANTLE -> equippedEquipments.addMantle(equipment);
+            default -> addLeftRing(equipment);
+        }
+        if(equippedEquipments.getEquippedList().contains(equipment))
+            removeFromInventory(equipment);
+    }
 
-        if(ringCount<2 && equipment.getEquipmentPart() == EquipmentPart.RING){
-            equippedEquipments.add(equipment);
+    /**
+     * add new LeftRing if there's no leftRing already equipped and remove it from inventory
+     * @param equipment
+     */
+    public void addLeftRing(Equipment equipment){
+        if(equipment == null){
+            return;
+        }
+        equippedEquipments.addLeftRing(equipment);
+        removeFromInventory(equipment);
+    }
+
+    /**
+     * add new RightRing if there's not RightRing already equipped and remove it from inventory
+     * @param equipment
+     */
+    public void addRightRing(Equipment equipment){
+        if(equipment == null){
+            return;
+        }
+        equippedEquipments.addRightRing(equipment);
+        removeFromInventory(equipment);
+    }
+
+    /**
+     * replace equippedEquipment by the param equipment
+     * @param equipment
+     */
+    public void replaceEquippedEquipment(Equipment equipment){
+        if(equipment == null){
+            return;
+        }
+        switch (equipment.getEquipmentPart()){
+            case BELT -> {
+                equippedEquipments.removeBelt();
+                equippedEquipments.addBelt(equipment);
+            }
+            case BODY -> {
+                equippedEquipments.removeBody();
+                equippedEquipments.addBody(equipment);
+            }
+            case FEET -> {
+                equippedEquipments.removeFeet();
+                equippedEquipments.addFeet(equipment);
+            }
+            case HEAD -> {
+                equippedEquipments.removeHead();
+                equippedEquipments.addHead(equipment);
+            }
+            case LEGS -> {
+                equippedEquipments.removeLegs();
+                equippedEquipments.addLegs(equipment);
+            }
+            case HANDS -> {
+                equippedEquipments.removeHands();
+                equippedEquipments.addHands(equipment);
+            }
+            case AMULET -> {
+                equippedEquipments.removeAmulet();
+                equippedEquipments.addAmulet(equipment);
+            }
+            case MANTLE -> {
+                equippedEquipments.removeMantle();
+                equippedEquipments.addMantle(equipment);
+            }
+            default -> {
+                removeLeftRing();
+                addLeftRing(equipment);
+            }
         }
     }
 
@@ -821,6 +929,22 @@ public class Job {
     public void levelUp() {
         level++;
         setSpellSlots(level);
+    }
+
+    /**
+     *
+     * @return the Alignment of the character
+     */
+    public Alignment getAlignment() {
+        return alignment;
+    }
+
+    /**
+     *
+     * @return the Race of the character
+     */
+    public Race getRace() {
+        return race;
     }
 
     /**

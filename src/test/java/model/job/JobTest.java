@@ -2,6 +2,7 @@ package model.job;
 
 
 import model.items.equipments.Equipment;
+import model.items.equipments.EquipmentInventory;
 import model.items.equipments.EquipmentPart;
 import model.items.equipments.EquipmentType;
 import model.race.Alignment;
@@ -19,6 +20,7 @@ public class JobTest {
 
     Equipment head = new Equipment("helmet", "protects from arrows", EquipmentPart.HEAD, 1, EquipmentType.HEAVY,
             5, 4, 3, 2, 1, 5, 4);
+    EquipmentInventory equippedInventory = new EquipmentInventory(head,null,null,null,null,null,null,null,null,null);
 
 
     Job wizard = new Job("Grosflan", "A big Flan", Gender.MAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.WIZARD);
@@ -26,7 +28,7 @@ public class JobTest {
     Job paladin = new Job("M.", "I love open shoes", Gender.MAN, Alignment.LAWFUL_EVIL, Race.HALFLING, JobType.PALADIN);
     Job alreadyExistingBard = new Job("Hatsune", "Young virtual singer", Gender.WOMAN, Alignment.CHAOTIC_EVIL, Race.DRAGONBORN, JobType.BARD,
             new ArrayList<>(), new ArrayList<>(), 15, 14, 13, 12, 11, 10, 9, 40, 35, 5,
-            0, new ArrayList<>(), Collections.singletonList(head), new ArrayList<>());
+            0, new ArrayList<>(), equippedInventory, new ArrayList<>());
 
 
     @Test
@@ -173,12 +175,12 @@ public class JobTest {
         int wantedBoostStr2 = 2; // DragonBornBonus
         int wantedBoostStr7 = 5 + 2; // head bonus + DragonBorn bonus
 
-        assertTrue(alreadyExistingBard.getEquippedEquipments().contains(head));
+        assertTrue(alreadyExistingBard.getEquippedEquipments().getEquippedList().contains(head));
         assertEquals(wantedBoostStr7,alreadyExistingBard.getStrengthBoost());
 
         alreadyExistingBard.removeEquippedEquipment(head);
 
-        assertFalse(alreadyExistingBard.getEquippedEquipments().contains(head));
+        assertFalse(alreadyExistingBard.getEquippedEquipments().getEquippedList().contains(head));
         assertEquals(wantedBoostStr2,alreadyExistingBard.getStrengthBoost());
     }
 
