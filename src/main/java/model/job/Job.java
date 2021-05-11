@@ -300,7 +300,8 @@ public class Job {
     public int getArmorBoost() {
         int result = 0;
         for (Equipment equip : equippedEquipments.getEquippedList()) {
-            result += equip.getArmorBonus();
+            if(equip != null)
+                result += equip.getArmorBonus();
         }
         return result;
     }
