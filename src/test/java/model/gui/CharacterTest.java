@@ -156,13 +156,17 @@ public class CharacterTest {
         robot.clickOn("#inventoryTabDongle");
         robot.clickOn("#inventorySlot1");
 
-        ItemPickerModel.getInstance().setEquipmentList(Collections.singletonList(new Equipment("Headphones", "A simple pair of headphones, useless in fight", EquipmentPart.HEAD, 11, EquipmentType.LIGHT, 22, 33, 44, 55, 66, 77, 88)));
+        Equipment headphones = new Equipment("Headphones", "A simple pair of headphones, useless in fight", EquipmentPart.HEAD, 11, EquipmentType.LIGHT, 22, 33, 44, 55, 66, 77, 88);
+
+        ItemPickerModel.getInstance().setEquipmentList(Collections.singletonList(headphones));
         robot.clickOn("#typePicker");
         robot.type(KeyCode.DOWN, KeyCode.DOWN, KeyCode.ENTER, KeyCode.TAB, KeyCode.ENTER);
         robot.clickOn("#selectItemButton");
         robot.clickOn("#inventorySlot1");
 
         robot.clickOn("#equipAction");
+
+        Assertions.assertEquals(headphones, CharacterModel.getInstance().getCharacter().getEquippedEquipments().getHead());
 
         while (true);
     }
