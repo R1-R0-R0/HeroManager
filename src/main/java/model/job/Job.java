@@ -689,47 +689,61 @@ public class Job {
      * @param equipment
      */
     public void replaceEquippedEquipment(Equipment equipment){
+        Equipment equipped;
         if(equipment == null){
             return;
         }
         switch (equipment.getEquipmentPart()){
             case BELT -> {
+                equipped = equippedEquipments.getBelt();
                 equippedEquipments.removeBelt();
                 equippedEquipments.addBelt(equipment);
             }
             case BODY -> {
+                equipped = equippedEquipments.getBody();
                 equippedEquipments.removeBody();
                 equippedEquipments.addBody(equipment);
             }
             case FEET -> {
+                equipped = equippedEquipments.getFeet();
                 equippedEquipments.removeFeet();
                 equippedEquipments.addFeet(equipment);
             }
             case HEAD -> {
+                equipped = equippedEquipments.getHead();
                 equippedEquipments.removeHead();
                 equippedEquipments.addHead(equipment);
             }
             case LEGS -> {
+                equipped = equippedEquipments.getLegs();
                 equippedEquipments.removeLegs();
                 equippedEquipments.addLegs(equipment);
             }
             case HANDS -> {
+                equipped = equippedEquipments.getHands();
                 equippedEquipments.removeHands();
                 equippedEquipments.addHands(equipment);
             }
             case AMULET -> {
+                equipped = equippedEquipments.getAmulet();
                 equippedEquipments.removeAmulet();
                 equippedEquipments.addAmulet(equipment);
             }
             case MANTLE -> {
+                equipped = equippedEquipments.getMantle();
                 equippedEquipments.removeMantle();
                 equippedEquipments.addMantle(equipment);
             }
             default -> {
+                equipped = equippedEquipments.getLeftRing();
                 removeLeftRing();
                 addLeftRing(equipment);
             }
+
         }
+        if(equippedEquipments.getEquippedList().contains(equipment))
+            removeFromInventory(equipment);
+        inventory.add(equipped);
     }
 
     /**
