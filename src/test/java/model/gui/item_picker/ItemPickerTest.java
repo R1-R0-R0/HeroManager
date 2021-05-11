@@ -22,6 +22,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import utils.ItemPickerCloseEvent;
 import view.ItemPickerView;
 
 import java.util.Arrays;
@@ -37,9 +38,12 @@ class ItemPickerTest {
             consumable1 = new Consumable("A potion", "Unknown potion. Will you drink it ?"),
             consumable2 = new Consumable("Gameboy", "A simple gameboy.");
 
+    private final ItemPickerCloseEvent itemPickerCloseEvent = item -> selectedItem = item;
+    private Item selectedItem;
+
     @Start
     public void start(Stage primaryStage) {
-        ItemPickerModel model = new ItemPickerModel(primaryStage, () -> {});
+        ItemPickerModel model = new ItemPickerModel(primaryStage, itemPickerCloseEvent);
         model.setWeaponList(Collections.singletonList(weapon));
         model.setEquipmentList(Collections.singletonList(equipment));
         model.setConsumableList(Arrays.asList(consumable1, consumable2));
@@ -68,7 +72,7 @@ class ItemPickerTest {
 
     @Test
     @DisplayName("Check if item selection is correct")
-    public void itemSelectionTest(FxRobot robot) throws InterruptedException {
+    public void itemSelectionTest(FxRobot robot) {
         robot.clickOn("#typePicker");
         robot.type(KeyCode.DOWN, KeyCode.ENTER);
 
@@ -139,7 +143,7 @@ class ItemPickerTest {
         robot.clickOn("#itemList");
         robot.type(KeyCode.ENTER);
         robot.clickOn("#selectItemButton");
-        Assertions.assertNotEquals(null, ItemPickerModel.getInstance().getSelectedItem());
+        Assertions.assertNotEquals(null, selectedItem);
         Assertions.assertFalse(ItemPickerView.getInstance().getStage().isShowing());
     }
 
@@ -154,7 +158,7 @@ class ItemPickerTest {
         Assertions.assertEquals(weapon, ItemPickerModel.getInstance().getSelectedItem());
 
         robot.clickOn("#backButton");
-        Assertions.assertEquals(null, ItemPickerModel.getInstance().getSelectedItem());
+        Assertions.assertEquals(null, selectedItem);
         Assertions.assertFalse(ItemPickerView.getInstance().getStage().isShowing());
     }
 }

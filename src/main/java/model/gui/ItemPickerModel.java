@@ -10,6 +10,7 @@ import model.items.ItemType;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
+import utils.ItemPickerCloseEvent;
 import utils.ListenableArrayList;
 import utils.SimpleListener;
 import utils.gui.Dialog;
@@ -32,7 +33,7 @@ public class ItemPickerModel {
     private final ListenableArrayList<Equipment> equipments;
     private final ListenableArrayList<Consumable> consumables;
     private Item selectedItem;
-    private final SimpleListener closeListener;
+    private final ItemPickerCloseEvent closeListener;
 
     /**
      * 1st constructor of this class.
@@ -41,7 +42,7 @@ public class ItemPickerModel {
      * @param owner calling view
      * @param closeListener listener to call when context is closing
      */
-    public ItemPickerModel(Stage owner, SimpleListener closeListener) {
+    public ItemPickerModel(Stage owner, ItemPickerCloseEvent closeListener) {
         instance = this;
         this.closeListener = closeListener;
 
@@ -80,9 +81,9 @@ public class ItemPickerModel {
      *
      * @param owner    calling view
      * @param itemType item type user needs to select
-     * @param closeListener listener to call when context is closing
+     * @param closeListener listener to call when context is closing and returning selected item
      */
-    public ItemPickerModel(Stage owner, ItemType itemType, SimpleListener closeListener) {
+    public ItemPickerModel(Stage owner, ItemType itemType, ItemPickerCloseEvent closeListener) {
         this(owner, closeListener);
 
         try {
@@ -201,7 +202,7 @@ public class ItemPickerModel {
      */
     public void confirmItemSelection() {
         ItemPickerView.getInstance().close();
-        closeListener.event();
+        closeListener.event(selectedItem);
     }
 
     /**
@@ -210,6 +211,6 @@ public class ItemPickerModel {
     public void back() {
         selectedItem = null;
         ItemPickerView.getInstance().close();
-        closeListener.event();
+        closeListener.event(selectedItem);
     }
 }
