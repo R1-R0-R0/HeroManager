@@ -5,10 +5,12 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import model.items.Item;
 import model.items.ItemType;
+import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.equipments.EquipmentPart;
 import model.items.weapons.Weapon;
 import model.job.Job;
+import utils.gui.ContainerPane;
 import utils.gui.Dialog;
 import view.CharacterView;
 
@@ -89,7 +91,8 @@ public class CharacterModel {
                 MenuItem equip = new MenuItem("Equip");
                 equip.setId("equipAction");
                 equip.setOnAction(event1 -> {
-                    // TODO wait guillaume implementation
+                    getCharacter().replaceEquippedEquipment(((Equipment) item));
+                    CharacterView.getInstance().refreshView();
                 });
 
                 clickMenu.getItems().add(equip);
@@ -162,11 +165,18 @@ public class CharacterModel {
     public void equipmentImageOnClick(EquipmentPart equipmentPart) {
         ItemPickerModel pickerModel = new ItemPickerModel(CharacterView.getInstance().getStage(), ItemType.EQUIPMENTS, selectedItem -> {
             if (!(selectedItem instanceof Equipment)) {
-                new Dialog(Alert.AlertType.ERROR, "Wrong equipment type", "An error occured, please select equipments only").showAndWait();
+                new Dialog(Alert.AlertType.ERROR, "Wrong item type", "An error occured, please select equipments only").showAndWait();
                 return;
             }
 
-            // TODO wait guillaume implementation
+            if (equipmentPart == EquipmentPart.RING)
+                getCharacter().replaceLeftRing(((Equipment) selectedItem));
+            else if (equipmentPart == EquipmentPart.RING2)
+                getCharacter().replaceRightRing(((Equipment) selectedItem));
+            else
+                getCharacter().replaceEquippedEquipment(((Equipment) selectedItem));
+
+            CharacterView.getInstance().refreshView();
         });
 
         List<Equipment> selectedEquipmentPart = new ArrayList<>();
