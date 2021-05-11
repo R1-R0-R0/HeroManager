@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import model.gui.LoadGameModel;
 import model.gui.MenuModel;
+import model.items.equipments.EquipmentInventory;
 import model.job.Gender;
 import model.job.Job;
 import model.job.JobType;
@@ -36,7 +37,8 @@ public class LoadGameTest {
         Job warlock = new Job("Airels", "Airels nothing more to say", Gender.MAN, Alignment.NEUTRAL_GOOD, Race.GNOME, JobType.WARLOCK);
         Job paladin = new Job("M.", "I love open shoes", Gender.MAN, Alignment.LAWFUL_EVIL, Race.HALFLING, JobType.PALADIN);
         Job alreadyExistingBard = new Job("Hatsune", "Young virtual singer", Gender.WOMAN, Alignment.CHAOTIC_EVIL, Race.HALFLING, JobType.BARD, new ArrayList<>(), new ArrayList<>(),
-                15, 14, 13, 12, 11, 10, 9, 8, 50, 50, 10, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                15, 14, 13, 12, 11, 10, 9, 8, 50, 50,
+                10, new ArrayList<>(), new EquipmentInventory(null, null, null, null, null, null, null, null, null, null), new ArrayList<>());
 
         LoadGameView.getInstance().setGamesList(Arrays.asList(wizard, warlock, paladin, alreadyExistingBard));
     }
