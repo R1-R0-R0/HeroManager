@@ -12,6 +12,8 @@ import model.job.Job;
 import utils.gui.Dialog;
 import view.CharacterView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -145,8 +147,7 @@ public class CharacterModel {
             clickMenu.getItems().addAll(info, separatorMenuItem, discard);
             clickMenu.show((Node) event.getSource(), event.getScreenX(), event.getScreenY());
         } else {
-            new ItemPickerModel(CharacterView.getInstance().getStage(), () -> {
-                Item selectedItem = ItemPickerModel.getInstance().getSelectedItem();
+            new ItemPickerModel(CharacterView.getInstance().getStage(), selectedItem -> {
                 getCharacter().getInventory().add(selectedItem);
                 CharacterView.getInstance().setInventory(getCharacter().getInventory());
             });
@@ -159,7 +160,22 @@ public class CharacterModel {
      * @param equipmentPart part of equipment
      */
     public void equipmentImageOnClick(EquipmentPart equipmentPart) {
-        // TODO
+        ItemPickerModel pickerModel = new ItemPickerModel(CharacterView.getInstance().getStage(), ItemType.EQUIPMENTS, selectedItem -> {
+            if (!(selectedItem instanceof Equipment)) {
+                new Dialog(Alert.AlertType.ERROR, "Wrong equipment type", "An error occured, please select equipments only").showAndWait();
+                return;
+            }
+
+            // TODO wait guillaume implementation
+        });
+
+        List<Equipment> selectedEquipmentPart = new ArrayList<>();
+        for (Item item : getCharacter().getInventory()) {
+            if (item instanceof Equipment && ((Equipment) item).getEquipmentPart() == equipmentPart)
+                selectedEquipmentPart.add((Equipment) item);
+        }
+
+        pickerModel.setEquipmentList(selectedEquipmentPart);
     }
 
     /**
