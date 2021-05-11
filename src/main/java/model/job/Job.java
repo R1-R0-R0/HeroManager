@@ -55,6 +55,7 @@ public class Job {
         inventory = new ArrayList<>();
         spellInventory = new ArrayList<>();
         skills = new ArrayList<>();
+        equippedEquipments = new EquipmentInventory(null,null,null,null,null,null,null,null,null,null);
 
         level = 1;
         armor = BASE_STATS;
