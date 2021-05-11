@@ -13,16 +13,26 @@ public class EquipmentInventory {
     public EquipmentInventory(Equipment head, Equipment body, Equipment legs, Equipment feet,
                               Equipment hands, Equipment belt, Equipment mantle, Equipment amulet,
                               Equipment leftRing, Equipment rightRing) {
-        this.head = head;
-        this.body = body;
-        this.legs = legs;
-        this.feet = feet;
-        this.hands = hands;
-        this.belt = belt;
-        this.mantle = mantle;
-        this.amulet = amulet;
-        this.leftRing = leftRing;
-        this.rightRing = rightRing;
+        if(head.getEquipmentPart() == EquipmentPart.HEAD)
+            this.head = head;
+        if(head.getEquipmentPart() == EquipmentPart.BODY)
+            this.body = body;
+        if(head.getEquipmentPart() == EquipmentPart.LEGS)
+            this.legs = legs;
+        if(head.getEquipmentPart() == EquipmentPart.FEET)
+            this.feet = feet;
+        if(head.getEquipmentPart() == EquipmentPart.HANDS)
+            this.hands = hands;
+        if(head.getEquipmentPart() == EquipmentPart.BELT)
+            this.belt = belt;
+        if(head.getEquipmentPart() == EquipmentPart.MANTLE)
+            this.mantle = mantle;
+        if(head.getEquipmentPart() == EquipmentPart.AMULET)
+            this.amulet = amulet;
+        if(head.getEquipmentPart() == EquipmentPart.RING)
+            this.leftRing = leftRing;
+        if(head.getEquipmentPart() == EquipmentPart.RING)
+            this.rightRing = rightRing;
     }
 
     /**
