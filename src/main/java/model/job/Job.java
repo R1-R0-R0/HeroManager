@@ -317,11 +317,15 @@ public class Job {
 
         result += race.getStrengthBoost();
 
-        for (Equipment equip : equippedEquipments.getEquippedList()) {
-            result += equip.getStrengthBoost();
+        if(equippedEquipments.getEquippedList() != null){
+            for (Equipment equip : equippedEquipments.getEquippedList()) {
+                if(equip != null)
+                    result += equip.getStrengthBoost();
 
+            }
         }
         return result;
+
     }
 
     /**
@@ -336,9 +340,11 @@ public class Job {
 
         result += race.getDexterityBoost();
 
-        for (Equipment equip : equippedEquipments.getEquippedList()) {
-            result += equip.getDexterityBoost();
-
+        if(equippedEquipments.getEquippedList() != null){
+            for (Equipment equip : equippedEquipments.getEquippedList()) {
+                if(equip !=null)
+                    result += equip.getDexterityBoost();
+            }
         }
         return result;
     }
@@ -355,9 +361,12 @@ public class Job {
 
         result += race.getRobustnessBoost();
 
-        for (Equipment equip : equippedEquipments.getEquippedList()) {
-            result += equip.getRobustnessBoost();
+        if(equippedEquipments.getEquippedList() != null) {
+            for (Equipment equip : equippedEquipments.getEquippedList()) {
+                if(equip!=null)
+                    result += equip.getRobustnessBoost();
 
+            }
         }
         return result;
     }
@@ -374,9 +383,12 @@ public class Job {
 
         result += race.getIntelligenceBoost();
 
-        for (Equipment equip : equippedEquipments.getEquippedList()) {
-            result += equip.getIntelligenceBoost();
+        if(equippedEquipments.getEquippedList() != null) {
+            for (Equipment equip : equippedEquipments.getEquippedList()) {
+                if(equip !=null)
+                    result += equip.getIntelligenceBoost();
 
+            }
         }
         return result;
     }
@@ -392,10 +404,12 @@ public class Job {
         }
 
         result += race.getWisdomBoost();
+        if(equippedEquipments.getEquippedList() != null) {
+            for (Equipment equip : equippedEquipments.getEquippedList()) {
+                if(equip !=null)
+                    result += equip.getWisdomBoost();
 
-        for (Equipment equip : equippedEquipments.getEquippedList()) {
-            result += equip.getWisdomBoost();
-
+            }
         }
         return result;
     }
@@ -411,10 +425,12 @@ public class Job {
         }
 
         result += race.getCharismaBoost();
+        if(equippedEquipments.getEquippedList() != null) {
+            for (Equipment equip : equippedEquipments.getEquippedList()) {
+                if(equip != null)
+                    result += equip.getCharismaBoost();
 
-        for (Equipment equip : equippedEquipments.getEquippedList()) {
-            result += equip.getCharismaBoost();
-
+            }
         }
         return result;
     }
@@ -430,10 +446,12 @@ public class Job {
         }
 
         result += race.getSpeed();
+        if(equippedEquipments.getEquippedList() != null) {
+            for (Equipment equip : equippedEquipments.getEquippedList()) {
+                if(equip != null)
+                    result += equip.getSpeedBoost();
 
-        for (Equipment equip : equippedEquipments.getEquippedList()) {
-            result += equip.getSpeedBoost();
-
+            }
         }
         return result;
     }
