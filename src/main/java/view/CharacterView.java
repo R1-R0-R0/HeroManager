@@ -5,10 +5,11 @@ import controller.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,12 +19,10 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.gui.CharacterCreatorModel;
 import model.gui.CharacterModel;
-import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.equipments.Equipment;
-import model.items.weapons.Weapon;
+import model.items.equipments.EquipmentInventory;
 import model.job.*;
 import model.spell.Spell;
 import utils.gui.ContainerPane;
@@ -139,54 +138,6 @@ public class CharacterView {
         CharacterController.getInstance().borderHpBar.widthProperty().addListener((observable, oldValue, newValue) -> {
             Pane hpBar = CharacterController.getInstance().hpBar;
             hpBar.setMaxWidth(newValue.doubleValue() * hpBar.getMaxWidth() / oldValue.doubleValue());
-        });
-
-        CharacterController.getInstance().equipmentTab.widthProperty().addListener((observable, oldValue, newValue) -> {
-            ImageView
-                    headImage = CharacterController.getInstance().headImage,
-                    bodyImage = CharacterController.getInstance().bodyImage,
-                    mantleImage = CharacterController.getInstance().mantleImage,
-                    beltImage = CharacterController.getInstance().beltImage,
-                    legsImage = CharacterController.getInstance().legsImage,
-                    feetImage = CharacterController.getInstance().feetImage,
-                    amuletImage = CharacterController.getInstance().amuletImage,
-                    ringImage1 = CharacterController.getInstance().ringImage1,
-                    ringImage2 = CharacterController.getInstance().ringImage2;
-
-
-            headImage.setLayoutX(newValue.doubleValue() * headImage.getLayoutX() / oldValue.doubleValue());
-            bodyImage.setLayoutX(newValue.doubleValue() * bodyImage.getLayoutX() / oldValue.doubleValue());
-            mantleImage.setLayoutX(newValue.doubleValue() * mantleImage.getLayoutX() / oldValue.doubleValue());
-            beltImage.setLayoutX(newValue.doubleValue() * beltImage.getLayoutX() / oldValue.doubleValue());
-            legsImage.setLayoutX(newValue.doubleValue() * legsImage.getLayoutX() / oldValue.doubleValue());
-            feetImage.setLayoutX(newValue.doubleValue() * feetImage.getLayoutX() / oldValue.doubleValue());
-            amuletImage.setLayoutX(newValue.doubleValue() * amuletImage.getLayoutX() / oldValue.doubleValue());
-            ringImage1.setLayoutX(newValue.doubleValue() * ringImage1.getLayoutX() / oldValue.doubleValue());
-            ringImage2.setLayoutX(newValue.doubleValue() * ringImage2.getLayoutX() / oldValue.doubleValue());
-        });
-
-        CharacterController.getInstance().equipmentTab.heightProperty().addListener((observable, oldValue, newValue) -> {
-            ImageView
-                    headImage = CharacterController.getInstance().headImage,
-                    bodyImage = CharacterController.getInstance().bodyImage,
-                    mantleImage = CharacterController.getInstance().mantleImage,
-                    beltImage = CharacterController.getInstance().beltImage,
-                    legsImage = CharacterController.getInstance().legsImage,
-                    feetImage = CharacterController.getInstance().feetImage,
-                    amuletImage = CharacterController.getInstance().amuletImage,
-                    ringImage1 = CharacterController.getInstance().ringImage1,
-                    ringImage2 = CharacterController.getInstance().ringImage2;
-
-
-            headImage.setLayoutY(newValue.doubleValue() * headImage.getLayoutY() / oldValue.doubleValue());
-            bodyImage.setLayoutY(newValue.doubleValue() * bodyImage.getLayoutY() / oldValue.doubleValue());
-            mantleImage.setLayoutY(newValue.doubleValue() * mantleImage.getLayoutY() / oldValue.doubleValue());
-            beltImage.setLayoutY(newValue.doubleValue() * beltImage.getLayoutY() / oldValue.doubleValue());
-            legsImage.setLayoutY(newValue.doubleValue() * legsImage.getLayoutY() / oldValue.doubleValue());
-            feetImage.setLayoutY(newValue.doubleValue() * feetImage.getLayoutY() / oldValue.doubleValue());
-            amuletImage.setLayoutY(newValue.doubleValue() * amuletImage.getLayoutY() / oldValue.doubleValue());
-            ringImage1.setLayoutY(newValue.doubleValue() * ringImage1.getLayoutY() / oldValue.doubleValue());
-            ringImage2.setLayoutY(newValue.doubleValue() * ringImage2.getLayoutY() / oldValue.doubleValue());
         });
     }
 
@@ -408,6 +359,8 @@ public class CharacterView {
         Tooltip tooltip;
         String selector;
         for (Item item : items) {
+            if (item == null) continue;
+
             selector = "#inventorySlot" + counter;
             tooltip = new Tooltip(item.getDescription());
             tooltip.setShowDelay(Duration.ONE);
@@ -420,16 +373,12 @@ public class CharacterView {
             counter++;
         }
 
-        for (int i = counter; i < INVENTORY_SIZE*INVENTORY_SIZE; i++) {
+        for (int i = counter; i < INVENTORY_SIZE * INVENTORY_SIZE; i++) {
             selector = "#inventorySlot" + counter;
             pane = ((ContainerPane<Item>) CharacterController.getInstance().inventoryPane.getScene().lookup(selector));
             pane.clearContainedObject();
 
-            ImageView imgPlus = new ImageView();
-            imgPlus.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
-            imgPlus.setFitHeight(INVENTORY_ITEM_IMAGE_SIZE);
-            imgPlus.setFitWidth(INVENTORY_ITEM_IMAGE_SIZE);
-            pane.getChildren().add(imgPlus);
+            pane.getChildren().add(generateImagePlus());
         }
     }
 
