@@ -13,25 +13,25 @@ public class EquipmentInventory {
     public EquipmentInventory(Equipment head, Equipment body, Equipment legs, Equipment feet,
                               Equipment hands, Equipment belt, Equipment mantle, Equipment amulet,
                               Equipment leftRing, Equipment rightRing) {
-        if(head.getEquipmentPart() == EquipmentPart.HEAD)
+        if(head != null && head.getEquipmentPart() == EquipmentPart.HEAD)
             this.head = head;
-        if(head.getEquipmentPart() == EquipmentPart.BODY)
+        if(body != null && body.getEquipmentPart() == EquipmentPart.BODY)
             this.body = body;
-        if(head.getEquipmentPart() == EquipmentPart.LEGS)
+        if(legs !=null && legs.getEquipmentPart() == EquipmentPart.LEGS)
             this.legs = legs;
-        if(head.getEquipmentPart() == EquipmentPart.FEET)
+        if(feet != null &&feet.getEquipmentPart() == EquipmentPart.FEET)
             this.feet = feet;
-        if(head.getEquipmentPart() == EquipmentPart.HANDS)
+        if(hands !=null && hands.getEquipmentPart() == EquipmentPart.HANDS)
             this.hands = hands;
-        if(head.getEquipmentPart() == EquipmentPart.BELT)
+        if(belt !=null && belt.getEquipmentPart() == EquipmentPart.BELT)
             this.belt = belt;
-        if(head.getEquipmentPart() == EquipmentPart.MANTLE)
+        if(mantle != null && mantle.getEquipmentPart() == EquipmentPart.MANTLE)
             this.mantle = mantle;
-        if(head.getEquipmentPart() == EquipmentPart.AMULET)
+        if(amulet !=null && amulet.getEquipmentPart() == EquipmentPart.AMULET)
             this.amulet = amulet;
-        if(head.getEquipmentPart() == EquipmentPart.RING)
+        if(leftRing != null && leftRing.getEquipmentPart() == EquipmentPart.RING)
             this.leftRing = leftRing;
-        if(head.getEquipmentPart() == EquipmentPart.RING)
+        if(rightRing != null && rightRing.getEquipmentPart() == EquipmentPart.RING)
             this.rightRing = rightRing;
     }
 
