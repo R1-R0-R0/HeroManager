@@ -12,5 +12,6 @@ public enum EquipmentPart {
     AMULET,
     HANDS,
     MANTLE,
-    RING
+    RING,
+    RING2
 }
