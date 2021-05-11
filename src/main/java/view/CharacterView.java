@@ -100,23 +100,7 @@ public class CharacterView {
                     "Charisma:      " + character.getTotalCharisma() + " (" + character.getCharisma() + " + " + character.getCharismaBoost() + ")",
                     "Armor:           " + character.getTotalArmor() + " (" + character.getArmor() + " + " + character.getArmorBoost() + ")");
 
-            List<Improvement> improvements = character.getImprovements();
-            String[] improvementStrings = new String[improvements.size()];
-            for (int i = 0; i < improvements.size(); i++)
-                improvementStrings[i] = improvements.get(i).name();
-            setImprovements(improvementStrings);
-
-            List<JobSkill> skills = character.getSkills();
-            String[] skillStrings = new String[skills.size()];
-            for (int i = 0; i < skills.size(); i++)
-                skillStrings[i] = skills.get(i).getName();
-            setSkills(skillStrings);
-
-            setCharacterName(character.getName());
-            setHP(character.getHealthPoints(), 100); // TODO
-            setLevel(character.getLevel());
-            setInventory(character.getInventory());
-            setSpellList(character.getSpellInventory());
+            refreshView();
 
             String pictureNameJobType = jobType.name().toLowerCase();
             String pictureNameGender = (gender == Gender.MAN) ? "_m.jpg" : "_f.jpg";
@@ -447,6 +431,115 @@ public class CharacterView {
             imgPlus.setFitWidth(INVENTORY_ITEM_IMAGE_SIZE);
             pane.getChildren().add(imgPlus);
         }
+    }
+
+    public void setEquippedEquipments(EquipmentInventory equippedEquipments) {
+        CharacterController controller = CharacterController.getInstance();
+
+        StackPane headPane = controller.headPane;
+        StackPane bodyPane = controller.bodyPane;
+        StackPane mantlePane = controller.mantlePane;
+        StackPane beltPane = controller.beltPane;
+        StackPane legsPane = controller.legsPane;
+        StackPane feetPane = controller.feetPane;
+        StackPane amuletPane = controller.amuletPane;
+        StackPane ringPane1 = controller.ringPane1;
+        StackPane ringPane2 = controller.ringPane2;
+
+        headPane.getChildren().clear();
+        bodyPane.getChildren().clear();
+        mantlePane.getChildren().clear();
+        beltPane.getChildren().clear();
+        legsPane.getChildren().clear();
+        feetPane.getChildren().clear();
+        amuletPane.getChildren().clear();
+        ringPane1.getChildren().clear();
+        ringPane2.getChildren().clear();
+
+
+        if (equippedEquipments.getHead() == null)
+            headPane.getChildren().add(generateImagePlus());
+        else
+            headPane.getChildren().add(new ContainerPane<>(equippedEquipments.getHead()));
+
+        if (equippedEquipments.getBody() == null)
+            bodyPane.getChildren().add(generateImagePlus());
+        else
+            bodyPane.getChildren().add(new ContainerPane<>(equippedEquipments.getBody()));
+
+        if (equippedEquipments.getMantle() == null)
+            mantlePane.getChildren().add(generateImagePlus());
+        else
+            mantlePane.getChildren().add(new ContainerPane<>(equippedEquipments.getMantle()));
+
+        if (equippedEquipments.getBelt() == null)
+            beltPane.getChildren().add(generateImagePlus());
+        else
+            beltPane.getChildren().add(new ContainerPane<>(equippedEquipments.getBelt()));
+
+        if (equippedEquipments.getLegs() == null)
+            legsPane.getChildren().add(generateImagePlus());
+        else
+            legsPane.getChildren().add(new ContainerPane<>(equippedEquipments.getLegs()));
+
+        if (equippedEquipments.getFeet() == null)
+            feetPane.getChildren().add(generateImagePlus());
+        else
+            feetPane.getChildren().add(new ContainerPane<>(equippedEquipments.getFeet()));
+
+        if (equippedEquipments.getAmulet() == null)
+            amuletPane.getChildren().add(generateImagePlus());
+        else
+            amuletPane.getChildren().add(new ContainerPane<>(equippedEquipments.getAmulet()));
+
+        if (equippedEquipments.getLeftRing() == null)
+            ringPane1.getChildren().add(generateImagePlus());
+        else
+            ringPane1.getChildren().add(new ContainerPane<>(equippedEquipments.getLeftRing()));
+
+        if (equippedEquipments.getRightRing() == null)
+            ringPane2.getChildren().add(generateImagePlus());
+        else
+            ringPane2.getChildren().add(new ContainerPane<>(equippedEquipments.getRightRing()));
+    }
+
+    /**
+     * Used by inventory and equipment tab to show a + image when there is no item/equipment
+     * @return image view of +
+     */
+    private ImageView generateImagePlus() {
+        ImageView imgPlus = new ImageView();
+        imgPlus.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
+        imgPlus.setFitHeight(INVENTORY_ITEM_IMAGE_SIZE);
+        imgPlus.setFitWidth(INVENTORY_ITEM_IMAGE_SIZE);
+
+        return imgPlus;
+    }
+
+    /**
+     * To refresh view when character got his attributes modified
+     */
+    public void refreshView() {
+        Job character = CharacterModel.getInstance().getCharacter();
+
+        List<Improvement> improvements = character.getImprovements();
+        String[] improvementStrings = new String[improvements.size()];
+        for (int i = 0; i < improvements.size(); i++)
+            improvementStrings[i] = improvements.get(i).name();
+        setImprovements(improvementStrings);
+
+        List<JobSkill> skills = character.getSkills();
+        String[] skillStrings = new String[skills.size()];
+        for (int i = 0; i < skills.size(); i++)
+            skillStrings[i] = skills.get(i).getName();
+        setSkills(skillStrings);
+
+        setCharacterName(character.getName());
+        setHP(character.getHealthPoints(), 100); // TODO
+        setLevel(character.getLevel());
+        setInventory(character.getInventory());
+        setSpellList(character.getSpellInventory());
+        setEquippedEquipments(character.getEquippedEquipments());
     }
 
     /**
