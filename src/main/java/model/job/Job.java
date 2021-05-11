@@ -631,7 +631,10 @@ public class Job {
      * remove Left ring equipment
      */
     public void removeLeftRing(){
+        Equipment ring = equippedEquipments.getLeftRing();
         equippedEquipments.removeLeftRing();
+        if(!inventory.contains(ring))
+            inventory.add(ring);
     }
     /**
      * remove Right ring equipment
