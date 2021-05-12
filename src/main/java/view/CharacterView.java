@@ -90,15 +90,6 @@ public class CharacterView implements View {
             Gender gender = character.getGender();
             JobType jobType = character.getJobType();
 
-            setJobInfo(jobType.name(), character.getRaceType().name(),
-                    "Strength:      " + character.getTotalStrength() + " (" + character.getStrength() + " + " + character.getStrengthBoost() + ")",
-                    "Dexterity:     " + character.getTotalDexterity() + " (" + character.getDexterity() + " + " + character.getDexterityBoost() + ")",
-                    "Intelligence: " + character.getTotalIntelligence() + " (" + character.getIntelligence() + " + " + character.getIntelligenceBoost() + ")",
-                    "Wisdom:       " + character.getTotalWisdom() + " (" + character.getWisdom() + " + " + character.getWisdomBoost() + ")",
-                    "Robustness:  " + character.getTotalRobustness() + " (" + character.getRobustness() + " + " + character.getRobustnessBoost() + ")",
-                    "Charisma:      " + character.getTotalCharisma() + " (" + character.getCharisma() + " + " + character.getCharismaBoost() + ")",
-                    "Armor:           " + character.getTotalArmor() + " (" + character.getArmor() + " + " + character.getArmorBoost() + ")");
-
             refreshView();
 
             String pictureNameJobType = jobType.name().toLowerCase();
@@ -155,6 +146,7 @@ public class CharacterView implements View {
     public void setJobInfo(String name, String race, String... statistics) {
         TextFlow jobInfo = CharacterController.getInstance().jobInfo;
         ObservableList list = jobInfo.getChildren();
+        list.clear();
 
         Text title = new Text(name + " - " + race + "\n\n");
         title.setFont(new Font(30));
@@ -474,6 +466,15 @@ public class CharacterView implements View {
     public void refreshView() {
         Job character = CharacterModel.getInstance().getCharacter();
 
+        setJobInfo(character.getJobType().name(), character.getRaceType().name(),
+                "Strength:      " + character.getTotalStrength() + " (" + character.getStrength() + " + " + character.getStrengthBoost() + ")",
+                "Dexterity:     " + character.getTotalDexterity() + " (" + character.getDexterity() + " + " + character.getDexterityBoost() + ")",
+                "Intelligence: " + character.getTotalIntelligence() + " (" + character.getIntelligence() + " + " + character.getIntelligenceBoost() + ")",
+                "Wisdom:       " + character.getTotalWisdom() + " (" + character.getWisdom() + " + " + character.getWisdomBoost() + ")",
+                "Robustness:  " + character.getTotalRobustness() + " (" + character.getRobustness() + " + " + character.getRobustnessBoost() + ")",
+                "Charisma:      " + character.getTotalCharisma() + " (" + character.getCharisma() + " + " + character.getCharismaBoost() + ")",
+                "Armor:           " + character.getTotalArmor() + " (" + character.getArmor() + " + " + character.getArmorBoost() + ")");
+
         List<Improvement> improvements = character.getImprovements();
         String[] improvementStrings = new String[improvements.size()];
         for (int i = 0; i < improvements.size(); i++)
@@ -487,7 +488,7 @@ public class CharacterView implements View {
         setSkills(skillStrings);
 
         setCharacterName(character.getName());
-        setHP(character.getHealthPoints(), 100); // TODO
+        setHP(character.getHealthPoints(), character.getMaxHp());
         setLevel(character.getLevel());
         setInventory(character.getInventory());
         setSpellList(character.getSpellInventory());
