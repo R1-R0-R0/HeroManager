@@ -15,6 +15,8 @@ public class HpPopUpModel implements Model {
 
     private static HpPopUpModel instance;
 
+    private int maxHP;
+
     /**
      * Constructor of this class, called to show up hp pop up
      *
@@ -23,6 +25,7 @@ public class HpPopUpModel implements Model {
     public HpPopUpModel(int maxHP) {
         instance = this;
 
+        this.maxHP = maxHP;
         new HpPopUpView(maxHP);
     }
 
@@ -45,8 +48,8 @@ public class HpPopUpModel implements Model {
 
             if (hp < 0)
                 new Dialog(Alert.AlertType.ERROR, "Invalid amount", "New HP value can't be lower than 0").showAndWait();
-            else if (hp > 100)// TODO : Set MAX HP later
-                new Dialog(Alert.AlertType.ERROR, "Invalid amount", "New HP value can't be higher than 100").showAndWait();
+            else if (hp > maxHP)
+                new Dialog(Alert.AlertType.ERROR, "Invalid amount", "New HP value can't be higher than " + maxHP).showAndWait();
             else {
                 HpPopUpView.getInstance().closeStage();
                 CharacterModel.getInstance().hpBarOnClickEventDone(hp);

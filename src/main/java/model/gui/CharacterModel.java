@@ -60,8 +60,7 @@ public class CharacterModel implements Model {
      * Gets HP of current Job and send it to a new pop-up to update it
      */
     public void hpBarOnClickEvent() {
-        new HpPopUpModel(100);
-        // CharacterView.getInstance().blockWindow();
+        new HpPopUpModel(character.getMaxHp());
     }
 
     /**
@@ -71,7 +70,7 @@ public class CharacterModel implements Model {
      */
     public void hpBarOnClickEventDone(int newHP) {
         character.setHealthPoints(newHP);
-        CharacterView.getInstance().setHP(newHP, 100); // TODO
+        CharacterView.getInstance().setHP(newHP, character.getMaxHp());
     }
 
     /**
