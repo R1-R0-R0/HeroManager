@@ -6,8 +6,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -15,7 +13,6 @@ import javafx.util.Duration;
 import model.gui.CharacterModel;
 import model.items.equipments.*;
 import model.spell.Spell;
-import utils.gui.ContainerPane;
 import view.CharacterView;
 
 import java.net.URL;
@@ -219,7 +216,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void headPaneOnCLick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.HEAD);
+        CharacterModel.getInstance().equipmentPaneOnClick(EquipmentPart.HEAD);
     }
 
     /**
@@ -227,7 +224,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void bodyPaneOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.BODY);
+        CharacterModel.getInstance().equipmentPaneOnClick(EquipmentPart.BODY);
     }
 
     /**
@@ -235,7 +232,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void mantlePaneOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.MANTLE);
+        CharacterModel.getInstance().equipmentPaneOnClick(EquipmentPart.MANTLE);
     }
 
     /**
@@ -243,7 +240,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void beltPaneOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.BELT);
+        CharacterModel.getInstance().equipmentPaneOnClick(EquipmentPart.BELT);
     }
 
     /**
@@ -251,7 +248,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void legsPaneOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.LEGS);
+        CharacterModel.getInstance().equipmentPaneOnClick(EquipmentPart.LEGS);
     }
 
     /**
@@ -259,7 +256,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void feetPaneOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.FEET);
+        CharacterModel.getInstance().equipmentPaneOnClick(EquipmentPart.FEET);
     }
 
     /**
@@ -267,7 +264,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void amuletPaneOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.AMULET);
+        CharacterModel.getInstance().equipmentPaneOnClick(EquipmentPart.AMULET);
     }
 
     /**
@@ -275,7 +272,7 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void ring1PaneOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.RING);
+        CharacterModel.getInstance().equipmentPaneOnClick(EquipmentPart.RING);
     }
 
     /**
@@ -283,6 +280,6 @@ public class CharacterController implements Initializable {
      */
     @FXML
     public void ring2PaneOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.RING2);
+        CharacterModel.getInstance().equipmentPaneOnClick(EquipmentPart.RING2);
     }
 }

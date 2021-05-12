@@ -1,8 +1,12 @@
 package model.gui;
 
+import com.sun.glass.ui.Application;
+import com.sun.glass.ui.GlassRobot;
+import exceptions.UnsupportedItemException;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.robot.Robot;
 import model.items.Item;
 import model.items.ItemType;
 import model.items.consumables.Consumable;
@@ -162,7 +166,57 @@ public class CharacterModel {
      *
      * @param equipmentPart part of equipment
      */
-    public void equipmentImageOnClick(EquipmentPart equipmentPart) {
+    public void equipmentPaneOnClick(EquipmentPart equipmentPart) {
+        Equipment equippedItem = null;
+        try {
+            equippedItem = getCharacter().getEquipment(equipmentPart);
+        } catch (UnsupportedItemException e) {
+            e.printStackTrace();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            System.exit(1);
+        }
+
+        if (equippedItem != null) {
+            GlassRobot robot = Application.GetApplication().createRobot();
+            ContextMenu clickMenu = new ContextMenu();
+            MenuItem unequip = new MenuItem("Unequip");
+            unequip.setId("unequipAction");
+            Equipment finalEquippedItem = equippedItem;
+            unequip.setOnAction(event1 -> {
+                getCharacter().removeEquippedEquipment(finalEquippedItem);
+                CharacterView.getInstance().refreshView();
+            });
+            
+            SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
+            
+            MenuItem info = new MenuItem("Info");
+            info.setId("infoAction");
+            Equipment finalEquippedItem1 = equippedItem;
+            info.setOnAction(event1 -> {
+                StringBuilder description = new StringBuilder();
+                description.append("Can be worn on: ").append(finalEquippedItem1.getEquipmentPart())
+                        .append("\nEquipment type: ").append(finalEquippedItem1.getEquipmentPart())
+                        .append("\n\nStatistics:")
+                        .append("\n\t- Armor Bonus:\t\t").append(finalEquippedItem1.getArmorBonus())
+                        .append("\n\t- Strength Boost:\t\t").append(finalEquippedItem1.getStrengthBoost())
+                        .append("\n\t- Dexterity Boost: \t\t").append(finalEquippedItem1.getDexterityBoost())
+                        .append("\n\t- Robustness Boost: \t").append(finalEquippedItem1.getRobustnessBoost())
+                        .append("\n\t- Intelligence Boost: \t").append(finalEquippedItem1.getIntelligenceBoost())
+                        .append("\n\t- Wisdom Boost: \t\t").append(finalEquippedItem1.getWisdomBoost())
+                        .append("\n\t- Charisma Boost: \t\t").append(finalEquippedItem1.getCharismaBoost())
+                        .append("\n\t- Speed Boost: \t\t").append(finalEquippedItem1.getSpeedBoost())
+                        .append("\n\n---\n\n");
+
+
+                description.append(finalEquippedItem1.getDescription());
+                new Dialog(Alert.AlertType.INFORMATION, finalEquippedItem1.getName(), description.toString()).show();
+            });
+            
+            clickMenu.getItems().addAll(unequip, separatorMenuItem, info);
+            clickMenu.show(CharacterView.getInstance().getStage(), robot.getMouseX(), robot.getMouseY());
+            return;
+        }
+
         ItemPickerModel pickerModel = new ItemPickerModel(CharacterView.getInstance().getStage(), ItemType.EQUIPMENTS, selectedItem -> {
             if (!(selectedItem instanceof Equipment)) {
                 new Dialog(Alert.AlertType.ERROR, "Wrong item type", "An error occured, please select equipments only").showAndWait();
