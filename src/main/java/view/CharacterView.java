@@ -177,6 +177,7 @@ public class CharacterView {
     public void setSkills(String... skills) {
         TextFlow skillsInfo = CharacterController.getInstance().skillsInfo;
         ObservableList list = skillsInfo.getChildren();
+        list.clear();
 
         Text title = new Text("Skills" + "\n\n");
         title.setFont(new Font(20));
@@ -200,6 +201,7 @@ public class CharacterView {
     public void setImprovements(String... improvements) {
         TextFlow improvementsInfo = CharacterController.getInstance().improvementsInfo;
         ObservableList list = improvementsInfo.getChildren();
+        list.clear();
 
         Text title = new Text("Improvements" + "\n\n");
         title.setFont(new Font(20));
@@ -271,6 +273,7 @@ public class CharacterView {
     public void setSpellList(List<Spell> spells) {
         ListView list = CharacterController.getInstance().spellList;
         ObservableList items = list.getItems();
+        items.clear();
         items.addAll(spells);
     }
 
