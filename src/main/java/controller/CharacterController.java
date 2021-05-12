@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  * @see CharacterView associated class view (MVC pattern)
  * @see CharacterModel associated class model (MVC pattern)
  */
-public class CharacterController implements Initializable {
+public class CharacterController implements Controller {
 
     /**
      * Instance of this class

@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 /**
  * @Deprecated User will just directly create his character. This class will be removed soon.
  */
-public class NewGameController implements Initializable {
+public class NewGameController implements Controller {
 
     @FXML
     public ListView charactersList;

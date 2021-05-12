@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
  * @see view.HpPopUpView associated class view (MVC pattern)
  * @see HpPopUpModel associated class model (MVC pattern)
  */
-public class HpPopUpController implements Initializable {
+public class HpPopUpController implements Controller {
 
     private static HpPopUpController instance;
 

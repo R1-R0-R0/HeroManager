@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  * @see view.LoadGameView associated class view (MVC pattern)
  * @see LoadGameModel associated class model (MVC pattern)
  */
-public class LoadGameController implements Initializable {
+public class LoadGameController implements Controller {
 
     private static LoadGameController instance;
     /**

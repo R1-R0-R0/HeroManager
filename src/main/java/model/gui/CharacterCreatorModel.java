@@ -24,7 +24,7 @@ import view.MenuView;
  * @see CharacterCreatorView associated class view (MVC pattern)
  * @see CharacterCreatorController associated class controller (MVC pattern)
  */
-public class CharacterCreatorModel {
+public class CharacterCreatorModel implements Model {
 
     /**
      * Paths to all classes images

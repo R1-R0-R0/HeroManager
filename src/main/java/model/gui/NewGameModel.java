@@ -6,7 +6,7 @@ import view.NewGameView;
 /**
  * @Deprecated User will just directly create his character. This class will be removed soon.
  */
-public class NewGameModel {
+public class NewGameModel implements Model {
     
     private static NewGameModel instance;
 

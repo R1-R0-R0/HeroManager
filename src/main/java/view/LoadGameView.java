@@ -28,7 +28,7 @@ import java.util.List;
  * @see model.gui.LoadGameModel associated class model (MVC pattern)
  * @see controller.LoadGameController associated class controller (MVC pattern)
  */
-public class LoadGameView {
+public class LoadGameView implements View {
 
     private static LoadGameView instance;
     private Stage stage;

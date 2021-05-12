@@ -31,7 +31,7 @@ import java.util.ResourceBundle;
  * @see CharacterCreatorView associated class view (MVC pattern)
  * @see CharacterCreatorModel associated class model (MVC pattern)
  */
-public class CharacterCreatorController implements Initializable {
+public class CharacterCreatorController implements Controller {
 
     /**
      * Path of question mark image, used to show undefined selection

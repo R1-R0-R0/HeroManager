@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
  * @see view.ItemPickerView associated class view (MVC pattern)
  * @see model.gui.ItemPickerModel associated class model (MVC pattern)
  */
-public class ItemPickerController implements Initializable {
+public class ItemPickerController implements Controller {
 
     private static ItemPickerController instance;
 

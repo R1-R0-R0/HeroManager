@@ -22,7 +22,7 @@ import java.util.List;
  * @see MenuView associated class view (MVC pattern)
  * @see controller.MenuController associated class controller (MVC pattern)
  */
-public class MenuModel {
+public class MenuModel implements Model {
 
     private static MenuModel instance;
 

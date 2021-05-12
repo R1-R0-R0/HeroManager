@@ -15,7 +15,7 @@ import view.MenuView;
  * @see LoadGameView associated class view (MVC pattern)
  * @see controller.LoadGameController associated class controller (MVC pattern)
  */
-public class LoadGameModel {
+public class LoadGameModel implements Model {
 
     private static LoadGameModel instance;
     private Job selectedCharacter;

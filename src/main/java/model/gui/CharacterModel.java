@@ -29,7 +29,7 @@ import java.util.Optional;
  * @see CharacterView associated class view (MVC pattern)
  * @see controller.CharacterController associated class controller (MVC pattern)
  */
-public class CharacterModel {
+public class CharacterModel implements Model {
 
     /**
      * Instance of this class

@@ -15,7 +15,7 @@ import java.util.List;
  * @see DiceView associated class view (MVC pattern)
  * @see controller.DiceController associated class controller (MVC pattern)
  */
-public class DiceModel {
+public class DiceModel implements Model {
 
     private static DiceModel instance;
 

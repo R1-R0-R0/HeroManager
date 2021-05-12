@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
  * @see view.DiceView associated class view (MVC pattern)
  * @see DiceModel associated class model (MVC pattern)
  */
-public class DiceController implements Initializable {
+public class DiceController implements Controller {
 
     private static DiceController instance;
 

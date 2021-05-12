@@ -14,7 +14,7 @@ import java.io.IOException;
  * @see model.gui.MenuModel associated class model (MVC pattern)
  * @see controller.MenuController associated class controller (MVC pattern)
  */
-public class MenuView {
+public class MenuView implements View {
 
     private static MenuView instance;
     private Stage stage;

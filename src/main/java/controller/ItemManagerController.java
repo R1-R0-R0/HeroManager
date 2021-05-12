@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
  * @see view.ItemManagerView associated class view (MVC pattern)
  * @see ItemManagerModel associated class model (MVC pattern)
  */
-public class ItemManagerController implements Initializable {
+public class ItemManagerController implements Controller {
 
     private static ItemManagerController instance;
     /**

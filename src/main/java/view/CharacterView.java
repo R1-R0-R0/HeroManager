@@ -37,7 +37,7 @@ import java.util.List;
  * @see CharacterModel associated class model (MVC pattern)
  * @see CharacterController associated class controller (MVC pattern)
  */
-public class CharacterView {
+public class CharacterView implements View {
 
     /* INVENTORY TAB SETTINGS */
     /**

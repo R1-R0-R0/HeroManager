@@ -26,7 +26,7 @@ import java.util.List;
  * @see CharacterCreatorView associated class view (MVC pattern)
  * @see CharacterCreatorController associated class controller (MVC pattern)
  */
-public class ItemPickerModel {
+public class ItemPickerModel implements Model {
 
     private static ItemPickerModel instance;
     private final ListenableArrayList<Weapon> weapons;

@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
  * @see MenuView associated class view (MVC pattern)
  * @see MenuModel associated class model (MVC pattern)
  */
-public class MenuController implements Initializable {
+public class MenuController implements Controller {
 
     private static MenuController instance;
 

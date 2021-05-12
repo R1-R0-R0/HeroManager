@@ -29,7 +29,7 @@ import java.util.List;
  * @see model.gui.ItemPickerModel associated class model (MVC pattern)
  * @see ItemPickerController associated class controller (MVC pattern)
  */
-public class ItemPickerView {
+public class ItemPickerView implements View {
 
     private static ItemPickerView instance;
     private Stage stage;

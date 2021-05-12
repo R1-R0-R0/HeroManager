@@ -29,7 +29,7 @@ import java.util.List;
  * @see CharacterCreatorModel associated class model (MVC pattern)
  * @see CharacterCreatorController associated class controller (MVC pattern)
  */
-public class CharacterCreatorView {
+public class CharacterCreatorView implements View {
 
     private static CharacterCreatorView instance;
     private Stage stage;

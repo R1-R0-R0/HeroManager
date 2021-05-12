@@ -24,7 +24,7 @@ import java.util.List;
  * @see ItemManagerView associated class view (MVC pattern)
  * @see controller.ItemManagerController associated class controller (MVC pattern)
  */
-public class ItemManagerModel {
+public class ItemManagerModel implements Model {
 
     private static ItemManagerModel instance;
 

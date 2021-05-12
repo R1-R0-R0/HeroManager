@@ -23,7 +23,7 @@ import java.io.IOException;
  * @see ItemManagerModel associated class model (MVC pattern)
  * @see controller.ItemManagerController associated class controller (MVC pattern)
  */
-public class ItemManagerView {
+public class ItemManagerView implements View {
 
     private static ItemManagerView instance;
     private Stage stage;

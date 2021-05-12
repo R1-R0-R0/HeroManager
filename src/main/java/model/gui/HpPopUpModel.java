@@ -11,7 +11,7 @@ import view.HpPopUpView;
  * @see HpPopUpView associated class view (MVC pattern)
  * @see controller.HpPopUpController associated class controller (MVC pattern)
  */
-public class HpPopUpModel {
+public class HpPopUpModel implements Model {
 
     private static HpPopUpModel instance;
 

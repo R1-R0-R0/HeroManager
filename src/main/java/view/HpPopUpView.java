@@ -16,7 +16,7 @@ import java.io.IOException;
  * @see model.gui.HpPopUpModel associated class model (MVC pattern)
  * @see HpPopUpController associated class controller (MVC pattern)
  */
-public class HpPopUpView {
+public class HpPopUpView implements View {
 
     private static HpPopUpView instance;
 

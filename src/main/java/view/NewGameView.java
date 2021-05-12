@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * @Deprecated User will just directly create his character. This class will be removed soon.
  */
-public class NewGameView {
+public class NewGameView implements View {
 
     private Stage stage;
     private static NewGameView instance;
