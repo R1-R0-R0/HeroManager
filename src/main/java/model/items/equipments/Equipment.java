@@ -34,6 +34,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give name of the equipment
      * @return name of the equipment
      */
     @Override
@@ -42,6 +43,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give description of the equipment
      * @return description of the equipment
      */
     @Override
@@ -50,6 +52,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give armor bonus given by item
      * @return armor bonus given by the item
      */
     public int getArmorBonus() {
@@ -76,6 +79,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give bonus given by item
      * @return strength bonus when equipped
      */
     public int getStrengthBoost() {
@@ -83,6 +87,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give bonus given by item
      * @return dexterity bonus when equipped
      */
     public int getDexterityBoost() {
@@ -90,6 +95,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give bonus given by item
      * @return robustness bonus when equipped
      */
     public int getRobustnessBoost() {
@@ -97,6 +103,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give bonus given by item
      * @return intelligence bonus when equipped
      */
     public int getIntelligenceBoost() {
@@ -104,6 +111,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give bonus given by item
      * @return wisdom bonus when equipped
      */
     public int getWisdomBoost() {
@@ -111,6 +119,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give bonus given by item
      * @return charisma bonus when equipped
      */
     public int getCharismaBoost() {
@@ -118,6 +127,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give bonus given by item
      * @return speed bonus when equipped
      */
     public int getSpeedBoost() {
@@ -125,6 +135,7 @@ public class Equipment implements Item {
     }
 
     /**
+     * give name of equipment
      * @return name of equipment
      */
     @Override

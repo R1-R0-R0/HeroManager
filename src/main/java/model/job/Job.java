@@ -166,6 +166,7 @@ public class Job {
     }
 
     /**
+     * give maximum health points
      * @return the maximum health points of a character
      */
     public int getMaxHp() {
@@ -174,6 +175,7 @@ public class Job {
     }
 
     /**
+     * give current health points
      * @return current health points of a character
      */
     public int getHealthPoints() {
@@ -195,6 +197,7 @@ public class Job {
     }
 
     /**
+     * give a value proportional to the parameter statValue
      * @param statValue
      * @return a value proportional to the parameter
      */
@@ -214,6 +217,7 @@ public class Job {
     }
 
     /**
+     * give base armor of the character
      * @return amount of base armor of the character
      */
     public int getArmor() {
@@ -221,6 +225,7 @@ public class Job {
     }
 
     /**
+     * give level of the character
      * @return level of the character
      */
     public int getLevel() {
@@ -241,6 +246,7 @@ public class Job {
     }
 
     /**
+     * give base strength
      * @return base strength of the character
      */
     public int getStrength() {
@@ -248,6 +254,7 @@ public class Job {
     }
 
     /**
+     * give base dexterity
      * @return base dexterity of the character
      */
     public int getDexterity() {
@@ -255,6 +262,7 @@ public class Job {
     }
 
     /**
+     * give base intelligence
      * @return base Intelligence of the character
      */
     public int getIntelligence() {
@@ -262,6 +270,7 @@ public class Job {
     }
 
     /**
+     * give base wisdom
      * @return base wisdom of the character
      */
     public int getWisdom() {
@@ -269,6 +278,7 @@ public class Job {
     }
 
     /**
+     * give base charisma
      * @return base charisma of the character
      */
     public int getCharisma() {
@@ -276,6 +286,7 @@ public class Job {
     }
 
     /**
+     * give base robustness
      * @return base robustness of the character
      */
     public int getRobustness() {
@@ -283,6 +294,7 @@ public class Job {
     }
 
     /**
+     * give base speed
      * @return base speed of the character
      */
     public int getSpeed() {
@@ -298,6 +310,7 @@ public class Job {
     }
 
     /**
+     * get armorBoost coming from equipments
      * @return armorBoost coming from equipments
      */
     public int getArmorBoost() {
@@ -310,6 +323,7 @@ public class Job {
     }
 
     /**
+     * get strength boost coming from equipments and improvements
      * @return strength boost coming from equipments and improvements
      */
     public int getStrengthBoost() {
@@ -333,6 +347,7 @@ public class Job {
     }
 
     /**
+     * get dexterity boost coming from equipments and improvements
      * @return dexterity boost coming from equipments and improvements
      */
     public int getDexterityBoost() {
@@ -354,6 +369,7 @@ public class Job {
     }
 
     /**
+     * get robustness boost coming from equipments and improvements
      * @return robustness boost coming from equipments and improvements
      */
     public int getRobustnessBoost() {
@@ -376,6 +392,7 @@ public class Job {
     }
 
     /**
+     * get intelligence boost coming from equipments and improvements
      * @return intelligence boost coming from equipments and improvements
      */
     public int getIntelligenceBoost() {
@@ -398,6 +415,7 @@ public class Job {
     }
 
     /**
+     * get wisdom boost coming from equipments and improvements
      * @return wisdom boost coming from equipments and improvements
      */
     public int getWisdomBoost() {
@@ -419,6 +437,7 @@ public class Job {
     }
 
     /**
+     * get charisma boost coming from equipments and improvements
      * @return charisma boost coming from equipments and improvements
      */
     public int getCharismaBoost() {
@@ -440,6 +459,7 @@ public class Job {
     }
 
     /**
+     * get Speed boosts from equipments and improvements
      * @return speed boost coming from equipments and improvements
      */
     public int getSpeedBoost() {
@@ -541,6 +561,7 @@ public class Job {
     }
 
     /**
+     * get race of the character
      * @return race of the character
      */
     public Race getRaceType() {
@@ -548,6 +569,7 @@ public class Job {
     }
 
     /**
+     * get the jobtype of the character
      * @return jobtype of the character
      */
     public JobType getJobType() {
@@ -555,6 +577,7 @@ public class Job {
     }
 
     /**
+     * get the inventory of the character
      * @return the inventory of the character
      */
     public List<Item> getInventory() {
@@ -576,6 +599,7 @@ public class Job {
     }
 
     /**
+     * get name of the character
      * @return name of the character
      */
     public String getName() {
@@ -583,6 +607,7 @@ public class Job {
     }
 
     /**
+     * get description of the character
      * @return description of the character
      */
     public String getDescription() {
@@ -590,6 +615,7 @@ public class Job {
     }
 
     /**
+     * get spell slots of the character
      * @return spell slots of the character
      */
     public int[] getSpellSlots() {
@@ -597,6 +623,7 @@ public class Job {
     }
 
     /**
+     * get list of spells of the character
      * @return list of spells of the character
      */
     public List<Spell> getSpellInventory() {
@@ -604,6 +631,7 @@ public class Job {
     }
 
     /**
+     * get list of improvements of the character
      * @return list of improvements of the character
      */
     public List<Improvement> getImprovements() {
@@ -611,6 +639,7 @@ public class Job {
     }
 
     /**
+     * get list of jobskills of the character
      * @return list of jobskills of the character
      */
     public List<JobSkill> getSkills() {
@@ -618,7 +647,7 @@ public class Job {
     }
 
     /**
-     *
+     * get the list of equipped equipments
      * @return the list of equipped equipments
      */
     public EquipmentInventory getEquippedEquipments() {
@@ -627,7 +656,7 @@ public class Job {
 
 
     /**
-     *
+     * get the Equipment of given EquipmentPart
      * @param equipmentPart
      * @return Equipment of given EquipmentPart
      * @throws UnsupportedItemException
@@ -1062,7 +1091,7 @@ public class Job {
     }
 
     /**
-     *
+     * give the the Alignment of the character
      * @return the Alignment of the character
      */
     public Alignment getAlignment() {
@@ -1070,7 +1099,7 @@ public class Job {
     }
 
     /**
-     *
+     * give the Race of the character
      * @return the Race of the character
      */
     public Race getRace() {
@@ -1078,7 +1107,8 @@ public class Job {
     }
 
     /**
-     * @return the amount of statistics points
+     * give amount of additional statistics points
+     * @return the amount of additional statistics points
      */
     public int getAdditionalStatPoints() {
         return additionalStatPoints;
@@ -1123,6 +1153,7 @@ public class Job {
     }
 
     /**
+     * give the gender of the character
      * @return the gender of the character
      */
     public Gender getGender() {
@@ -1130,6 +1161,7 @@ public class Job {
     }
 
     /**
+     * give the name of the Character
      * @return name of the Character
      */
     @Override

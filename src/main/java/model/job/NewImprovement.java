@@ -33,6 +33,7 @@ public class NewImprovement {
     }
 
     /**
+     * give name of the Improvement
      * @return name of the Improvement
      */
     public String getName() {
@@ -40,6 +41,7 @@ public class NewImprovement {
     }
 
     /**
+     * give description of the Improvement
      * @return description of the Improvement
      */
     public String getDescription() {
@@ -47,6 +49,7 @@ public class NewImprovement {
     }
 
     /**
+     * give boost given by improvement
      * @return boost of Strength given by the improvement
      */
     public int getStrengthBoost(){
@@ -54,6 +57,7 @@ public class NewImprovement {
     }
 
     /**
+     * give boost given by improvement
      * @return boost of Dexterity given by the improvement
      */
     public int getDexterityBoost(){
@@ -61,6 +65,7 @@ public class NewImprovement {
     }
 
     /**
+     * give boost given by improvement
      * @return boost of Robustness given by the improvement
      */
     public int getRobustnessBoost(){
@@ -68,6 +73,7 @@ public class NewImprovement {
     }
 
     /**
+     * give boost given by improvement
      * @return boost of Intelligence given by the improvement
      */
     public int getIntelligenceBoost(){
@@ -75,6 +81,7 @@ public class NewImprovement {
     }
 
     /**
+     * give boost given by improvement
      * @return boost of Wisdom given by the improvement
      */
     public int getWisdomBoost(){
@@ -82,6 +89,7 @@ public class NewImprovement {
     }
 
     /**
+     * give boost given by improvement
      * @return boost of Charisma given by the improvement
      */
     public int getCharismaBoost(){
@@ -89,6 +97,7 @@ public class NewImprovement {
     }
 
     /**
+     * give boost given by improvement
      * @return boost of Speed given by the improvement
      */
     public int getSpeedBoost(){
