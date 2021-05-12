@@ -3,7 +3,6 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -29,7 +28,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Character">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Level up" />
+                        <MenuItem mnemonicParsing="false" onAction="#levelUpCharacter" text="Level up" />
                     </items>
                 </Menu>
                 <Menu fx:id="tableMenu" mnemonicParsing="false" text="Table">

@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 import model.gui.CharacterModel;
+import model.gui.LevelUpModel;
 import model.items.equipments.*;
 import model.spell.Spell;
 import view.CharacterView;
@@ -281,5 +282,13 @@ public class CharacterController implements Controller {
     @FXML
     public void ring2PaneOnClick() {
         CharacterModel.getInstance().equipmentPaneOnClick(EquipmentPart.RING2);
+    }
+
+    /**
+     * Called when user want to level up his character
+     */
+    @FXML
+    public void levelUpCharacter() {
+        new LevelUpModel(CharacterView.getInstance().getStage());
     }
 }
