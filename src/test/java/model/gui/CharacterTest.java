@@ -152,7 +152,7 @@ public class CharacterTest {
 
     @Test
     @DisplayName("Equip equipment in inventory test")
-    public void equipEquipmentInventoryTest(FxRobot robot) {
+    public void equipEquipmentInventoryTest(FxRobot robot) throws InterruptedException {
         robot.clickOn("#inventoryTabDongle");
         robot.clickOn("#inventorySlot1");
 
@@ -168,6 +168,12 @@ public class CharacterTest {
 
         Assertions.assertEquals(headphones, CharacterModel.getInstance().getCharacter().getEquippedEquipments().getHead());
 
-        while (true);
+        robot.clickOn("#equipmentTabDongle");
+        robot.clickOn("#headPane");
+        robot.clickOn("#unequipAction");
+        robot.sleep(250);
+        robot.clickOn("#unequipAction");
+
+        Assertions.assertNull(CharacterModel.getInstance().getCharacter().getEquippedEquipments().getHead());
     }
 }
