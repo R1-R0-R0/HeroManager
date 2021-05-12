@@ -209,7 +209,7 @@ public class CharacterCreatorModel {
         ObservableList<JobSkillItem> jobSkillItems = jobSkillItemListView.getItems();
         for (JobSkillItem jobSkillItem : jobSkillItems) {
             if (jobSkillItem.isSelected())
-                createdJob.addJobSkills(jobSkillItem.getSkill());
+                createdJob.getSkills().add(jobSkillItem.getSkill());
         }
 
         ObservableList<SpellItem> spellItems = spellItemListView.getItems();
