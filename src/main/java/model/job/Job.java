@@ -1143,14 +1143,6 @@ public class Job {
         spellInventory.add(spell);
     }
 
-    /**
-     * add a jobSkill in skills of the character
-     *
-     * @param jobSkill
-     */
-    public void addJobSkills(JobSkill jobSkill) {
-        skills.add(jobSkill);
-    }
 
     /**
      * give the gender of the character
