@@ -188,7 +188,7 @@ public class CharacterCreatorModel implements Model {
                 case STRENGTH -> createdJob.increaseStrength();
                 case DEXTERITY -> createdJob.increaseDexterity();
                 case INTELLIGENCE -> createdJob.increaseIntelligence();
-                case WISDOM -> createdJob.increaseIntelligence();
+                case WISDOM -> createdJob.increaseWisdom();
                 case ROBUSTNESS -> createdJob.increaseRobustness();
                 case CHARISMA -> createdJob.increaseCharisma();
             }
