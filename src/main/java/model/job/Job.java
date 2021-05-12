@@ -1,5 +1,6 @@
 package model.job;
 
+import exceptions.UnsupportedItemException;
 import model.items.Item;
 import model.items.equipments.Equipment;
 import model.items.equipments.EquipmentInventory;
@@ -51,6 +52,7 @@ public class Job {
         this.jobType = jobType;
         this.improvements = race.getImprovements();
         this.improvements.addAll(jobType.getImprovements());
+        this.equippedEquipments = new EquipmentInventory(null,null,null,null,null,null,null,null,null,null);
 
         inventory = new ArrayList<>();
         spellInventory = new ArrayList<>();
@@ -621,6 +623,56 @@ public class Job {
      */
     public EquipmentInventory getEquippedEquipments() {
         return equippedEquipments;
+    }
+
+
+    /**
+     *
+     * @param equipmentPart
+     * @return Equipment of given EquipmentPart
+     * @throws UnsupportedItemException
+     */
+    public Equipment getEquipment(EquipmentPart equipmentPart) throws UnsupportedItemException {
+
+        if(equipmentPart == null){
+            throw new UnsupportedItemException("Equipment Part " + null + " isn't supported");
+        }
+
+        switch (equipmentPart){
+            case BELT -> {
+                return equippedEquipments.getBelt();
+            }
+            case BODY -> {
+                return equippedEquipments.getBody();
+            }
+            case FEET -> {
+                return equippedEquipments.getFeet();
+            }
+            case HEAD -> {
+                return equippedEquipments.getHead();
+            }
+            case LEGS -> {
+                return equippedEquipments.getLegs();
+            }
+            case HANDS -> {
+                return equippedEquipments.getHands();
+            }
+            case AMULET -> {
+                return equippedEquipments.getAmulet();
+            }
+            case MANTLE -> {
+                return equippedEquipments.getMantle();
+            }
+            case RING ->  {
+                return equippedEquipments.getLeftRing();
+            }
+            case RING2 -> {
+                return equippedEquipments.getRightRing();
+            }
+            default ->{
+                throw new UnsupportedItemException("Equipment Part " + equipmentPart + " isn't supported");
+            }
+        }
     }
 
     /**

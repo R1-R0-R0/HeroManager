@@ -1,6 +1,7 @@
 package model.job;
 
 
+import exceptions.UnsupportedItemException;
 import model.items.equipments.Equipment;
 import model.items.equipments.EquipmentInventory;
 import model.items.equipments.EquipmentPart;
@@ -10,6 +11,7 @@ import model.race.Race;
 import model.spell.Component;
 import model.spell.Spell;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -619,6 +621,25 @@ public class JobTest {
         assertSame(alreadyExistingBard.getEquippedEquipments().getLeftRing(), otherRing);
         assertTrue(alreadyExistingBard.getInventory().contains(ring));
         assertFalse(alreadyExistingBard.getInventory().contains(otherRing));
+
+    }
+
+    @Test
+    public void getEquipmentTest() throws UnsupportedItemException {
+        EquipmentPart equipmentPartHead = EquipmentPart.HEAD;
+        EquipmentPart equipmentPartRing = EquipmentPart.RING;
+        EquipmentPart equipmentPartRing2 = EquipmentPart.RING2;
+
+        alreadyExistingBard.replaceEquippedEquipment(helmet);
+        assertEquals(helmet,alreadyExistingBard.getEquipment(equipmentPartHead));
+        alreadyExistingBard.replaceEquippedEquipment(ring);
+        alreadyExistingBard.addRightRing(otherRing);
+
+        assertEquals(ring,alreadyExistingBard.getEquipment(equipmentPartRing));
+        assertEquals(otherRing,alreadyExistingBard.getEquipment(equipmentPartRing2));
+
+        assertThrows(UnsupportedItemException.class, () -> alreadyExistingBard.getEquipment(null));
+
 
     }
 
