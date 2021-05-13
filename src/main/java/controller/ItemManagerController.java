@@ -1,6 +1,8 @@
 package controller;
 
 import exceptions.UnsupportedItemException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,7 +12,7 @@ import javafx.scene.layout.GridPane;
 import model.gui.ItemManagerModel;
 import model.items.Item;
 import model.items.ItemType;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentPart;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.WeaponType;
@@ -74,7 +76,7 @@ public class ItemManagerController implements Initializable {
      * Picker (ChoiceBox) to choose what kind of equipment is (head, body, ...)
      */
     @FXML
-    public ChoiceBox<EquipmentParts> equipmentPartPicker;
+    public ChoiceBox<EquipmentPart> equipmentPartPicker;
     /**
      * Picker(ChoiceBox) to select what kind of equipment is (weight)
      */
@@ -85,6 +87,18 @@ public class ItemManagerController implements Initializable {
      */
     @FXML
     public Button newItemButton, updateItemButton, deleteItemButton;
+
+    /**
+     * Spinner used to set armor bonus value to equipments
+     */
+    @FXML
+    public Spinner<Integer> spinnerArmorBonus;
+
+    /**
+     * Spinners related to characteristics bonuses applied to equipments
+     */
+    @FXML
+    public Spinner<Integer> spinnerStrength, spinnerDexterity, spinnerRobustness, spinnerIntelligence, spinnerWisdom, spinnerCharisma, spinnerSpeed;
 
     /**
      * @return instance of this class
@@ -104,7 +118,7 @@ public class ItemManagerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
 
-        itemList.setOnMouseClicked(event -> itemSelectedEvent());
+        itemList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> itemSelectedEvent());
 
         ObservableList<ItemType> itemTypeObservableList = FXCollections.observableArrayList(ItemType.values());
         typePicker.setItems(itemTypeObservableList);
@@ -114,7 +128,7 @@ public class ItemManagerController implements Initializable {
         ObservableList<DamageType> damageTypeObservableList = FXCollections.observableArrayList(DamageType.values());
         damageTypePicker.setItems(damageTypeObservableList);
 
-        ObservableList<EquipmentParts> equipmentPartObservableList = FXCollections.observableArrayList(EquipmentParts.values());
+        ObservableList<EquipmentPart> equipmentPartObservableList = FXCollections.observableArrayList(EquipmentPart.values());
         equipmentPartPicker.setItems(equipmentPartObservableList);
         ObservableList<EquipmentType> equipmentTypeObservableList = FXCollections.observableArrayList(EquipmentType.values());
         equipmentTypePicker.setItems(equipmentTypeObservableList);
@@ -132,7 +146,7 @@ public class ItemManagerController implements Initializable {
      * Event triggered when an item has been selected in list view
      */
     public void itemSelectedEvent() {
-
+        ItemManagerModel.getInstance().itemSelectedEvent();
     }
 
     /**

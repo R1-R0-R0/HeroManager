@@ -5,10 +5,11 @@ import controller.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,14 +19,13 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.gui.CharacterCreatorModel;
 import model.gui.CharacterModel;
-import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.equipments.Equipment;
-import model.items.weapons.Weapon;
+import model.items.equipments.EquipmentInventory;
 import model.job.*;
 import model.spell.Spell;
+import utils.gui.ContainerPane;
 
 import java.io.IOException;
 import java.util.List;
@@ -99,23 +99,7 @@ public class CharacterView {
                     "Charisma:      " + character.getTotalCharisma() + " (" + character.getCharisma() + " + " + character.getCharismaBoost() + ")",
                     "Armor:           " + character.getTotalArmor() + " (" + character.getArmor() + " + " + character.getArmorBoost() + ")");
 
-            List<Improvement> improvements = character.getImprovements();
-            String[] improvementStrings = new String[improvements.size()];
-            for (int i = 0; i < improvements.size(); i++)
-                improvementStrings[i] = improvements.get(i).name();
-            setImprovements(improvementStrings);
-
-            List<JobSkill> skills = character.getSkills();
-            String[] skillStrings = new String[skills.size()];
-            for (int i = 0; i < skills.size(); i++)
-                skillStrings[i] = skills.get(i).getName();
-            setSkills(skillStrings);
-
-            setCharacterName(character.getName());
-            setHP(character.getHealthPoints(), 100); // TODO
-            setLevel(character.getLevel());
-            setInventory(character.getInventory());
-            setSpellList(character.getSpellInventory());
+            refreshView();
 
             String pictureNameJobType = jobType.name().toLowerCase();
             String pictureNameGender = (gender == Gender.MAN) ? "_m.jpg" : "_f.jpg";
@@ -154,54 +138,6 @@ public class CharacterView {
         CharacterController.getInstance().borderHpBar.widthProperty().addListener((observable, oldValue, newValue) -> {
             Pane hpBar = CharacterController.getInstance().hpBar;
             hpBar.setMaxWidth(newValue.doubleValue() * hpBar.getMaxWidth() / oldValue.doubleValue());
-        });
-
-        CharacterController.getInstance().equipmentTab.widthProperty().addListener((observable, oldValue, newValue) -> {
-            ImageView
-                    headImage = CharacterController.getInstance().headImage,
-                    bodyImage = CharacterController.getInstance().bodyImage,
-                    mantleImage = CharacterController.getInstance().mantleImage,
-                    beltImage = CharacterController.getInstance().beltImage,
-                    legsImage = CharacterController.getInstance().legsImage,
-                    feetImage = CharacterController.getInstance().feetImage,
-                    amuletImage = CharacterController.getInstance().amuletImage,
-                    ringImage1 = CharacterController.getInstance().ringImage1,
-                    ringImage2 = CharacterController.getInstance().ringImage2;
-
-
-            headImage.setLayoutX(newValue.doubleValue() * headImage.getLayoutX() / oldValue.doubleValue());
-            bodyImage.setLayoutX(newValue.doubleValue() * bodyImage.getLayoutX() / oldValue.doubleValue());
-            mantleImage.setLayoutX(newValue.doubleValue() * mantleImage.getLayoutX() / oldValue.doubleValue());
-            beltImage.setLayoutX(newValue.doubleValue() * beltImage.getLayoutX() / oldValue.doubleValue());
-            legsImage.setLayoutX(newValue.doubleValue() * legsImage.getLayoutX() / oldValue.doubleValue());
-            feetImage.setLayoutX(newValue.doubleValue() * feetImage.getLayoutX() / oldValue.doubleValue());
-            amuletImage.setLayoutX(newValue.doubleValue() * amuletImage.getLayoutX() / oldValue.doubleValue());
-            ringImage1.setLayoutX(newValue.doubleValue() * ringImage1.getLayoutX() / oldValue.doubleValue());
-            ringImage2.setLayoutX(newValue.doubleValue() * ringImage2.getLayoutX() / oldValue.doubleValue());
-        });
-
-        CharacterController.getInstance().equipmentTab.heightProperty().addListener((observable, oldValue, newValue) -> {
-            ImageView
-                    headImage = CharacterController.getInstance().headImage,
-                    bodyImage = CharacterController.getInstance().bodyImage,
-                    mantleImage = CharacterController.getInstance().mantleImage,
-                    beltImage = CharacterController.getInstance().beltImage,
-                    legsImage = CharacterController.getInstance().legsImage,
-                    feetImage = CharacterController.getInstance().feetImage,
-                    amuletImage = CharacterController.getInstance().amuletImage,
-                    ringImage1 = CharacterController.getInstance().ringImage1,
-                    ringImage2 = CharacterController.getInstance().ringImage2;
-
-
-            headImage.setLayoutY(newValue.doubleValue() * headImage.getLayoutY() / oldValue.doubleValue());
-            bodyImage.setLayoutY(newValue.doubleValue() * bodyImage.getLayoutY() / oldValue.doubleValue());
-            mantleImage.setLayoutY(newValue.doubleValue() * mantleImage.getLayoutY() / oldValue.doubleValue());
-            beltImage.setLayoutY(newValue.doubleValue() * beltImage.getLayoutY() / oldValue.doubleValue());
-            legsImage.setLayoutY(newValue.doubleValue() * legsImage.getLayoutY() / oldValue.doubleValue());
-            feetImage.setLayoutY(newValue.doubleValue() * feetImage.getLayoutY() / oldValue.doubleValue());
-            amuletImage.setLayoutY(newValue.doubleValue() * amuletImage.getLayoutY() / oldValue.doubleValue());
-            ringImage1.setLayoutY(newValue.doubleValue() * ringImage1.getLayoutY() / oldValue.doubleValue());
-            ringImage2.setLayoutY(newValue.doubleValue() * ringImage2.getLayoutY() / oldValue.doubleValue());
         });
     }
 
@@ -378,18 +314,18 @@ public class CharacterView {
 
         for (int i = 0; i < INVENTORY_SIZE; i++) {
             for (int j = 0; j < INVENTORY_SIZE; j++) {
-                StackPane pane = new StackPane();
+                ContainerPane<Item> pane = new ContainerPane<>();
                 pane.setId("inventorySlot" + counter);
                 pane.setOnMouseClicked(this::inventoryMouseClickedEvent);
                 pane.setCursor(Cursor.HAND);
                 Tooltip.install(pane, tooltip);
 
-                ImageView img = new ImageView();
-                img.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
-                img.setFitHeight(INVENTORY_ITEM_IMAGE_SIZE);
-                img.setFitWidth(INVENTORY_ITEM_IMAGE_SIZE);
+                ImageView imgPlus = new ImageView();
+                imgPlus.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
+                imgPlus.setFitHeight(INVENTORY_ITEM_IMAGE_SIZE);
+                imgPlus.setFitWidth(INVENTORY_ITEM_IMAGE_SIZE);
 
-                pane.getChildren().add(img);
+                pane.getChildren().add(imgPlus);
                 inventory.add(pane, j, i);
                 counter++;
             }
@@ -416,25 +352,144 @@ public class CharacterView {
     public void setInventory(List<Item> items) {
         int counter = 0;
 
-        StackPane pane;
+        Tooltip emptyTooltip = new Tooltip("Empty slot");
+        emptyTooltip.setShowDelay(Duration.ONE);
+
+        ContainerPane<Item> pane;
         Tooltip tooltip;
         String selector;
         for (Item item : items) {
+            if (item == null) continue;
+
             selector = "#inventorySlot" + counter;
             tooltip = new Tooltip(item.getDescription());
             tooltip.setShowDelay(Duration.ONE);
 
-            pane = ((StackPane) CharacterController.getInstance().inventoryPane.getScene().lookup(selector));
-            pane.getChildren().clear();
-            pane.getChildren().add(new Text(item.getName()));
+            pane = ((ContainerPane<Item>) CharacterController.getInstance().inventoryPane.getScene().lookup(selector));
+            pane.setContainedObject(item);
 
             Tooltip.install(pane, tooltip);
 
             counter++;
         }
+
+        for (int i = counter; i < INVENTORY_SIZE * INVENTORY_SIZE; i++) {
+            selector = "#inventorySlot" + counter;
+            pane = ((ContainerPane<Item>) CharacterController.getInstance().inventoryPane.getScene().lookup(selector));
+            pane.clearContainedObject();
+
+            pane.getChildren().add(generateImagePlus());
+        }
     }
 
-    // TODO : To implement when item pickers are here
+    public void setEquippedEquipments(EquipmentInventory equippedEquipments) {
+        CharacterController controller = CharacterController.getInstance();
+
+        StackPane headPane = controller.headPane;
+        StackPane bodyPane = controller.bodyPane;
+        StackPane mantlePane = controller.mantlePane;
+        StackPane beltPane = controller.beltPane;
+        StackPane legsPane = controller.legsPane;
+        StackPane feetPane = controller.feetPane;
+        StackPane amuletPane = controller.amuletPane;
+        StackPane ringPane1 = controller.ringPane1;
+        StackPane ringPane2 = controller.ringPane2;
+
+        headPane.getChildren().clear();
+        bodyPane.getChildren().clear();
+        mantlePane.getChildren().clear();
+        beltPane.getChildren().clear();
+        legsPane.getChildren().clear();
+        feetPane.getChildren().clear();
+        amuletPane.getChildren().clear();
+        ringPane1.getChildren().clear();
+        ringPane2.getChildren().clear();
+
+
+        if (equippedEquipments.getHead() == null)
+            headPane.getChildren().add(generateImagePlus());
+        else
+            headPane.getChildren().add(new ContainerPane<>(equippedEquipments.getHead()));
+
+        if (equippedEquipments.getBody() == null)
+            bodyPane.getChildren().add(generateImagePlus());
+        else
+            bodyPane.getChildren().add(new ContainerPane<>(equippedEquipments.getBody()));
+
+        if (equippedEquipments.getMantle() == null)
+            mantlePane.getChildren().add(generateImagePlus());
+        else
+            mantlePane.getChildren().add(new ContainerPane<>(equippedEquipments.getMantle()));
+
+        if (equippedEquipments.getBelt() == null)
+            beltPane.getChildren().add(generateImagePlus());
+        else
+            beltPane.getChildren().add(new ContainerPane<>(equippedEquipments.getBelt()));
+
+        if (equippedEquipments.getLegs() == null)
+            legsPane.getChildren().add(generateImagePlus());
+        else
+            legsPane.getChildren().add(new ContainerPane<>(equippedEquipments.getLegs()));
+
+        if (equippedEquipments.getFeet() == null)
+            feetPane.getChildren().add(generateImagePlus());
+        else
+            feetPane.getChildren().add(new ContainerPane<>(equippedEquipments.getFeet()));
+
+        if (equippedEquipments.getAmulet() == null)
+            amuletPane.getChildren().add(generateImagePlus());
+        else
+            amuletPane.getChildren().add(new ContainerPane<>(equippedEquipments.getAmulet()));
+
+        if (equippedEquipments.getLeftRing() == null)
+            ringPane1.getChildren().add(generateImagePlus());
+        else
+            ringPane1.getChildren().add(new ContainerPane<>(equippedEquipments.getLeftRing()));
+
+        if (equippedEquipments.getRightRing() == null)
+            ringPane2.getChildren().add(generateImagePlus());
+        else
+            ringPane2.getChildren().add(new ContainerPane<>(equippedEquipments.getRightRing()));
+    }
+
+    /**
+     * Used by inventory and equipment tab to show a + image when there is no item/equipment
+     * @return image view of +
+     */
+    private ImageView generateImagePlus() {
+        ImageView imgPlus = new ImageView();
+        imgPlus.setImage(new Image(getClass().getResourceAsStream(IMAGE_PLUS_PATH)));
+        imgPlus.setFitHeight(INVENTORY_ITEM_IMAGE_SIZE);
+        imgPlus.setFitWidth(INVENTORY_ITEM_IMAGE_SIZE);
+
+        return imgPlus;
+    }
+
+    /**
+     * To refresh view when character got his attributes modified
+     */
+    public void refreshView() {
+        Job character = CharacterModel.getInstance().getCharacter();
+
+        List<Improvement> improvements = character.getImprovements();
+        String[] improvementStrings = new String[improvements.size()];
+        for (int i = 0; i < improvements.size(); i++)
+            improvementStrings[i] = improvements.get(i).name();
+        setImprovements(improvementStrings);
+
+        List<JobSkill> skills = character.getSkills();
+        String[] skillStrings = new String[skills.size()];
+        for (int i = 0; i < skills.size(); i++)
+            skillStrings[i] = skills.get(i).getName();
+        setSkills(skillStrings);
+
+        setCharacterName(character.getName());
+        setHP(character.getHealthPoints(), 100); // TODO
+        setLevel(character.getLevel());
+        setInventory(character.getInventory());
+        setSpellList(character.getSpellInventory());
+        setEquippedEquipments(character.getEquippedEquipments());
+    }
 
     /**
      * Method event called when item in inventory is clicked and show up contextual menu or open item picker
@@ -442,29 +497,8 @@ public class CharacterView {
      * @param event mouse event captured
      */
     private void inventoryMouseClickedEvent(MouseEvent event) {
-        System.out.println("event = " + event);
-        StackPane source = ((StackPane) event.getSource());
-        System.out.println("source.getId() = " + source.getId());
-
-        ContextMenu clickMenu = new ContextMenu();
-        Item item = null; // new Weapon("Épée", "Une épée", "Propriétés", WeaponType.COMMON, DamageType.SLASHING);
-
-        if (item != null) {
-            if (item instanceof Weapon || item instanceof Equipment) {
-                MenuItem equip = new MenuItem("Equip");
-                clickMenu.getItems().add(equip);
-            }
-
-            MenuItem info = new MenuItem("Info");
-
-            SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
-            MenuItem discard = new MenuItem("Discard");
-
-            clickMenu.getItems().addAll(info, separatorMenuItem, discard);
-        } else {
-            new ItemPickerModel(getStage());
-        }
-
-        clickMenu.show((Node) event.getSource(), event.getScreenX(), event.getScreenY());
+        ContainerPane<Item> source = ((ContainerPane<Item>) event.getSource());
+        Item item = source.getContainedObject();
+        CharacterModel.getInstance().inventoryClickedEvent(item, event);
     }
 }

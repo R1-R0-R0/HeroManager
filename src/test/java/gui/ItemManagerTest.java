@@ -8,7 +8,7 @@ import model.gui.ItemManagerModel;
 import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentPart;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
@@ -21,10 +21,8 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 @ExtendWith(ApplicationExtension.class)
 @DisplayName("GUI Item Manager Tests")
@@ -69,7 +67,7 @@ public class ItemManagerTest {
     public void listViewTest(FxRobot robot) {
         ItemManagerModel model = ItemManagerModel.getInstance();
         model.setWeaponList(Collections.singletonList(new Weapon("Axe", "An axe", "She's sharp", WeaponType.COMMON, DamageType.SLASHING)));
-        model.setEquipmentList(Collections.singletonList(new Equipment("Headphones", "A simple pair of headphones, useless in fight", EquipmentParts.HEAD, 0, EquipmentType.LIGHT, 0, 0, 0, 0, 0, 1, 0)));
+        model.setEquipmentList(Collections.singletonList(new Equipment("Headphones", "A simple pair of headphones, useless in fight", EquipmentPart.HEAD, 0, EquipmentType.LIGHT, 0, 0, 0, 0, 0, 1, 0)));
         model.setConsumableList(Arrays.asList(new Consumable("A potion", "Unknown potion. Will you drink it ?"), new Consumable("Gameboy", "A simple gameboy.")));
 
         ListView<Item> listView = ((ListView<Item>) robot.lookup("#itemList").tryQuery().get());

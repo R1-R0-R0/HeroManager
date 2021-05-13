@@ -1,4 +1,4 @@
-package gui;
+package model.gui;
 
 import controller.CharacterCreatorController;
 import javafx.application.Application;

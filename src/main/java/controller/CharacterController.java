@@ -15,6 +15,7 @@ import javafx.util.Duration;
 import model.gui.CharacterModel;
 import model.items.equipments.*;
 import model.spell.Spell;
+import utils.gui.ContainerPane;
 import view.CharacterView;
 
 import java.net.URL;
@@ -113,10 +114,10 @@ public class CharacterController implements Initializable {
     public AnchorPane equipmentTab;
 
     /**
-     * Images views related to each part of character's equipment
+     * Container's pane related to each part of character's equipment
      */
     @FXML
-    public ImageView headImage, bodyImage, mantleImage, beltImage, legsImage, feetImage, amuletImage, ringImage1, ringImage2;
+    public StackPane headPane, bodyPane, mantlePane, beltPane, legsPane, feetPane, amuletPane, ringPane1, ringPane2;
 
     /*
       Inventory Tab
@@ -158,17 +159,7 @@ public class CharacterController implements Initializable {
         AnchorPane.setLeftAnchor(inventory, 10.0);
         inventoryPane.getChildren().add(inventory);
 
-        spellList.setOnMouseClicked(event -> CharacterView.getInstance().setSpellDetails(spellList.getSelectionModel().getSelectedItem()));
-
-        headImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
-        bodyImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
-        mantleImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
-        beltImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
-        legsImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
-        feetImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
-        amuletImage.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
-        ringImage1.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
-        ringImage2.setImage(new Image(getClass().getResourceAsStream(CharacterView.IMAGE_PLUS_PATH)));
+        spellList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> CharacterView.getInstance().setSpellDetails(newValue));
 
         Tooltip headTip = new Tooltip("Head");
         headTip.setShowDelay(Duration.ONE);
@@ -187,15 +178,15 @@ public class CharacterController implements Initializable {
         Tooltip ringTip = new Tooltip("Ring");
         ringTip.setShowDelay(Duration.ONE);
 
-        Tooltip.install(headImage, headTip);
-        Tooltip.install(bodyImage, bodyTip);
-        Tooltip.install(mantleImage, mantleTip);
-        Tooltip.install(beltImage, beltTip);
-        Tooltip.install(legsImage, legsTip);
-        Tooltip.install(feetImage, feetTip);
-        Tooltip.install(amuletImage, amuletTip);
-        Tooltip.install(ringImage1, ringTip);
-        Tooltip.install(ringImage2, ringTip);
+        Tooltip.install(headPane, headTip);
+        Tooltip.install(bodyPane, bodyTip);
+        Tooltip.install(mantlePane, mantleTip);
+        Tooltip.install(beltPane, beltTip);
+        Tooltip.install(legsPane, legsTip);
+        Tooltip.install(feetPane, feetTip);
+        Tooltip.install(amuletPane, amuletTip);
+        Tooltip.install(ringPane1, ringTip);
+        Tooltip.install(ringPane2, ringTip);
     }
 
     /*
@@ -223,75 +214,75 @@ public class CharacterController implements Initializable {
     /* EQUIPMENT EVENT */
 
     /**
-     * Called when user click on Image View related to the head equipment in Equipment tab
+     * Called when user click on Pane related to the head equipment in Equipment tab
      * Event
      */
     @FXML
-    public void headImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.HEAD);
+    public void headPaneOnCLick() {
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.HEAD);
     }
 
     /**
-     * Called when user click on Image View related to the body equipment in Equipment tab
+     * Called when user click on Pane related to the body equipment in Equipment tab
      */
     @FXML
-    public void bodyImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.BODY);
+    public void bodyPaneOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.BODY);
     }
 
     /**
-     * Called when user click on Image View related to the mantle equipment in Equipment tab
+     * Called when user click on Pane related to the mantle equipment in Equipment tab
      */
     @FXML
-    public void mantleImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.MANTLE);
+    public void mantlePaneOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.MANTLE);
     }
 
     /**
-     * Called when user click on Image View related to the belt equipment in Equipment tab
+     * Called when user click on Pane related to the belt equipment in Equipment tab
      */
     @FXML
-    public void beltImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.BELT);
+    public void beltPaneOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.BELT);
     }
 
     /**
-     * Called when user click on Image View related to the head equipment in Equipment tab
+     * Called when user click on Pane related to the head equipment in Equipment tab
      */
     @FXML
-    public void legsImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.LEGS);
+    public void legsPaneOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.LEGS);
     }
 
     /**
-     * Called when user click on Image View related to the feet equipment in Equipment tab
+     * Called when user click on Pane related to the feet equipment in Equipment tab
      */
     @FXML
-    public void feetImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.FEET);
+    public void feetPaneOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.FEET);
     }
 
     /**
-     * Called when user click on Image View related to the amulet equipment in Equipment tab
+     * Called when user click on Pane related to the amulet equipment in Equipment tab
      */
     @FXML
-    public void amuletImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.AMULET);
+    public void amuletPaneOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.AMULET);
     }
 
     /**
-     * Called when user click on Image View related to the 1st ring equipment in Equipment tab
+     * Called when user click on Pane related to the 1st ring equipment in Equipment tab
      */
     @FXML
-    public void ring1ImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.RING);
+    public void ring1PaneOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.RING);
     }
 
     /**
-     * Called when user click on Image View related to the 2nd ring equipment in Equipment tab
+     * Called when user click on Pane related to the 2nd ring equipment in Equipment tab
      */
     @FXML
-    public void ring2ImageOnClick() {
-        CharacterModel.getInstance().equipmentImageOnClick(EquipmentParts.RING);
+    public void ring2PaneOnClick() {
+        CharacterModel.getInstance().equipmentImageOnClick(EquipmentPart.RING2);
     }
 }

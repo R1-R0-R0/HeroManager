@@ -3,13 +3,15 @@ package model.gui;
 import controller.ItemManagerController;
 import exceptions.UnsupportedItemException;
 import javafx.scene.control.Alert;
+import model.items.ItemType;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentPart;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
 import model.items.weapons.WeaponType;
+import utils.ListenableArrayList;
 import utils.gui.Dialog;
 import view.ItemManagerView;
 
@@ -26,9 +28,9 @@ public class ItemManagerModel {
 
     private static ItemManagerModel instance;
 
-    private List<Weapon> weapons;
-    private List<Equipment> equipments;
-    private List<Consumable> consumables;
+    private final ListenableArrayList<Weapon> weapons;
+    private final ListenableArrayList<Equipment> equipments;
+    private final ListenableArrayList<Consumable> consumables;
 
     /**
      * Constructor of this class.
@@ -37,6 +39,10 @@ public class ItemManagerModel {
     public ItemManagerModel() {
         instance = this;
 
+        weapons = new ListenableArrayList<>();
+        equipments = new ListenableArrayList<>();
+        consumables = new ListenableArrayList<>();
+
         /*
             TODO
 
@@ -44,6 +50,10 @@ public class ItemManagerModel {
              setEquipmentList(get depuis bdd)
              setConsumablesList(...)
          */
+
+        weapons.addListenerForAllActions(() -> ItemManagerView.getInstance().updateListViews());
+        equipments.addListenerForAllActions(() -> ItemManagerView.getInstance().updateListViews());
+        consumables.addListenerForAllActions(() -> ItemManagerView.getInstance().updateListViews());
 
         new ItemManagerView();
     }
@@ -58,10 +68,11 @@ public class ItemManagerModel {
     /**
      * Used to set weapons list to show when user select weapons
      *
-     * @param weapons list of weapons to set
+     * @param weapons array list of weapons to set
      */
     public void setWeaponList(List<Weapon> weapons) {
-        this.weapons = weapons;
+        this.weapons.clear();
+        this.weapons.addAll(weapons);
     }
 
     /**
@@ -78,7 +89,8 @@ public class ItemManagerModel {
      * @param equipments list of equipments to set
      */
     public void setEquipmentList(List<Equipment> equipments) {
-        this.equipments = equipments;
+        this.equipments.clear();
+        this.equipments.addAll(equipments);
     }
 
     /**
@@ -95,7 +107,8 @@ public class ItemManagerModel {
      * @param consumables list of consumables to set
      */
     public void setConsumableList(List<Consumable> consumables) {
-        this.consumables = consumables;
+        this.consumables.clear();
+        this.consumables.addAll(consumables);
     }
 
     /**
@@ -104,6 +117,21 @@ public class ItemManagerModel {
      */
     public List<Consumable> getConsumablesList() {
         return consumables;
+    }
+
+    /**
+     * Logical method when user selected an item in list view
+     */
+    public void itemSelectedEvent() {
+        ItemManagerController controller = ItemManagerController.getInstance();
+
+        try {
+            ItemManagerView.getInstance().setItemInformation(controller.typePicker.getValue(), controller.itemList.getSelectionModel().getSelectedItem());
+        } catch (UnsupportedItemException e) {
+            e.printStackTrace();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            System.exit(1);
+        }
     }
 
     /**
@@ -148,7 +176,15 @@ public class ItemManagerModel {
                         controller.equipmentNameText.getText(),
                         controller.equipmentDescriptionText.getText(),
                         controller.equipmentPartPicker.getValue(),
-                        controller.equipmentTypePicker.getValue()
+                        controller.equipmentTypePicker.getValue(),
+                        controller.spinnerArmorBonus.getValue(),
+                        controller.spinnerStrength.getValue(),
+                        controller.spinnerDexterity.getValue(),
+                        controller.spinnerRobustness.getValue(),
+                        controller.spinnerIntelligence.getValue(),
+                        controller.spinnerWisdom.getValue(),
+                        controller.spinnerCharisma.getValue(),
+                        controller.spinnerSpeed.getValue()
                 );
             }
             case CONSUMABLES -> {
@@ -209,7 +245,15 @@ public class ItemManagerModel {
                         controller.equipmentNameText.getText(),
                         controller.equipmentDescriptionText.getText(),
                         controller.equipmentPartPicker.getValue(),
-                        controller.equipmentTypePicker.getValue()
+                        controller.equipmentTypePicker.getValue(),
+                        controller.spinnerArmorBonus.getValue(),
+                        controller.spinnerStrength.getValue(),
+                        controller.spinnerDexterity.getValue(),
+                        controller.spinnerRobustness.getValue(),
+                        controller.spinnerIntelligence.getValue(),
+                        controller.spinnerWisdom.getValue(),
+                        controller.spinnerCharisma.getValue(),
+                        controller.spinnerSpeed.getValue()
                 );
             }
             case CONSUMABLES -> {
@@ -277,7 +321,13 @@ public class ItemManagerModel {
      * @param damageType  damages that weapon inflict
      */
     public void newWeapon(String name, String description, String properties, WeaponType weaponType, DamageType damageType) {
-        // TODO
+        Weapon newWeapon = new Weapon(name, description, properties, weaponType, damageType);
+
+        // TODO new weapon in db
+
+        if (true /* TODO IF OBJECT COULD BE CREATED IN DB */) {
+            weapons.add(newWeapon);
+        }
     }
 
     /**
@@ -290,7 +340,21 @@ public class ItemManagerModel {
      * @param damageType  damages that weapon inflict
      */
     public void updateWeapon(String name, String description, String properties, WeaponType weaponType, DamageType damageType) {
-        // TODO
+        Weapon selectedWeapon = (Weapon) ItemManagerController.getInstance().itemList.getSelectionModel().getSelectedItem();
+        Weapon newWeapon = new Weapon(name, description, properties, weaponType, damageType);
+
+        int size = weapons.size();
+        for (int index = 0; index < size; index++) {
+            if (weapons.get(index) == selectedWeapon) {
+                weapons.set(index, newWeapon);
+            }
+        }
+
+        if (selectedWeapon.getName().equals(name)) {
+            // TODO Update item in database
+        } else {
+            // TODO Delete and recreate item in database
+        }
     }
 
     /**
@@ -301,8 +365,17 @@ public class ItemManagerModel {
      * @param equipmentPart body part or equipment must be worn
      * @param equipmentType type of equipment
      */
-    public void newEquipment(String name, String description, EquipmentParts equipmentPart, EquipmentType equipmentType) {
-        // TODO
+    public void newEquipment(String name, String description, EquipmentPart equipmentPart, EquipmentType equipmentType,
+                             int armorBonus, int strengthBoost, int dexterityBoost, int robustnessBoost,
+                             int intelligenceBoost, int wisdomBoost, int charismaBoost, int speedBoost) {
+        Equipment newEquipment = new Equipment(name, description, equipmentPart, armorBonus, equipmentType,
+                strengthBoost, dexterityBoost, robustnessBoost, intelligenceBoost, wisdomBoost, charismaBoost, speedBoost);
+
+        // TODO new equipment in db
+
+        if (true /* TODO IF OBJECT COULD BE CREATED IN DB */) {
+            equipments.add(newEquipment);
+        }
     }
 
     /**
@@ -313,8 +386,25 @@ public class ItemManagerModel {
      * @param equipmentPart body part or equipment must be worn
      * @param equipmentType type of equipment
      */
-    public void updateEquipment(String name, String description, EquipmentParts equipmentPart, EquipmentType equipmentType) {
-        // TODO
+    public void updateEquipment(String name, String description, EquipmentPart equipmentPart, EquipmentType equipmentType,
+                                int armorBonus, int strengthBoost, int dexterityBoost, int robustnessBoost,
+                                int intelligenceBoost, int wisdomBoost, int charismaBoost, int speedBoost) {
+        Equipment selectedEquipment = (Equipment) ItemManagerController.getInstance().itemList.getSelectionModel().getSelectedItem();
+        Equipment newEquipment = new Equipment(name, description, equipmentPart, armorBonus, equipmentType,
+                strengthBoost, dexterityBoost, robustnessBoost, intelligenceBoost, wisdomBoost, charismaBoost, speedBoost);
+
+        int size = equipments.size();
+        for (int index = 0; index < size; index++) {
+            if (equipments.get(index) == selectedEquipment) {
+                equipments.set(index, newEquipment);
+            }
+        }
+
+        if (selectedEquipment.getName().equals(name)) {
+            // TODO Update item in database
+        } else {
+            // TODO Delete and recreate item in database
+        }
     }
 
     /**
@@ -324,7 +414,13 @@ public class ItemManagerModel {
      * @param description description of consumable (effects...)
      */
     public void newConsumable(String name, String description) {
-        // TODO
+        Consumable newConsumable = new Consumable(name, description);
+
+        // TODO new consumable in db
+
+        if (true /* TODO IF OBJECT COULD BE CREATED IN DB */) {
+            consumables.add(newConsumable);
+        }
     }
 
     /**
@@ -334,7 +430,21 @@ public class ItemManagerModel {
      * @param description description of consumable
      */
     public void updateConsumable(String name, String description) {
-        // TODO
+        Consumable selectedConsumable = (Consumable) ItemManagerController.getInstance().itemList.getSelectionModel().getSelectedItem();
+        Consumable newConsumable = new Consumable(name, description);
+
+        int size = consumables.size();
+        for (int index = 0; index < size; index++) {
+            if (consumables.get(index) == selectedConsumable) {
+                consumables.set(index, newConsumable);
+            }
+        }
+
+        if (selectedConsumable.getName().equals(name)) {
+            // TODO Update item in database
+        } else {
+            // TODO Delete and recreate item in database
+        }
     }
 
     /**
@@ -342,8 +452,56 @@ public class ItemManagerModel {
      *
      * @param name name of item to delete
      */
-    public void deleteItem(String name) {
-        // TODO
+    public void deleteItem(String name) throws UnsupportedItemException {
+        ItemType itemType = ItemManagerController.getInstance().typePicker.getValue();
+
+        Dialog dbErr = new Dialog(
+                Alert.AlertType.ERROR,
+                "Critical error occured",
+                "An error occured while item registration, please try to restart HeroManager."
+        );
+
+        Dialog notFound = new Dialog(
+                Alert.AlertType.WARNING,
+                itemType + " not found",
+                "Your " + itemType.toString().toLowerCase() + " named " + name + " don't exist.\nPlease verify entered name."
+        );
+
+        switch (itemType) {
+            case WEAPONS -> {
+                for (Weapon weapon : weapons) {
+                    System.out.println("weapon.getName() = " + weapon.getName());
+                    System.out.println("name = " + name);
+                    if (weapon.getName().equals(name)) {
+                        if (true /* TODO IF OBJECT COULD BE DELETED FROM DB */ && weapons.remove(weapon)) return;
+                        else dbErr.showAndWait();
+                    }
+                }
+
+                notFound.showAndWait();
+            }
+            case EQUIPMENTS -> {
+                for (Equipment equipment : equipments) {
+                    if (equipment.getName().equals(name)) {
+                        if (true /* TODO IF OBJECT COULD BE DELETED FROM DB */ && equipments.remove(equipment)) return;
+                        else dbErr.showAndWait();
+                    }
+                }
+
+                notFound.showAndWait();
+            }
+            case CONSUMABLES -> {
+                for (Consumable consumable : consumables) {
+                    if (consumable.getName().equals(name)) {
+                        if (true /* TODO IF OBJECT COULD BE DELETED FROM DB */ && consumables.remove(consumable)) return;
+                        else dbErr.showAndWait();
+                    }
+                }
+
+                notFound.showAndWait();
+            }
+            default -> throw new UnsupportedItemException(itemType);
+        }
     }
 
     /**

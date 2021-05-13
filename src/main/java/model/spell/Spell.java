@@ -37,7 +37,7 @@ public class Spell {
     }
 
     /**
-     *
+     * give name of the spell
      * @return name of the spell
      */
     public String getName() {
@@ -45,7 +45,7 @@ public class Spell {
     }
 
     /**
-     *
+     * give description of the spell
      * @return description of the spell
      */
     public String getDescription() {
@@ -53,7 +53,7 @@ public class Spell {
     }
 
     /**
-     *
+     * give school of the spell
      * @return school from which you learn the spell
      */
     public String getSchool() {
@@ -61,7 +61,7 @@ public class Spell {
     }
 
     /**
-     *
+     * give time to execute the spell
      * @return necessary time to execute the spell
      */
     public String getCastingTime() {
@@ -69,7 +69,7 @@ public class Spell {
     }
 
     /**
-     *
+     * give duration of the spell
      * @return total duration of the spell
      */
     public String getDuration() {
@@ -77,7 +77,7 @@ public class Spell {
     }
 
     /**
-     *
+     * give level of the spell
      * @return level of the spell
      */
     public int getLevel() {
@@ -85,7 +85,7 @@ public class Spell {
     }
 
     /**
-     *
+     * give range of the spell
      * @return range in which you can execute the spell
      */
     public int getRange() {
@@ -93,7 +93,7 @@ public class Spell {
     }
 
     /**
-     *
+     * give jobtype that can use the spell
      * @return jobType that can use the spell
      */
     public JobType getJobType() {
@@ -101,7 +101,7 @@ public class Spell {
     }
 
     /**
-     *
+     * say if spell does damage or not
      * @return can do damages or not
      */
     public boolean isDoDamages() {
@@ -109,7 +109,7 @@ public class Spell {
     }
 
     /**
-     *
+     * give condition of execution of a spell
      * @return condition of execution of a spell
      */
     public List<Component> getComponents() {
@@ -117,7 +117,7 @@ public class Spell {
     }
 
     /**
-     *
+     * give name of the spell
      * @return name of the spell
      */
     @Override

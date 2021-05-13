@@ -1,14 +1,16 @@
 package controller;
 
+import exceptions.UnsupportedItemException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.ItemType;
+import utils.gui.Dialog;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,25 +25,36 @@ import java.util.ResourceBundle;
 public class ItemPickerController implements Initializable {
 
     private static ItemPickerController instance;
+
     /**
      * Picker (ComboBox) of item type to choose
      */
     @FXML
     public ComboBox<ItemType> typePicker;
+
     /**
      * List of selected items type
      */
     @FXML
     public ListView<Item> itemList;
+
     /**
      * Label view to show selected item name
      */
     @FXML
     public Label itemNameLabel;
+
     /**
-     * Selected item by user
+     * Pane to show all information about selected item
      */
-    public Item selectedItem;
+    @FXML
+    public AnchorPane itemInfoPane;
+
+    /**
+     * Button to confirm user selection and close dialog
+     */
+    @FXML
+    public Button selectItemButton;
 
     /**
      * @return instance of this class
@@ -63,6 +76,8 @@ public class ItemPickerController implements Initializable {
         instance = this;
         ObservableList<ItemType> list = FXCollections.observableArrayList(ItemType.values());
         typePicker.setItems(list);
+
+        itemList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> ItemPickerModel.getInstance().setSelectedItem(newValue));
     }
 
     /**
@@ -70,12 +85,12 @@ public class ItemPickerController implements Initializable {
      */
     @FXML
     public void itemTypeSelectedEvent() {
-        ItemType selectedType = typePicker.getValue();
-
-        switch (selectedType) {
-            case WEAPONS:
-            case EQUIPMENTS:
-            case CONSUMABLES:
+        try {
+            ItemPickerModel.getInstance().itemTypeSelectedEvent();
+        } catch (UnsupportedItemException e) {
+            e.printStackTrace();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            System.exit(1);
         }
     }
 
@@ -84,7 +99,7 @@ public class ItemPickerController implements Initializable {
      */
     @FXML
     public void selectItemButtonOnClick() {
-        if (selectedItem == null) return;
+        ItemPickerModel.getInstance().confirmItemSelection();
     }
 
     /**
@@ -92,6 +107,6 @@ public class ItemPickerController implements Initializable {
      */
     @FXML
     public void backButtonOnClick() {
-
+        ItemPickerModel.getInstance().back();
     }
 }

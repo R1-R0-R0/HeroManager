@@ -1,7 +1,11 @@
 package utils.gui;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+
+import java.awt.*;
+import java.util.Optional;
 
 /**
  * Utility class usable to show simple dialog alert
@@ -9,6 +13,7 @@ import javafx.scene.control.ButtonType;
 public class Dialog {
 
     private Alert alert;
+    private Optional<ButtonType> result;
 
     /**
      * Constructor of this class, who allows to init desired dialog
@@ -24,16 +29,41 @@ public class Dialog {
     }
 
     /**
-     * To show dialog
+     * Used to get buttons linked to dialog
+     * @return observable list of buttons of dialog
      */
-    public void show() {
-        alert.show();
+    public ObservableList<ButtonType> getButtons() {
+        return alert.getButtonTypes();
     }
 
     /**
      * To show dialog
      */
-    public void showAndWait() {
-        alert.showAndWait();
+    public void show() {
+        playSound();
+        alert.show();
+    }
+
+    /**
+     * To show dialog
+     * @return result of dialog
+     */
+    public Optional<ButtonType> showAndWait() {
+        playSound();
+        return alert.showAndWait();
+    }
+
+    /**
+     * Used to play Windows sound according to alert type
+     */
+    private void playSound() {
+        Runnable sound = null;
+        switch (alert.getAlertType()) {
+            case ERROR -> sound = ((Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.hand"));
+            case WARNING -> sound = ((Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation"));
+            case INFORMATION -> sound = ((Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.asterisk"));
+            case CONFIRMATION -> sound = ((Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.question"));
+        }
+        if (sound != null) sound.run();
     }
 }
