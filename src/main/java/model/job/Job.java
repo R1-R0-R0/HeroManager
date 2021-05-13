@@ -810,4 +810,16 @@ public class Job {
     public String toString(){
         return name;
     }
+
+    /**
+     *
+     * @return alignement of the Character
+     */
+    public Alignment getAlignment(){return alignment;}
+
+    /**
+     *
+     * @return List of equiped equipments
+     */
+    public List<Equipment> getEquippedEquipments(){return equippedEquipments;}
 }

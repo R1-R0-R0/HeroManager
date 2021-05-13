@@ -152,4 +152,16 @@ public enum Improvement {
     public int getSpeedBoost(){
         return characteristicsBoost[6];
     }
+
+    /**
+     *
+     * @return the name of the improvement
+     */
+    public String getName(){return name;}
+
+    /**
+     *
+     * @return description of the improvement
+     */
+    public String getDescription(){return description;}
 }

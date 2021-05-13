@@ -46,7 +46,10 @@ public class FileManager {
      */
     public static void writeFile(String name, JSONObject jsonArray) {
         try {
-            java.io.FileWriter file = new FileWriter("src/main/resources/donnee/" + name + ".json");
+            PrintWriter writer = new PrintWriter("src/main/resources/donnee/" + name + ".json");
+            writer.print("");
+            writer.close();
+            FileWriter file = new FileWriter("src/main/resources/donnee/" + name + ".json");
             file.write(jsonArray.toJSONString());
             file.flush();
         } catch (IOException e) {

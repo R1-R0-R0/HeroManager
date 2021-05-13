@@ -217,6 +217,11 @@ public class HeroManagerDB {
      * Methode that call on Writer to save all the DataBase on Json save file
      */
     public static void Save() {
+        Writer.writerWeapon(weapons);
+        Writer.writerSpell(spells);
+        Writer.writerConsumable(consumables);
+        Writer.writerEquipment(equipments);
+        Writer.writerJob(jobs);
     }
 
 

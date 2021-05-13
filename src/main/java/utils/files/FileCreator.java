@@ -1,5 +1,7 @@
 package utils.files;
 
+import java.io.FileWriter;
+
 /**
  * Class to create a new File with a Enum from DefaultFileContent
  */
@@ -15,12 +17,8 @@ public class FileCreator {
      * @param name name of the created file
      */
     public static void createFile(String name) {
-        // TODO
-
-        /* Un exemple (à implémenter ailleurs)
-        File file = new File(name);
-        FileWriter writer = new FileWriter(file);
-        writer.write(DefaultFileContent.WEAPONS.toString());
-         */
+        FileWriter file = new FileWriter("src/main/resources/donnee/" + name + ".json");
+        file.write(DefaultFileContent.WEAPONS);
+        file.flush();
     }
 }
