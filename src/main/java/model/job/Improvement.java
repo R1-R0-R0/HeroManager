@@ -161,7 +161,7 @@ public enum Improvement {
 
     /**
      *
-     * @return description of the improvement
+     * @return the description of the improvement
      */
     public String getDescription(){return description;}
 }

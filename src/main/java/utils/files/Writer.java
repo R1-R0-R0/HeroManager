@@ -106,6 +106,7 @@ public class Writer {
     public static void writerSpell(List<Spell> spells) {
         JSONArray spellList = new JSONArray();
         JSONObject consu = new JSONObject();
+        JSONArray components = new JSONArray();
 
         for (int index = 0; index < spells.size(); index++) {
 
@@ -123,13 +124,16 @@ public class Writer {
             for (int x = 0; x < spells.get(index).getComponents().size(); x++) {
                 switch (spells.get(index).getComponents().get(x)) {
                     case VOCAL:
-                        spellList.add("V");
+                        components.add("V");
                     case MATERIAL:
-                        spellList.add("S");
+                        components.add("S");
                     case MOVEMENT:
-                        spellList.add("M");
+                        components.add("M");
                 }
+
             }
+
+            spellList.add(components);
 
 
         }
@@ -156,42 +160,42 @@ public class Writer {
             JSONArray equipments = new JSONArray();
             JSONArray inventory = new JSONArray();
 
-            jobList.add( jobs.get(index).getName());
+            jobList.add(jobs.get(index).getName());
             jobList.add(jobs.get(index).getDescription());
             jobList.add(jobs.get(index).getGender());
             jobList.add(jobs.get(index).getAlignment());
-            jobList.add( jobs.get(index).getRaceType());
-            jobList.add( jobs.get(index).getJobType());
-            for (int x = 0; x < jobs.get(index).getSpellInventory().size();x++){
+            jobList.add(jobs.get(index).getRaceType().name());
+            jobList.add(jobs.get(index).getJobType());
+            for (int x = 0; x < jobs.get(index).getSpellInventory().size(); x++) {
                 listspell.add(jobs.get(index).getSpellInventory().get(x).getName());
             }
             jobList.add(listspell);
-            for (int x = 0; x < jobs.get(index).getSkills().size();x++){
+            for (int x = 0; x < jobs.get(index).getSkills().size(); x++) {
                 skills.add(jobs.get(index).getSkills().get(x).getName());
                 skills.add(jobs.get(index).getSkills().get(x).isMastered());
+                skills.add(jobs.get(index).getSkills().get(x).getAffectedCharacteristic());
             }
             jobList.add(skills);
-            jobList.add( jobs.get(index).getLevel());
-            jobList.add( jobs.get(index).getStrength());
-            jobList.add( jobs.get(index).getDexterity());
-            jobList.add( jobs.get(index).getRobustness());
-            jobList.add( jobs.get(index).getWisdom());
-            jobList.add( jobs.get(index).getIntelligence());
-            jobList.add( jobs.get(index).getCharisma());
+            jobList.add(jobs.get(index).getLevel());
+            jobList.add(jobs.get(index).getStrength());
+            jobList.add(jobs.get(index).getDexterity());
+            jobList.add(jobs.get(index).getRobustness());
+            jobList.add(jobs.get(index).getWisdom());
+            jobList.add(jobs.get(index).getIntelligence());
+            jobList.add(jobs.get(index).getCharisma());
             jobList.add(jobs.get(index).getSpeed());
             jobList.add(jobs.get(index).getHealthPoints());
-            jobList.add( jobs.get(index).getArmor());
+            jobList.add(jobs.get(index).getArmor());
             jobList.add(jobs.get(index).getAdditionalStatPoints());
-            for (int x = 0; x < jobs.get(index).getImprovements().size();x++){
+            for (int x = 0; x < jobs.get(index).getImprovements().size(); x++) {
                 improvements.add(jobs.get(index).getImprovements().get(x).getName());
-                improvements.add(jobs.get(index).getImprovements().get(x).getDescription());
             }
             jobList.add(improvements);
-            for (int x = 0; x < jobs.get(index).getEquippedEquipments().size();x++){
+            for (int x = 0; x < jobs.get(index).getEquippedEquipments().size(); x++) {
                 equipments.add(jobs.get(index).getEquippedEquipments().get(x).getName());
             }
             jobList.add(equipments);
-            for (int x = 0; x < jobs.get(index).getInventory().size();x++){
+            for (int x = 0; x < jobs.get(index).getInventory().size(); x++) {
                 inventory.add(jobs.get(index).getInventory().get(x).getName());
             }
             jobList.add(inventory);
@@ -199,18 +203,9 @@ public class Writer {
 
         consu.put("job", jobList);
 
-        FileManager.writeFile("job",consu);
+        FileManager.writeFile("job", consu);
 
     }
-
-
-    /*public static void main(String[] args) throws IOException {
-        List<Consumable> consumables = new ArrayList<>();
-        for (int x = 0; x < 3; x++) {
-            consumables.add(new Consumable(new ConsumableEffect(), "" + x, "ici c'est silmi " + x));
-        }
-        WriterConsumable(consumables);
-    }*/
 
 
 }
