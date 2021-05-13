@@ -23,7 +23,7 @@ public class FileManager {
      * @return JsonObjet to be use by other method
      * @throws FileNotFoundException if file do not exist
      */
-    public static JSONObject getFile(String name) throws FileNotFoundException {
+    public static JSONObject getFile(String name) throws IOException {
 
         JSONParser jsonParser = new JSONParser();
         try {

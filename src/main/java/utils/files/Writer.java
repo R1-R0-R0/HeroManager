@@ -6,6 +6,8 @@ import model.items.weapons.Weapon;
 import model.job.Improvement;
 import model.job.Job;
 import model.job.JobSkill;
+import model.job.JobType;
+import model.spell.Component;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -124,11 +126,11 @@ public class Writer {
             for (int x = 0; x < spells.get(index).getComponents().size(); x++) {
                 switch (spells.get(index).getComponents().get(x)) {
                     case VOCAL:
-                        components.add("V");
+                        components.add("V");break;
                     case MATERIAL:
-                        components.add("S");
+                        components.add("S");break;
                     case MOVEMENT:
-                        components.add("M");
+                        components.add("M");break;
                 }
 
             }
@@ -205,6 +207,15 @@ public class Writer {
 
         FileManager.writeFile("job", consu);
 
+    }
+
+    public static void main(String[] args) {
+        List<Spell> test = new ArrayList<>();
+        List<Component> aller = new ArrayList<>();
+        aller.add(Component.MOVEMENT);
+        aller.add(Component.VOCAL);
+        test.add(new Spell("magic misil","pew pew","destruction","1action","",1,18, JobType.SORCERER,true,aller));
+        writerSpell(test);
     }
 
 

@@ -25,7 +25,7 @@ public class HeroManagerDB {
     /**
      * Method witch call on FileReaders getter to initialize the DataBase
      */
-    public static void init() {
+    public static void init() throws IOException {
         weapons = FileReaders.getWeapons();
         spells = FileReaders.getSpells();
         consumables = FileReaders.getConsumable();

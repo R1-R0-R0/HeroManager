@@ -37,7 +37,7 @@ public class FileReaders {
      *
      * @return List of weapon
      */
-    public static List<Weapon> getWeapons() {
+    public static List<Weapon> getWeapons() throws IOException {
         List<Weapon> weapons = new ArrayList<>();
         int count = 0;
         List<String> names = new ArrayList<>();
@@ -64,18 +64,18 @@ public class FileReaders {
                     case 3:
                         switch (iterator.next().toLowerCase()) {
                             case "war":
-                                weaponTypes.add(WeaponType.WAR);
+                                weaponTypes.add(WeaponType.WAR);break;
                             case "common":
-                                weaponTypes.add(WeaponType.COMMON);
+                                weaponTypes.add(WeaponType.COMMON);break;
                         }
                     case 4:
                         switch (iterator.next().toLowerCase()) {
                             case "slashing":
-                                damageTypes.add(DamageType.SLASHING);
+                                damageTypes.add(DamageType.SLASHING);break;
                             case "piercing":
-                                damageTypes.add(DamageType.PIERCING);
+                                damageTypes.add(DamageType.PIERCING);break;
                             case "bludgeoning":
-                                damageTypes.add(DamageType.BLUDGEONING);
+                                damageTypes.add(DamageType.BLUDGEONING);break;
                         }
 
                 }
@@ -89,6 +89,8 @@ public class FileReaders {
         } catch (FileNotFoundException e) {
             FileCreator.createFile("weapon.json");
             getWeapons();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return weapons;
     }
@@ -98,7 +100,7 @@ public class FileReaders {
      *
      * @return List<Spell>
      */
-    public static List<Spell> getSpells() {
+    public static List<Spell> getSpells() throws IOException {
         List<Spell> spells = new ArrayList<>();
         List<String> names = new ArrayList<>();
         List<String> descriptions = new ArrayList<>();
@@ -136,29 +138,29 @@ public class FileReaders {
                     case 7:
                         switch ((String) jsonArray.get(i)) {
                             case "BARBARIAN":
-                                jobTypes.add(JobType.BARBARIAN);
+                                jobTypes.add(JobType.BARBARIAN);break;
                             case "BARD":
-                                jobTypes.add(JobType.BARD);
+                                jobTypes.add(JobType.BARD);break;
                             case "CLERIC":
-                                jobTypes.add(JobType.CLERIC);
+                                jobTypes.add(JobType.CLERIC);break;
                             case "DRUID":
-                                jobTypes.add(JobType.DRUID);
+                                jobTypes.add(JobType.DRUID);break;
                             case "FIGHTER":
-                                jobTypes.add(JobType.FIGHTER);
+                                jobTypes.add(JobType.FIGHTER);break;
                             case "MONK":
-                                jobTypes.add(JobType.MONK);
+                                jobTypes.add(JobType.MONK);break;
                             case "PALADIN":
-                                jobTypes.add(JobType.PALADIN);
+                                jobTypes.add(JobType.PALADIN);break;
                             case "RANGER":
-                                jobTypes.add(JobType.RANGER);
+                                jobTypes.add(JobType.RANGER);break;
                             case "ROGUE":
-                                jobTypes.add(JobType.ROGUE);
+                                jobTypes.add(JobType.ROGUE);break;
                             case "SORCERER":
-                                jobTypes.add(JobType.SORCERER);
+                                jobTypes.add(JobType.SORCERER);break;
                             case "WARLOCK":
-                                jobTypes.add(JobType.WARLOCK);
+                                jobTypes.add(JobType.WARLOCK);break;
                             case "WIZARD":
-                                jobTypes.add(JobType.WIZARD);
+                                jobTypes.add(JobType.WIZARD);break;
                         }
                     case 8:
                         doDamages.add((Boolean) jsonArray.get(i));
@@ -169,11 +171,11 @@ public class FileReaders {
                         for (int y = 0; y < comp.size(); y++) {
                             switch ((String) comp.get(y)) {
                                 case "V":
-                                    componentList.add(Component.VOCAL);
+                                    componentList.add(Component.VOCAL);break;
                                 case "S":
-                                    componentList.add(Component.MATERIAL);
+                                    componentList.add(Component.MATERIAL);break;
                                 case "M":
-                                    componentList.add(Component.MOVEMENT);
+                                    componentList.add(Component.MOVEMENT);break;
                             }
                         }
                         components.add(componentList);
@@ -198,7 +200,7 @@ public class FileReaders {
      *
      * @return List of consumable
      */
-    public static List<Consumable> getConsumable() {
+    public static List<Consumable> getConsumable() throws IOException {
         List<Consumable> consumables = new ArrayList<>();
         int count = 0;
         List<String> names = new ArrayList<>();
@@ -237,7 +239,7 @@ public class FileReaders {
      *
      * @return List of Equipement
      */
-    public static List<Equipment> getEquipement() {
+    public static List<Equipment> getEquipement() throws IOException {
         List<Equipment> equipment = new ArrayList<>();
         int count = 0;
         List<String> names = new ArrayList<>();
@@ -269,34 +271,34 @@ public class FileReaders {
                         case 2:
                             switch ((String) jsonArray.get(i)) {
                                 case "HEAD":
-                                    equipmentPart.add(EquipmentPart.HEAD);
+                                    equipmentPart.add(EquipmentPart.HEAD);break;
                                 case "BODY":
-                                    equipmentPart.add(EquipmentPart.BODY);
+                                    equipmentPart.add(EquipmentPart.BODY);break;
                                 case "BELT":
-                                    equipmentPart.add(EquipmentPart.BELT);
+                                    equipmentPart.add(EquipmentPart.BELT);break;
                                 case "LEGS":
-                                    equipmentPart.add(EquipmentPart.LEGS);
+                                    equipmentPart.add(EquipmentPart.LEGS);break;
                                 case "FEET":
-                                    equipmentPart.add(EquipmentPart.FEET);
+                                    equipmentPart.add(EquipmentPart.FEET);break;
                                 case "AMULET":
-                                    equipmentPart.add(EquipmentPart.AMULET);
+                                    equipmentPart.add(EquipmentPart.AMULET);break;
                                 case "HANDS":
-                                    equipmentPart.add(EquipmentPart.HANDS);
+                                    equipmentPart.add(EquipmentPart.HANDS);break;
                                 case "MANTLE":
-                                    equipmentPart.add(EquipmentPart.MANTLE);
+                                    equipmentPart.add(EquipmentPart.MANTLE);break;
                                 case "RING":
-                                    equipmentPart.add(EquipmentPart.RING);
+                                    equipmentPart.add(EquipmentPart.RING);break;
                             }
                         case 3:
                             armorBonus.add((Integer) jsonArray.get(i));
                         case 4:
                             switch ((String) jsonArray.get(i)) {
                                 case "LIGHT":
-                                    types.add(EquipmentType.LIGHT);
+                                    types.add(EquipmentType.LIGHT);break;
                                 case "MEDIUM":
-                                    types.add(EquipmentType.MEDIUM);
+                                    types.add(EquipmentType.MEDIUM);break;
                                 case "HEAVY":
-                                    types.add(EquipmentType.HEAVY);
+                                    types.add(EquipmentType.HEAVY);break;
 
                             }
                         case 5:
@@ -376,59 +378,59 @@ public class FileReaders {
                     case 2:
                         switch ((String) jsonArray.get(i)) {
                             case "MAN":
-                                genders.add(Gender.MAN);
+                                genders.add(Gender.MAN);break;
                             case "WOMAN":
-                                genders.add(Gender.WOMAN);
+                                genders.add(Gender.WOMAN);break;
                         }
                     case 3:
                         switch ((String) jsonArray.get(i)) {
                             case "NEUTRAL_GOOD":
-                                alignments.add(Alignment.NEUTRAL_GOOD);
+                                alignments.add(Alignment.NEUTRAL_GOOD);break;
                             case "NEUTRAL_NEUTRAL":
-                                alignments.add(Alignment.NEUTRAL_NEUTRAL);
+                                alignments.add(Alignment.NEUTRAL_NEUTRAL);break;
                             case "NEUTRAL_EVIL":
-                                alignments.add(Alignment.NEUTRAL_EVIL);
+                                alignments.add(Alignment.NEUTRAL_EVIL);break;
                             case "LAWFUL_GOOD":
-                                alignments.add(Alignment.LAWFUL_GOOD);
+                                alignments.add(Alignment.LAWFUL_GOOD);break;
                             case "LAWFUL_NEUTRAL":
-                                alignments.add(Alignment.LAWFUL_NEUTRAL);
+                                alignments.add(Alignment.LAWFUL_NEUTRAL);break;
                             case "LAWFUL_EVIL":
-                                alignments.add(Alignment.LAWFUL_EVIL);
+                                alignments.add(Alignment.LAWFUL_EVIL);break;
                             case "CHAOTIC_GOOD":
-                                alignments.add(Alignment.CHAOTIC_GOOD);
+                                alignments.add(Alignment.CHAOTIC_GOOD);break;
                             case "CHAOTIC_NEUTRAL":
-                                alignments.add(Alignment.CHAOTIC_NEUTRAL);
+                                alignments.add(Alignment.CHAOTIC_NEUTRAL);break;
                             case "CHAOTIC_EVIL":
-                                alignments.add(Alignment.CHAOTIC_EVIL);
+                                alignments.add(Alignment.CHAOTIC_EVIL);break;
                         }
                     case 4:
                         races.add((Race) jsonArray.get(i));
                     case 5:
                         switch ((String) jsonArray.get(i)) {
                             case "BARBARIAN":
-                                jobTypes.add(JobType.BARBARIAN);
+                                jobTypes.add(JobType.BARBARIAN);break;
                             case "BARD":
-                                jobTypes.add(JobType.BARD);
+                                jobTypes.add(JobType.BARD);break;
                             case "CLERIC":
-                                jobTypes.add(JobType.CLERIC);
+                                jobTypes.add(JobType.CLERIC);break;
                             case "DRUID":
-                                jobTypes.add(JobType.DRUID);
+                                jobTypes.add(JobType.DRUID);break;
                             case "FIGHTER":
-                                jobTypes.add(JobType.FIGHTER);
+                                jobTypes.add(JobType.FIGHTER);break;
                             case "MONK":
-                                jobTypes.add(JobType.MONK);
+                                jobTypes.add(JobType.MONK);break;
                             case "PALADIN":
-                                jobTypes.add(JobType.PALADIN);
+                                jobTypes.add(JobType.PALADIN);break;
                             case "RANGER":
-                                jobTypes.add(JobType.RANGER);
+                                jobTypes.add(JobType.RANGER);break;
                             case "ROGUE":
-                                jobTypes.add(JobType.ROGUE);
+                                jobTypes.add(JobType.ROGUE);break;
                             case "SORCERER":
-                                jobTypes.add(JobType.SORCERER);
+                                jobTypes.add(JobType.SORCERER);break;
                             case "WARLOCK":
-                                jobTypes.add(JobType.WARLOCK);
+                                jobTypes.add(JobType.WARLOCK);break;
                             case "WIZARD":
-                                jobTypes.add(JobType.WIZARD);
+                                jobTypes.add(JobType.WIZARD);break;
                         }
                     case 6: {
                         JSONArray spell = (JSONArray) jsonArray.get(i);
@@ -445,9 +447,10 @@ public class FileReaders {
                         List<JobSkill> modfy = JobSkill.getJobSkillList();
 
                         for (int y = 0; y < skill.size(); y += 2) {
-                            for (JobSkill change: modfy
-                                 ) { if (change.toString().equals(skill.get(y).toString()))
-                                     change.setMastered((boolean) skill.get(y+1));
+                            for (JobSkill change : modfy
+                            ) {
+                                if (change.toString().equals(skill.get(y).toString()))
+                                    change.setMastered((boolean) skill.get(y + 1));
                             }
                         }
                         skills.add(modfy);
@@ -481,53 +484,53 @@ public class FileReaders {
                         for (int y = 0; y < improvment.size(); y++) {
                             switch ((String) improvment.get(y)) {
                                 case "Darkvision":
-                                    name.add(Improvement.DARKVISION);
+                                    name.add(Improvement.DARKVISION);break;
                                 case "Dwarven Resilience":
-                                    name.add(Improvement.DWARVEN_RESILIENCE);
+                                    name.add(Improvement.DWARVEN_RESILIENCE);break;
                                 case "Dwarven Combat Training":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Tool Proficiency":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Stonecunning":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Keen Senses":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Fey Ancestry":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Trance":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Lucky":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Brave":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Halfling Nimbleness":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Draconic Ancestry":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Breath Weapon":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Damage Resistance":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Gnome cunning":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Skill Versatility":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Menacing":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Relentless Endurance":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Savage Attacks":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Hellish Resistance":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Infernal Legacy":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Flight":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Talons":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 default:
-                                    name.add(Improvement.DARKVISION);
+                                    name.add(Improvement.DARKVISION);break;
                             }
                         }
                         improvements.add(name);
@@ -574,10 +577,18 @@ public class FileReaders {
 
         } catch (FileNotFoundException e) {
             return null;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return jobs;
     }
 
+    public static void main(String[] args) throws IOException {
+        List<Spell> test = getSpells();
+        for (Spell spell : test){
+            System.out.println(spell.getName());
+        }
+    }
 
 }
 
