@@ -187,19 +187,6 @@ public class HeroManagerDB {
         }
     }
 
-    /**
-     * Find and change a specified consumable into the DB
-     *
-     * @param consumable the modified consumable
-     */
-    public static void modifyConsumable(Consumable consumable) {
-        for (Consumable modify : consumables) {
-            if (modify.getName().equals(consumable.getName())) {
-                modify.setDescription(consumable.getDescription());
-            }
-
-        }
-    }
 
     /**
      * Find and change a specified character into the DB
@@ -217,10 +204,9 @@ public class HeroManagerDB {
                 modify.setRobustness(job.getRobustness());
                 modify.setCharisma(job.getCharisma());
                 modify.setSpeed(job.getSpeed());
-                modify.setGender(job.getGender());
-                modify.setAlignment(job.getAlignment());
                 modify.setEquippedEquipments(job.getEquippedEquipments());
                 modify.setSpellSlots(job.getSpellSlots());
+                modify.setInventory(job.getInventory());
             }
 
         }

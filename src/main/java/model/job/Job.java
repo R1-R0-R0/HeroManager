@@ -1161,17 +1161,6 @@ public class Job {
         return name;
     }
 
-    /**
-     *
-     * @return alignement of the Character
-     */
-    public Alignment getAlignment(){return alignment;}
-
-    /**
-     *
-     * @return List of equiped equipments
-     */
-    public List<Equipment> getEquippedEquipments(){return equippedEquipments;}
 
     /**
      * Set of setter for job no final attribut
@@ -1204,23 +1193,15 @@ public class Job {
         this.charisma = charisma;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public void setAlignment(Alignment alignment) {
-        this.alignment = alignment;
-    }
-
-    public void setEquippedEquipments(List<Equipment> equippedEquipments) {
-        this.equippedEquipments = equippedEquipments;
-    }
-
     public void setSpellSlots(int[] spellSlots) {
         this.spellSlots = spellSlots;
+    }
+
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setEquippedEquipments(EquipmentInventory equippedEquipments) {
+        this.equippedEquipments = equippedEquipments;
     }
 }

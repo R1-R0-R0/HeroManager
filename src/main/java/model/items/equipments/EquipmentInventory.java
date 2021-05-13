@@ -35,6 +35,24 @@ public class EquipmentInventory {
             this.rightRing = rightRing;
     }
 
+    public EquipmentInventory(List<Equipment> adding) {
+        for (int x = 0 ; x < adding.size(); x++){
+            switch (adding.get(x).getEquipmentPart()){
+                case HEAD : this.head = adding.get(x);
+                case BODY : this.head = adding.get(x);
+                case BELT : this.head = adding.get(x);
+                case LEGS : this.head = adding.get(x);
+                case FEET : this.head = adding.get(x);
+                case AMULET : this.head = adding.get(x);
+                case HANDS : this.head = adding.get(x);
+                case MANTLE : this.head = adding.get(x);
+                case RING : this.head = adding.get(x);
+                case RING2 : this.head = adding.get(x);
+
+            }
+        }
+    }
+
     /**
      *
      * @return head equipped

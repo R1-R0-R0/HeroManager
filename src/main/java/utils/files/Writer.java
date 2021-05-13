@@ -80,7 +80,7 @@ public class Writer {
 
             equipmentList.add(equipment.get(index).getName());
             equipmentList.add(equipment.get(index).getDescription());
-            equipmentList.add(equipment.get(index).getEquipmentParts());
+            equipmentList.add(equipment.get(index).getEquipmentPart());
 
             equipmentList.add(equipment.get(index).getArmorBonus());
             equipmentList.add(equipment.get(index).getEquipmentType());
@@ -173,7 +173,6 @@ public class Writer {
             for (int x = 0; x < jobs.get(index).getSkills().size(); x++) {
                 skills.add(jobs.get(index).getSkills().get(x).getName());
                 skills.add(jobs.get(index).getSkills().get(x).isMastered());
-                skills.add(jobs.get(index).getSkills().get(x).getAffectedCharacteristic());
             }
             jobList.add(skills);
             jobList.add(jobs.get(index).getLevel());
@@ -188,11 +187,12 @@ public class Writer {
             jobList.add(jobs.get(index).getArmor());
             jobList.add(jobs.get(index).getAdditionalStatPoints());
             for (int x = 0; x < jobs.get(index).getImprovements().size(); x++) {
-                improvements.add(jobs.get(index).getImprovements().get(x).getName());
+                improvements.add(jobs.get(index).getImprovements().get(x).toString());
             }
             jobList.add(improvements);
-            for (int x = 0; x < jobs.get(index).getEquippedEquipments().size(); x++) {
-                equipments.add(jobs.get(index).getEquippedEquipments().get(x).getName());
+            for (Equipment equiped:jobs.get(index).getEquippedEquipments().getEquippedList()
+                 ) {
+                equipments.add(equiped.getName());
             }
             jobList.add(equipments);
             for (int x = 0; x < jobs.get(index).getInventory().size(); x++) {

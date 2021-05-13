@@ -4,7 +4,8 @@ import model.Characteristics;
 import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentParts;
+import model.items.equipments.EquipmentInventory;
+import model.items.equipments.EquipmentPart;
 import model.items.equipments.EquipmentType;
 import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
@@ -16,6 +17,7 @@ import model.spell.Component;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import utils.gui.character_creator.JobSkillItem;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -240,7 +242,7 @@ public class FileReaders {
         int count = 0;
         List<String> names = new ArrayList<>();
         List<String> descriptions = new ArrayList<>();
-        List<EquipmentParts> equipmentPart = new ArrayList<>();
+        List<EquipmentPart> equipmentPart = new ArrayList<>();
         List<Integer> armorBonus = new ArrayList<>();
         List<EquipmentType> types = new ArrayList<>();
         List<Integer> strengthBoost = new ArrayList<>();
@@ -267,23 +269,23 @@ public class FileReaders {
                         case 2:
                             switch ((String) jsonArray.get(i)) {
                                 case "HEAD":
-                                    equipmentPart.add(EquipmentParts.HEAD);
+                                    equipmentPart.add(EquipmentPart.HEAD);
                                 case "BODY":
-                                    equipmentPart.add(EquipmentParts.BODY);
+                                    equipmentPart.add(EquipmentPart.BODY);
                                 case "BELT":
-                                    equipmentPart.add(EquipmentParts.BELT);
+                                    equipmentPart.add(EquipmentPart.BELT);
                                 case "LEGS":
-                                    equipmentPart.add(EquipmentParts.LEGS);
+                                    equipmentPart.add(EquipmentPart.LEGS);
                                 case "FEET":
-                                    equipmentPart.add(EquipmentParts.FEET);
+                                    equipmentPart.add(EquipmentPart.FEET);
                                 case "AMULET":
-                                    equipmentPart.add(EquipmentParts.AMULET);
+                                    equipmentPart.add(EquipmentPart.AMULET);
                                 case "HANDS":
-                                    equipmentPart.add(EquipmentParts.HANDS);
+                                    equipmentPart.add(EquipmentPart.HANDS);
                                 case "MANTLE":
-                                    equipmentPart.add(EquipmentParts.MANTLE);
+                                    equipmentPart.add(EquipmentPart.MANTLE);
                                 case "RING":
-                                    equipmentPart.add(EquipmentParts.RING);
+                                    equipmentPart.add(EquipmentPart.RING);
                             }
                         case 3:
                             armorBonus.add((Integer) jsonArray.get(i));
@@ -357,7 +359,7 @@ public class FileReaders {
         List<Integer> armor = new ArrayList<>();
         List<Integer> points = new ArrayList<>();
         List<List<Improvement>> improvements = new ArrayList<>();
-        List<List<Equipment>> equipments = new ArrayList<>();
+        List<EquipmentInventory> equipments = new ArrayList<>();
         List<List<Item>> inventory = new ArrayList<>();
 
         try {
@@ -440,40 +442,15 @@ public class FileReaders {
 
                     case 7: {
                         JSONArray skill = (JSONArray) jsonArray.get(i);
-                        List<JobSkill> listskill = new ArrayList<>();
-                        List<String> name = new ArrayList<>();
-                        List<Boolean> mastered = new ArrayList<>();
-                        List<Characteristics> cara = new ArrayList<>();
+                        List<JobSkill> modfy = JobSkill.getJobSkillList();
 
-
-                        for (int y = 0; y < skill.size(); y++) {
-                            switch (y % 3) {
-                                case 0:
-                                    name.add((String) skill.get(y));
-                                case 1:
-                                    mastered.add((Boolean) skill.get(y));
-                                case 2:
-                                    switch ((String) skill.get(y)) {
-                                        case "STRENGTH":
-                                            cara.add(Characteristics.STRENGTH);
-                                        case "DEXTERITY":
-                                            cara.add(Characteristics.DEXTERITY);
-                                        case "ROBUSTNESS":
-                                            cara.add(Characteristics.ROBUSTNESS);
-                                        case "INTELLIGENCE":
-                                            cara.add(Characteristics.INTELLIGENCE);
-                                        case "WISDOM":
-                                            cara.add(Characteristics.WISDOM);
-                                        case "CHARISMA":
-                                            cara.add(Characteristics.CHARISMA);
-
-                                    }
-                            }
-                            for (int x = 0; x < name.size(); x++) {
-                                listskill.add(new JobSkill(name.get(x), mastered.get(x), cara.get(x)));
+                        for (int y = 0; y < skill.size(); y += 2) {
+                            for (JobSkill change: modfy
+                                 ) { if (change.toString().equals(skill.get(y).toString()))
+                                     change.setMastered((boolean) skill.get(y+1));
                             }
                         }
-                        skills.add(listskill);
+                        skills.add(modfy);
                     }
                     case 8:
                         level.add((Integer) jsonArray.get(i));
@@ -557,11 +534,12 @@ public class FileReaders {
                     }
                     case 20: {
                         JSONArray equipment = (JSONArray) jsonArray.get(i);
-                        List<Equipment> name = new ArrayList<>();
+                        List<Equipment> adding = new ArrayList<>();
 
                         for (int y = 0; y < equipment.size(); y++) {
-                            name.add((Equipment) equipment.get(y));
+                            adding.add((Equipment) equipment.get(y));
                         }
+                        EquipmentInventory name = new EquipmentInventory(adding);
                         equipments.add(name);
                     }
                     case 21: {
