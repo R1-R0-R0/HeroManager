@@ -125,4 +125,42 @@ public class Spell {
         return name;
     }
 
+    /**
+     * Set of Setter for all different attributs
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public void setCastingTime(String castingTime) {
+        this.castingTime = castingTime;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
+
+    public void setJobType(JobType jobType) {
+        this.jobType = jobType;
+    }
+
+    public void setDoDamages(boolean doDamages) {
+        this.doDamages = doDamages;
+    }
+
+    public void setComponents(List<Component> components) {
+        this.components = components;
+    }
 }

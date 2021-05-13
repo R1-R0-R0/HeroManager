@@ -60,4 +60,36 @@ public class Weapon implements Item {
     public String getDescription() {
         return description;
     }
+
+    /**
+     * Set a new description
+     * @param description the new description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Set new properties
+     * @param properties  the new properties
+     */
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
+    /**
+     * Set new WeaponType
+     * @param weaponType the new weaponType
+     */
+    public void setWeaponType(WeaponType weaponType) {
+        this.weaponType = weaponType;
+    }
+
+    /**
+     * Set the new DamageType
+     * @param damageType  new DamageType
+     */
+    public void setDamageType(DamageType damageType) {
+        this.damageType = damageType;
+    }
 }

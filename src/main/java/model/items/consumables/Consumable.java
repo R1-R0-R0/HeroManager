@@ -32,6 +32,14 @@ public class Consumable implements Item {
     public String getDescription() {
         return description;
     }
+
+    /**
+     * Setter for the description
+     * @param description the new description
+     */
+    public void setDescription(String description){
+        this.description = description;
+    }
 }
 
 

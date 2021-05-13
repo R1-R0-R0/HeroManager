@@ -822,4 +822,55 @@ public class Job {
      * @return List of equiped equipments
      */
     public List<Equipment> getEquippedEquipments(){return equippedEquipments;}
+
+    /**
+     * Set of setter for job no final attribut
+     */
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public void setWisdom(int wisdom) {
+        this.wisdom = wisdom;
+    }
+
+    public void setRobustness(int robustness) {
+        this.robustness = robustness;
+    }
+
+    public void setCharisma(int charisma) {
+        this.charisma = charisma;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setAlignment(Alignment alignment) {
+        this.alignment = alignment;
+    }
+
+    public void setEquippedEquipments(List<Equipment> equippedEquipments) {
+        this.equippedEquipments = equippedEquipments;
+    }
+
+    public void setSpellSlots(int[] spellSlots) {
+        this.spellSlots = spellSlots;
+    }
 }

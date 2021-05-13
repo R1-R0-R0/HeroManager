@@ -89,7 +89,6 @@ public class HeroManagerDB {
             if (weapon.getName().equals(name))
                 return weapon;
         }
-
         return null;
     }
 
@@ -100,6 +99,10 @@ public class HeroManagerDB {
      * @return a Spell
      */
     public static Spell getSpell(String name) {
+        for (Spell spell : spells) {
+            if (spell.getName().equals(name))
+                return spell;
+        }
         return null;
     }
 
@@ -110,6 +113,10 @@ public class HeroManagerDB {
      * @return a Consumable
      */
     public static Consumable getConsumable(String name) {
+        for (Consumable consumable : consumables) {
+            if (consumable.getName().equals(name))
+                return consumable;
+        }
         return null;
     }
 
@@ -120,6 +127,10 @@ public class HeroManagerDB {
      * @return an Equipment
      */
     public static Equipment getEquipment(String name) {
+        for (Equipment equipment : equipments) {
+            if (equipment.getName().equals(name))
+                return equipment;
+        }
         return null;
     }
 
@@ -130,6 +141,10 @@ public class HeroManagerDB {
      * @return a Job
      */
     public static Job getJob(String name) {
+        for (Job job : jobs) {
+            if (job.getName().equals(name))
+                return job;
+        }
         return null;
     }
 
@@ -139,6 +154,15 @@ public class HeroManagerDB {
      * @param weapon the modified weapon
      */
     public static void modifyWeapon(Weapon weapon) {
+        for (Weapon modify : weapons) {
+            if (modify.getName().equals(weapon.getName())) {
+                modify.setDescription(weapon.getDescription());
+                modify.setProperties(weapon.getProperties());
+                modify.setWeaponType(weapon.getWeaponType());
+                modify.setDamageType(weapon.getDamageType());
+            }
+
+        }
     }
 
     /**
@@ -147,6 +171,20 @@ public class HeroManagerDB {
      * @param spell the modified spell
      */
     public static void modifySpell(Spell spell) {
+        for (Spell modify : spells) {
+            if (modify.getName().equals(spell.getName())) {
+                modify.setDescription(spell.getDescription());
+                modify.setSchool(spell.getSchool());
+                modify.setCastingTime(spell.getCastingTime());
+                modify.setDuration(spell.getDuration());
+                modify.setComponents(spell.getComponents());
+                modify.setLevel(spell.getLevel());
+                modify.setRange(spell.getRange());
+                modify.setDoDamages(spell.isDoDamages());
+                modify.setJobType(spell.getJobType());
+            }
+
+        }
     }
 
     /**
@@ -155,14 +193,12 @@ public class HeroManagerDB {
      * @param consumable the modified consumable
      */
     public static void modifyConsumable(Consumable consumable) {
-    }
+        for (Consumable modify : consumables) {
+            if (modify.getName().equals(consumable.getName())) {
+                modify.setDescription(consumable.getDescription());
+            }
 
-    /**
-     * Find and change a specified equipment into the DB
-     *
-     * @param equipment the modified equipment
-     */
-    public static void modifyEquipment(Equipment equipment) {
+        }
     }
 
     /**
@@ -171,6 +207,23 @@ public class HeroManagerDB {
      * @param job the modified job
      */
     public static void modifyJob(Job job) {
+        for (Job modify : jobs) {
+            if (modify.getName().equals(job.getName())) {
+                modify.setLevel(job.getLevel());
+                modify.setStrength(job.getStrength());
+                modify.setDexterity(job.getDexterity());
+                modify.setIntelligence(job.getIntelligence());
+                modify.setWisdom(job.getWisdom());
+                modify.setRobustness(job.getRobustness());
+                modify.setCharisma(job.getCharisma());
+                modify.setSpeed(job.getSpeed());
+                modify.setGender(job.getGender());
+                modify.setAlignment(job.getAlignment());
+                modify.setEquippedEquipments(job.getEquippedEquipments());
+                modify.setSpellSlots(job.getSpellSlots());
+            }
+
+        }
     }
 
     /**
@@ -179,6 +232,12 @@ public class HeroManagerDB {
      * @param weapon the added weapon
      */
     public static void addWeapons(Weapon weapon) {
+        for (Weapon target : weapons) {
+            if (target.getName().equals(weapon.getName()))
+                System.exit(0);
+
+        }
+        weapons.add(weapon);
     }
 
     /**
@@ -187,6 +246,7 @@ public class HeroManagerDB {
      * @param spell the added spell
      */
     public static void addSpell(Spell spell) {
+        spells.add(spell);
     }
 
     /**
@@ -195,6 +255,12 @@ public class HeroManagerDB {
      * @param consumable the added consumable
      */
     public static void addConsumable(Consumable consumable) {
+        for (Consumable target : consumables) {
+            if (target.getName().equals(consumable.getName()))
+                System.exit(0);
+
+        }
+        consumables.add(consumable);
     }
 
     /**
@@ -203,6 +269,12 @@ public class HeroManagerDB {
      * @param equipment the added equipment
      */
     public static void addEquipment(Equipment equipment) {
+        for (Equipment target : equipments) {
+            if (target.getName().equals(equipment.getName()))
+                System.exit(0);
+
+        }
+        equipments.add(equipment);
     }
 
     /**
@@ -211,6 +283,13 @@ public class HeroManagerDB {
      * @param job the added job
      */
     public static void addJob(Job job) {
+        for (Job target : jobs) {
+            if (target.getName().equals(job.getName()))
+                System.exit(0);
+
+        }
+
+        jobs.add(job);
     }
 
     /**
