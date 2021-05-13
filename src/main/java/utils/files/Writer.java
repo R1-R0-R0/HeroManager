@@ -209,14 +209,5 @@ public class Writer {
 
     }
 
-    public static void main(String[] args) {
-        List<Spell> test = new ArrayList<>();
-        List<Component> aller = new ArrayList<>();
-        aller.add(Component.MOVEMENT);
-        aller.add(Component.VOCAL);
-        test.add(new Spell("magic misil","pew pew","destruction","1action","",1,18, JobType.SORCERER,true,aller));
-        writerSpell(test);
-    }
-
 
 }

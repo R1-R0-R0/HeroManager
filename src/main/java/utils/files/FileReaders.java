@@ -56,18 +56,18 @@ public class FileReaders {
             while (iterator.hasNext()) {
                 switch (count % 5) {
                     case 0:
-                        names.add(iterator.next());
+                        names.add(iterator.next());break;
                     case 1:
-                        descriptions.add(iterator.next());
+                        descriptions.add(iterator.next());break;
                     case 2:
-                        proerties.add(iterator.next());
+                        proerties.add(iterator.next());break;
                     case 3:
                         switch (iterator.next().toLowerCase()) {
                             case "war":
                                 weaponTypes.add(WeaponType.WAR);break;
                             case "common":
                                 weaponTypes.add(WeaponType.COMMON);break;
-                        }
+                        }break;
                     case 4:
                         switch (iterator.next().toLowerCase()) {
                             case "slashing":
@@ -76,7 +76,7 @@ public class FileReaders {
                                 damageTypes.add(DamageType.PIERCING);break;
                             case "bludgeoning":
                                 damageTypes.add(DamageType.BLUDGEONING);break;
-                        }
+                        }break;
 
                 }
                 count++;
@@ -122,19 +122,19 @@ public class FileReaders {
             for (int i = 0; i < jsonArray.size(); i++) {
                 switch (i % 10) {
                     case 0:
-                        names.add((String) jsonArray.get(i));
+                        names.add((String) jsonArray.get(i));break;
                     case 1:
-                        descriptions.add((String) jsonArray.get(i));
+                        descriptions.add((String) jsonArray.get(i));break;
                     case 2:
-                        school.add((String) jsonArray.get(i));
+                        school.add((String) jsonArray.get(i));break;
                     case 3:
-                        castingTimes.add((String) jsonArray.get(i));
+                        castingTimes.add((String) jsonArray.get(i));break;
                     case 4:
-                        duration.add((String) jsonArray.get(i));
+                        duration.add((String) jsonArray.get(i));break;
                     case 5:
-                        level.add((Integer) jsonArray.get(i));
+                        level.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 6:
-                        range.add((Integer) jsonArray.get(i));
+                        range.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 7:
                         switch ((String) jsonArray.get(i)) {
                             case "BARBARIAN":
@@ -161,9 +161,9 @@ public class FileReaders {
                                 jobTypes.add(JobType.WARLOCK);break;
                             case "WIZARD":
                                 jobTypes.add(JobType.WIZARD);break;
-                        }
+                        }break;
                     case 8:
-                        doDamages.add((Boolean) jsonArray.get(i));
+                        doDamages.add((Boolean) jsonArray.get(i));break;
                     case 9: {
                         JSONArray comp = (JSONArray) jsonArray.get(i);
                         List<Component> componentList = new ArrayList<>();
@@ -179,7 +179,7 @@ public class FileReaders {
                             }
                         }
                         components.add(componentList);
-                    }
+                    }break;
                 }
             }
             for (int x = 0; x < names.size(); x++) {
@@ -216,9 +216,9 @@ public class FileReaders {
             while (iterator.hasNext()) {
                 switch (count % 2) {
                     case 0:
-                        names.add(iterator.next());
+                        names.add(iterator.next());break;
                     case 1:
-                        descriptions.add(iterator.next());
+                        descriptions.add(iterator.next());break;
                 }
                 count++;
             }
@@ -265,9 +265,9 @@ public class FileReaders {
                 {
                     switch (count % 12) {
                         case 0:
-                            names.add((String) jsonArray.get(i));
+                            names.add((String) jsonArray.get(i));break;
                         case 1:
-                            descriptions.add((String) jsonArray.get(i));
+                            descriptions.add((String) jsonArray.get(i));break;
                         case 2:
                             switch ((String) jsonArray.get(i)) {
                                 case "HEAD":
@@ -288,9 +288,9 @@ public class FileReaders {
                                     equipmentPart.add(EquipmentPart.MANTLE);break;
                                 case "RING":
                                     equipmentPart.add(EquipmentPart.RING);break;
-                            }
+                            }break;
                         case 3:
-                            armorBonus.add((Integer) jsonArray.get(i));
+                            armorBonus.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                         case 4:
                             switch ((String) jsonArray.get(i)) {
                                 case "LIGHT":
@@ -300,21 +300,21 @@ public class FileReaders {
                                 case "HEAVY":
                                     types.add(EquipmentType.HEAVY);break;
 
-                            }
+                            }break;
                         case 5:
-                            strengthBoost.add((Integer) jsonArray.get(i));
+                            strengthBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                         case 6:
-                            dexterityBoost.add((Integer) jsonArray.get(i));
+                            dexterityBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                         case 7:
-                            robustnessBoost.add((Integer) jsonArray.get(i));
+                            robustnessBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                         case 8:
-                            intelligenceBoost.add((Integer) jsonArray.get(i));
+                            intelligenceBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                         case 9:
-                            wisdomBoost.add((Integer) jsonArray.get(i));
+                            wisdomBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                         case 10:
-                            charismaBoost.add((Integer) jsonArray.get(i));
+                            charismaBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                         case 11:
-                            speedBoost.add((Integer) jsonArray.get(i));
+                            speedBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
 
                     }
                 }
@@ -372,16 +372,16 @@ public class FileReaders {
             for (int i = 0; i < jsonArray.size(); i++) {
                 switch (i % 22) {
                     case 0:
-                        names.add((String) jsonArray.get(i));
+                        names.add((String) jsonArray.get(i));break;
                     case 1:
-                        descriptions.add((String) jsonArray.get(i));
+                        descriptions.add((String) jsonArray.get(i));break;
                     case 2:
                         switch ((String) jsonArray.get(i)) {
                             case "MAN":
                                 genders.add(Gender.MAN);break;
                             case "WOMAN":
                                 genders.add(Gender.WOMAN);break;
-                        }
+                        }break;
                     case 3:
                         switch ((String) jsonArray.get(i)) {
                             case "NEUTRAL_GOOD":
@@ -402,9 +402,9 @@ public class FileReaders {
                                 alignments.add(Alignment.CHAOTIC_NEUTRAL);break;
                             case "CHAOTIC_EVIL":
                                 alignments.add(Alignment.CHAOTIC_EVIL);break;
-                        }
+                        }break;
                     case 4:
-                        races.add((Race) jsonArray.get(i));
+                        races.add((Race) jsonArray.get(i));break;
                     case 5:
                         switch ((String) jsonArray.get(i)) {
                             case "BARBARIAN":
@@ -431,7 +431,7 @@ public class FileReaders {
                                 jobTypes.add(JobType.WARLOCK);break;
                             case "WIZARD":
                                 jobTypes.add(JobType.WIZARD);break;
-                        }
+                        }break;
                     case 6: {
                         JSONArray spell = (JSONArray) jsonArray.get(i);
                         List<Spell> name = new ArrayList<>();
@@ -440,7 +440,7 @@ public class FileReaders {
                             name.add((Spell) spell.get(y));
                         }
                         spells.add(name);
-                    }
+                    }break;
 
                     case 7: {
                         JSONArray skill = (JSONArray) jsonArray.get(i);
@@ -454,29 +454,29 @@ public class FileReaders {
                             }
                         }
                         skills.add(modfy);
-                    }
+                    }break;
                     case 8:
-                        level.add((Integer) jsonArray.get(i));
+                        level.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 9:
-                        strength.add((Integer) jsonArray.get(i));
+                        strength.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 10:
-                        dexterity.add((Integer) jsonArray.get(i));
+                        dexterity.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 11:
-                        robustness.add((Integer) jsonArray.get(i));
+                        robustness.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 12:
-                        intelligence.add((Integer) jsonArray.get(i));
+                        intelligence.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 13:
-                        wisdom.add((Integer) jsonArray.get(i));
+                        wisdom.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 14:
-                        charisma.add((Integer) jsonArray.get(i));
+                        charisma.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 15:
-                        speed.add((Integer) jsonArray.get(i));
+                        speed.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 16:
-                        hp.add((Integer) jsonArray.get(i));
+                        hp.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 17:
-                        armor.add((Integer) jsonArray.get(i));
+                        armor.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 18:
-                        points.add((Integer) jsonArray.get(i));
+                        points.add(Integer.parseInt(jsonArray.get(i).toString()));break;
                     case 19: {
                         JSONArray improvment = (JSONArray) jsonArray.get(i);
                         List<Improvement> name = new ArrayList<>();
@@ -490,51 +490,51 @@ public class FileReaders {
                                 case "Dwarven Combat Training":
                                     name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
                                 case "Tool Proficiency":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.TOOL_PROFICIENCY);break;
                                 case "Stonecunning":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.STONECUNNING);break;
                                 case "Keen Senses":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.KEEN_SENSES);break;
                                 case "Fey Ancestry":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.FEY_ANCESTRY);break;
                                 case "Trance":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.TRANCE);break;
                                 case "Lucky":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.LUCKY);break;
                                 case "Brave":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.BRAVE);break;
                                 case "Halfling Nimbleness":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.HALFLING_NIMBLENESS);break;
                                 case "Draconic Ancestry":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.DRACONIC_ANCESTRY);break;
                                 case "Breath Weapon":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.BREATH_WEAPON);break;
                                 case "Damage Resistance":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.DAMAGE_RESISTANCE);break;
                                 case "Gnome cunning":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.GNOME_CUNNING);break;
                                 case "Skill Versatility":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.SKILL_VERSATILITY);break;
                                 case "Menacing":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.MENACING);break;
                                 case "Relentless Endurance":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.RELENTLESS_ENDURANCE);break;
                                 case "Savage Attacks":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.SAVAGE_ATTACKS);break;
                                 case "Hellish Resistance":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.HELLISH_RESISTANCE);break;
                                 case "Infernal Legacy":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.INFERNAL_LEGACY);break;
                                 case "Flight":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.FLIGHT);break;
                                 case "Talons":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
+                                    name.add(Improvement.TALONS);break;
                                 default:
                                     name.add(Improvement.DARKVISION);break;
                             }
                         }
                         improvements.add(name);
-                    }
+                    }break;
                     case 20: {
                         JSONArray equipment = (JSONArray) jsonArray.get(i);
                         List<Equipment> adding = new ArrayList<>();
@@ -544,7 +544,7 @@ public class FileReaders {
                         }
                         EquipmentInventory name = new EquipmentInventory(adding);
                         equipments.add(name);
-                    }
+                    }break;
                     case 21: {
                         JSONArray item = (JSONArray) jsonArray.get(i);
                         List<Item> name = new ArrayList<>();
@@ -565,7 +565,7 @@ public class FileReaders {
                             );
                         }
                         inventory.add(name);
-                    }
+                    }break;
                 }
             }
             for (int x = 0; x < names.size(); x++) {
@@ -583,12 +583,6 @@ public class FileReaders {
         return jobs;
     }
 
-    public static void main(String[] args) throws IOException {
-        List<Spell> test = getSpells();
-        for (Spell spell : test){
-            System.out.println(spell.getName());
-        }
-    }
 
 }
 
