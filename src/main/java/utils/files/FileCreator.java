@@ -18,7 +18,13 @@ public class FileCreator {
      */
     public static void createFile(String name) {
         FileWriter file = new FileWriter("src/main/resources/donnee/" + name + ".json");
-        file.write(DefaultFileContent.WEAPONS);
+        switch (name){
+            case "weapon" :file.write(DefaultFileContent.WEAPONS);;
+            case "consumable":;
+            case "equipment":;
+            case "spell":;
+        }
+
         file.flush();
     }
 }
