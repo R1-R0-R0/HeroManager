@@ -896,15 +896,8 @@ public class Job {
      */
     public void increaseStrength() {
         if (additionalStatPoints > 0) {
-            if (level == 1) {
-                if (strength < 15) {
-                    strength++;
-                    additionalStatPoints--;
-                }
-            } else {
                 strength++;
                 additionalStatPoints--;
-            }
         }
     }
 
@@ -927,17 +920,10 @@ public class Job {
      */
     public void increaseDexterity() {
         if (additionalStatPoints > 0) {
-            if (level == 1) {
-                if (dexterity < 15) {
-                    dexterity++;
-                    additionalStatPoints--;
-                }
-            } else {
-                dexterity++;
-                additionalStatPoints--;
-            }
-        }
 
+            dexterity++;
+            additionalStatPoints--;
+        }
     }
 
     /**
@@ -959,17 +945,11 @@ public class Job {
      */
     public void increaseRobustness() {
         if (additionalStatPoints > 0) {
-            if (level == 1) {
-                if (robustness < 15) {
-                    robustness++;
-                    additionalStatPoints--;
-                }
-            } else {
-                robustness++;
-                additionalStatPoints--;
-            }
-        }
 
+            robustness++;
+            additionalStatPoints--;
+
+        }
     }
 
     /**
@@ -991,17 +971,10 @@ public class Job {
      */
     public void increaseIntelligence() {
         if (additionalStatPoints > 0) {
-            if (level == 1) {
-                if (intelligence < 15) {
-                    intelligence++;
-                    additionalStatPoints--;
-                }
-            } else {
                 intelligence++;
                 additionalStatPoints--;
-            }
-        }
 
+        }
     }
 
     /**
@@ -1023,17 +996,9 @@ public class Job {
      */
     public void increaseWisdom() {
         if (additionalStatPoints > 0) {
-            if (level == 1) {
-                if (wisdom < 15) {
-                    wisdom++;
-                    additionalStatPoints--;
-                }
-            } else {
                 wisdom++;
                 additionalStatPoints--;
-            }
         }
-
     }
 
     /**
@@ -1055,17 +1020,10 @@ public class Job {
      */
     public void increaseCharisma() {
         if (additionalStatPoints > 0) {
-            if (level == 1) {
-                if (charisma < 15) {
-                    charisma++;
-                    additionalStatPoints--;
-                }
-            } else {
-                charisma++;
-                additionalStatPoints--;
-            }
-        }
 
+            charisma++;
+            additionalStatPoints--;
+        }
     }
 
     /**
