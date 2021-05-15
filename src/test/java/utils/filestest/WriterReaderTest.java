@@ -1,6 +1,5 @@
 package utils.filestest;
 
-import exceptions.UnsupportedItemException;
 import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
@@ -23,7 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class WriterReaderTest {
 
@@ -39,8 +37,8 @@ public class WriterReaderTest {
         ArrayList<Component> components = new ArrayList<>();
         components.add(Component.VOCAL);
 
-        spells.add(new Spell("Bugfinder" , "Trouve des bugs dans le code de yohan","divination",
-                "1 action","8 hours",2,120, JobType.BARD,false,components));
+        spells.add(new Spell("Bugfinder", "Trouve des bugs dans le code de yohan", "divination",
+                "1 action", "8 hours", 2, 120, JobType.BARD, false, components));
 
         HeroManagerDB.addSpell(spells.get(0));
 
@@ -49,9 +47,9 @@ public class WriterReaderTest {
         improvements.add(Improvement.BRAVE);
         improvements.add(Improvement.DARKVISION);
 
-        Weapon weapon = new Weapon("Slash","Slash ça mere","slash des daronnes", WeaponType.WAR, DamageType.PIERCING);
-        Equipment equipment = new Equipment("lunar Sloth","Rend paresseux",EquipmentPart.BELT,2,EquipmentType.LIGHT,0,0,0,0,0,0,0);
-        Consumable consumable = new Consumable("Potion de force","Donne de la force");
+        Weapon weapon = new Weapon("Slash", "Slash ça mere", "slash des daronnes", WeaponType.WAR, DamageType.PIERCING);
+        Equipment equipment = new Equipment("lunar Sloth", "Rend paresseux", EquipmentPart.BELT, 2, EquipmentType.LIGHT, 0, 0, 0, 0, 0, 0, 0);
+        Consumable consumable = new Consumable("Potion de force", "Donne de la force");
         HeroManagerDB.addEquipment(equipment);
         HeroManagerDB.addWeapons(weapon);
         HeroManagerDB.addConsumable(consumable);
@@ -62,9 +60,8 @@ public class WriterReaderTest {
         EquipmentInventory equipmentInventory = new EquipmentInventory(equipments);
 
 
-
-        Job test = new Job("Spirit","Codeur surdoué", Gender.MAN,Alignment.LAWFUL_EVIL,Race.HUMAN,JobType.BARD,spells,jobSkills,10,14,10,8,10,16,18,30,40,15,0,improvements,
-                equipmentInventory,inventory);
+        Job test = new Job("Spirit", "Codeur surdoué", Gender.MAN, Alignment.LAWFUL_EVIL, Race.HUMAN, JobType.BARD, spells, jobSkills, 10, 14, 10, 8, 10, 16, 18, 30, 40, 15, 0, improvements,
+                equipmentInventory, inventory);
 
         HeroManagerDB.addJob(test);
 
@@ -92,14 +89,13 @@ public class WriterReaderTest {
         System.out.println(result.getArmor());
         System.out.println(result.getAdditionalStatPoints());
         System.out.println(result.getImprovements().get(1));
-        for (int i = 0 ; i <result.getEquippedEquipments().getEquippedList().size();i++) {
+        for (int i = 0; i < result.getEquippedEquipments().getEquippedList().size(); i++) {
             if (result.getEquippedEquipments().getEquippedList().get(i) != null) {
                 System.out.println(result.getEquippedEquipments().getEquippedList().get(i).getName());
             }
         }
         System.out.println(result.getInventory().get(0).getName());
         System.out.println(result.getInventory().get(1).getDescription());
-
 
 
     }

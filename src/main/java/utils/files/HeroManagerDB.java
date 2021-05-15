@@ -189,7 +189,6 @@ public class HeroManagerDB {
                 modify.setWeaponType(weapon.getWeaponType());
                 modify.setDamageType(weapon.getDamageType());
             }
-
         }
     }
 
@@ -211,7 +210,6 @@ public class HeroManagerDB {
                 modify.setDoDamages(spell.isDoDamages());
                 modify.setJobType(spell.getJobType());
             }
-
         }
     }
 
@@ -222,21 +220,24 @@ public class HeroManagerDB {
      * @param job the modified job
      */
     public static void modifyJob(Job job) {
-        for (Job modify : jobs) {
-            if (modify.getName().equals(job.getName())) {
-                modify.setLevel(job.getLevel());
-                modify.setStrength(job.getStrength());
-                modify.setDexterity(job.getDexterity());
-                modify.setIntelligence(job.getIntelligence());
-                modify.setWisdom(job.getWisdom());
-                modify.setRobustness(job.getRobustness());
-                modify.setCharisma(job.getCharisma());
-                modify.setSpeed(job.getSpeed());
-                modify.setEquippedEquipments(job.getEquippedEquipments());
-                modify.setSpellSlots(job.getSpellSlots());
-                modify.setInventory(job.getInventory());
-            }
+        for (int i = 0; i < jobs.size(); i++) {
+            Job change = jobs.get(0);
+            if (jobs.get(i).getName().equals(job.getName())) {
+                jobs.get(i).setLevel(job.getLevel());
+                jobs.get(i).setStrength(job.getStrength());
+                jobs.get(i).setDexterity(job.getDexterity());
+                jobs.get(i).setIntelligence(job.getIntelligence());
+                jobs.get(i).setWisdom(job.getWisdom());
+                jobs.get(i).setRobustness(job.getRobustness());
+                jobs.get(i).setCharisma(job.getCharisma());
+                jobs.get(i).setSpeed(job.getSpeed());
+                jobs.get(i).setEquippedEquipments(job.getEquippedEquipments());
+                jobs.get(i).setSpellSlots(job.getSpellSlots());
+                jobs.get(i).setInventory(job.getInventory());
 
+                jobs.set(0, jobs.get(i));
+                jobs.set(i, change);
+            }
         }
     }
 
@@ -315,6 +316,13 @@ public class HeroManagerDB {
         Writer.writerConsumable(consumables);
         Writer.writerEquipment(equipments);
         Writer.writerJob(jobs);
+    }
+
+    /**
+     * @return the last played Character
+     */
+    public static Job lastPlayed() {
+        return jobs.get(0);
     }
 
 }
