@@ -29,6 +29,8 @@ public class FileCreator {
                     file.write(DefaultFileContent.EQUIPMENT.toString());break;
                 case "spell":
                     file.write(DefaultFileContent.SPEELS.toString());break;
+                case "job":
+                    file.write("{\"job\" : []}");break;
             }
 
             file.flush();
