@@ -1,5 +1,6 @@
 package utils.files;
 
+import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
@@ -31,6 +32,44 @@ public class HeroManagerDB {
         consumables = FileReaders.getConsumable();
         equipments = FileReaders.getEquipement();
         jobs = FileReaders.getCaracters();
+
+    }
+
+    /**
+     * Found designed item into the database and set it for all jobs
+     * https://www.youtube.com/watch?v=YPN0qhSyWy8
+     */
+    private static void initJobs() {
+        for (Job job : jobs) {
+            if (!job.getSpellInventory().isEmpty()) {
+                for (Spell spell : job.getSpellInventory()) {
+                    for (Spell spell1 : spells) {
+                        if (spell1.getName().equals(spell.getName())) {
+                            spell = spell1;
+                        }
+                    }
+                }
+            }
+            if (!job.getInventory().isEmpty()) {
+                for (Item item : job.getInventory()) {
+                    for (Weapon weapon : weapons) {
+                        if (weapon.getName().equals(item.getName())) {
+                            item = weapon;
+                        }
+                    }
+                    for (Consumable consumable : consumables) {
+                        if (consumable.getName().equals(item.getName())) {
+                            item = consumable;
+                        }
+                    }
+                    for (Equipment equipment : equipments) {
+                        if (equipment.getName().equals(item.getName())) {
+                            item = equipment;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -74,7 +113,7 @@ public class HeroManagerDB {
      *
      * @return List of Job
      */
-    public static List<Job> getFiche() {
+    public static List<Job> getJobs() {
         return jobs;
     }
 
