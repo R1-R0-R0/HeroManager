@@ -31,8 +31,9 @@ public class FileManager {
 
 
             return jsonObject;
-        } catch (IOException | ParseException e) {
+        } catch (FileNotFoundException | ParseException e) {
             FileCreator.createFile(name);
+            getFile(name);
         }
 
         return null;

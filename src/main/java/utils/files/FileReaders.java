@@ -404,7 +404,7 @@ public class FileReaders {
                                 alignments.add(Alignment.CHAOTIC_EVIL);break;
                         }break;
                     case 4:
-                        races.add((Race) jsonArray.get(i));break;
+                        races.add(Race.foundRace((String)jsonArray.get(i)));break;
                     case 5:
                         switch ((String) jsonArray.get(i)) {
                             case "BARBARIAN":
@@ -437,7 +437,7 @@ public class FileReaders {
                         List<Spell> name = new ArrayList<>();
 
                         for (int y = 0; y < spell.size(); y++) {
-                            name.add((Spell) spell.get(y));
+                            name.add(new Spell((String)spell.get(y),"","","","",0,0, SORCERER,false,new ArrayList<Component>()));
                         }
                         spells.add(name);
                     }break;
@@ -540,7 +540,7 @@ public class FileReaders {
                         List<Equipment> adding = new ArrayList<>();
 
                         for (int y = 0; y < equipment.size(); y++) {
-                            adding.add((Equipment) equipment.get(y));
+                            adding.add(new Equipment((String) equipment.get(y),"",EquipmentPart.HEAD,0,EquipmentType.LIGHT,0,0,0,0,0,0,0));
                         }
                         EquipmentInventory name = new EquipmentInventory(adding);
                         equipments.add(name);

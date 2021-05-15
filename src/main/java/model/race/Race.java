@@ -170,5 +170,21 @@ public enum Race {
         return speed;
     }
 
+    public static Race foundRace(String name){
+        switch (name){
+            case "DWARF" : return DWARF;
+            case "ELF" : return ELF;
+            case "HALFLING" : return HALFLING;
+            case "HUMAN" : return HUMAN;
+            case "DRAGONBORN" : return DRAGONBORN;
+            case "GNOME" : return GNOME;
+            case "HALF_ELF" : return HALF_ELF;
+            case "HALF_ORC" : return HALF_ORC;
+            case "TIEFLING" : return TIEFLING;
+            case "AARAKOCRA" : return AARAKOCRA;
+            default: return HUMAN;
+        }
+    }
+
 
 }

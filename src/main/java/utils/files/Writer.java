@@ -63,9 +63,9 @@ public class Writer {
             weaponList.add(weapons.get(index).getName());
             weaponList.add(weapons.get(index).getDescription());
             weaponList.add(weapons.get(index).getProperties());
-            weaponList.add(weapons.get(index).getWeaponType());
+            weaponList.add(weapons.get(index).getWeaponType().toString());
 
-            weaponList.add(weapons.get(index).getDamageType());
+            weaponList.add(weapons.get(index).getDamageType().toString());
 
         }
         consu.put("weapon", weaponList);
@@ -87,10 +87,10 @@ public class Writer {
 
             equipmentList.add(equipment.get(index).getName());
             equipmentList.add(equipment.get(index).getDescription());
-            equipmentList.add(equipment.get(index).getEquipmentPart());
+            equipmentList.add(equipment.get(index).getEquipmentPart().toString());
 
             equipmentList.add(equipment.get(index).getArmorBonus());
-            equipmentList.add(equipment.get(index).getEquipmentType());
+            equipmentList.add(equipment.get(index).getEquipmentType().toString());
             equipmentList.add(equipment.get(index).getStrengthBoost());
             equipmentList.add(equipment.get(index).getDexterityBoost());
             equipmentList.add(equipment.get(index).getRobustnessBoost());
@@ -126,7 +126,7 @@ public class Writer {
 
 
             spellList.add(spells.get(index).getRange());
-            spellList.add(spells.get(index).getJobType());
+            spellList.add(spells.get(index).getJobType().toString());
             spellList.add(spells.get(index).isDoDamages());
             for (int x = 0; x < spells.get(index).getComponents().size(); x++) {
                 switch (spells.get(index).getComponents().get(x)) {
@@ -172,10 +172,10 @@ public class Writer {
 
             jobList.add(jobs.get(index).getName());
             jobList.add(jobs.get(index).getDescription());
-            jobList.add(jobs.get(index).getGender());
-            jobList.add(jobs.get(index).getAlignment());
+            jobList.add(jobs.get(index).getGender().toString());
+            jobList.add(jobs.get(index).getAlignment().toString());
             jobList.add(jobs.get(index).getRaceType().name());
-            jobList.add(jobs.get(index).getJobType());
+            jobList.add(jobs.get(index).getJobType().toString());
             for (int x = 0; x < jobs.get(index).getSpellInventory().size(); x++) {
                 listspell.add(jobs.get(index).getSpellInventory().get(x).getName());
             }
