@@ -33,10 +33,10 @@ public class FileManager {
             return jsonObject;
         } catch (FileNotFoundException | ParseException e) {
             FileCreator.createFile(name);
-            getFile(name);
+
         }
 
-        return null;
+        return getFile(name);
     }
 
     /**

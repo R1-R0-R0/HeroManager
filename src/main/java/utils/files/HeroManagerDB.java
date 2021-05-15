@@ -1,10 +1,9 @@
 package utils.files;
 
-import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
-import model.job.Job;
+import model.job.*;
 import model.spell.Spell;
 
 import java.io.IOException;
@@ -32,7 +31,7 @@ public class HeroManagerDB {
         consumables = FileReaders.getConsumable();
         equipments = FileReaders.getEquipement();
         jobs = FileReaders.getCaracters();
-
+        initJobs();
     }
 
     /**
@@ -41,32 +40,22 @@ public class HeroManagerDB {
      */
     private static void initJobs() {
         for (Job job : jobs) {
-            if (!job.getSpellInventory().isEmpty()) {
-                for (Spell spell : job.getSpellInventory()) {
-                    for (Spell spell1 : spells) {
-                        if (spell1.getName().equals(spell.getName())) {
-                            spell = spell1;
-                        }
-                    }
+            for (int i = 0; i < job.getSpellInventory().size(); i++) {
+                job.getSpellInventory().set(i, getSpell(job.getSpellInventory().get(i).getName()));
+            }
+            for (int i = 0; i < job.getInventory().size(); i++) {
+                String name = job.getInventory().get(i).getName();
+                job.getInventory().set(i, getWeapon(name));
+                if (job.getInventory().get(i) == null) {
+                    job.getInventory().set(i, getConsumable(name));
+                }
+                if (job.getInventory().get(i) == null) {
+                    job.getInventory().set(i, getEquipment(name));
                 }
             }
-            if (!job.getInventory().isEmpty()) {
-                for (Item item : job.getInventory()) {
-                    for (Weapon weapon : weapons) {
-                        if (weapon.getName().equals(item.getName())) {
-                            item = weapon;
-                        }
-                    }
-                    for (Consumable consumable : consumables) {
-                        if (consumable.getName().equals(item.getName())) {
-                            item = consumable;
-                        }
-                    }
-                    for (Equipment equipment : equipments) {
-                        if (equipment.getName().equals(item.getName())) {
-                            item = equipment;
-                        }
-                    }
+            for (int i = 0; i < job.getEquippedEquipments().getEquippedList().size(); i++) {
+                if (job.getEquippedEquipments().getEquippedList().get(i) != null) {
+                    job.getEquippedEquipments().getEquippedList().set(i, getEquipment(job.getEquippedEquipments().getEquippedList().get(i).getName()));
                 }
             }
         }
@@ -327,6 +316,5 @@ public class HeroManagerDB {
         Writer.writerEquipment(equipments);
         Writer.writerJob(jobs);
     }
-
 
 }
