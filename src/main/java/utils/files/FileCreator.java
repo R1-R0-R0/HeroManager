@@ -24,11 +24,11 @@ public class FileCreator {
                 case "weapon":
                     file.write(DefaultFileContent.WEAPONS.toString());break;
                 case "consumable":
-                    ;break;
+                    file.write(DefaultFileContent.CONSUMABLE.toString());break;
                 case "equipment":
-                    ;break;
+                    file.write(DefaultFileContent.EQUIPMENT.toString());break;
                 case "spell":
-                    ;break;
+                    file.write(DefaultFileContent.SPEELS.toString());break;
             }
 
             file.flush();
