@@ -1,12 +1,17 @@
 package utils.files;
 
+import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
+import model.items.equipments.EquipmentInventory;
+import model.items.equipments.EquipmentPart;
+import model.items.equipments.EquipmentType;
+import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
-import model.job.Improvement;
-import model.job.Job;
-import model.job.JobSkill;
-import model.job.JobType;
+import model.items.weapons.WeaponType;
+import model.job.*;
+import model.race.Alignment;
+import model.race.Race;
 import model.spell.Component;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
@@ -126,11 +131,14 @@ public class Writer {
             for (int x = 0; x < spells.get(index).getComponents().size(); x++) {
                 switch (spells.get(index).getComponents().get(x)) {
                     case VOCAL:
-                        components.add("V");break;
+                        components.add("V");
+                        break;
                     case MATERIAL:
-                        components.add("S");break;
+                        components.add("S");
+                        break;
                     case MOVEMENT:
-                        components.add("M");break;
+                        components.add("M");
+                        break;
                 }
 
             }
@@ -192,11 +200,14 @@ public class Writer {
                 improvements.add(jobs.get(index).getImprovements().get(x).toString());
             }
             jobList.add(improvements);
-            for (Equipment equiped:jobs.get(index).getEquippedEquipments().getEquippedList()
-                 ) {
-                equipments.add(equiped.getName());
-            }
-            jobList.add(equipments);
+            if (!jobs.get(index).getEquippedEquipments().getEquippedList().isEmpty()) {
+                for (Equipment equiped : jobs.get(index).getEquippedEquipments().getEquippedList()
+                ) {
+                    if (equiped != null) equipments.add(equiped.getName());
+                }
+                jobList.add(equipments);
+
+            } else jobList.add(new ArrayList<Equipment>());
             for (int x = 0; x < jobs.get(index).getInventory().size(); x++) {
                 inventory.add(jobs.get(index).getInventory().get(x).getName());
             }
