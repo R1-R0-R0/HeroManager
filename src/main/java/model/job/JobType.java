@@ -30,6 +30,12 @@ public enum JobType {
     protected int dLife;
     protected Improvement[] improvements;
 
+    /**
+     * Jobs who can possess spells, useful to activate spell tab or not
+     */
+    public final static JobType[] JOBS_SPELLS_AUTHORIZED = {JobType.WARLOCK, JobType.PALADIN, JobType.RANGER, JobType.SORCERER, JobType.DRUID, JobType.CLERIC, JobType.BARD, JobType.WIZARD};
+
+
     JobType(int dLife,Improvement... improvements){
         this.dLife = dLife;
         this.improvements = improvements;
