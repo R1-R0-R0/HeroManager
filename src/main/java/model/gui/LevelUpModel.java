@@ -4,12 +4,16 @@ import controller.LevelUpController;
 import javafx.stage.Stage;
 import model.Characteristics;
 import model.job.Job;
+import model.job.JobSkill;
 import model.spell.Spell;
 import utils.gui.character_creator.JobSkillItem;
 import utils.gui.character_creator.SpellItem;
 import view.CharacterCreatorView;
+import view.CharacterView;
 import view.LevelUpView;
 
+import javax.swing.text.html.ListView;
+import java.util.Arrays;
 import java.util.List;
 
 public class LevelUpModel implements Model {
@@ -20,15 +24,15 @@ public class LevelUpModel implements Model {
         instance = this;
         new LevelUpView(owner);
 
-        /*
-        TODO Set up depuis database
-         */
+        LevelUpView.getInstance().setJobSkillsListView(Arrays.asList(JobSkill.values()));
+        LevelUpView.getInstance().setSpellsListView(CharacterModel.getInstance().getCharacter().getSpellInventory()); // TODO Set up from db
     }
 
     public void updateCharacterAndContinue() {
         Job character = CharacterModel.getInstance().getCharacter();
         character.getSkills().clear();
         character.getSpellInventory().clear();
+        character.levelUp();
 
         List<JobSkillItem> jobSkills = LevelUpController.getInstance().skillsListView.getItems();
         for (JobSkillItem jobSkill : jobSkills) {
@@ -42,7 +46,10 @@ public class LevelUpModel implements Model {
                 character.getSpellInventory().add(spell.getSpell());
         }
 
+        character.setHealthPoints(character.getMaxHp());
+
         LevelUpView.getInstance().getStage().close();
+        CharacterView.getInstance().refreshView();
     }
 
     public void cancelLevelUp() {
