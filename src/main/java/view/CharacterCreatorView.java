@@ -146,7 +146,7 @@ public class CharacterCreatorView implements View {
         CharacterCreatorController.getInstance().paneCreation2.setVisible(true);
 
         Job createdJob = CharacterCreatorModel.getInstance().getCreatedJob();
-        for (JobType jobType : CharacterCreatorModel.JOBS_SPELLS_AUTHORIZED) {
+        for (JobType jobType : JobType.JOBS_SPELLS_AUTHORIZED) {
             if (createdJob.getJobType().equals(jobType)) {
                 CharacterCreatorController.getInstance().spellsTab.setDisable(false);
                 return;
