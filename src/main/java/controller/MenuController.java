@@ -70,6 +70,14 @@ public class MenuController implements Controller {
     }
 
     /**
+     * Open spell manager view when user clicks on spell manager button
+     */
+    @FXML
+    public void manageSpellsButtonOnClick() {
+        MenuModel.getInstance().openSpellManager();
+    }
+
+    /**
      * Event triggered when settings button is clicked
      */
     @FXML

@@ -94,6 +94,14 @@ public class MenuModel implements Model {
     }
 
     /**
+     * Open spell manager view, and close menu view
+     */
+    public void openSpellManager() {
+        MenuView.getInstance().close();
+        new SpellManagerModel();
+    }
+
+    /**
      * Event triggered when user clicks on quit button.
      * When called, just close the whole program
      */
