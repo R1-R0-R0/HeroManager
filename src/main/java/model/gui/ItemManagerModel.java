@@ -437,6 +437,7 @@ public class ItemManagerModel implements Model {
         for (int index = 0; index < size; index++) {
             if (consumables.get(index) == selectedConsumable) {
                 consumables.set(index, newConsumable);
+                break;
             }
         }
 
