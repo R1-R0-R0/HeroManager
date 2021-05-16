@@ -5,6 +5,7 @@ import controller.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
@@ -21,7 +22,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.gui.CharacterModel;
 import model.items.Item;
-import model.items.equipments.Equipment;
 import model.items.equipments.EquipmentInventory;
 import model.job.*;
 import model.spell.Spell;
@@ -84,6 +84,7 @@ public class CharacterView implements View {
             stage.setScene(new Scene(root));
             // stage.setResizable(false);
             stage.show();
+
 
             initResponsiveNodes();
 
@@ -168,7 +169,7 @@ public class CharacterView implements View {
      */
     public void setSkills(String... skills) {
         TextFlow skillsInfo = CharacterController.getInstance().skillsInfo;
-        ObservableList list = skillsInfo.getChildren();
+        ObservableList<Node> list = skillsInfo.getChildren();
         list.clear();
 
         Text title = new Text("Skills" + "\n\n");
@@ -192,7 +193,7 @@ public class CharacterView implements View {
      */
     public void setImprovements(String... improvements) {
         TextFlow improvementsInfo = CharacterController.getInstance().improvementsInfo;
-        ObservableList list = improvementsInfo.getChildren();
+        ObservableList<Node> list = improvementsInfo.getChildren();
         list.clear();
 
         Text title = new Text("Improvements" + "\n\n");
@@ -263,8 +264,8 @@ public class CharacterView implements View {
      * @param spells List of possessed spells
      */
     public void setSpellList(List<Spell> spells) {
-        ListView list = CharacterController.getInstance().spellList;
-        ObservableList items = list.getItems();
+        ListView<Spell> list = CharacterController.getInstance().spellList;
+        ObservableList<Spell> items = list.getItems();
         items.clear();
         items.addAll(spells);
     }
@@ -449,6 +450,7 @@ public class CharacterView implements View {
 
     /**
      * Used by inventory and equipment tab to show a + image when there is no item/equipment
+     *
      * @return image view of +
      */
     private ImageView generateImagePlus() {

@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
@@ -12,7 +11,9 @@ import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 import model.gui.CharacterModel;
 import model.gui.LevelUpModel;
-import model.items.equipments.*;
+import model.items.equipments.EquipmentPart;
+import model.job.Job;
+import model.job.JobType;
 import model.spell.Spell;
 import view.CharacterView;
 
