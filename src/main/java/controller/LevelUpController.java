@@ -6,7 +6,6 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.Tab;
 import javafx.scene.control.cell.CheckBoxListCell;
 import model.Characteristics;
-import model.gui.CharacterCreatorModel;
 import model.gui.CharacterModel;
 import model.gui.LevelUpModel;
 import model.job.Job;
@@ -42,6 +41,10 @@ public class LevelUpController implements Controller {
     @FXML
     public Tab statsTab, skillsTab, spellsTab;
 
+    public static LevelUpController getInstance() {
+        return instance;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
@@ -72,11 +75,9 @@ public class LevelUpController implements Controller {
         skillsListView.setCellFactory(CheckBoxListCell.forListView(JobSkillItem::selectedProperty));
         spellsListView.setCellFactory(CheckBoxListCell.forListView(SpellItem::selectedProperty));
 
-        Job createdJob = CharacterCreatorModel.getInstance().getCreatedJob();
-        for (JobType jobType : CharacterCreatorModel.JOBS_SPELLS_AUTHORIZED) {
-            if (createdJob.getJobType().equals(jobType)) {
+        for (JobType jobType : JobType.JOBS_SPELLS_AUTHORIZED) {
+            if (character.getJobType().equals(jobType)) {
                 spellsTab.setDisable(false);
-                return;
             }
         }
     }
@@ -86,7 +87,8 @@ public class LevelUpController implements Controller {
         LevelUpModel.getInstance().updateCharacterAndContinue();
     }
 
-    public static LevelUpController getInstance() {
-        return instance;
+    @FXML
+    public void backButtonOnClick() {
+        LevelUpModel.getInstance().cancelLevelUp();
     }
 }
