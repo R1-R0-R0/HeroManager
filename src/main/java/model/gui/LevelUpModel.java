@@ -5,21 +5,30 @@ import javafx.stage.Stage;
 import model.Characteristics;
 import model.job.Job;
 import model.job.JobSkill;
-import model.spell.Spell;
 import utils.gui.character_creator.JobSkillItem;
 import utils.gui.character_creator.SpellItem;
-import view.CharacterCreatorView;
 import view.CharacterView;
 import view.LevelUpView;
 
-import javax.swing.text.html.ListView;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Model of Level up view.
+ * Called to level up character and set up new statistics.
+ *
+ * @see LevelUpView associated class view (MVC pattern)
+ * @see LevelUpController associated class controller (MVC pattern)
+ */
 public class LevelUpModel implements Model {
 
     private static LevelUpModel instance;
 
+    /**
+     * Contructor of this class, when called, init view
+     *
+     * @param owner view caller
+     */
     public LevelUpModel(Stage owner) {
         instance = this;
         new LevelUpView(owner);
@@ -28,6 +37,16 @@ public class LevelUpModel implements Model {
         LevelUpView.getInstance().setSpellsListView(CharacterModel.getInstance().getCharacter().getSpellInventory()); // TODO Set up from db
     }
 
+    /**
+     * @return instance of this class
+     */
+    public static LevelUpModel getInstance() {
+        return instance;
+    }
+
+    /**
+     * Allows to confirm level up of character and set up its new statistics, and close level up view
+     */
     public void updateCharacterAndContinue() {
         Job character = CharacterModel.getInstance().getCharacter();
         character.getSkills().clear();
@@ -52,12 +71,16 @@ public class LevelUpModel implements Model {
         CharacterView.getInstance().refreshView();
     }
 
+    /**
+     * Cancelling level up.
+     * Character will not level up and none of this statistics will be affected
+     */
     public void cancelLevelUp() {
         LevelUpView.getInstance().getStage().close();
     }
 
     /**
-     * Called when one of statistics spinner is updated, to updates character in model
+     * Called when one of statistics spinner is updated, to update character's statistics
      *
      * @param characteristic affected statistic
      * @param oldValue       value before event
@@ -87,9 +110,5 @@ public class LevelUpModel implements Model {
                 case CHARISMA -> character.increaseCharisma();
             }
         }
-    }
-
-    public static LevelUpModel getInstance() {
-        return instance;
     }
 }

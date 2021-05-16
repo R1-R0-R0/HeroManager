@@ -1,6 +1,5 @@
 package view;
 
-import controller.CharacterCreatorController;
 import controller.LevelUpController;
 import controller.Main;
 import javafx.collections.FXCollections;
@@ -20,13 +19,27 @@ import utils.gui.character_creator.SpellItem;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * View manager of Item Picker view.
+ *
+ * @see model.gui.LevelUpModel associated class model (MVC pattern)
+ * @see LevelUpController associated class controller (MVC pattern)
+ */
 public class LevelUpView implements View {
 
     private static LevelUpView instance;
     private Stage stage;
 
+    /**
+     * Constructor of this class, when called, init view and its components.
+     * SHOULD NOT BE CALLED DIRECTLY, called by its corresponding model class
+     *
+     * @param owner caller of view
+     */
     public LevelUpView(Stage owner) {
         try {
+            instance = this;
+
             stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/level_up.fxml"));
             stage.setTitle("HeroManager - Level up");
@@ -36,17 +49,23 @@ public class LevelUpView implements View {
             stage.initOwner(owner);
             stage.setResizable(false);
             stage.show();
-
-            instance = this;
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * @return instance of this class
+     */
     public static LevelUpView getInstance() {
         return instance;
     }
 
+    /**
+     * To enable/disable spell tab
+     *
+     * @param disabled TRUE to disable, FALSE otherwise
+     */
     public void setSpellsTabDisable(boolean disabled) {
         LevelUpController.getInstance().spellsTab.setDisable(disabled);
     }
@@ -68,7 +87,7 @@ public class LevelUpView implements View {
             items.add(skill);
         }
 
-        CharacterCreatorController.getInstance().skillsListView.setItems(items);
+        LevelUpController.getInstance().skillsListView.setItems(items);
     }
 
     /**
@@ -88,9 +107,12 @@ public class LevelUpView implements View {
             items.add(si);
         }
 
-        CharacterCreatorController.getInstance().spellsListView.setItems(items);
+        LevelUpController.getInstance().spellsListView.setItems(items);
     }
 
+    /**
+     * @return stage of view
+     */
     public Stage getStage() {
         return stage;
     }

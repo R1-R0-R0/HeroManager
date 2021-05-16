@@ -16,6 +16,13 @@ import utils.gui.character_creator.SpellItem;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of this views.
+ * Handle all events of Menu view
+ *
+ * @see view.LevelUpView associated class view (MVC pattern)
+ * @see LevelUpModel associated class model (MVC pattern)
+ */
 public class LevelUpController implements Controller {
 
     private static LevelUpController instance;
@@ -38,13 +45,25 @@ public class LevelUpController implements Controller {
     @FXML
     public ListView<SpellItem> spellsListView;
 
+    /**
+     * Tabs in view
+     */
     @FXML
     public Tab statsTab, skillsTab, spellsTab;
 
+    /**
+     * @return instance of this class
+     */
     public static LevelUpController getInstance() {
         return instance;
     }
 
+    /**
+     * Entry of controller. When called, loads all necessary attributes for the software to work properly
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
@@ -82,11 +101,18 @@ public class LevelUpController implements Controller {
         }
     }
 
+
+    /**
+     * Event called when player click on confirmation button
+     */
     @FXML
     public void confirmLevelUpButtonOnClick() {
         LevelUpModel.getInstance().updateCharacterAndContinue();
     }
 
+    /**
+     * Event called when player click on cancel button
+     */
     @FXML
     public void backButtonOnClick() {
         LevelUpModel.getInstance().cancelLevelUp();
