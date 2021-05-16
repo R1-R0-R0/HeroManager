@@ -201,6 +201,40 @@ public class CharacterController implements Controller {
         Tooltip.install(amuletPane, amuletTip);
         Tooltip.install(ringPane1, ringTip);
         Tooltip.install(ringPane2, ringTip);
+
+        equipmentTab.widthProperty().addListener((observable, oldValue, newValue) -> {
+            double oldV = oldValue.doubleValue(),
+                    newV = newValue.doubleValue();
+
+            if (oldV == 0) return;
+
+            headPane.setLayoutX(newV * headPane.getLayoutX() / oldV);
+            bodyPane.setLayoutX(newV * bodyPane.getLayoutX() / oldV);
+            mantlePane.setLayoutX(newV * mantlePane.getLayoutX() / oldV);
+            beltPane.setLayoutX(newV * beltPane.getLayoutX() / oldV);
+            legsPane.setLayoutX(newV * legsPane.getLayoutX() / oldV);
+            feetPane.setLayoutX(newV * feetPane.getLayoutX() / oldV);
+            amuletPane.setLayoutX(newV * amuletPane.getLayoutX() / oldV);
+            ringPane1.setLayoutX(newV * ringPane1.getLayoutX() / oldV);
+            ringPane2.setLayoutX(newV * ringPane2.getLayoutX() / oldV);
+        });
+
+        equipmentTab.heightProperty().addListener((observable, oldValue, newValue) -> {
+            double oldV = oldValue.doubleValue(),
+                    newV = newValue.doubleValue();
+
+            if (oldV == 0) return;
+
+            headPane.setLayoutY(newV * headPane.getLayoutY() / oldV);
+            bodyPane.setLayoutY(newV * bodyPane.getLayoutY() / oldV);
+            mantlePane.setLayoutY(newV * mantlePane.getLayoutY() / oldV);
+            beltPane.setLayoutY(newV * beltPane.getLayoutY() / oldV);
+            legsPane.setLayoutY(newV * legsPane.getLayoutY() / oldV);
+            feetPane.setLayoutY(newV * feetPane.getLayoutY() / oldV);
+            amuletPane.setLayoutY(newV * amuletPane.getLayoutY() / oldV);
+            ringPane1.setLayoutY(newV * ringPane1.getLayoutY() / oldV);
+            ringPane2.setLayoutY(newV * ringPane2.getLayoutY() / oldV);
+        });
     }
 
     /*
