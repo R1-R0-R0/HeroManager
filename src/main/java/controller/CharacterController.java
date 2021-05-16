@@ -149,6 +149,16 @@ public class CharacterController implements Controller {
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
 
+        boolean spellTabDisabled = true;
+        Job character = CharacterModel.getInstance().getCharacter();
+        for (JobType jobType : JobType.JOBS_SPELLS_AUTHORIZED) {
+            if (character.getJobType() == jobType) {
+                spellTabDisabled = false;
+                break;
+            }
+        }
+        spellsTabDongle.setDisable(spellTabDisabled);
+
         GridPane inventory = CharacterView.getInstance().createInventoryGrid();
 
         AnchorPane.setTopAnchor(inventory, 10.0);
