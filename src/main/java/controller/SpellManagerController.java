@@ -22,27 +22,51 @@ public class SpellManagerController implements Controller {
 
     private static SpellManagerController instance;
 
+    /**
+     * Fields corresponding to spell attributes
+     */
     @FXML
     public TextField spellNameLabel, spellSchoolLabel, spellCastingTimeLabel, spellDurationLabel;
 
+    /**
+     * Field corresponding to spell description
+     */
     @FXML
     public TextArea spellDescLabel;
 
+    /**
+     * Fields corresponding to level and range pickers
+     */
     @FXML
     public Spinner<Integer> spellLevelSpinner, spellRangeSpinner;
 
+    /**
+     * Field corresponding to job type picker
+     */
     @FXML
     public ChoiceBox<JobType> spellJobTypePicker;
 
+    /**
+     * Fields corresponding to spell components pickers
+     */
     @FXML
     public ChoiceBox<Component> spellComponent1Picker, spellComponent2Picker, spellComponent3Picker;
 
+    /**
+     * Field corresponding to toggle button
+     */
     @FXML
     public ToggleButton spellDoDamagesButton;
 
+    /**
+     * Field corresponding to list view
+     */
     @FXML
     public ListView<Spell> spellList;
 
+    /**
+     * Fields corresponding to buttons
+     */
     @FXML
     public Button newSpellButton, updateSpellButton, deleteSpellButton;
 
