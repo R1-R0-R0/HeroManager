@@ -84,6 +84,12 @@ public class CharacterController implements Controller {
      */
 
     /**
+     * Tab of spells
+     */
+    @FXML
+    public Tab spellsTabDongle;
+
+    /**
      * List of spells that characters possess
      */
     @FXML
