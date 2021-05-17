@@ -7,6 +7,7 @@ import model.job.*;
 import model.spell.Spell;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,7 +70,7 @@ public class HeroManagerDB {
      * @return List of Weapon
      */
     public static List<Weapon> getWeapons() {
-        return weapons;
+        return new ArrayList<>(weapons);
     }
 
     /**
@@ -78,7 +79,7 @@ public class HeroManagerDB {
      * @return List of Spell
      */
     public static List<Spell> getSpells() {
-        return spells;
+        return new ArrayList<>(spells);
     }
 
     /**
@@ -87,7 +88,7 @@ public class HeroManagerDB {
      * @return List of consumable
      */
     public static List<Consumable> getConsumables() {
-        return consumables;
+        return new ArrayList<>(consumables);
     }
 
     /**
@@ -96,7 +97,7 @@ public class HeroManagerDB {
      * @return List of Equipment
      */
     public static List<Equipment> getEquipments() {
-        return equipments;
+        return new ArrayList<>(equipments);
     }
 
     /**
@@ -388,7 +389,7 @@ public class HeroManagerDB {
     public static boolean removeConsumable (String name){
         for (Consumable consumable : consumables) {
             if (consumable.getName().equals(name))
-                return weapons.remove(consumable);
+                return consumables.remove(consumable);
         }
 
         return false;
@@ -402,7 +403,7 @@ public class HeroManagerDB {
     public static boolean removeEquipment (String name){
         for (Equipment equipment : equipments) {
             if (equipment.getName().equals(name))
-                return weapons.remove(equipment);
+                return equipments.remove(equipment);
         }
 
         return false;
@@ -416,7 +417,7 @@ public class HeroManagerDB {
     public static boolean removeSpell (String name){
         for (Spell spell : spells) {
             if (spell.getName().equals(name))
-                return weapons.remove(spell);
+                return spells.remove(spell);
         }
 
         return false;
@@ -430,7 +431,7 @@ public class HeroManagerDB {
     public static boolean removeJob (String name){
         for (Job job : jobs) {
             if (job.getName().equals(name))
-                return weapons.remove(job);
+                return jobs.remove(job);
         }
 
         return false;
