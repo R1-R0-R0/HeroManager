@@ -133,7 +133,10 @@ public class EquipmentInventory {
         return rightRing;
     }
 
-
+    /**
+     * The list of equippedEquipment, if no equipment in the wanted Part, put null in the List
+     * @return List of equippedEquipment
+     */
     public List<Equipment> getEquippedList(){
         List<Equipment> equipped = new ArrayList<>();
         equipped.add(head);
@@ -148,25 +151,6 @@ public class EquipmentInventory {
         equipped.add(rightRing);
 
         return equipped;
-    }
-
-    /**
-     * Remove an equipment by its index (0 = head, ..., rightRing = 9)
-     * @param index equipment index to remove
-     */
-    public void removeEquipment(int index) {
-        switch (index) {
-            case 0 -> removeHead();
-            case 1 -> removeBody();
-            case 2 -> removeLegs();
-            case 3 -> removeFeet();
-            case 4 -> removeHands();
-            case 5 -> removeBelt();
-            case 6 -> removeMantle();
-            case 7 -> removeAmulet();
-            case 8 -> removeLeftRing();
-            case 9 -> removeRightRing();
-        }
     }
 
     /**
