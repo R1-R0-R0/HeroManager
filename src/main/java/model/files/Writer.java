@@ -171,7 +171,7 @@ public class Writer {
             jobList.add(listspell);
             for (int x = 0; x < jobs.get(index).getSkills().size(); x++) {
                 skills.add(jobs.get(index).getSkills().get(x).getName());
-                skills.add(jobs.get(index).getSkills().get(x).isMastered());
+                skills.add(true);
             }
             jobList.add(skills);
             jobList.add(jobs.get(index).getLevel());
