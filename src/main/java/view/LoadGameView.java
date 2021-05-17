@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import model.gui.CharacterCreatorModel;
 import model.job.Gender;
 import model.job.Job;
+import utils.gui.Dialog;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,7 +53,7 @@ public class LoadGameView implements View {
 
             instance = this;
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening Load Game view", e).showAndWait();
         }
     }
 

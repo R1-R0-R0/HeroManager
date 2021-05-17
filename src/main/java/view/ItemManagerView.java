@@ -14,6 +14,7 @@ import model.items.ItemType;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
+import utils.gui.Dialog;
 
 import java.io.IOException;
 
@@ -44,7 +45,7 @@ public class ItemManagerView implements View {
 
             instance = this;
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening Item Manager view", e).showAndWait();
         }
     }
 

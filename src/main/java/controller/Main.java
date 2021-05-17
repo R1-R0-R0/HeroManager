@@ -48,9 +48,7 @@ public class Main extends Application {
             System.out.println("LAUNCHING VIEW");
             splashScreen.openMenu();
         } catch (Exception e) {
-            e.printStackTrace();
-            new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
-            System.exit(1);
+            new Dialog("A critical error occurred", e).showAndWait();
         }
     }
 }

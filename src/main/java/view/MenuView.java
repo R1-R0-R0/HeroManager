@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.job.Job;
+import utils.gui.Dialog;
 
 import java.io.IOException;
 
@@ -37,7 +38,7 @@ public class MenuView implements View {
 
             instance = this;
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening Menu view", e).showAndWait();
         }
     }
 

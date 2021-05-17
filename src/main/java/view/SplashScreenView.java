@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.gui.MenuModel;
+import utils.gui.Dialog;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -75,7 +76,7 @@ public class SplashScreenView implements View {
 
             instance = this;
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening Splash Screen view", e).showAndWait();
         }
     }
 

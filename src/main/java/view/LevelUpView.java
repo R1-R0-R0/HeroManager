@@ -13,6 +13,7 @@ import model.gui.CharacterModel;
 import model.job.Job;
 import model.job.JobSkill;
 import model.spell.Spell;
+import utils.gui.Dialog;
 import utils.gui.character_creator.JobSkillItem;
 import utils.gui.character_creator.SpellItem;
 
@@ -50,7 +51,7 @@ public class LevelUpView implements View {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening Level Up view", e).showAndWait();
         }
     }
 

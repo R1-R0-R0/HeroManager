@@ -26,6 +26,7 @@ import model.items.equipments.EquipmentInventory;
 import model.job.*;
 import model.spell.Spell;
 import utils.gui.ContainerPane;
+import utils.gui.Dialog;
 
 import java.io.IOException;
 import java.util.List;
@@ -105,7 +106,7 @@ public class CharacterView implements View {
                     new BackgroundSize(100, 100, true, true, true, false));
             CharacterController.getInstance().imageJob.setBackground(new Background(bgImg));
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening Character view", e).showAndWait();
         }
     }
 

@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.gui.Dialog;
 
 import java.io.IOException;
 
@@ -43,7 +44,7 @@ public class HpPopUpView implements View {
 
             HpPopUpController.getInstance().maxHPText.setText("/ " + maxHP);
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening HP View view", e).showAndWait();
         }
     }
 

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.gui.MenuModel;
+import utils.gui.Dialog;
 
 import java.io.IOException;
 
@@ -35,7 +36,7 @@ public class NewGameView implements View {
 
             instance = this;
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening New Game view", e).showAndWait();
         }
     }
 

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utils.gui.Dialog;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,7 +41,7 @@ public class DiceView implements View {
 
             instance = this;
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening Dice view", e).showAndWait();
         }
     }
 

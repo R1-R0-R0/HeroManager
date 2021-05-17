@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import model.gui.SpellManagerModel;
 import model.spell.Component;
 import model.spell.Spell;
+import utils.gui.Dialog;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,7 +43,7 @@ public class SpellManagerView implements View {
 
             instance = this;
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening Spell Manager view", e).showAndWait();
         }
     }
 
