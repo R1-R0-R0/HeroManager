@@ -1,9 +1,12 @@
 package controller;
 
 import javafx.application.Application;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.gui.MenuModel;
+import utils.files.HeroManagerDB;
+import utils.gui.Dialog;
 
 /**
  * Entry of HeroManager app
@@ -29,6 +32,19 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        new MenuModel();
+        System.out.println("BONJOUR");
+        try {
+            System.out.println("INIT DATABASE");
+            long time = System.currentTimeMillis();
+            HeroManagerDB.init();
+            System.out.println("DATABASE LOADED IN " + (System.currentTimeMillis() - time) + " MS");
+
+            System.out.println("LAUNCHING VIEW");
+            new MenuModel();
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            System.exit(1);
+        }
     }
 }

@@ -24,6 +24,7 @@ public class HeroManagerDB {
 
     /**
      * Method witch call on FileReaders getter to initialize the DataBase
+     * @throws IOException if files doesn't exist
      */
     public static void init() throws IOException {
         weapons = FileReaders.getWeapons();
