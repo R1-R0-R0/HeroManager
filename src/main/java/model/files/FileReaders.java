@@ -1,5 +1,6 @@
 package model.files;
 
+import exceptions.UnknownJobSkillException;
 import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
@@ -444,7 +445,8 @@ public class FileReaders {
                         List<JobSkill> modfy = new ArrayList<>();
 
                         for (int y = 0; y < skill.size(); y ++) {
-                                modfy.add(JobSkill.getJobSkill((String) skill.get(y)));
+                            String s = (String) skill.get(y);
+                                modfy.add(JobSkill.getJobSkill(s.toUpperCase()));
                         }
                         skills.add(modfy);
                     }break;
@@ -571,6 +573,8 @@ public class FileReaders {
         } catch (FileNotFoundException e) {
             return null;
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (UnknownJobSkillException e) {
             e.printStackTrace();
         }
         return jobs;
