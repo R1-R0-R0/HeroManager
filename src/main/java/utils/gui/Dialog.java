@@ -1,8 +1,8 @@
 package utils.gui;
 
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
@@ -18,15 +18,15 @@ import java.util.Optional;
  */
 public class Dialog {
 
-    private Alert alert;
-    private Optional<ButtonType> result;
-    private boolean exceptionAlert;
+    private final Alert alert;
+    private final boolean exceptionAlert;
 
     /**
      * Constructor of this class, who allows to init desired dialog
+     *
      * @param alertType type of alert (ERROR or WARNING)
-     * @param title title of the dialog
-     * @param text text of the dialog
+     * @param title     title of the dialog
+     * @param text      text of the dialog
      */
     public Dialog(Alert.AlertType alertType, String title, String text) {
         alert = new Alert(alertType);
@@ -40,8 +40,9 @@ public class Dialog {
     /**
      * 2nd constructor, used to show an error pop up with an exception.
      * Print stack trace in standard output, and end program
+     *
      * @param title title of the dialog
-     * @param e exception to show
+     * @param e     exception to show
      */
     public Dialog(String title, Exception e) {
         alert = new Alert(Alert.AlertType.ERROR);
@@ -77,7 +78,21 @@ public class Dialog {
     }
 
     /**
+     * 3rd constructor, used to create a busy wait dialog
+     *
+     * @param message message to show
+     */
+    public Dialog(String message) {
+        alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Hero Manager");
+        alert.setContentText(message);
+
+        exceptionAlert = false;
+    }
+
+    /**
      * Used to get buttons linked to dialog
+     *
      * @return observable list of buttons of dialog
      */
     public ObservableList<ButtonType> getButtons() {
@@ -97,6 +112,7 @@ public class Dialog {
 
     /**
      * To show dialog
+     *
      * @return result of dialog
      */
     public Optional<ButtonType> showAndWait() {
@@ -122,5 +138,12 @@ public class Dialog {
             case CONFIRMATION -> sound = ((Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.question"));
         }
         if (sound != null) sound.run();
+    }
+
+    /**
+     * To close dialog
+     */
+    public void close() {
+        alert.close();
     }
 }
