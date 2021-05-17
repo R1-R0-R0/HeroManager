@@ -330,7 +330,7 @@ public class ItemManagerModel implements Model {
     /**
      * Method used to update an existing weapon in software's database
      *
-     * @param name        name of weapon (must exist)
+     * @param name        name of weapon
      * @param description description of weapon
      * @param properties  properties of weapons
      * @param weaponType  type of weapon
@@ -468,11 +468,11 @@ public class ItemManagerModel implements Model {
             case WEAPONS -> {
                 for (Weapon weapon : weapons) {
                     if (weapon.getName().equals(name)) {
-                        if (HeroManagerDB.removeWeapon(name)) {
+                        if (HeroManagerDB.removeWeapon(name))
                             weapons.remove(weapon);
-                            return;
-                        }
                         else dbErr.showAndWait();
+
+                        return;
                     }
                 }
 
@@ -481,11 +481,11 @@ public class ItemManagerModel implements Model {
             case EQUIPMENTS -> {
                 for (Equipment equipment : equipments) {
                     if (equipment.getName().equals(name)) {
-                        if (HeroManagerDB.removeEquipment(name)) {
+                        if (HeroManagerDB.removeEquipment(name))
                             equipments.remove(equipment);
-                            return;
-                        }
                         else dbErr.showAndWait();
+
+                        return;
                     }
                 }
 
@@ -494,11 +494,11 @@ public class ItemManagerModel implements Model {
             case CONSUMABLES -> {
                 for (Consumable consumable : consumables) {
                     if (consumable.getName().equals(name)) {
-                        if (HeroManagerDB.removeConsumable(name)) {
+                        if (HeroManagerDB.removeConsumable(name))
                             consumables.remove(consumable);
-                            return;
-                        }
                         else dbErr.showAndWait();
+
+                        return;
                     }
                 }
 

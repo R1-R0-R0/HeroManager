@@ -389,7 +389,7 @@ public class HeroManagerDB {
     public static boolean removeConsumable (String name){
         for (Consumable consumable : consumables) {
             if (consumable.getName().equals(name))
-                return weapons.remove(consumable);
+                return consumables.remove(consumable);
         }
 
         return false;
@@ -403,7 +403,7 @@ public class HeroManagerDB {
     public static boolean removeEquipment (String name){
         for (Equipment equipment : equipments) {
             if (equipment.getName().equals(name))
-                return weapons.remove(equipment);
+                return equipments.remove(equipment);
         }
 
         return false;
@@ -417,7 +417,7 @@ public class HeroManagerDB {
     public static boolean removeSpell (String name){
         for (Spell spell : spells) {
             if (spell.getName().equals(name))
-                return weapons.remove(spell);
+                return spells.remove(spell);
         }
 
         return false;
@@ -431,7 +431,7 @@ public class HeroManagerDB {
     public static boolean removeJob (String name){
         for (Job job : jobs) {
             if (job.getName().equals(name))
-                return weapons.remove(job);
+                return jobs.remove(job);
         }
 
         return false;
