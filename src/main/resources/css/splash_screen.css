@@ -1,0 +1,10 @@
+#window {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+#img {
+    -fx-background-image: url("../images/icon/logo.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain, auto;
+    -fx-background-repeat: no-repeat;
+}

@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import model.gui.MenuModel;
 import model.files.HeroManagerDB;
 import utils.gui.Dialog;
+import view.SplashScreenView;
 
 import java.util.Arrays;
 
@@ -33,7 +34,9 @@ public class Main extends Application {
      * @param primaryStage Unused parameter, first stage of program
      */
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws InterruptedException {
+        SplashScreenView splashScreen = new SplashScreenView();
+
         try {
             System.out.println("INIT DATABASE");
             long time = System.currentTimeMillis();
@@ -43,7 +46,7 @@ public class Main extends Application {
             Runtime.getRuntime().addShutdownHook(new Thread(HeroManagerDB::save));
 
             System.out.println("LAUNCHING VIEW");
-            new MenuModel();
+            splashScreen.openMenu();
         } catch (Exception e) {
             e.printStackTrace();
             new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
