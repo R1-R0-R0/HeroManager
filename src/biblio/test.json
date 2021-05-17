@@ -1,7 +1,0 @@
-{
-    "consomable": {
-        "name": "potion de soin",
-        "description": "cette potion vous soigne de ",
-        "effect": "2d4+2"
-    }
-}
