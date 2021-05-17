@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import model.gui.MenuModel;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -60,7 +61,7 @@ public class SplashScreenView implements View {
             //After fade out, load actual content
             fadeOut.setOnFinished((e) -> {
                 close();
-                new MenuView();
+                new MenuModel();
             });
 
             Scene scene = new Scene(root, 687, 720);
