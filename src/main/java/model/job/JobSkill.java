@@ -98,9 +98,10 @@ public enum JobSkill {
 
     /**
      * give a list of all Jobskill
+     *
      * @return List of jobSkills
      */
-    public static List<JobSkill> getJobSkillList(){
+    public static List<JobSkill> getJobSkillList() {
         return Arrays.asList(
                 ACROBATICS,
                 ARCANA,
@@ -121,6 +122,53 @@ public enum JobSkill {
                 STEALTH,
                 SURVIVAL
         );
+    }
+
+    /**
+     * return target skill
+     *
+     * @return Tarjet skill
+     */
+    public static JobSkill getJobSkill(String name) {
+        switch (name) {
+            case "ACROBATICS":
+                return ACROBATICS;
+            case "ARCANA":
+                return ARCANA;
+            case "ATHLETICS":
+                return ATHLETICS;
+            case "ANIMAL_HANDLING":
+                return ANIMAL_HANDLING;
+            case "DECEPTION":
+                return DECEPTION;
+            case "HISTORY":
+                return HISTORY;
+            case "INTIMIDATION":
+                return INTIMIDATION;
+            case "INSIGHT":
+                return INSIGHT;
+            case "INVESTIGATION":
+                return INVESTIGATION;
+            case "MEDICINE":
+                return MEDICINE;
+            case "NATURE":
+                return NATURE;
+            case "PERCEPTION":
+                return PERCEPTION;
+            case "PERFORMANCE":
+                return PERFORMANCE;
+            case "PERSUASION":
+                return PERSUASION;
+            case "RELIGION":
+                return RELIGION;
+            case "SLEIGHT_OF_HAND":
+                return SLEIGHT_OF_HAND;
+            case "STEALTH":
+                return STEALTH;
+            case "SURVIVAL":
+                return SURVIVAL;
+            default: return NATURE;
+        }
     }
 
     /**

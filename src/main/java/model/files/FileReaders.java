@@ -441,14 +441,12 @@ public class FileReaders {
 
                     case 7: {
                         JSONArray skill = (JSONArray) jsonArray.get(i);
-                        List<JobSkill> modfy = JobSkill.getJobSkillList();
+                        List<JobSkill> modfy = new ArrayList<>();
 
                         for (int y = 0; y < skill.size(); y += 2) {
-                            for (JobSkill change : modfy
-                            ) {
-                                if (change.toString().equals(skill.get(y).toString()))
-                                    change.setMastered((boolean) skill.get(y + 1));
-                            }
+                            modfy.add(JobSkill.getJobSkill((String) skill.get(y)));
+                            modfy.get(modfy.size()-1).setMastered((boolean) skill.get(y+1));
+
                         }
                         skills.add(modfy);
                     }break;
