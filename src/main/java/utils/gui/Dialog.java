@@ -47,6 +47,7 @@ public class Dialog {
         alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("HeroManager - Critical error");
         alert.setHeaderText(title);
+        alert.setContentText(e.getMessage());
 
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
