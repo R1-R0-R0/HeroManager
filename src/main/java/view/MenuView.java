@@ -1,10 +1,12 @@
 package view;
 
 import controller.Main;
+import controller.MenuController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.job.Job;
 
 import java.io.IOException;
 
@@ -44,6 +46,27 @@ public class MenuView implements View {
      */
     public static MenuView getInstance() {
         return instance;
+    }
+
+    /**
+     * Allows to set last played game button, to quickly resume last played game
+     *
+     * @param job last played job to show, null if there is none
+     */
+    public void setLastGame(Job job) {
+        MenuController controller = MenuController.getInstance();
+
+        if (job == null) {
+            controller.resumeButton.setDisable(true);
+            controller.resumeText.setText("");
+        } else {
+            controller.resumeButton.setDisable(false);
+            controller.resumeText.setText(
+                    job.getName() + " - "
+                            + job.getJobType() + " - "
+                            +  "LVL " + job.getLevel()
+            );
+        }
     }
 
     /**

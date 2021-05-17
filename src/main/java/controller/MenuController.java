@@ -1,6 +1,8 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import model.gui.MenuModel;
 import view.MenuView;
 
@@ -15,6 +17,12 @@ import java.util.ResourceBundle;
  * @see MenuModel associated class model (MVC pattern)
  */
 public class MenuController implements Controller {
+
+    @FXML
+    public Button resumeButton;
+
+    @FXML
+    public Text resumeText;
 
     private static MenuController instance;
 
