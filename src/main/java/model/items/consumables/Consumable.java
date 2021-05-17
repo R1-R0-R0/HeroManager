@@ -40,6 +40,10 @@ public class Consumable implements Item {
     @Override
     public String toString(){return name;}
 
+    /**
+     * Set description for the consumable
+     * @param description for the consumable
+     */
     public void setDescription(String description) {
         this.description = description;
     }

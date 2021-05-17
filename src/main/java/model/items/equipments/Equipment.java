@@ -143,30 +143,54 @@ public class Equipment implements Item {
         return name;
     }
 
+    /**
+     *
+     * @return type of the equipment
+     */
     public EquipmentType getType() {
         return type;
     }
 
+    /**
+     * Change the list of Characteristic Boost
+     * @return boolean if it succeeded
+     */
     public int[] getCharacteristicsBoost() {
         return characteristicsBoost;
     }
 
+    /**
+     * Change the description of the Equipment
+     * @param description the new description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
-
+    /**
+     * Change the equipmentPart of the Equipment
+     * @param equipmentPart the new equipmentPart
+     */
     public void setEquipmentPart(EquipmentPart equipmentPart) {
         this.equipmentPart = equipmentPart;
     }
-
+    /**
+     * Change the armorBonus of the Equipment
+     * @param armorBonus the new armorBonus
+     */
     public void setArmorBonus(int armorBonus) {
         this.armorBonus = armorBonus;
     }
-
+    /**
+     * Change the type of the Equipment
+     * @param type the new type
+     */
     public void setType(EquipmentType type) {
         this.type = type;
     }
-
+    /**
+     * Change the characteristics Boost of the Equipment
+     * @param characteristicsBoost the new characteristics Boost
+     */
     public void setCharacteristicsBoost(int[] characteristicsBoost) {
         this.characteristicsBoost = characteristicsBoost;
     }
