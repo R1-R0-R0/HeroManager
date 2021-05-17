@@ -61,6 +61,7 @@ public class LoadGameModel implements Model {
         new CharacterModel(selectedCharacter);
         close();
         MenuView.getInstance().close();
+        HeroManagerDB.modifyJob(selectedCharacter);
     }
 
     /**
