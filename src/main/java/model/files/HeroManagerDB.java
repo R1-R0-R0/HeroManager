@@ -6,6 +6,7 @@ import model.items.equipments.EquipmentType;
 import model.items.weapons.Weapon;
 import model.job.*;
 import model.spell.Spell;
+import view.SplashScreenView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,13 +30,25 @@ public class HeroManagerDB {
      * @throws IOException if files doesn't exist
      */
     public static void init() throws IOException {
+        SplashScreenView splashScreen = SplashScreenView.getInstance();
+
         weapons = FileReaders.getWeapons();
+        splashScreen.setLoading(16);
+
         spells = FileReaders.getSpells();
+        splashScreen.setLoading(32);
+
         consumables = FileReaders.getConsumable();
+        splashScreen.setLoading(48);
+
         equipments = FileReaders.getEquipement();
+        splashScreen.setLoading(64);
+
         jobs = FileReaders.getCaracters();
+        splashScreen.setLoading(80);
 
         initJobs();
+        splashScreen.setLoading(100);
     }
 
     /**
