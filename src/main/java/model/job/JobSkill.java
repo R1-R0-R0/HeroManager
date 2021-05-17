@@ -61,7 +61,6 @@ public enum JobSkill {
     JobSkill(String name, String description) {
         this.name = name;
         this.description = description;
-
     }
 
     /**
@@ -102,73 +101,36 @@ public enum JobSkill {
      * @return List of jobSkills
      */
     public static List<JobSkill> getJobSkillList() {
-        return Arrays.asList(
-                ACROBATICS,
-                ARCANA,
-                ATHLETICS,
-                ANIMAL_HANDLING,
-                DECEPTION,
-                HISTORY,
-                INTIMIDATION,
-                INSIGHT,
-                INVESTIGATION,
-                MEDICINE,
-                NATURE,
-                PERCEPTION,
-                PERFORMANCE,
-                PERSUASION,
-                RELIGION,
-                SLEIGHT_OF_HAND,
-                STEALTH,
-                SURVIVAL
-        );
+        return Arrays.asList(values());
     }
 
     /**
-     * return target skill
+     * Convert string to JobSkill element
      *
-     * @return Tarjet skill
+     * @return target skill
      */
     public static JobSkill getJobSkill(String name) {
-        switch (name) {
-            case "ACROBATICS":
-                return ACROBATICS;
-            case "ARCANA":
-                return ARCANA;
-            case "ATHLETICS":
-                return ATHLETICS;
-            case "ANIMAL_HANDLING":
-                return ANIMAL_HANDLING;
-            case "DECEPTION":
-                return DECEPTION;
-            case "HISTORY":
-                return HISTORY;
-            case "INTIMIDATION":
-                return INTIMIDATION;
-            case "INSIGHT":
-                return INSIGHT;
-            case "INVESTIGATION":
-                return INVESTIGATION;
-            case "MEDICINE":
-                return MEDICINE;
-            case "NATURE":
-                return NATURE;
-            case "PERCEPTION":
-                return PERCEPTION;
-            case "PERFORMANCE":
-                return PERFORMANCE;
-            case "PERSUASION":
-                return PERSUASION;
-            case "RELIGION":
-                return RELIGION;
-            case "SLEIGHT_OF_HAND":
-                return SLEIGHT_OF_HAND;
-            case "STEALTH":
-                return STEALTH;
-            case "SURVIVAL":
-                return SURVIVAL;
-            default: return NATURE;
-        }
+        return switch (name) {
+            case "ACROBATICS" -> ACROBATICS;
+            case "ARCANA" ->  ARCANA;
+            case "ATHLETICS" -> ATHLETICS;
+            case "ANIMAL_HANDLING" ->  ANIMAL_HANDLING;
+            case "DECEPTION" -> DECEPTION;
+            case "HISTORY" -> HISTORY;
+            case "INTIMIDATION" -> INTIMIDATION;
+            case "INSIGHT" -> INSIGHT;
+            case "INVESTIGATION" -> INVESTIGATION;
+            case "MEDICINE" -> MEDICINE;
+            case "NATURE" -> NATURE;
+            case "PERCEPTION" -> PERCEPTION;
+            case "PERFORMANCE" -> PERFORMANCE;
+            case "PERSUASION" -> PERSUASION;
+            case "RELIGION" -> RELIGION;
+            case "SLEIGHT_OF_HAND" -> SLEIGHT_OF_HAND;
+            case "STEALTH" -> STEALTH;
+            case "SURVIVAL" -> SURVIVAL;
+            default -> null;
+        };
     }
 
     /**
@@ -177,6 +139,4 @@ public enum JobSkill {
     public String toString() {
         return name;
     }
-
-
 }
