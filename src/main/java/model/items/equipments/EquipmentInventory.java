@@ -133,6 +133,10 @@ public class EquipmentInventory {
         return rightRing;
     }
 
+    /**
+     * The list of equippedEquipment, if no equipment in the wanted Part, put null in the List
+     * @return List of equippedEquipment
+     */
     public List<Equipment> getEquippedList(){
         List<Equipment> equipped = new ArrayList<>();
         equipped.add(head);
