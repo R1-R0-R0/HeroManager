@@ -895,10 +895,7 @@ public class Job {
      * allow to increase base Strength can't be superior from 15 at character creation
      */
     public void increaseStrength() {
-        if (additionalStatPoints > 0) {
-                strength++;
-                additionalStatPoints--;
-        }
+        strength++;
     }
 
     /**
@@ -908,7 +905,6 @@ public class Job {
         if (level == 1) {
             if (strength > 8 && strength <= 10) {
                 strength--;
-                additionalStatPoints++;
             }
         } else {
             strength--;
@@ -919,11 +915,7 @@ public class Job {
      * allow to increase base dexterity can't be superior from 15 at character creation
      */
     public void increaseDexterity() {
-        if (additionalStatPoints > 0) {
-
-            dexterity++;
-            additionalStatPoints--;
-        }
+        dexterity++;
     }
 
     /**
@@ -933,7 +925,7 @@ public class Job {
         if (level == 1) {
             if (dexterity > 8 && dexterity <= 10) {
                 dexterity--;
-                additionalStatPoints++;
+
             }
         } else {
             dexterity--;
@@ -944,12 +936,7 @@ public class Job {
      * allow to increase base Robustness can't be superior from 15 at character creation
      */
     public void increaseRobustness() {
-        if (additionalStatPoints > 0) {
-
-            robustness++;
-            additionalStatPoints--;
-
-        }
+        robustness++;
     }
 
     /**
@@ -959,7 +946,6 @@ public class Job {
         if (level == 1) {
             if (robustness > 8 && intelligence <= 10) {
                 robustness--;
-                additionalStatPoints++;
             }
         } else {
             robustness--;
@@ -970,11 +956,7 @@ public class Job {
      * allow to increase base intelligence can't be superior from 15 at character creation
      */
     public void increaseIntelligence() {
-        if (additionalStatPoints > 0) {
-                intelligence++;
-                additionalStatPoints--;
-
-        }
+        intelligence++;
     }
 
     /**
@@ -984,7 +966,6 @@ public class Job {
         if (level == 1) {
             if (intelligence > 8 && intelligence <= 10) {
                 intelligence--;
-                additionalStatPoints++;
             }
         } else {
             intelligence--;
@@ -995,10 +976,7 @@ public class Job {
      * allow to increase base wisdom can't be superior from 15 at character creation
      */
     public void increaseWisdom() {
-        if (additionalStatPoints > 0) {
-                wisdom++;
-                additionalStatPoints--;
-        }
+        wisdom++;
     }
 
     /**
@@ -1008,7 +986,6 @@ public class Job {
         if (level == 1) {
             if (wisdom > 8 && wisdom <= 10) {
                 strength--;
-                additionalStatPoints++;
             }
         } else {
             wisdom--;
@@ -1019,11 +996,7 @@ public class Job {
      * allow to increase base charisma can't be superior from 15 at character creation
      */
     public void increaseCharisma() {
-        if (additionalStatPoints > 0) {
-
             charisma++;
-            additionalStatPoints--;
-        }
     }
 
     /**
@@ -1033,7 +1006,6 @@ public class Job {
         if (level == 1) {
             if (charisma > 8 && charisma <= 10) {
                 charisma--;
-                additionalStatPoints++;
             }
         } else {
             charisma--;
