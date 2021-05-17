@@ -443,11 +443,8 @@ public class FileReaders {
                         JSONArray skill = (JSONArray) jsonArray.get(i);
                         List<JobSkill> modfy = new ArrayList<>();
 
-                        for (int y = 0; y < skill.size(); y += 2) {
-                            if ((boolean) skill.get(y+1)) {
+                        for (int y = 0; y < skill.size(); y ++) {
                                 modfy.add(JobSkill.getJobSkill((String) skill.get(y)));
-                                modfy.get(modfy.size() - 1).setMastered((boolean) skill.get(y + 1));
-                            }
                         }
                         skills.add(modfy);
                     }break;
