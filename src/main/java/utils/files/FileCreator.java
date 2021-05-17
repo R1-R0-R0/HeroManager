@@ -1,5 +1,8 @@
 package utils.files;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * Class to create a new File with a Enum from DefaultFileContent
  */
@@ -14,13 +17,26 @@ public class FileCreator {
      *
      * @param name name of the created file
      */
-    public static void createFile(String name) {
-        // TODO
+    public static void createFile(String name) throws IOException {
+        try {
+            FileWriter file = new FileWriter("src/main/resources/donnee/" + name + ".json");
+            switch (name) {
+                case "weapon":
+                    file.write(DefaultFileContent.WEAPONS.toString());break;
+                case "consumable":
+                    file.write(DefaultFileContent.CONSUMABLE.toString());break;
+                case "equipment":
+                    file.write(DefaultFileContent.EQUIPMENT.toString());break;
+                case "spell":
+                    file.write(DefaultFileContent.SPEELS.toString());break;
+                case "job":
+                    file.write("{\"job\" : []}");break;
+            }
 
-        /* Un exemple (à implémenter ailleurs)
-        File file = new File(name);
-        FileWriter writer = new FileWriter(file);
-        writer.write(DefaultFileContent.WEAPONS.toString());
-         */
+            file.flush();
+        }
+        catch (IOException e){
+            System.exit(0);
+        }
     }
 }

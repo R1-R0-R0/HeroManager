@@ -1118,4 +1118,48 @@ public class Job {
     public String toString() {
         return name;
     }
+
+
+    /**
+     * Set of setter for job no final attribut
+     */
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public void setWisdom(int wisdom) {
+        this.wisdom = wisdom;
+    }
+
+    public void setRobustness(int robustness) {
+        this.robustness = robustness;
+    }
+
+    public void setCharisma(int charisma) {
+        this.charisma = charisma;
+    }
+
+    public void setSpellSlots(int[] spellSlots) {
+        this.spellSlots = spellSlots;
+    }
+
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setEquippedEquipments(EquipmentInventory equippedEquipments) {
+        this.equippedEquipments = equippedEquipments;
+    }
 }

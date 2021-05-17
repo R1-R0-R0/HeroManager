@@ -1,11 +1,18 @@
 package utils.files;
 
+import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
+import model.items.equipments.EquipmentInventory;
+import model.items.equipments.EquipmentPart;
+import model.items.equipments.EquipmentType;
+import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
-import model.job.Improvement;
-import model.job.Job;
-import model.job.JobSkill;
+import model.items.weapons.WeaponType;
+import model.job.*;
+import model.race.Alignment;
+import model.race.Race;
+import model.spell.Component;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -53,20 +60,15 @@ public class Writer {
 
         for (int index = 0; index < weapons.size(); index++) {
 
-            JSONObject test = new JSONObject();
-            JSONObject consumax = new JSONObject();
+            weaponList.add(weapons.get(index).getName());
+            weaponList.add(weapons.get(index).getDescription());
+            weaponList.add(weapons.get(index).getProperties());
+            weaponList.add(weapons.get(index).getWeaponType().toString());
 
-            test.put("name", weapons.get(index).getName());
-            test.put("description", weapons.get(index).getDescription());
-            test.put("type", weapons.get(index).getWeaponType());
-            test.put("properties", weapons.get(index).getProperties());
-            test.put("damagetype", weapons.get(index).getDamageType());
-
-            consumax.put("weapon", test);
-
-            weaponList.add(consumax);
+            weaponList.add(weapons.get(index).getDamageType().toString());
 
         }
+        consu.put("weapon", weaponList);
         FileManager.writeFile("weapon", consu);
 
     }
@@ -82,26 +84,23 @@ public class Writer {
 
         for (int index = 0; index < equipment.size(); index++) {
 
-            JSONObject test = new JSONObject();
-            JSONObject consumax = new JSONObject();
 
-            test.put("name", equipment.get(index).getName());
-            test.put("description", equipment.get(index).getDescription());
-            test.put("armorbonus", equipment.get(index).getArmorBonus());
-            test.put("strengthboost", equipment.get(index).getStrengthBoost());
-            test.put("dexterityboost", equipment.get(index).getDexterityBoost());
-            test.put("robustnessboost", equipment.get(index).getRobustnessBoost());
-            test.put("intelligenceboost", equipment.get(index).getIntelligenceBoost());
-            test.put("wisdomboost", equipment.get(index).getWisdomBoost());
-            test.put("charismaboost", equipment.get(index).getCharismaBoost());
-            test.put("speedboost", equipment.get(index).getSpeedBoost());
+            equipmentList.add(equipment.get(index).getName());
+            equipmentList.add(equipment.get(index).getDescription());
+            equipmentList.add(equipment.get(index).getEquipmentPart().toString());
 
-            consumax.put("equipment", test);
-
-            equipmentList.add(consumax);
+            equipmentList.add(equipment.get(index).getArmorBonus());
+            equipmentList.add(equipment.get(index).getEquipmentType().toString());
+            equipmentList.add(equipment.get(index).getStrengthBoost());
+            equipmentList.add(equipment.get(index).getDexterityBoost());
+            equipmentList.add(equipment.get(index).getRobustnessBoost());
+            equipmentList.add(equipment.get(index).getIntelligenceBoost());
+            equipmentList.add(equipment.get(index).getWisdomBoost());
+            equipmentList.add(equipment.get(index).getCharismaBoost());
+            equipmentList.add(equipment.get(index).getSpeedBoost());
 
         }
-
+        consu.put("equipment", equipmentList);
         FileManager.writeFile("equipment", consu);
 
     }
@@ -114,38 +113,41 @@ public class Writer {
     public static void writerSpell(List<Spell> spells) {
         JSONArray spellList = new JSONArray();
         JSONObject consu = new JSONObject();
+        JSONArray components = new JSONArray();
 
         for (int index = 0; index < spells.size(); index++) {
 
-            JSONObject test = new JSONObject();
-            JSONObject consumax = new JSONObject();
+            spellList.add(spells.get(index).getName());
+            spellList.add(spells.get(index).getDescription());
+            spellList.add(spells.get(index).getSchool());
+            spellList.add(spells.get(index).getCastingTime());
+            spellList.add(spells.get(index).getDuration());
+            spellList.add(spells.get(index).getLevel());
 
-            test.put("name", spells.get(index).getName());
-            test.put("description", spells.get(index).getDescription());
-            test.put("level", spells.get(index).getLevel());
-            test.put("school", spells.get(index).getSchool());
-            test.put("castingtime", spells.get(index).getCastingTime());
-            test.put("range", spells.get(index).getRange());
+
+            spellList.add(spells.get(index).getRange());
+            spellList.add(spells.get(index).getJobType().toString());
+            spellList.add(spells.get(index).isDoDamages());
             for (int x = 0; x < spells.get(index).getComponents().size(); x++) {
                 switch (spells.get(index).getComponents().get(x)) {
                     case VOCAL:
-                        test.put("components", "V");
+                        components.add("V");
+                        break;
                     case MATERIAL:
-                        test.put("components", "S");
+                        components.add("S");
+                        break;
                     case MOVEMENT:
-                        test.put("components", "M");
+                        components.add("M");
+                        break;
                 }
+
             }
-            test.put("duration", spells.get(index).getDuration());
-            test.put("jobtype", spells.get(index).getJobType());
-            test.put("dodamage", spells.get(index).isDoDamages());
 
-            consumax.put("spell", test);
+            spellList.add(components);
 
-
-            spellList.add(consumax);
 
         }
+        consu.put("spell", spellList);
 
         FileManager.writeFile("spell", consu);
 
@@ -156,55 +158,67 @@ public class Writer {
      *
      * @param jobs List of jobs to be write on the file
      */
-    public static void writerJob(Job jobs) {
+    public static void writerJob(List<Job> jobs) {
         JSONArray jobList = new JSONArray();
-
-
         JSONObject consu = new JSONObject();
-        JSONObject consumax = new JSONObject();
-
-        //consu.put("hp", jobs.getMaxHp(8));
-        consu.put("armor", jobs.getArmor());
-        consu.put("level", jobs.getLevel());
-        consu.put("proficiencyLevel", jobs.getProficiencyLevel());
-        consu.put("strength", jobs.getStrength());
-        consu.put("dexterity", jobs.getDexterity());
-        consu.put("intelligence", jobs.getIntelligence());
-        consu.put("wisdom", jobs.getWisdom());
-        consu.put("robustness", jobs.getRobustness());
-        consu.put("charism", jobs.getCharisma());
-        consu.put("strengthBoost", jobs.getStrengthBoost());
-        consu.put("dexterityBoost", jobs.getDexterityBoost());
-        consu.put("intelligenceBoost", jobs.getIntelligenceBoost());
-        consu.put("wisdomBoost", jobs.getWisdomBoost());
-        consu.put("charismBoost", jobs.getCharismaBoost());
-        consu.put("race", jobs.getRaceType());
-        consu.put("jobtype", jobs.getJobType());
-        consu.put("inventory", jobs.getInventory());
-        consu.put("name", jobs.getName());
-        consu.put("description", jobs.getDescription());
-        consu.put("spellSlots", jobs.getSpellSlots());
-        consu.put("spellsInventory", jobs.getSpellInventory());
-        consu.put("improvement", jobs.getImprovements());
-        consu.put("jobSkill", jobs.getSkills());
 
 
-        consumax.put("job", consu);
+        for (int index = 0; index < jobs.size(); index++) {
+            JSONArray listspell = new JSONArray();
+            JSONArray skills = new JSONArray();
+            JSONArray improvements = new JSONArray();
+            JSONArray equipments = new JSONArray();
+            JSONArray inventory = new JSONArray();
 
-        jobList.add(consumax);
+            jobList.add(jobs.get(index).getName());
+            jobList.add(jobs.get(index).getDescription());
+            jobList.add(jobs.get(index).getGender().toString());
+            jobList.add(jobs.get(index).getAlignment().toString());
+            jobList.add(jobs.get(index).getRaceType().name());
+            jobList.add(jobs.get(index).getJobType().toString());
+            for (int x = 0; x < jobs.get(index).getSpellInventory().size(); x++) {
+                listspell.add(jobs.get(index).getSpellInventory().get(x).getName());
+            }
+            jobList.add(listspell);
+            for (int x = 0; x < jobs.get(index).getSkills().size(); x++) {
+                skills.add(jobs.get(index).getSkills().get(x).getName());
+                skills.add(jobs.get(index).getSkills().get(x).isMastered());
+            }
+            jobList.add(skills);
+            jobList.add(jobs.get(index).getLevel());
+            jobList.add(jobs.get(index).getStrength());
+            jobList.add(jobs.get(index).getDexterity());
+            jobList.add(jobs.get(index).getRobustness());
+            jobList.add(jobs.get(index).getWisdom());
+            jobList.add(jobs.get(index).getIntelligence());
+            jobList.add(jobs.get(index).getCharisma());
+            jobList.add(jobs.get(index).getSpeed());
+            jobList.add(jobs.get(index).getHealthPoints());
+            jobList.add(jobs.get(index).getArmor());
+            jobList.add(jobs.get(index).getAdditionalStatPoints());
+            for (int x = 0; x < jobs.get(index).getImprovements().size(); x++) {
+                improvements.add(jobs.get(index).getImprovements().get(x).toString());
+            }
+            jobList.add(improvements);
+            if (!jobs.get(index).getEquippedEquipments().getEquippedList().isEmpty()) {
+                for (Equipment equiped : jobs.get(index).getEquippedEquipments().getEquippedList()
+                ) {
+                    if (equiped != null) equipments.add(equiped.getName());
+                }
+                jobList.add(equipments);
 
-        FileManager.writeFile(jobs.getName(), consu);
+            } else jobList.add(new ArrayList<Equipment>());
+            for (int x = 0; x < jobs.get(index).getInventory().size(); x++) {
+                inventory.add(jobs.get(index).getInventory().get(x).getName());
+            }
+            jobList.add(inventory);
+        }
+
+        consu.put("job", jobList);
+
+        FileManager.writeFile("job", consu);
 
     }
-
-
-    /*public static void main(String[] args) throws IOException {
-        List<Consumable> consumables = new ArrayList<>();
-        for (int x = 0; x < 3; x++) {
-            consumables.add(new Consumable(new ConsumableEffect(), "" + x, "ici c'est silmi " + x));
-        }
-        WriterConsumable(consumables);
-    }*/
 
 
 }
