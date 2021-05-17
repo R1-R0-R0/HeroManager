@@ -8,11 +8,11 @@ import model.items.Item;
 public class Equipment implements Item {
 
     private final String name;
-    private final String description;
-    private final EquipmentPart equipmentPart;
-    private final int armorBonus;
-    private final EquipmentType type;
-    private final int[] characteristicsBoost = new int[7];
+    private  String description;
+    private  EquipmentPart equipmentPart;
+    private  int armorBonus;
+    private  EquipmentType type;
+    private  int[] characteristicsBoost = new int[7];
 
 
     public Equipment(String name, String description, EquipmentPart equipmentPart, int armorBonus, EquipmentType type,
@@ -141,5 +141,33 @@ public class Equipment implements Item {
     @Override
     public String toString() {
         return name;
+    }
+
+    public EquipmentType getType() {
+        return type;
+    }
+
+    public int[] getCharacteristicsBoost() {
+        return characteristicsBoost;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setEquipmentPart(EquipmentPart equipmentPart) {
+        this.equipmentPart = equipmentPart;
+    }
+
+    public void setArmorBonus(int armorBonus) {
+        this.armorBonus = armorBonus;
+    }
+
+    public void setType(EquipmentType type) {
+        this.type = type;
+    }
+
+    public void setCharacteristicsBoost(int[] characteristicsBoost) {
+        this.characteristicsBoost = characteristicsBoost;
     }
 }

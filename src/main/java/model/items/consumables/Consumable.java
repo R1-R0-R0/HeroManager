@@ -8,7 +8,7 @@ import model.items.Item;
 public class Consumable implements Item {
 
     private final String name;
-    private final String description;
+    private  String description;
 
     public Consumable(String name, String description) {
         this.name = name;
@@ -40,6 +40,9 @@ public class Consumable implements Item {
     @Override
     public String toString(){return name;}
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
 
 

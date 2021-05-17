@@ -194,6 +194,36 @@ public class HeroManagerDB {
     }
 
     /**
+     * Find and change a specified consumable into the DB
+     *
+     * @param consumable the modified consumable
+     */
+    public static void modifyConsumable(Consumable consumable) {
+        for (Consumable modify : consumables) {
+            if (modify.getName().equals(consumable.getName())) {
+                modify.setDescription(consumable.getDescription());
+            }
+        }
+    }
+
+    /**
+     * Find and change a specified consumable into the DB
+     *
+     * @param equipment the modified equipment
+     */
+    public static void modifyEquipment (Equipment equipment) {
+        for (Equipment modify : equipments) {
+            if (modify.getName().equals(equipment.getName())) {
+                modify.setDescription(equipment.getDescription());
+                modify.setEquipmentPart(equipment.getEquipmentPart());
+                modify.setArmorBonus(equipment.getArmorBonus());
+                modify.setCharacteristicsBoost(equipment.getCharacteristicsBoost());
+                modify.setType(equipment.getType());
+            }
+        }
+    }
+
+    /**
      * Find and change a specified spell into the DB
      *
      * @param spell the modified spell
@@ -324,6 +354,76 @@ public class HeroManagerDB {
      */
     public static Job lastPlayed() {
         return jobs.get(0);
+    }
+
+    /**
+     * Find and remove target weapon
+     * @param name of the target
+     * @return true if it was remove , false if not
+     */
+    public boolean removeWeapon (String name){
+        for (Weapon weapon : weapons) {
+            if (weapon.getName().equals(name))
+            return weapons.remove(weapon);
+        }
+
+        return false;
+    }
+
+    /**
+     * Find and remove target conusmable
+     * @param name of the target
+     * @return true if it was remove , false if not
+     */
+    public boolean removeConsumable (String name){
+        for (Consumable consumable : consumables) {
+            if (consumable.getName().equals(name))
+                return weapons.remove(consumable);
+        }
+
+        return false;
+    }
+
+    /**
+     * Find and remove target equipment
+     * @param name of the target
+     * @return true if it was remove , false if not
+     */
+    public boolean removeEquipment (String name){
+        for (Equipment equipment : equipments) {
+            if (equipment.getName().equals(name))
+                return weapons.remove(equipment);
+        }
+
+        return false;
+    }
+
+    /**
+     * Find and remove target spell
+     * @param name of the target
+     * @return true if it was remove , false if not
+     */
+    public boolean removeSpell (String name){
+        for (Spell spell : spells) {
+            if (spell.getName().equals(name))
+                return weapons.remove(spell);
+        }
+
+        return false;
+    }
+
+    /**
+     * Find and remove target job
+     * @param name of the target
+     * @return true if it was remove , false if not
+     */
+    public boolean removeJob (String name){
+        for (Job job : jobs) {
+            if (job.getName().equals(name))
+                return weapons.remove(job);
+        }
+
+        return false;
     }
 
 }
