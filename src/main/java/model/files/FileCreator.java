@@ -1,4 +1,4 @@
-package utils.files;
+package model.files;
 
 import java.io.FileWriter;
 import java.io.IOException;

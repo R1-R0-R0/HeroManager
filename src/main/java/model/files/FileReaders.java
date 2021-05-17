@@ -1,6 +1,5 @@
-package utils.files;
+package model.files;
 
-import model.Characteristics;
 import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
@@ -17,14 +16,12 @@ import model.spell.Component;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import utils.gui.character_creator.JobSkillItem;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 
 import static model.job.JobType.*;
 

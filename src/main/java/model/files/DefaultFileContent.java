@@ -1,4 +1,4 @@
-package utils.files;
+package model.files;
 
 /**
  * Enum to create a new File when the reader can't find the searched file,

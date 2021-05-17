@@ -1,24 +1,13 @@
-package utils.files;
+package model.files;
 
-import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentInventory;
-import model.items.equipments.EquipmentPart;
-import model.items.equipments.EquipmentType;
-import model.items.weapons.DamageType;
 import model.items.weapons.Weapon;
-import model.items.weapons.WeaponType;
 import model.job.*;
-import model.race.Alignment;
-import model.race.Race;
-import model.spell.Component;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

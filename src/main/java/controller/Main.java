@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.gui.MenuModel;
-import utils.files.HeroManagerDB;
+import model.files.HeroManagerDB;
 import utils.gui.Dialog;
 
 /**

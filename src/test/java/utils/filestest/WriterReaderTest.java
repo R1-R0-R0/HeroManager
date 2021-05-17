@@ -16,7 +16,7 @@ import model.spell.Component;
 import model.spell.Spell;
 import org.junit.jupiter.api.Test;
 
-import utils.files.HeroManagerDB;
+import model.files.HeroManagerDB;
 
 import java.io.IOException;
 import java.util.ArrayList;
