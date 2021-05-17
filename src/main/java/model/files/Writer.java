@@ -197,7 +197,8 @@ public class Writer {
 
             } else jobList.add(new ArrayList<Equipment>());
             for (int x = 0; x < jobs.get(index).getInventory().size(); x++) {
-                inventory.add(jobs.get(index).getInventory().get(x).getName());
+                if (jobs.get(index).getInventory().get(x) != null)
+                    inventory.add(jobs.get(index).getInventory().get(x).getName());
             }
             jobList.add(inventory);
         }

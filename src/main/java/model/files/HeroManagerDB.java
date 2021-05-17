@@ -2,6 +2,7 @@ package model.files;
 
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
+import model.items.equipments.EquipmentType;
 import model.items.weapons.Weapon;
 import model.job.*;
 import model.spell.Spell;
@@ -44,22 +45,42 @@ public class HeroManagerDB {
     private static void initJobs() {
         for (Job job : jobs) {
             for (int i = 0; i < job.getSpellInventory().size(); i++) {
-                job.getSpellInventory().set(i, getSpell(job.getSpellInventory().get(i).getName()));
+                if (job.getSpellInventory().get(i) == null) continue;
+
+                Spell spell = getSpell(job.getSpellInventory().get(i).getName());
+                if (spell != null)
+                    job.getSpellInventory().set(i, spell);
+                else
+                    job.getSpellInventory().remove(i);
             }
+
             for (int i = 0; i < job.getInventory().size(); i++) {
+                if (job.getInventory().get(i) == null) continue;
+
                 String name = job.getInventory().get(i).getName();
-                job.getInventory().set(i, getWeapon(name));
-                if (job.getInventory().get(i) == null) {
-                    job.getInventory().set(i, getConsumable(name));
-                }
-                if (job.getInventory().get(i) == null) {
-                    job.getInventory().set(i, getEquipment(name));
-                }
+
+                Weapon weapon = getWeapon(name);
+                Equipment equipment = getEquipment(name);
+                Consumable consumable = getConsumable(name);
+
+                if (weapon != null)
+                    job.getInventory().set(i, weapon);
+                else if (equipment != null)
+                    job.getInventory().set(i, equipment);
+                else if (consumable != null)
+                    job.getInventory().set(i, consumable);
+                else
+                    job.getInventory().remove(i);
             }
+
             for (int i = 0; i < job.getEquippedEquipments().getEquippedList().size(); i++) {
-                if (job.getEquippedEquipments().getEquippedList().get(i) != null) {
-                    job.getEquippedEquipments().getEquippedList().set(i, getEquipment(job.getEquippedEquipments().getEquippedList().get(i).getName()));
-                }
+                if (job.getEquippedEquipments().getEquippedList().get(i) == null) continue;
+
+                Equipment equipment = getEquipment(job.getEquippedEquipments().getEquippedList().get(i).getName());
+                if (equipment != null)
+                    job.getEquippedEquipments().getEquippedList().set(i, equipment);
+                else
+                    job.getEquippedEquipments().removeEquipment(i);
             }
         }
     }
