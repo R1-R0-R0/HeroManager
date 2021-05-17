@@ -7,6 +7,7 @@ import model.job.*;
 import model.spell.Spell;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,7 +70,7 @@ public class HeroManagerDB {
      * @return List of Weapon
      */
     public static List<Weapon> getWeapons() {
-        return weapons;
+        return new ArrayList<>(weapons);
     }
 
     /**
@@ -78,7 +79,7 @@ public class HeroManagerDB {
      * @return List of Spell
      */
     public static List<Spell> getSpells() {
-        return spells;
+        return new ArrayList<>(spells);
     }
 
     /**
@@ -87,7 +88,7 @@ public class HeroManagerDB {
      * @return List of consumable
      */
     public static List<Consumable> getConsumables() {
-        return consumables;
+        return new ArrayList<>(consumables);
     }
 
     /**
@@ -96,7 +97,7 @@ public class HeroManagerDB {
      * @return List of Equipment
      */
     public static List<Equipment> getEquipments() {
-        return equipments;
+        return new ArrayList<>(equipments);
     }
 
     /**
