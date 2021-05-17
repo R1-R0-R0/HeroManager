@@ -1,5 +1,7 @@
 package model.job;
 
+import exceptions.UnknownJobSkillException;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -109,7 +111,7 @@ public enum JobSkill {
      *
      * @return target skill
      */
-    public static JobSkill getJobSkill(String name) {
+    public static JobSkill getJobSkill(String name) throws UnknownJobSkillException {
         return switch (name) {
             case "ACROBATICS" -> ACROBATICS;
             case "ARCANA" ->  ARCANA;
@@ -129,7 +131,7 @@ public enum JobSkill {
             case "SLEIGHT_OF_HAND" -> SLEIGHT_OF_HAND;
             case "STEALTH" -> STEALTH;
             case "SURVIVAL" -> SURVIVAL;
-            default -> null;
+            default -> throw new UnknownJobSkillException("Unknown job skill " + name);
         };
     }
 
