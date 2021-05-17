@@ -16,7 +16,7 @@ public class Consumable implements Item {
     }
 
     /**
-     *
+     * give name of the consumable
      * @return name of the consumable
      */
     @Override
@@ -25,7 +25,7 @@ public class Consumable implements Item {
     }
 
     /**
-     *
+     * give description of the consumable
      * @return description of the consumable
      */
     @Override
@@ -34,7 +34,7 @@ public class Consumable implements Item {
     }
 
     /**
-     *
+     * give name of the consumable
      * @return name of the consumable
      */
     @Override

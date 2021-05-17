@@ -1,5 +1,8 @@
 package model.job;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * List of all the jobSkills
  */
@@ -91,6 +94,33 @@ public enum JobSkill {
      */
     public void setMastered(boolean mastered) {
         this.mastered = mastered;
+    }
+
+    /**
+     * give a list of all Jobskill
+     * @return List of jobSkills
+     */
+    public static List<JobSkill> getJobSkillList(){
+        return Arrays.asList(
+                ACROBATICS,
+                ARCANA,
+                ATHLETICS,
+                ANIMAL_HANDLING,
+                DECEPTION,
+                HISTORY,
+                INTIMIDATION,
+                INSIGHT,
+                INVESTIGATION,
+                MEDICINE,
+                NATURE,
+                PERCEPTION,
+                PERFORMANCE,
+                PERSUASION,
+                RELIGION,
+                SLEIGHT_OF_HAND,
+                STEALTH,
+                SURVIVAL
+        );
     }
 
     /**

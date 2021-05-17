@@ -643,4 +643,15 @@ public class JobTest {
 
     }
 
+    @Test
+    public void getJobSkillList(){
+        JobSkill acrobatics = JobSkill.ACROBATICS;
+        JobSkill arcana = JobSkill.ARCANA;
+        JobSkill animal = JobSkill.ANIMAL_HANDLING;
+
+        assertTrue(JobSkill.getJobSkillList().contains(acrobatics));
+        assertTrue(JobSkill.getJobSkillList().contains(arcana));
+        assertTrue(JobSkill.getJobSkillList().contains(animal));
+    }
+
 }
