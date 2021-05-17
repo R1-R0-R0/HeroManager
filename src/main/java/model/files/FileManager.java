@@ -9,6 +9,7 @@ import utils.gui.Dialog;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 /**
  * Class to manage the save files
@@ -72,7 +73,7 @@ public class FileManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
             System.exit(1);
         }
     }

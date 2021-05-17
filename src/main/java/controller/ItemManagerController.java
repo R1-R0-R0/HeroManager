@@ -17,6 +17,7 @@ import utils.gui.Dialog;
 import view.ItemManagerView;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /**
@@ -155,7 +156,7 @@ public class ItemManagerController implements Controller {
             ItemManagerModel.getInstance().createItem();
         } catch (UnsupportedItemException e) {
             e.printStackTrace();
-            Dialog errDialog = new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
+            Dialog errDialog = new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace()));
             errDialog.showAndWait();
             System.exit(1);
         }
@@ -170,7 +171,7 @@ public class ItemManagerController implements Controller {
             ItemManagerModel.getInstance().updateItem();
         } catch (UnsupportedItemException e) {
             e.printStackTrace();
-            Dialog errDialog = new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
+            Dialog errDialog = new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace()));
             errDialog.showAndWait();
             System.exit(1);
         }
@@ -185,7 +186,7 @@ public class ItemManagerController implements Controller {
             ItemManagerModel.getInstance().deleteItem();
         } catch (UnsupportedItemException e) {
             e.printStackTrace();
-            Dialog errDialog = new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
+            Dialog errDialog = new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace()));
             errDialog.showAndWait();
             System.exit(1);
         }

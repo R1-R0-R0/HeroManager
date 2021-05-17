@@ -51,7 +51,7 @@ public class WriterReaderTest {
         Equipment equipment = new Equipment("lunar Sloth", "Rend paresseux", EquipmentPart.BELT, 2, EquipmentType.LIGHT, 0, 0, 0, 0, 0, 0, 0);
         Consumable consumable = new Consumable("Potion de force", "Donne de la force");
         HeroManagerDB.addEquipment(equipment);
-        HeroManagerDB.addWeapons(weapon);
+        HeroManagerDB.addWeapon(weapon);
         HeroManagerDB.addConsumable(consumable);
         equipments.add(equipment);
         inventory.add(consumable);
@@ -65,7 +65,7 @@ public class WriterReaderTest {
 
         HeroManagerDB.addJob(test);
 
-        HeroManagerDB.Save();
+        HeroManagerDB.save();
         HeroManagerDB.init();
 
         Job result = HeroManagerDB.getJobs().get(0);

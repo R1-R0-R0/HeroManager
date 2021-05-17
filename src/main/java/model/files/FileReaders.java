@@ -1,6 +1,7 @@
 package model.files;
 
 import exceptions.UnknownJobSkillException;
+import javafx.scene.control.Alert;
 import model.items.Item;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
@@ -17,10 +18,12 @@ import model.spell.Component;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import utils.gui.Dialog;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -445,8 +448,13 @@ public class FileReaders {
                         List<JobSkill> modfy = new ArrayList<>();
 
                         for (int y = 0; y < skill.size(); y ++) {
-                            String s = (String) skill.get(y);
-                                modfy.add(JobSkill.getJobSkill(s.toUpperCase()));
+                           try {
+                               String s = (String) skill.get(y);
+                               modfy.add(JobSkill.getJobSkill(s.toUpperCase()));
+                           } catch (UnknownJobSkillException e) {
+                               e.printStackTrace();
+                               new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
+                           }
                         }
                         skills.add(modfy);
                     }break;
@@ -573,8 +581,6 @@ public class FileReaders {
         } catch (FileNotFoundException e) {
             return null;
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (UnknownJobSkillException e) {
             e.printStackTrace();
         }
         return jobs;

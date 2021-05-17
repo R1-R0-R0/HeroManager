@@ -12,6 +12,7 @@ import model.items.ItemType;
 import utils.gui.Dialog;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /**
@@ -88,7 +89,7 @@ public class ItemPickerController implements Controller {
             ItemPickerModel.getInstance().itemTypeSelectedEvent();
         } catch (UnsupportedItemException e) {
             e.printStackTrace();
-            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
             System.exit(1);
         }
     }

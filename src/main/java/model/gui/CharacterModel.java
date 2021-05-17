@@ -5,6 +5,7 @@ import com.sun.glass.ui.GlassRobot;
 import exceptions.UnsupportedItemException;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.robot.Robot;
 import model.items.Item;
@@ -18,7 +19,9 @@ import utils.gui.ContainerPane;
 import utils.gui.Dialog;
 import view.CharacterView;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -171,12 +174,12 @@ public class CharacterModel implements Model {
             equippedItem = getCharacter().getEquipment(equipmentPart);
         } catch (UnsupportedItemException e) {
             e.printStackTrace();
-            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
             System.exit(1);
         }
 
         if (equippedItem != null) {
-            GlassRobot robot = Application.GetApplication().createRobot();
+            Point cursorLocation = MouseInfo.getPointerInfo().getLocation();
             ContextMenu clickMenu = new ContextMenu();
             MenuItem unequip = new MenuItem("Unequip");
             unequip.setId("unequipAction");
@@ -210,13 +213,15 @@ public class CharacterModel implements Model {
                 description.append(finalEquippedItem1.getDescription());
                 new Dialog(Alert.AlertType.INFORMATION, finalEquippedItem1.getName(), description.toString()).show();
             });
-            
+
             clickMenu.getItems().addAll(unequip, separatorMenuItem, info);
-            clickMenu.show(CharacterView.getInstance().getStage(), robot.getMouseX(), robot.getMouseY());
+            clickMenu.show(CharacterView.getInstance().getStage(), cursorLocation.getX(), cursorLocation.getY());
             return;
         }
 
         ItemPickerModel pickerModel = new ItemPickerModel(CharacterView.getInstance().getStage(), ItemType.EQUIPMENTS, selectedItem -> {
+            if (selectedItem == null) return;
+
             if (!(selectedItem instanceof Equipment)) {
                 new Dialog(Alert.AlertType.ERROR, "Wrong item type", "An error occured, please select equipments only").showAndWait();
                 return;
@@ -239,30 +244,6 @@ public class CharacterModel implements Model {
         }
 
         pickerModel.setEquipmentList(selectedEquipmentPart);
-    }
-
-    /**
-     * Used to open item picker view with a given item type
-     *
-     * @param itemType item type to select
-     */
-    public void openItemPicker(ItemType itemType) {
-        // ItemPickerModel itemPicker = new ItemPickerModel(CharacterView.getInstance().getStage(), itemType);
-        // Item selectedItem = itemPicker.getSelectedItem();
-
-        // TODO
-    }
-
-    /**
-     * Used to open item picker view with a given equipment type
-     *
-     * @param equipmentType equipment type to select
-     */
-    public void openItemPicker(Class<? extends Equipment> equipmentType) {
-        // ItemPickerModel itemPicker = new ItemPickerModel(CharacterView.getInstance().getStage(), ItemType.EQUIPMENTS);
-        // Item selectedItem = itemPicker.getSelectedItem();
-
-        // TODO
     }
 
     /**

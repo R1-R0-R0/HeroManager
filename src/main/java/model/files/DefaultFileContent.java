@@ -17,7 +17,7 @@ public enum DefaultFileContent {
             "Greater healing Uncommon 4d4 + 4" +
             "Superior healing Rare 8d4 + 8" +
             "Supreme healing Very rare 10d4 + 20\",\"Rope\",\"A 15 feet long Rope\",\"Torch\",\"Light 36 feet around you\"]}"),
-    EQUIPMENT("{\"equipment\" : [\"Leather Armor\",\"A Light armor made of leather\",\"BODY\",11,\"LIGHT\",0,0,0,0,0,0,0,\"Half Plate\",\"A half plate armor , quite study but heavy\",\"BODY\",15,\"MEDIUM\",0,0,0,0,0,0,0,\"Chain Mail\",\"A Heavy armor\",\"BODY\",16,\"HEAVY\",0,0,0,0,0,0,0]}");
+    EQUIPMENT("{\"equipment\" : [\"Leather Armor\",\"A Light armor made of leather\",\"BODY\",1,\"LIGHT\",0,0,0,0,0,0,0,\"Half Plate\",\"A half plate armor , quite study but heavy\",\"BODY\",5,\"MEDIUM\",0,0,0,0,0,0,0,\"Chain Mail\",\"A Heavy armor\",\"BODY\",6,\"HEAVY\",0,0,0,0,0,0,0]}");
     /**
      * Instance of this class
      */
