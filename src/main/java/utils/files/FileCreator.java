@@ -7,10 +7,6 @@ import java.io.IOException;
  * Class to create a new File with a Enum from DefaultFileContent
  */
 public class FileCreator {
-    /**
-     * default located save
-     */
-    public final static String SAVE_DIRECTORY = "./data/";
 
     /**
      * Method to create a File if it was deleted
@@ -19,7 +15,7 @@ public class FileCreator {
      */
     public static void createFile(String name) throws IOException {
         try {
-            FileWriter file = new FileWriter("src/main/resources/donnee/" + name + ".json");
+            FileWriter file = new FileWriter(FileManager.SAVE_DIRECTORY + name + ".json");
             switch (name) {
                 case "weapon":
                     file.write(DefaultFileContent.WEAPONS.toString());break;
