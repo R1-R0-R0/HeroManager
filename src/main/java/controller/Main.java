@@ -8,6 +8,8 @@ import model.gui.MenuModel;
 import model.files.HeroManagerDB;
 import utils.gui.Dialog;
 
+import java.util.Arrays;
+
 /**
  * Entry of HeroManager app
  */
@@ -32,18 +34,19 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        System.out.println("BONJOUR");
         try {
             System.out.println("INIT DATABASE");
             long time = System.currentTimeMillis();
             HeroManagerDB.init();
             System.out.println("DATABASE LOADED IN " + (System.currentTimeMillis() - time) + " MS");
 
+            Runtime.getRuntime().addShutdownHook(new Thread(HeroManagerDB::save));
+
             System.out.println("LAUNCHING VIEW");
             new MenuModel();
         } catch (Exception e) {
             e.printStackTrace();
-            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
             System.exit(1);
         }
     }

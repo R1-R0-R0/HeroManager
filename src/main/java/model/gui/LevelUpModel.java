@@ -3,8 +3,10 @@ package model.gui;
 import controller.LevelUpController;
 import javafx.stage.Stage;
 import model.Characteristics;
+import model.files.HeroManagerDB;
 import model.job.Job;
 import model.job.JobSkill;
+import model.spell.Spell;
 import utils.gui.character_creator.JobSkillItem;
 import utils.gui.character_creator.SpellItem;
 import view.CharacterView;
@@ -34,7 +36,9 @@ public class LevelUpModel implements Model {
         new LevelUpView(owner);
 
         LevelUpView.getInstance().setJobSkillsListView(Arrays.asList(JobSkill.values()));
-        LevelUpView.getInstance().setSpellsListView(CharacterModel.getInstance().getCharacter().getSpellInventory()); // TODO Set up from db
+        List<Spell> spells = HeroManagerDB.getSpells();
+        spells.removeIf(spell -> spell.getJobType() != CharacterModel.getInstance().getCharacter().getJobType());
+        LevelUpView.getInstance().setSpellsListView(spells);
     }
 
     /**

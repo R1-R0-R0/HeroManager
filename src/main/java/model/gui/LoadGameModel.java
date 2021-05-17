@@ -3,10 +3,13 @@ package model.gui;
 import controller.LoadGameController;
 import exceptions.UnsupportedJobTypeException;
 import javafx.scene.control.Alert;
+import model.files.HeroManagerDB;
 import model.job.Job;
 import utils.gui.Dialog;
 import view.LoadGameView;
 import view.MenuView;
+
+import java.util.Arrays;
 
 /**
  * Model of Load Game view
@@ -25,9 +28,9 @@ public class LoadGameModel implements Model {
      */
     public LoadGameModel() {
         instance = this;
-        new LoadGameView();
+        LoadGameView view = new LoadGameView();
 
-        // TODO : set up saves when saving methods are implemented
+        view.setGamesList(HeroManagerDB.getJobs());
     }
 
     /**
@@ -45,7 +48,7 @@ public class LoadGameModel implements Model {
             LoadGameController.getInstance().loadButton.setDisable(false);
         } catch (UnsupportedJobTypeException e) {
             e.printStackTrace();
-            Dialog err = new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
+            Dialog err = new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace()));
             err.showAndWait();
             System.exit(1);
         }

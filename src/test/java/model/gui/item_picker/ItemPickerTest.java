@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import jdk.jshell.spi.ExecutionControl;
+import model.files.HeroManagerDB;
 import model.gui.ItemPickerModel;
 import model.items.Item;
 import model.items.consumables.Consumable;
@@ -25,6 +26,7 @@ import org.testfx.framework.junit5.Start;
 import utils.ItemPickerCloseEvent;
 import view.ItemPickerView;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -42,7 +44,9 @@ class ItemPickerTest {
     private Item selectedItem;
 
     @Start
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
+        HeroManagerDB.init();
+
         ItemPickerModel model = new ItemPickerModel(primaryStage, itemPickerCloseEvent);
         model.setWeaponList(Collections.singletonList(weapon));
         model.setEquipmentList(Collections.singletonList(equipment));

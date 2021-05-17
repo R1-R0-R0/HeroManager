@@ -2,6 +2,7 @@ package model.gui;
 
 import controller.SpellManagerController;
 import javafx.scene.control.Alert;
+import model.files.HeroManagerDB;
 import model.spell.Component;
 import model.spell.Spell;
 import utils.ListenableArrayList;
@@ -36,11 +37,7 @@ public class SpellManagerModel implements Model {
 
         spells = new ListenableArrayList<>();
         spells.addListenerForAllActions(() -> SpellManagerView.getInstance().setSpellListView(spells));
-
-        /*
-            // TODO From database
-            this.setSpells
-         */
+        spells.addAll(HeroManagerDB.getSpells());
     }
 
     /**
@@ -133,8 +130,10 @@ public class SpellManagerModel implements Model {
                 spellComponents
         );
 
-        spells.add(spell);
-        // TODO ADD DB
+        if (HeroManagerDB.addSpell(spell))
+            spells.add(spell);
+        else
+            new Dialog(Alert.AlertType.ERROR, "Item already exist", "This item already exist, or an error occurred during item creation").showAndWait();
 
         selectedSpell = null;
         SpellManagerView.getInstance().clearAllInputs();
@@ -179,10 +178,11 @@ public class SpellManagerModel implements Model {
             }
         }
 
-        if (selectedSpell.getName().equals(newSpell.getName())) {
-            // TODO Update item in database
-        } else {
-            // TODO Delete and recreate item in database
+        if (selectedSpell.getName().equals(newSpell.getName()))
+            HeroManagerDB.modifySpell(newSpell);
+        else {
+            HeroManagerDB.removeSpell(selectedSpell.getName());
+            HeroManagerDB.addSpell(newSpell);
         }
 
         selectedSpell = newSpell;
@@ -192,7 +192,8 @@ public class SpellManagerModel implements Model {
      * Retrieve elements from view, delete and save a spell
      */
     public void deleteSpell() {
-        if (true /* TODO IF OBJECT COULD BE DELETED FROM DB */ && spells.remove(selectedSpell)) {
+        if (HeroManagerDB.removeSpell(selectedSpell.getName())) {
+            spells.remove(selectedSpell);
             selectedSpell = null;
             SpellManagerView.getInstance().clearAllInputs();
             return;

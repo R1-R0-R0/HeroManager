@@ -3,6 +3,7 @@ package model.gui;
 import controller.ItemManagerController;
 import exceptions.UnsupportedItemException;
 import javafx.scene.control.Alert;
+import model.files.HeroManagerDB;
 import model.items.ItemType;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
@@ -15,6 +16,7 @@ import utils.ListenableArrayList;
 import utils.gui.Dialog;
 import view.ItemManagerView;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -43,13 +45,9 @@ public class ItemManagerModel implements Model {
         equipments = new ListenableArrayList<>();
         consumables = new ListenableArrayList<>();
 
-        /*
-            TODO
-
-             setWeaponsList(get depuis bdd)
-             setEquipmentList(get depuis bdd)
-             setConsumablesList(...)
-         */
+        setWeaponList(HeroManagerDB.getWeapons());
+        setEquipmentList(HeroManagerDB.getEquipments());
+        setConsumableList(HeroManagerDB.getConsumables());
 
         weapons.addListenerForAllActions(() -> ItemManagerView.getInstance().updateListViews());
         equipments.addListenerForAllActions(() -> ItemManagerView.getInstance().updateListViews());
@@ -129,7 +127,7 @@ public class ItemManagerModel implements Model {
             ItemManagerView.getInstance().setItemInformation(controller.typePicker.getValue(), controller.itemList.getSelectionModel().getSelectedItem());
         } catch (UnsupportedItemException e) {
             e.printStackTrace();
-            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
             System.exit(1);
         }
     }
@@ -323,11 +321,10 @@ public class ItemManagerModel implements Model {
     public void newWeapon(String name, String description, String properties, WeaponType weaponType, DamageType damageType) {
         Weapon newWeapon = new Weapon(name, description, properties, weaponType, damageType);
 
-        // TODO new weapon in db
-
-        if (true /* TODO IF OBJECT COULD BE CREATED IN DB */) {
+        if (HeroManagerDB.addWeapon(newWeapon))
             weapons.add(newWeapon);
-        }
+        else
+            new Dialog(Alert.AlertType.ERROR, "Item already exist", "This item already exist, or an error occurred during item creation").showAndWait();
     }
 
     /**
@@ -350,10 +347,11 @@ public class ItemManagerModel implements Model {
             }
         }
 
-        if (selectedWeapon.getName().equals(name)) {
-            // TODO Update item in database
-        } else {
-            // TODO Delete and recreate item in database
+        if (selectedWeapon.getName().equals(name))
+            HeroManagerDB.modifyWeapon(newWeapon);
+        else {
+            HeroManagerDB.removeWeapon(selectedWeapon.getName());
+            HeroManagerDB.addWeapon(newWeapon);
         }
     }
 
@@ -371,11 +369,10 @@ public class ItemManagerModel implements Model {
         Equipment newEquipment = new Equipment(name, description, equipmentPart, armorBonus, equipmentType,
                 strengthBoost, dexterityBoost, robustnessBoost, intelligenceBoost, wisdomBoost, charismaBoost, speedBoost);
 
-        // TODO new equipment in db
-
-        if (true /* TODO IF OBJECT COULD BE CREATED IN DB */) {
+        if (HeroManagerDB.addEquipment(newEquipment))
             equipments.add(newEquipment);
-        }
+        else
+            new Dialog(Alert.AlertType.ERROR, "Item already exist", "This item already exist, or an error occurred during item creation").showAndWait();
     }
 
     /**
@@ -400,10 +397,11 @@ public class ItemManagerModel implements Model {
             }
         }
 
-        if (selectedEquipment.getName().equals(name)) {
-            // TODO Update item in database
-        } else {
-            // TODO Delete and recreate item in database
+        if (selectedEquipment.getName().equals(name))
+            HeroManagerDB.modifyEquipment(newEquipment);
+        else {
+            HeroManagerDB.removeEquipment(selectedEquipment.getName());
+            HeroManagerDB.addEquipment(newEquipment);
         }
     }
 
@@ -416,11 +414,8 @@ public class ItemManagerModel implements Model {
     public void newConsumable(String name, String description) {
         Consumable newConsumable = new Consumable(name, description);
 
-        // TODO new consumable in db
-
-        if (true /* TODO IF OBJECT COULD BE CREATED IN DB */) {
+        if (HeroManagerDB.addConsumable(newConsumable))
             consumables.add(newConsumable);
-        }
     }
 
     /**
@@ -441,10 +436,11 @@ public class ItemManagerModel implements Model {
             }
         }
 
-        if (selectedConsumable.getName().equals(name)) {
-            // TODO Update item in database
-        } else {
-            // TODO Delete and recreate item in database
+        if (selectedConsumable.getName().equals(name))
+            HeroManagerDB.modifyConsumable(newConsumable);
+        else {
+            HeroManagerDB.removeConsumable(selectedConsumable.getName());
+            HeroManagerDB.addConsumable(newConsumable);
         }
     }
 
@@ -471,10 +467,11 @@ public class ItemManagerModel implements Model {
         switch (itemType) {
             case WEAPONS -> {
                 for (Weapon weapon : weapons) {
-                    System.out.println("weapon.getName() = " + weapon.getName());
-                    System.out.println("name = " + name);
                     if (weapon.getName().equals(name)) {
-                        if (true /* TODO IF OBJECT COULD BE DELETED FROM DB */ && weapons.remove(weapon)) return;
+                        if (HeroManagerDB.removeWeapon(name)) {
+                            weapons.remove(weapon);
+                            return;
+                        }
                         else dbErr.showAndWait();
                     }
                 }
@@ -484,7 +481,10 @@ public class ItemManagerModel implements Model {
             case EQUIPMENTS -> {
                 for (Equipment equipment : equipments) {
                     if (equipment.getName().equals(name)) {
-                        if (true /* TODO IF OBJECT COULD BE DELETED FROM DB */ && equipments.remove(equipment)) return;
+                        if (HeroManagerDB.removeEquipment(name)) {
+                            equipments.remove(equipment);
+                            return;
+                        }
                         else dbErr.showAndWait();
                     }
                 }
@@ -494,7 +494,10 @@ public class ItemManagerModel implements Model {
             case CONSUMABLES -> {
                 for (Consumable consumable : consumables) {
                     if (consumable.getName().equals(name)) {
-                        if (true /* TODO IF OBJECT COULD BE DELETED FROM DB */ && consumables.remove(consumable)) return;
+                        if (HeroManagerDB.removeConsumable(name)) {
+                            consumables.remove(consumable);
+                            return;
+                        }
                         else dbErr.showAndWait();
                     }
                 }

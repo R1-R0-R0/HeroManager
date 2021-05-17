@@ -32,6 +32,7 @@ public class HeroManagerDB {
         consumables = FileReaders.getConsumable();
         equipments = FileReaders.getEquipement();
         jobs = FileReaders.getCaracters();
+
         initJobs();
     }
 
@@ -276,14 +277,15 @@ public class HeroManagerDB {
      * Add the weapon to the Data Base
      *
      * @param weapon the added weapon
+     * @return TRUE if added correctly, FALSE otherwise
      */
-    public static void addWeapons(Weapon weapon) {
+    public static boolean addWeapon(Weapon weapon) {
         for (Weapon target : weapons) {
             if (target.getName().equals(weapon.getName()))
-                System.exit(0);
-
+                return false;
         }
-        weapons.add(weapon);
+
+        return weapons.add(weapon);
     }
 
     /**
@@ -291,57 +293,62 @@ public class HeroManagerDB {
      *
      * @param spell the added spell
      */
-    public static void addSpell(Spell spell) {
-        spells.add(spell);
+    public static boolean addSpell(Spell spell) {
+        return spells.add(spell);
     }
 
     /**
      * Add the consumable to the Data Base
      *
      * @param consumable the added consumable
+     * @return TRUE if added correctly, FALSE otherwise
      */
-    public static void addConsumable(Consumable consumable) {
+    public static boolean addConsumable(Consumable consumable) {
         for (Consumable target : consumables) {
             if (target.getName().equals(consumable.getName()))
-                System.exit(0);
+                return false;
 
         }
-        consumables.add(consumable);
+
+        return consumables.add(consumable);
     }
 
     /**
      * Add the equipment to the Data Base
      *
      * @param equipment the added equipment
+     * @return TRUE if added correctly, FALSE otherwise
      */
-    public static void addEquipment(Equipment equipment) {
+    public static boolean addEquipment(Equipment equipment) {
         for (Equipment target : equipments) {
             if (target.getName().equals(equipment.getName()))
-                System.exit(0);
+                return false;
 
         }
-        equipments.add(equipment);
+
+        return equipments.add(equipment);
     }
 
     /**
      * Add the job to the Data Base
      *
      * @param job the added job
+     * @return TRUE if added correctly, FALSE otherwise
      */
-    public static void addJob(Job job) {
+    public static boolean addJob(Job job) {
         for (Job target : jobs) {
             if (target.getName().equals(job.getName()))
-                System.exit(0);
-
+                return false;
         }
 
-        jobs.add(job);
+        jobs.add(0, job);
+        return true;
     }
 
     /**
      * Methode that call on Writer to save all the DataBase on Json save file
      */
-    public static void Save() {
+    public static void save() {
         Writer.writerWeapon(weapons);
         Writer.writerSpell(spells);
         Writer.writerConsumable(consumables);
@@ -352,7 +359,10 @@ public class HeroManagerDB {
     /**
      * @return the last played Character
      */
-    public static Job lastPlayed() {
+    public static Job lastPlayedParty() {
+        if (jobs.size() == 0)
+            return null;
+
         return jobs.get(0);
     }
 
@@ -361,7 +371,7 @@ public class HeroManagerDB {
      * @param name of the target
      * @return true if it was remove , false if not
      */
-    public boolean removeWeapon (String name){
+    public static boolean removeWeapon (String name){
         for (Weapon weapon : weapons) {
             if (weapon.getName().equals(name))
             return weapons.remove(weapon);
@@ -375,7 +385,7 @@ public class HeroManagerDB {
      * @param name of the target
      * @return true if it was remove , false if not
      */
-    public boolean removeConsumable (String name){
+    public static boolean removeConsumable (String name){
         for (Consumable consumable : consumables) {
             if (consumable.getName().equals(name))
                 return weapons.remove(consumable);
@@ -389,7 +399,7 @@ public class HeroManagerDB {
      * @param name of the target
      * @return true if it was remove , false if not
      */
-    public boolean removeEquipment (String name){
+    public static boolean removeEquipment (String name){
         for (Equipment equipment : equipments) {
             if (equipment.getName().equals(name))
                 return weapons.remove(equipment);
@@ -403,7 +413,7 @@ public class HeroManagerDB {
      * @param name of the target
      * @return true if it was remove , false if not
      */
-    public boolean removeSpell (String name){
+    public static boolean removeSpell (String name){
         for (Spell spell : spells) {
             if (spell.getName().equals(name))
                 return weapons.remove(spell);
@@ -417,7 +427,7 @@ public class HeroManagerDB {
      * @param name of the target
      * @return true if it was remove , false if not
      */
-    public boolean removeJob (String name){
+    public static boolean removeJob (String name){
         for (Job job : jobs) {
             if (job.getName().equals(name))
                 return weapons.remove(job);

@@ -6,16 +6,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Characteristics;
+import model.files.HeroManagerDB;
 import model.job.Gender;
 import model.job.Job;
+import model.job.JobSkill;
 import model.job.JobType;
 import model.race.Alignment;
 import model.race.Race;
+import model.spell.Spell;
 import utils.gui.Dialog;
 import utils.gui.character_creator.JobSkillItem;
 import utils.gui.character_creator.SpellItem;
 import view.CharacterCreatorView;
 import view.MenuView;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Model of Character creator view.
@@ -73,12 +79,7 @@ public class CharacterCreatorModel implements Model {
         instance = this;
         availablePoints = MAX_AVAILABLE_STATS_POINTS;
         CharacterCreatorView view = new CharacterCreatorView(owner);
-
-        /*
-        view.setJobSkillsListView(all skills);
-        view.setSpellsListView(all spells);
-        TODO: Define when all skills and spells are available
-         */
+        view.setJobSkillsListView(JobSkill.getJobSkillList());
     }
 
     /**
@@ -143,9 +144,14 @@ public class CharacterCreatorModel implements Model {
             return;
         }
 
+        CharacterCreatorView view = CharacterCreatorView.getInstance();
         createdJob = new Job(name, description, gender, alignment, race, jobType);
-        CharacterCreatorView.getInstance().setUpNewCharacter();
-        CharacterCreatorView.getInstance().updateStatisticsAvailablePoints(availablePoints);
+        view.setUpNewCharacter();
+        view.updateStatisticsAvailablePoints(availablePoints);
+
+        List<Spell> spells = HeroManagerDB.getSpells();
+        spells.removeIf(spell -> spell.getJobType() != createdJob.getJobType());
+        view.setSpellsListView(spells);
     }
 
     /**
@@ -213,6 +219,10 @@ public class CharacterCreatorModel implements Model {
                 createdJob.addSpell(spellItem.getSpell());
         }
 
+        createdJob.setHealthPoints(createdJob.getMaxHp());
+
+        HeroManagerDB.addJob(createdJob);
+        HeroManagerDB.save();
         new CharacterModel(createdJob);
 
         close();

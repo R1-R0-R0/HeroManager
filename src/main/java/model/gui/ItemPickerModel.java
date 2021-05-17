@@ -5,6 +5,7 @@ import controller.ItemPickerController;
 import exceptions.UnsupportedItemException;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import model.files.HeroManagerDB;
 import model.items.Item;
 import model.items.ItemType;
 import model.items.consumables.Consumable;
@@ -17,6 +18,7 @@ import utils.gui.Dialog;
 import view.CharacterCreatorView;
 import view.ItemPickerView;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -50,26 +52,22 @@ public class ItemPickerModel implements Model {
         equipments = new ListenableArrayList<>();
         consumables = new ListenableArrayList<>();
 
+        setWeaponList(HeroManagerDB.getWeapons());
+        setEquipmentList(HeroManagerDB.getEquipments());
+        setConsumableList(HeroManagerDB.getConsumables());
+
         SimpleListener updateListener = () -> {
             try {
                 itemTypeSelectedEvent();
             } catch (UnsupportedItemException e) {
                 e.printStackTrace();
-                new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage());
+                new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace()));
             }
         };
 
         weapons.addListenerForAllActions(updateListener);
         equipments.addListenerForAllActions(updateListener);
         consumables.addListenerForAllActions(updateListener);
-
-        /*
-            TODO
-
-             setWeaponsList(get depuis bdd)
-             setEquipmentList(get depuis bdd)
-             setConsumablesList(...)
-         */
 
         new ItemPickerView(owner);
     }
@@ -90,7 +88,7 @@ public class ItemPickerModel implements Model {
             ItemPickerView.getInstance().setItemType(itemType);
         } catch (UnsupportedItemException e) {
             e.printStackTrace();
-            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
             System.exit(1);
         }
     }
@@ -108,8 +106,6 @@ public class ItemPickerModel implements Model {
     public void itemTypeSelectedEvent() throws UnsupportedItemException {
         ItemPickerView view = ItemPickerView.getInstance();
         ItemType selectedType = ItemPickerController.getInstance().typePicker.getValue();
-
-        if (selectedType == null) return;
 
         switch (selectedType) {
             case WEAPONS -> view.setListView(weapons);
@@ -192,7 +188,7 @@ public class ItemPickerModel implements Model {
             ItemPickerView.getInstance().showItemInfo(item);
         } catch (UnsupportedItemException e) {
             e.printStackTrace();
-            new Dialog(Alert.AlertType.ERROR, e.getMessage(), e.getLocalizedMessage()).showAndWait();
+            new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
             System.exit(1);
         }
     }
