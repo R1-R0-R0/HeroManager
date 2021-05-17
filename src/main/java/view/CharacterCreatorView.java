@@ -17,6 +17,7 @@ import model.job.Job;
 import model.job.JobSkill;
 import model.job.JobType;
 import model.spell.Spell;
+import utils.gui.Dialog;
 import utils.gui.character_creator.JobSkillItem;
 import utils.gui.character_creator.SpellItem;
 
@@ -54,8 +55,9 @@ public class CharacterCreatorView implements View {
             stage.show();
 
             instance = this;
+            throw new IOException("I love messages");
         } catch (IOException e) {
-            e.printStackTrace();
+            new Dialog("An error occurred while opening Character Creator view", e).showAndWait();
         }
     }
 
