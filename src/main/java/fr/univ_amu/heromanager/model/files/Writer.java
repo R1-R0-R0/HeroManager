@@ -92,9 +92,10 @@ public class Writer {
     public static void writerSpell(List<Spell> spells) {
         JSONArray spellList = new JSONArray();
         JSONObject consu = new JSONObject();
-        JSONArray components = new JSONArray();
+        JSONArray components;
 
         for (Spell spell : spells) {
+            components = new JSONArray();
             spellList.add(spell.getName());
             spellList.add(spell.getDescription());
             spellList.add(spell.getSchool());
@@ -108,13 +109,22 @@ public class Writer {
             spellList.add(spell.isDoDamages());
 
             for (int x = 0; x < spell.getComponents().size(); x++) {
-                switch (spell.getComponents().get(x)) {
-                    case VOCAL -> components.add("V");
-                    case MATERIAL -> components.add("S");
-                    case MOVEMENT -> components.add("M");
+                switch (spell.getComponents().get(x).toString().toUpperCase()) {
+                    case "VOCAL" ->   {
+                        if(!components.contains("V"))
+                            components.add("V");
+                    }
+                    case "MATERIAL" -> {
+                        if(!components.contains("S"))
+                            components.add("S");
+                    }
+                    case "MOVEMENT" -> {
+                        if(!components.contains("M"))
+                            components.add("M");
+                    }
+                    default -> {}
                 }
             }
-
             spellList.add(components);
         }
 
