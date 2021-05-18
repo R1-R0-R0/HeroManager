@@ -3,15 +3,14 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-          prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="fr.univ_amu.heromanager.controller.SpellManagerController">
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.heromanager.controller.SpellManagerController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
         <ListView fx:id="spellList">
@@ -19,136 +18,118 @@
         </ListView>
         <GridPane GridPane.columnIndex="1">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <items>
-                        <Pane HBox.hgrow="ALWAYS"/>
-                        <Button fx:id="newSpellButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
-                                onAction="#newSpellButtonOnClick" prefWidth="100.0" text="New Spell"/>
-                        <Separator/>
-                        <Button fx:id="updateSpellButton" disable="true" maxWidth="-Infinity" minWidth="-Infinity"
-                                mnemonicParsing="false" onAction="#updateSpellButtonOnClick" prefWidth="100.0"
-                                text="Update Spell"/>
-                        <Button fx:id="deleteSpellButton" disable="true" maxWidth="-Infinity" minWidth="-Infinity"
-                                mnemonicParsing="false" onAction="#deleteSpellButtonOnClick" prefWidth="100.0"
-                                text="Delete Spell"/>
-                        <Separator/>
-                        <Button cancelButton="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
-                                onAction="#backButtonOnClick" prefWidth="100.0" text="Return to menu"/>
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <Button fx:id="newSpellButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newSpellButtonOnClick" prefWidth="100.0" text="New Spell" />
+                        <Separator />
+                        <Button fx:id="updateSpellButton" disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateSpellButtonOnClick" prefWidth="100.0" text="Update Spell" />
+                        <Button fx:id="deleteSpellButton" disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteSpellButtonOnClick" prefWidth="100.0" text="Delete Spell" />
+                        <Separator />
+                        <Button cancelButton="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backButtonOnClick" prefWidth="100.0" text="Return to menu" />
                     </items>
                 </ToolBar>
                 <GridPane fx:id="spellPane">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity"
-                                           prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="10.0"
-                                        vgrow="SOMETIMES"/>
-                        <RowConstraints vgrow="SOMETIMES"/>
-                        <RowConstraints vgrow="SOMETIMES"/>
-                        <RowConstraints vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="10.0"
-                                        vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="10.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <TextField fx:id="spellNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <GridPane.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </GridPane.margin>
                         </TextField>
                         <TextField fx:id="spellSchoolLabel" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <GridPane.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </GridPane.margin>
                         </TextField>
                         <TextField fx:id="spellCastingTimeLabel" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <GridPane.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </GridPane.margin>
                         </TextField>
                         <TextField fx:id="spellDurationLabel" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <GridPane.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </GridPane.margin>
                         </TextField>
-                        <Label text="Name" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
-                        <Label text="Description" GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
-                        <Label text="School" GridPane.halignment="CENTER" GridPane.rowIndex="3"/>
-                        <Label text="Casting time" GridPane.halignment="CENTER" GridPane.rowIndex="4"/>
-                        <Label text="Duration" GridPane.halignment="CENTER" GridPane.rowIndex="5"/>
-                        <TextArea fx:id="spellDescLabel" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
-                                  GridPane.rowIndex="2">
+                        <Label text="Name" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="Description" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="School" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Label text="Casting time" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Label text="Duration" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                        <TextArea fx:id="spellDescLabel" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <GridPane.margin>
-                                <Insets bottom="10.0" right="10.0" top="10.0"/>
+                                <Insets bottom="10.0" right="10.0" top="10.0" />
                             </GridPane.margin>
                         </TextArea>
-                        <Spinner fx:id="spellLevelSpinner" max="9" min="1" prefWidth="200.0" GridPane.columnIndex="1"
-                                 GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                        <Spinner fx:id="spellLevelSpinner" max="9" min="1" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                             <GridPane.margin>
-                                <Insets left="10.0" right="10.0"/>
+                                <Insets left="10.0" right="10.0" />
                             </GridPane.margin>
                         </Spinner>
-                        <Spinner fx:id="spellRangeSpinner" editable="true" max="2147483647" min="0" prefWidth="200.0"
-                                 GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                        <Spinner fx:id="spellRangeSpinner" editable="true" max="2147483647" min="0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                             <GridPane.margin>
-                                <Insets left="10.0" right="10.0"/>
+                                <Insets left="10.0" right="10.0" />
                             </GridPane.margin>
                         </Spinner>
-                        <Label text="Level" GridPane.halignment="CENTER" GridPane.rowIndex="6"/>
-                        <Label text="Range" GridPane.halignment="CENTER" GridPane.rowIndex="7"/>
-                        <Label text="Job Type" GridPane.halignment="CENTER" GridPane.rowIndex="8"/>
-                        <ToggleButton fx:id="spellDoDamagesButton" mnemonicParsing="false"
-                                      onAction="#doDamageButtonOnClick" prefWidth="200.0" selected="true" text="Yes"
-                                      GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+                        <Label text="Level" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                        <Label text="Range" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                        <Label text="Job Type" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                        <ToggleButton fx:id="spellDoDamagesButton" mnemonicParsing="false" onAction="#doDamageButtonOnClick" prefWidth="200.0" selected="true" text="Yes" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9">
                             <GridPane.margin>
-                                <Insets left="10.0" right="10.0"/>
+                                <Insets left="10.0" right="10.0" />
                             </GridPane.margin>
                         </ToggleButton>
-                        <ChoiceBox fx:id="spellJobTypePicker" prefWidth="200.0" GridPane.columnIndex="1"
-                                   GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8">
+                        <ChoiceBox fx:id="spellJobTypePicker" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <GridPane.margin>
-                                <Insets left="10.0" right="10.0"/>
+                                <Insets left="10.0" right="10.0" />
                             </GridPane.margin>
                         </ChoiceBox>
-                        <Label text="Do damages ?" GridPane.halignment="CENTER" GridPane.rowIndex="9"/>
-                        <Label text="Components" GridPane.halignment="CENTER" GridPane.rowIndex="10"/>
-                        <ChoiceBox fx:id="spellComponent1Picker" prefWidth="150.0" GridPane.columnIndex="1"
-                                   GridPane.halignment="LEFT" GridPane.rowIndex="10">
+                        <Label text="Do damages ?" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                        <Label text="Components" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                        <ChoiceBox fx:id="spellComponent1Picker" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <GridPane.margin>
-                                <Insets left="10.0" right="10.0"/>
+                                <Insets left="10.0" right="10.0" />
                             </GridPane.margin>
                         </ChoiceBox>
-                        <ChoiceBox fx:id="spellComponent2Picker" prefWidth="150.0" GridPane.columnIndex="1"
-                                   GridPane.halignment="CENTER" GridPane.rowIndex="10">
+                        <ChoiceBox fx:id="spellComponent2Picker" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10">
                             <GridPane.margin>
-                                <Insets left="10.0" right="10.0"/>
+                                <Insets left="10.0" right="10.0" />
                             </GridPane.margin>
                         </ChoiceBox>
-                        <ChoiceBox fx:id="spellComponent3Picker" prefWidth="150.0" GridPane.columnIndex="1"
-                                   GridPane.halignment="RIGHT" GridPane.rowIndex="10">
+                        <ChoiceBox fx:id="spellComponent3Picker" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
                             <GridPane.margin>
-                                <Insets left="10.0" right="10.0"/>
+                                <Insets left="10.0" right="10.0" />
                             </GridPane.margin>
                         </ChoiceBox>
                     </children>
