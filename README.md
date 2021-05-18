@@ -60,18 +60,10 @@ Pull requests are welcome.
 
 Please make sure to create/update appropriated tests
 
-## Authors
-
-- SIBIAK Aymeric · [GitHub](https://github.com/ASibiak)
-
-- Airels · [GitHub](https://github.com/Airels)
-
-- NICOLAI Guillaume · [GitHub](https://github.com/Grosflan)
-
 
 ## Librairies
 
-- JavaFX :
+- JavaFX 15 :
     - [Getting Started with JavaFX](https://openjfx.io/openjfx-docs/ "https://openjfx.io/openjfx-docs/")
     - [Getting Started with JavaFX: Hello World, JavaFX Style | JavaFX 2 Tutorials and Documentation](https://docs.oracle.com/javafx/2/get_started/hello_world.htm "https://docs.oracle.com/javafx/2/get_started/hello_world.htm")
 - JsonSimple:
@@ -84,10 +76,10 @@ Please make sure to create/update appropriated tests
 
     - https://wiki.openjdk.java.net/display/OpenJFX/Monocle
 - JUnit:
-
     - [Overview (JUnit 5.7.2 API)](https://junit.org/junit5/docs/current/api/ "https://junit.org/junit5/docs/current/api/")
 
 ## Technologies
+- Java 15
 - IDE: IntelliJ IDEA
 - Gradle
 
@@ -100,6 +92,14 @@ It will generate a jar with JavaFX dependencies, directly runnable with usual co
 foo@bar:~$ java -jar HeroManager.jar
 ```
 
-## Licence
+## Authors
+
+- SIBIAK Aymeric · [GitHub](https://github.com/ASibiak)
+
+- Airels · [GitHub](https://github.com/Airels)
+
+- NICOLAI Guillaume · [GitHub](https://github.com/Grosflan)
+
+## License
 
 This product is licensed under [Apache Licence 2.0](https://www.apache.org/licenses/LICENSE-2.0)
