@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <GridPane fx:id="window" alignment="CENTER" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/splash_screen.css"
           xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="controller.SplashScreenController">
+          fx:controller="fr.univ_amu.heromanager.controller.SplashScreenController">
     <children>
         <Pane fx:id="img" layoutX="200.0" layoutY="200.0" prefHeight="200.0" prefWidth="200.0"
               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
