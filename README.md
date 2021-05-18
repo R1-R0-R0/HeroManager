@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="HeroManager logo" src="https://airels.fr/onlineDepot/depot/6hl2nokou4v6vd-logo.png" />
+  <img alt="HeroManager logo" src="![logo](https://user-images.githubusercontent.com/33286314/118670521-fda1a880-b7f6-11eb-9dea-ef851e7dc125.png)" />
   <h1>Hero Manager</h1>
   <img alt="Licence logo" src="https://img.shields.io/github/license/R1-R0-R0/HeroManager?style=for-the-badge" />
 </div>
@@ -12,7 +12,7 @@ Hero Manager is an application designed to create and modify character's sheets 
 
 ## Project Status
 
-Development is now interrupted, the application is working in actual state but can be improved. (feel free to upgrade it! ^-^)
+Development is now interrupted, the application is working in actual state but can be improved. (feel free to upgrade it!)
 
 ## Description
 
@@ -33,7 +33,7 @@ This application is a character sheet manager. It's purpose is to help the user 
 
 ## Visuals
 
-###Menu
+### Menu
 ![menu](images/menu.png)
 
 ### Character sheet
