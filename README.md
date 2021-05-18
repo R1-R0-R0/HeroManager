@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="HeroManager logo" src="https://raw.githubusercontent.com/R1-R0-R0/HeroManager/dev/src/main/resources/images/icon/logo.png?token=AH56RKQZZH2QQTTGYBQMTF3AUPF56" />
+  <img alt="HeroManager logo" src="https://airels.fr/onlineDepot/depot/6hl2nokou4v6vd-logo.png" />
   <h1>Hero Manager</h1>
   <img alt="Licence logo" src="https://img.shields.io/github/license/R1-R0-R0/HeroManager?style=for-the-badge" />
 </div>
