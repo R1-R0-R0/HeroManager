@@ -50,7 +50,7 @@ public enum JobSkill {
     SLEIGHT_OF_HAND("Sleight of hand", "Whenever you attempt an act of legerdemain or manual trickery, such as planting something on someone else or concealing an object" +
             " on your person, make a Dexterity check. The DM might also call for a Dexterity check to determine whether you can lift a coin purse off another person or slip something" +
             " out of another person's pocket."),
-    STEALTH("Stealth", "Make a Dexteritycheck when you attempt to conceal yourself from enemies, " +
+    STEALTH("Stealth", "Make a Dexterity check when you attempt to conceal yourself from enemies, " +
             "slink past guards, slip away without being noticed, or sneak up on someone without being seen or heard."),
     SURVIVAL("Survival", "The DM might ask you to make a Wisdom check to follow tracks, hunt wild game, " +
             "guide your group through frozen wastelands, identify signs that owlbears live nearby, predict the weather, or avoid quicksand and other natural hazards."),
@@ -84,7 +84,7 @@ public enum JobSkill {
             case "ACROBATICS" -> ACROBATICS;
             case "ARCANA" -> ARCANA;
             case "ATHLETICS" -> ATHLETICS;
-            case "ANIMAL_HANDLING" -> ANIMAL_HANDLING;
+            case "ANIMAL HANDLING" -> ANIMAL_HANDLING;
             case "DECEPTION" -> DECEPTION;
             case "HISTORY" -> HISTORY;
             case "INTIMIDATION" -> INTIMIDATION;
@@ -96,7 +96,7 @@ public enum JobSkill {
             case "PERFORMANCE" -> PERFORMANCE;
             case "PERSUASION" -> PERSUASION;
             case "RELIGION" -> RELIGION;
-            case "SLEIGHT_OF_HAND" -> SLEIGHT_OF_HAND;
+            case "SLEIGHT OF HAND" -> SLEIGHT_OF_HAND;
             case "STEALTH" -> STEALTH;
             case "SURVIVAL" -> SURVIVAL;
             default -> throw new UnknownJobSkillException("Unknown job skill " + name);
