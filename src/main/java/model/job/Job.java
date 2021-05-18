@@ -974,13 +974,9 @@ public class Job {
      * allow to decrease base Strength can't be inferior from 8 at character creation
      */
     public void decreaseStrength() {
-        if (level == 1) {
-            if (strength > 8 && strength <= 10) {
-                strength--;
-            }
-        } else {
-            strength--;
-        }
+
+        strength--;
+
     }
 
     /**
@@ -994,14 +990,9 @@ public class Job {
      * allow to decrease base dexterity can't be inferior from 8 at character creation
      */
     public void decreaseDexterity() {
-        if (level == 1) {
-            if (dexterity > 8 && dexterity <= 10) {
-                dexterity--;
 
-            }
-        } else {
-            dexterity--;
-        }
+        dexterity--;
+
     }
 
     /**
@@ -1015,13 +1006,9 @@ public class Job {
      * allow to decrease base robustness can't be inferior from 8 at character creation
      */
     public void decreaseRobustness() {
-        if (level == 1) {
-            if (robustness > 8 && intelligence <= 10) {
-                robustness--;
-            }
-        } else {
-            robustness--;
-        }
+
+        robustness--;
+
     }
 
     /**
@@ -1035,13 +1022,7 @@ public class Job {
      * allow to decrease base intelligence can't be inferior from 8 at character creation
      */
     public void decreaseIntelligence() {
-        if (level == 1) {
-            if (intelligence > 8 && intelligence <= 10) {
-                intelligence--;
-            }
-        } else {
-            intelligence--;
-        }
+        intelligence--;
     }
 
     /**
@@ -1055,13 +1036,7 @@ public class Job {
      * allow to decrease base wisdom can't be inferior from 8 at character creation
      */
     public void decreaseWisdom() {
-        if (level == 1) {
-            if (wisdom > 8 && wisdom <= 10) {
-                strength--;
-            }
-        } else {
             wisdom--;
-        }
     }
 
     /**
@@ -1075,13 +1050,7 @@ public class Job {
      * allow to decrease base charisma can't be inferior from 8 at character creation
      */
     public void decreaseCharisma() {
-        if (level == 1) {
-            if (charisma > 8 && charisma <= 10) {
-                charisma--;
-            }
-        } else {
             charisma--;
-        }
     }
 
     /**
