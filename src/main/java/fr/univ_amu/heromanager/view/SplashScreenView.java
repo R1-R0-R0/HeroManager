@@ -54,10 +54,7 @@ public class SplashScreenView implements View {
             fadeInFinished = new AtomicBoolean(false);
             fadeIn.play();
 
-            fadeIn.setOnFinished((event -> {
-                fadeInFinished.set(true);
-                System.out.println("FINISHED");
-            }));
+            fadeIn.setOnFinished((event -> fadeInFinished.set(true)));
 
             //After fade out, load actual content
             fadeOut.setOnFinished((e) -> {
@@ -115,9 +112,7 @@ public class SplashScreenView implements View {
      */
     public void openMenu() {
         new Thread(() -> {
-            System.out.println("A");
             while (!fadeInFinished.get()) ;
-            System.out.println("B");
             fadeOut.play();
         }).start();
     }
