@@ -732,7 +732,7 @@ public class Job {
      */
     public Equipment getEquipment(EquipmentPart equipmentPart) throws UnsupportedItemException {
         if (equipmentPart == null)
-            throw new UnsupportedItemException("Equipment Part " + null + " isn't supported");
+            throw new NullPointerException("EquipmentPart can't be null");
 
         switch (equipmentPart) {
             case BELT -> {
