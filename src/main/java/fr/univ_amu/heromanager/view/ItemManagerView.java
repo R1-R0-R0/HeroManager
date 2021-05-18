@@ -1,13 +1,8 @@
 package fr.univ_amu.heromanager.view;
 
-import fr.univ_amu.heromanager.controller.ItemManagerController;
 import fr.univ_amu.heromanager.Main;
+import fr.univ_amu.heromanager.controller.ItemManagerController;
 import fr.univ_amu.heromanager.exceptions.UnsupportedItemException;
-import javafx.collections.FXCollections;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import fr.univ_amu.heromanager.model.gui.ItemManagerModel;
 import fr.univ_amu.heromanager.model.items.Item;
 import fr.univ_amu.heromanager.model.items.ItemType;
@@ -15,6 +10,12 @@ import fr.univ_amu.heromanager.model.items.consumables.Consumable;
 import fr.univ_amu.heromanager.model.items.equipments.Equipment;
 import fr.univ_amu.heromanager.model.items.weapons.Weapon;
 import fr.univ_amu.heromanager.utils.gui.Dialog;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -41,6 +42,29 @@ public class ItemManagerView implements View {
             stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));
             stage.setOnCloseRequest(event -> ItemManagerModel.getInstance().returnToMenu());
+            stage.show();
+
+            instance = this;
+        } catch (IOException e) {
+            new Dialog("An error occurred while opening Item Manager fr.univ_amu.heromanager.view", e).showAndWait();
+        }
+    }
+
+    /**
+     * 2nd constructor used when another view apart from menu is opening item manager
+     *
+     * @param owner view caller
+     */
+    public ItemManagerView(Stage owner) {
+        try {
+            stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/item_manager.fxml"));
+            stage.setTitle("HeroManager - Item Manager");
+            stage.getIcons().add(Main.APP_LOGO);
+            stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(event -> ItemManagerModel.getInstance().returnToMenu());
+            stage.initOwner(owner);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
 
             instance = this;
@@ -217,6 +241,15 @@ public class ItemManagerView implements View {
 
         controller.consumableNameText.setText(consumable.getName());
         controller.consumableDescriptionText.setText(consumable.getDescription());
+    }
+
+    /**
+     * Getter of Stage current view
+     *
+     * @return stage of view
+     */
+    public Stage getStage() {
+        return stage;
     }
 
     /**

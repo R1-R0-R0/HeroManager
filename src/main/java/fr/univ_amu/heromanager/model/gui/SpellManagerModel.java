@@ -1,8 +1,6 @@
 package fr.univ_amu.heromanager.model.gui;
 
 import fr.univ_amu.heromanager.controller.SpellManagerController;
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
 import fr.univ_amu.heromanager.model.files.HeroManagerDB;
 import fr.univ_amu.heromanager.model.spell.Component;
 import fr.univ_amu.heromanager.model.spell.Spell;
@@ -10,6 +8,9 @@ import fr.univ_amu.heromanager.utils.ListenableArrayList;
 import fr.univ_amu.heromanager.utils.gui.Dialog;
 import fr.univ_amu.heromanager.view.MenuView;
 import fr.univ_amu.heromanager.view.SpellManagerView;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +31,27 @@ public class SpellManagerModel implements Model {
 
     /**
      * Constructor of this class.
-     * When called, calls method to init fr.univ_amu.heromanager.view
+     * When called, calls method to init view
      */
     public SpellManagerModel() {
         instance = this;
 
         new SpellManagerView();
+
+        spells = new ListenableArrayList<>();
+        spells.addListenerForAllActions(() -> SpellManagerView.getInstance().setSpellListView(spells));
+        spells.addAll(HeroManagerDB.getSpells());
+    }
+
+    /**
+     * 2nd constructor used when another view apart from menu is opening spell manager
+     *
+     * @param owner view caller
+     */
+    public SpellManagerModel(Stage owner) {
+        instance = this;
+
+        new SpellManagerView(owner);
 
         spells = new ListenableArrayList<>();
         spells.addListenerForAllActions(() -> SpellManagerView.getInstance().setSpellListView(spells));
@@ -251,7 +267,8 @@ public class SpellManagerModel implements Model {
             HeroManagerDB.initJobs();
             Platform.runLater(() -> {
                 busyDialog.close();
-                new MenuView();
+                if (SpellManagerView.getInstance().getStage().getOwner() == null)
+                    new MenuView();
             });
         }).start();
     }

@@ -1,172 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<VBox fx:id="window" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/character.css"
-      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="fr.univ_amu.heromanager.controller.CharacterController">
+
+<VBox fx:id="window" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/character.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.heromanager.controller.CharacterController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" text="Game">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="New"/>
-                        <MenuItem mnemonicParsing="false" text="Open…"/>
-                        <Menu mnemonicParsing="false" text="Open Recent"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Close"/>
-                        <MenuItem mnemonicParsing="false" text="Save"/>
-                        <MenuItem mnemonicParsing="false" text="Save As…"/>
-                        <MenuItem mnemonicParsing="false" text="Revert"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Preferences…"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Quit"/>
+                        <MenuItem mnemonicParsing="false" onAction="#saveGameMenuOnClick" text="Save" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#openItemManagerMenuOnClick" text="Open Item Manager" />
+                        <MenuItem mnemonicParsing="false" onAction="#openSpellManagerMenuOnClick" text="Open Spell Manager" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#backToMenuMenuOnClick" text="Back to menu" />
+                        <MenuItem mnemonicParsing="false" onAction="#quitMenuOnClick" text="Quit" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Character">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#levelUpCharacter" text="Level up"/>
+                        <MenuItem mnemonicParsing="false" onAction="#levelUpCharacter" text="Level up" />
                     </items>
                 </Menu>
                 <Menu fx:id="tableMenu" mnemonicParsing="false" text="Table">
                     <items>
-                        <MenuItem fx:id="diceThrowerMenuItem" mnemonicParsing="false" onAction="#diceMenuOnAction"
-                                  text="Dice thrower"/>
+                        <MenuItem fx:id="diceThrowerMenuItem" mnemonicParsing="false" onAction="#diceMenuOnAction" text="Dice thrower" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
-        <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                 prefHeight="3000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0">
+        <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="3000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0">
             <tabs>
                 <Tab fx:id="characterTab" text="Character">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0">
                             <children>
-                                <GridPane gridLinesVisible="true" AnchorPane.bottomAnchor="20.0"
-                                          AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-                                          AnchorPane.topAnchor="20.0">
+                                <GridPane gridLinesVisible="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0"
-                                                           prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
                                         <TextFlow fx:id="jobInfo" lineSpacing="2.0">
                                             <GridPane.margin>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                             </GridPane.margin>
                                         </TextFlow>
-                                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0"
-                                                   prefWidth="160.0" GridPane.columnIndex="1">
+                                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="1">
                                             <items>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0"
-                                                            prefWidth="160.0">
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                     <padding>
-                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                     </padding>
                                                     <children>
-                                                        <TextFlow fx:id="skillsInfo" layoutX="-17.0" layoutY="61.0"
-                                                                  prefHeight="200.0" prefWidth="200.0"
-                                                                  AnchorPane.bottomAnchor="0.0"
-                                                                  AnchorPane.leftAnchor="0.0"
-                                                                  AnchorPane.rightAnchor="0.0"
-                                                                  AnchorPane.topAnchor="0.0"/>
+                                                        <TextFlow fx:id="skillsInfo" layoutX="-17.0" layoutY="61.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                     </children>
                                                 </AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0"
-                                                            prefWidth="160.0">
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                     <children>
-                                                        <TextFlow fx:id="improvementsInfo" layoutX="-6.0" layoutY="25.0"
-                                                                  prefHeight="200.0" prefWidth="200.0"
-                                                                  AnchorPane.bottomAnchor="0.0"
-                                                                  AnchorPane.leftAnchor="0.0"
-                                                                  AnchorPane.rightAnchor="0.0"
-                                                                  AnchorPane.topAnchor="0.0"/>
+                                                        <TextFlow fx:id="improvementsInfo" layoutX="-6.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                     </children>
                                                     <padding>
-                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                     </padding>
                                                 </AnchorPane>
                                             </items>
                                         </SplitPane>
-                                        <SplitPane dividerPositions="0.9007936507936508" orientation="VERTICAL"
-                                                   prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="2">
+                                        <SplitPane dividerPositions="0.9007936507936508" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="2">
                                             <items>
-                                                <AnchorPane fx:id="imageJob" prefHeight="200.0" prefWidth="200.0"/>
+                                                <AnchorPane fx:id="imageJob" prefHeight="200.0" prefWidth="200.0" />
                                                 <AnchorPane fx:id="jobStatus" maxHeight="47.0" minHeight="47.0">
                                                     <children>
-                                                        <GridPane layoutX="71.0" layoutY="7.0"
-                                                                  AnchorPane.bottomAnchor="0.0"
-                                                                  AnchorPane.leftAnchor="0.0"
-                                                                  AnchorPane.rightAnchor="0.0"
-                                                                  AnchorPane.topAnchor="0.0">
+                                                        <GridPane layoutX="71.0" layoutY="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                             <columnConstraints>
-                                                                <ColumnConstraints hgrow="ALWAYS"/>
-                                                                <ColumnConstraints hgrow="SOMETIMES"
-                                                                                   maxWidth="-Infinity"
-                                                                                   minWidth="-Infinity"
-                                                                                   prefWidth="75.0"/>
+                                                                <ColumnConstraints hgrow="ALWAYS" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="75.0" />
                                                             </columnConstraints>
                                                             <rowConstraints>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                             </rowConstraints>
                                                             <children>
-                                                                <StackPane fx:id="hpBarContainer"
-                                                                           GridPane.halignment="CENTER"
-                                                                           GridPane.valignment="CENTER">
+                                                                <StackPane fx:id="hpBarContainer" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                                                     <children>
-                                                                        <Pane fx:id="borderHpBar"
-                                                                              onMouseClicked="#hpBarOnClick">
+                                                                        <Pane fx:id="borderHpBar" onMouseClicked="#hpBarOnClick">
                                                                             <StackPane.margin>
-                                                                                <Insets bottom="4.0" left="4.0"
-                                                                                        right="4.0" top="4.0"/>
+                                                                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                                                             </StackPane.margin>
                                                                             <cursor>
-                                                                                <Cursor fx:constant="HAND"/>
+                                                                                <Cursor fx:constant="HAND" />
                                                                             </cursor>
                                                                         </Pane>
-                                                                        <Pane fx:id="hpBar"
-                                                                              onMouseClicked="#hpBarOnClick"
-                                                                              StackPane.alignment="CENTER_LEFT">
+                                                                        <Pane fx:id="hpBar" onMouseClicked="#hpBarOnClick" StackPane.alignment="CENTER_LEFT">
                                                                             <StackPane.margin>
-                                                                                <Insets bottom="6.0" left="6.0"
-                                                                                        right="6.0" top="6.0"/>
+                                                                                <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                                                                             </StackPane.margin>
                                                                             <cursor>
-                                                                                <Cursor fx:constant="HAND"/>
+                                                                                <Cursor fx:constant="HAND" />
                                                                             </cursor>
                                                                         </Pane>
-                                                                        <Text fx:id="hpText"
-                                                                              boundsType="LOGICAL_VERTICAL_CENTER"
-                                                                              onMouseClicked="#hpBarOnClick"
-                                                                              strokeType="OUTSIDE" strokeWidth="0.0"
-                                                                              text="100 / 100" textAlignment="CENTER">
+                                                                        <Text fx:id="hpText" boundsType="LOGICAL_VERTICAL_CENTER" onMouseClicked="#hpBarOnClick" strokeType="OUTSIDE" strokeWidth="0.0" text="100 / 100" textAlignment="CENTER">
                                                                             <font>
-                                                                                <Font name="System Bold" size="15.0"/>
+                                                                                <Font name="System Bold" size="15.0" />
                                                                             </font>
                                                                             <cursor>
-                                                                                <Cursor fx:constant="HAND"/>
+                                                                                <Cursor fx:constant="HAND" />
                                                                             </cursor>
                                                                         </Text>
                                                                     </children>
                                                                 </StackPane>
-                                                                <StackPane prefHeight="150.0" prefWidth="200.0"
-                                                                           GridPane.columnIndex="1">
+                                                                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                                     <children>
-                                                                        <Text fx:id="levelText" strokeType="OUTSIDE"
-                                                                              strokeWidth="0.0" text="LVL 01">
+                                                                        <Text fx:id="levelText" strokeType="OUTSIDE" strokeWidth="0.0" text="LVL 01">
                                                                             <font>
-                                                                                <Font size="20.0"/>
+                                                                                <Font size="20.0" />
                                                                             </font>
                                                                         </Text>
                                                                     </children>
@@ -181,7 +135,7 @@
                                 </GridPane>
                             </children>
                             <rotationAxis>
-                                <Point3D/>
+                                <Point3D />
                             </rotationAxis>
                         </AnchorPane>
                     </content>
@@ -190,47 +144,42 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <GridPane layoutX="300.0" layoutY="228.0" AnchorPane.bottomAnchor="0.0"
-                                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                          AnchorPane.topAnchor="0.0">
+                                <GridPane layoutX="300.0" layoutY="228.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
                                         <GridPane GridPane.columnIndex="1">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <TextArea fx:id="spellInfo" editable="false" prefHeight="200.0"
-                                                          prefWidth="200.0" text="Select spell in list below"
-                                                          wrapText="true">
+                                                <TextArea fx:id="spellInfo" editable="false" prefHeight="200.0" prefWidth="200.0" text="Select spell in list below" wrapText="true">
                                                     <GridPane.margin>
-                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                     </GridPane.margin>
                                                     <font>
-                                                        <Font name="System Bold" size="24.0"/>
+                                                        <Font name="System Bold" size="24.0" />
                                                     </font>
                                                 </TextArea>
-                                                <TextArea fx:id="spellDesc" editable="false" prefHeight="200.0"
-                                                          prefWidth="200.0" wrapText="true" GridPane.rowIndex="1">
+                                                <TextArea fx:id="spellDesc" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="1">
                                                     <GridPane.margin>
-                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                     </GridPane.margin>
                                                 </TextArea>
                                             </children>
                                         </GridPane>
                                         <ListView fx:id="spellList">
                                             <GridPane.margin>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                             </GridPane.margin>
                                         </ListView>
                                     </children>
@@ -241,61 +190,51 @@
                 </Tab>
                 <Tab fx:id="equipmentTabDongle" text="Equipment">
                     <content>
-                        <AnchorPane fx:id="equipmentTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-                                    prefWidth="200.0">
+                        <AnchorPane fx:id="equipmentTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <StackPane fx:id="headPane" layoutX="300.0" layoutY="25.0"
-                                           onMouseClicked="#headPaneOnCLick">
+                                <StackPane fx:id="headPane" layoutX="300.0" layoutY="25.0" onMouseClicked="#headPaneOnCLick">
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                 </StackPane>
-                                <StackPane fx:id="bodyPane" layoutX="457.0" layoutY="142.0"
-                                           onMouseClicked="#bodyPaneOnClick">
+                                <StackPane fx:id="bodyPane" layoutX="457.0" layoutY="142.0" onMouseClicked="#bodyPaneOnClick">
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                 </StackPane>
-                                <StackPane fx:id="beltPane" layoutX="476.0" layoutY="298.0"
-                                           onMouseClicked="#beltPaneOnClick">
+                                <StackPane fx:id="beltPane" layoutX="476.0" layoutY="298.0" onMouseClicked="#beltPaneOnClick">
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                 </StackPane>
-                                <StackPane fx:id="amuletPane" layoutX="451.0" layoutY="75.0"
-                                           onMouseClicked="#amuletPaneOnClick">
+                                <StackPane fx:id="amuletPane" layoutX="451.0" layoutY="75.0" onMouseClicked="#amuletPaneOnClick">
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                 </StackPane>
-                                <StackPane fx:id="feetPane" layoutX="501.0" layoutY="482.0"
-                                           onMouseClicked="#feetPaneOnClick">
+                                <StackPane fx:id="feetPane" layoutX="501.0" layoutY="482.0" onMouseClicked="#feetPaneOnClick">
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                 </StackPane>
-                                <StackPane fx:id="legsPane" layoutX="275.0" layoutY="372.0"
-                                           onMouseClicked="#legsPaneOnClick">
+                                <StackPane fx:id="legsPane" layoutX="275.0" layoutY="372.0" onMouseClicked="#legsPaneOnClick">
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                 </StackPane>
-                                <StackPane fx:id="ringPane1" layoutX="275.0" layoutY="273.0"
-                                           onMouseClicked="#ring1PaneOnClick">
+                                <StackPane fx:id="ringPane1" layoutX="275.0" layoutY="273.0" onMouseClicked="#ring1PaneOnClick">
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                 </StackPane>
-                                <StackPane fx:id="ringPane2" layoutX="476.0" layoutY="236.0"
-                                           onMouseClicked="#ring2PaneOnClick">
+                                <StackPane fx:id="ringPane2" layoutX="476.0" layoutY="236.0" onMouseClicked="#ring2PaneOnClick">
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                 </StackPane>
-                                <StackPane fx:id="mantlePane" layoutX="250.0" layoutY="125.0"
-                                           onMouseClicked="#mantlePaneOnClick">
+                                <StackPane fx:id="mantlePane" layoutX="250.0" layoutY="125.0" onMouseClicked="#mantlePaneOnClick">
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                 </StackPane>
                             </children>
@@ -304,8 +243,7 @@
                 </Tab>
                 <Tab fx:id="inventoryTabDongle" text="Inventory">
                     <content>
-                        <AnchorPane fx:id="inventoryPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-                                    prefWidth="200.0"/>
+                        <AnchorPane fx:id="inventoryPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                 </Tab>
             </tabs>

@@ -342,4 +342,44 @@ public class CharacterController implements Controller {
     public void levelUpCharacter() {
         new LevelUpModel(CharacterView.getInstance().getStage());
     }
+
+    /**
+     * Called when user click on save in Game menu
+     */
+    @FXML
+    public void saveGameMenuOnClick() {
+        CharacterModel.getInstance().saveGame();
+    }
+
+    /**
+     * Called when user click on Open Item Manager in Game menu
+     */
+    @FXML
+    public void openItemManagerMenuOnClick() {
+        CharacterModel.getInstance().openItemManager();
+    }
+
+    /**
+     * Called when user click on Open Spell Manager in Game menu
+     */
+    @FXML
+    public void openSpellManagerMenuOnClick() {
+        CharacterModel.getInstance().openSpellManager();
+    }
+
+    /**
+     * Called when user click on back to menu in Game menu
+     */
+    @FXML
+    public void backToMenuMenuOnClick() {
+        CharacterView.getInstance().returnToMenu();
+    }
+
+    /**
+     * Called when user click on save in Game menu
+     */
+    @FXML
+    public void quitMenuOnClick() {
+        CharacterView.getInstance().close();
+    }
 }

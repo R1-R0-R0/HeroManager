@@ -2,6 +2,7 @@ package fr.univ_amu.heromanager.view;
 
 import fr.univ_amu.heromanager.controller.CharacterController;
 import fr.univ_amu.heromanager.Main;
+import fr.univ_amu.heromanager.model.gui.MenuModel;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -508,5 +509,20 @@ public class CharacterView implements View {
         ContainerPane<Item> source = ((ContainerPane<Item>) event.getSource());
         Item item = source.getContainedObject();
         CharacterModel.getInstance().inventoryClickedEvent(item, event);
+    }
+
+    /**
+     * Allows to close character view and return to menu
+     */
+    public void returnToMenu() {
+        close();
+        new MenuModel();
+    }
+
+    /**
+     * To close view
+     */
+    public void close() {
+        stage.close();
     }
 }

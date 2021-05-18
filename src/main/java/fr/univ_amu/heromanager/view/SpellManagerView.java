@@ -2,16 +2,17 @@ package fr.univ_amu.heromanager.view;
 
 import fr.univ_amu.heromanager.Main;
 import fr.univ_amu.heromanager.controller.SpellManagerController;
+import fr.univ_amu.heromanager.model.gui.SpellManagerModel;
+import fr.univ_amu.heromanager.model.spell.Component;
+import fr.univ_amu.heromanager.model.spell.Spell;
+import fr.univ_amu.heromanager.utils.gui.Dialog;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import fr.univ_amu.heromanager.model.gui.SpellManagerModel;
-import fr.univ_amu.heromanager.model.spell.Component;
-import fr.univ_amu.heromanager.model.spell.Spell;
-import fr.univ_amu.heromanager.utils.gui.Dialog;
 
 import java.io.IOException;
 import java.util.List;
@@ -39,6 +40,29 @@ public class SpellManagerView implements View {
             stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));
             stage.setOnCloseRequest(event -> SpellManagerModel.getInstance().returnToMenu());
+            stage.show();
+
+            instance = this;
+        } catch (IOException e) {
+            new Dialog("An error occurred while opening Spell Manager fr.univ_amu.heromanager.view", e).showAndWait();
+        }
+    }
+
+    /**
+     * 2nd constructor used when another view apart from menu is opening spell manager
+     *
+     * @param owner view caller
+     */
+    public SpellManagerView(Stage owner) {
+        try {
+            stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/spell_manager.fxml"));
+            stage.setTitle("HeroManager - Item Manager");
+            stage.getIcons().add(Main.APP_LOGO);
+            stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(event -> SpellManagerModel.getInstance().returnToMenu());
+            stage.initOwner(owner);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
 
             instance = this;
@@ -101,7 +125,7 @@ public class SpellManagerView implements View {
     }
 
     /**
-     * To set all fields by given spell attributs
+     * To set all fields by given spell attributes
      *
      * @param spell spell to set values
      */
@@ -133,7 +157,7 @@ public class SpellManagerView implements View {
     }
 
     /**
-     * Clearing all inputs in fr.univ_amu.heromanager.view
+     * Clearing all inputs in view
      */
     public void clearAllInputs() {
         SpellManagerController controller = SpellManagerController.getInstance();
@@ -156,7 +180,16 @@ public class SpellManagerView implements View {
     }
 
     /**
-     * To close fr.univ_amu.heromanager.view
+     * Stage getter of Spell manager view
+     *
+     * @return stage of view
+     */
+    public Stage getStage() {
+        return stage;
+    }
+
+    /**
+     * To close view
      */
     public void close() {
         stage.close();

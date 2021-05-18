@@ -2,8 +2,6 @@ package fr.univ_amu.heromanager.model.gui;
 
 import fr.univ_amu.heromanager.controller.ItemManagerController;
 import fr.univ_amu.heromanager.exceptions.UnsupportedItemException;
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
 import fr.univ_amu.heromanager.model.files.HeroManagerDB;
 import fr.univ_amu.heromanager.model.items.ItemType;
 import fr.univ_amu.heromanager.model.items.consumables.Consumable;
@@ -17,12 +15,15 @@ import fr.univ_amu.heromanager.utils.ListenableArrayList;
 import fr.univ_amu.heromanager.utils.gui.Dialog;
 import fr.univ_amu.heromanager.view.ItemManagerView;
 import fr.univ_amu.heromanager.view.MenuView;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * Model of Item Manager fr.univ_amu.heromanager.view.
+ * Model of Item Manager view.
  * Called to show item manager and handle its components
  *
  * @see ItemManagerView associated class fr.univ_amu.heromanager.view (MVC pattern)
@@ -38,7 +39,7 @@ public class ItemManagerModel implements Model {
 
     /**
      * Constructor of this class.
-     * When called, calls method to init fr.univ_amu.heromanager.view
+     * When called, calls method to init view
      */
     public ItemManagerModel() {
         instance = this;
@@ -56,6 +57,29 @@ public class ItemManagerModel implements Model {
         consumables.addListenerForAllActions(() -> ItemManagerView.getInstance().updateListViews());
 
         new ItemManagerView();
+    }
+
+    /**
+     * 2nd constructor used when another view apart from menu is opening item manager
+     *
+     * @param owner view caller
+     */
+    public ItemManagerModel(Stage owner) {
+        instance = this;
+
+        weapons = new ListenableArrayList<>();
+        equipments = new ListenableArrayList<>();
+        consumables = new ListenableArrayList<>();
+
+        setWeaponList(HeroManagerDB.getWeapons());
+        setEquipmentList(HeroManagerDB.getEquipments());
+        setConsumableList(HeroManagerDB.getConsumables());
+
+        weapons.addListenerForAllActions(() -> ItemManagerView.getInstance().updateListViews());
+        equipments.addListenerForAllActions(() -> ItemManagerView.getInstance().updateListViews());
+        consumables.addListenerForAllActions(() -> ItemManagerView.getInstance().updateListViews());
+
+        new ItemManagerView(owner);
     }
 
     /**
@@ -511,7 +535,7 @@ public class ItemManagerModel implements Model {
     }
 
     /**
-     * Allows to close fr.univ_amu.heromanager.view and return to menu
+     * Allows to close view and return to menu
      */
     public void returnToMenu() {
         Dialog busyDialog = new Dialog("Saving modifications, please wait...");
@@ -521,7 +545,8 @@ public class ItemManagerModel implements Model {
             HeroManagerDB.initJobs();
             Platform.runLater(() -> {
                 busyDialog.close();
-                new MenuView();
+                if (ItemManagerView.getInstance().getStage().getOwner() == null)
+                    new MenuView();
             });
         }).start();
 

@@ -1,10 +1,7 @@
 package fr.univ_amu.heromanager.model.gui;
 
 import fr.univ_amu.heromanager.exceptions.UnsupportedItemException;
-import javafx.scene.Node;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
+import fr.univ_amu.heromanager.model.files.HeroManagerDB;
 import fr.univ_amu.heromanager.model.items.Item;
 import fr.univ_amu.heromanager.model.items.ItemType;
 import fr.univ_amu.heromanager.model.items.equipments.Equipment;
@@ -13,6 +10,11 @@ import fr.univ_amu.heromanager.model.items.weapons.Weapon;
 import fr.univ_amu.heromanager.model.job.Job;
 import fr.univ_amu.heromanager.utils.gui.Dialog;
 import fr.univ_amu.heromanager.view.CharacterView;
+import javafx.application.Platform;
+import javafx.scene.Node;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -249,5 +251,36 @@ public class CharacterModel implements Model {
      */
     public Job getCharacter() {
         return character;
+    }
+
+    /**
+     * Allows to open item manager and blocks Character view while manager is opened
+     */
+    public void openItemManager() {
+        new ItemManagerModel(CharacterView.getInstance().getStage());
+    }
+
+    /**
+     * Allows to open spell manager and blocks Character view while manager is opened
+     */
+    public void openSpellManager() {
+        new SpellManagerModel(CharacterView.getInstance().getStage());
+    }
+
+    /**
+     * When called, allows to save game manually
+     */
+    public void saveGame() {
+        Dialog busyDialog = new Dialog("Saving modifications, please wait...");
+
+        new Thread(() -> {
+            HeroManagerDB.initJobs();
+            Platform.runLater(() -> {
+                busyDialog.close();
+                new Dialog(Alert.AlertType.INFORMATION, "Game saved", "Game has been saved successfully !").show();
+            });
+        }).start();
+
+        busyDialog.showAndWait();
     }
 }
