@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.*?>
+<GridPane fx:id="window" alignment="CENTER" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/splash_screen.css"
+          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="fr.univ_amu.heromanager.controller.SplashScreenController">
+    <children>
+        <Pane fx:id="img" layoutX="200.0" layoutY="200.0" prefHeight="200.0" prefWidth="200.0"
+              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+              AnchorPane.topAnchor="0.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"/>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <children>
+                <ProgressBar fx:id="loadingProgress" layoutX="200.0" layoutY="4.0" progress="0.0" visible="false"
+                             AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+                             AnchorPane.topAnchor="5.0"/>
+            </children>
+        </AnchorPane>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0"/>
+    </rowConstraints>
+</GridPane>
