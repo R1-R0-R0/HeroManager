@@ -55,7 +55,6 @@ public class CharacterCreatorView implements View {
             stage.show();
 
             instance = this;
-            throw new IOException("I love messages");
         } catch (IOException e) {
             new Dialog("An error occurred while opening Character Creator view", e).showAndWait();
         }

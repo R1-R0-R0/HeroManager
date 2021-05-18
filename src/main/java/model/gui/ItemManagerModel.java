@@ -2,6 +2,7 @@ package model.gui;
 
 import controller.ItemManagerController;
 import exceptions.UnsupportedItemException;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import model.files.HeroManagerDB;
 import model.items.ItemType;
@@ -15,6 +16,8 @@ import model.items.weapons.WeaponType;
 import utils.ListenableArrayList;
 import utils.gui.Dialog;
 import view.ItemManagerView;
+import view.MenuView;
+import view.SpellManagerView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -512,7 +515,17 @@ public class ItemManagerModel implements Model {
      * Allows to close view and return to menu
      */
     public void returnToMenu() {
+        Dialog busyDialog = new Dialog("Saving modifications, please wait...");
         ItemManagerView.getInstance().close();
-        new MenuModel();
+
+        new Thread(() -> {
+            HeroManagerDB.initJobs();
+            Platform.runLater(() -> {
+                busyDialog.close();
+                new MenuView();
+            });
+        }).start();
+
+        busyDialog.showAndWait();
     }
 }

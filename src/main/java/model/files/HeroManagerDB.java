@@ -55,7 +55,7 @@ public class HeroManagerDB {
      * Found designed item into the database and set it for all jobs
      * https://www.youtube.com/watch?v=YPN0qhSyWy8
      */
-    private static void initJobs() {
+    public static void initJobs() {
         for (Job job : jobs) {
             for (int i = 0; i < job.getSpellInventory().size(); i++) {
                 if (job.getSpellInventory().get(i) == null) continue;

@@ -1,12 +1,14 @@
 package model.gui;
 
 import controller.SpellManagerController;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import model.files.HeroManagerDB;
 import model.spell.Component;
 import model.spell.Spell;
 import utils.ListenableArrayList;
 import utils.gui.Dialog;
+import view.MenuView;
 import view.SpellManagerView;
 
 import java.util.ArrayList;
@@ -238,10 +240,19 @@ public class SpellManagerModel implements Model {
     }
 
     /**
-     * Allows to close view and return to menu
+     * Allows to save modifications, close view and return to menu
      */
     public void returnToMenu() {
+        Dialog busyDialog = new Dialog("Saving modifications, please wait...");
+        busyDialog.show();
         SpellManagerView.getInstance().close();
-        new MenuModel();
+
+        new Thread(() -> {
+            HeroManagerDB.initJobs();
+            Platform.runLater(() -> {
+                busyDialog.close();
+                new MenuView();
+            });
+        }).start();
     }
 }

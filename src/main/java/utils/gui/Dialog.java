@@ -87,6 +87,9 @@ public class Dialog {
         alert.setTitle("Hero Manager");
         alert.setContentText(message);
 
+        alert.getDialogPane().getButtonTypes().clear();
+        alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+
         exceptionAlert = false;
     }
 
