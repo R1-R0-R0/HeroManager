@@ -102,7 +102,7 @@ public class DiceModel implements Model {
     public void howItWorksEvent() {
         Dialog dialog = new Dialog(
                 Alert.AlertType.INFORMATION,
-                "How dice thorwer works ?",
+                "How dice thrower works ?",
                 "Type in given text field the formula of what dices you want.\n" +
                         "For an example, if you want 3 dices of 20, and 2 dices of 10:\n" +
                         "3d10 + 2d10.\n" +
