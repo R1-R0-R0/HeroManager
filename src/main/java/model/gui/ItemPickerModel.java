@@ -34,14 +34,14 @@ public class ItemPickerModel implements Model {
     private final ListenableArrayList<Weapon> weapons;
     private final ListenableArrayList<Equipment> equipments;
     private final ListenableArrayList<Consumable> consumables;
-    private Item selectedItem;
     private final ItemPickerCloseEvent closeListener;
+    private Item selectedItem;
 
     /**
      * 1st constructor of this class.
      * When called, init Item Picker view and calling view.
      *
-     * @param owner calling view
+     * @param owner         calling view
      * @param closeListener listener to call when context is closing
      */
     public ItemPickerModel(Stage owner, ItemPickerCloseEvent closeListener) {
@@ -77,8 +77,8 @@ public class ItemPickerModel implements Model {
      * When called, init Item Picker view, calling view and wanted item type.
      * Use this constructor to force user to select specific item type
      *
-     * @param owner    calling view
-     * @param itemType item type user needs to select
+     * @param owner         calling view
+     * @param itemType      item type user needs to select
      * @param closeListener listener to call when context is closing and returning selected item
      */
     public ItemPickerModel(Stage owner, ItemType itemType, ItemPickerCloseEvent closeListener) {
@@ -179,7 +179,7 @@ public class ItemPickerModel implements Model {
     /**
      * Save selected item and show its information
      *
-     * @param item
+     * @param item selected item
      */
     public void setSelectedItem(Item item) {
         selectedItem = item;

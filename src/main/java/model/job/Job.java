@@ -18,7 +18,15 @@ import java.util.List;
 public class Job {
     public final static int BASE_STATS = 10;
     public final static int ADDITIONAL_STATS = 12;
-
+    private final Gender gender;
+    private final Alignment alignment;
+    private final Race race;
+    private final JobType jobType;
+    private final String name;
+    private final String description;
+    private final List<Spell> spellInventory;
+    private final List<JobSkill> skills;
+    private final List<Improvement> improvements;
     private int level,
             strength,
             dexterity,
@@ -28,20 +36,11 @@ public class Job {
             charisma,
             armor,
             healthPoints,
-            speed;
-    private final Gender gender;
-    private int additionalStatPoints;
-    private final Alignment alignment;
-    private final Race race;
-    private final JobType jobType;
+            speed,
+            additionalStatPoints;
     private List<Item> inventory;
     private EquipmentInventory equippedEquipments;
-    private final String name;
-    private final String description;
     private int[] spellSlots;
-    private final List<Spell> spellInventory;
-    private final List<JobSkill> skills;
-    private final List<Improvement> improvements;
 
     public Job(String name, String description, Gender gender, Alignment alignment, Race race, JobType jobType) {
         this.name = name;
@@ -52,12 +51,12 @@ public class Job {
         this.jobType = jobType;
         this.improvements = race.getImprovements();
         this.improvements.addAll(jobType.getImprovements());
-        this.equippedEquipments = new EquipmentInventory(null,null,null,null,null,null,null,null,null,null);
+        this.equippedEquipments = new EquipmentInventory(null, null, null, null, null, null, null, null, null, null);
 
         inventory = new ArrayList<>();
         spellInventory = new ArrayList<>();
         skills = new ArrayList<>();
-        equippedEquipments = new EquipmentInventory(null,null,null,null,null,null,null,null,null,null);
+        equippedEquipments = new EquipmentInventory(null, null, null, null, null, null, null, null, null, null);
 
         level = 1;
         armor = BASE_STATS;
@@ -104,69 +103,8 @@ public class Job {
     }
 
     /**
-     * allow to define the number of spell you can use for each level and each class
-     *
-     * @param level
-     */
-    private void setSpellSlots(int level) {
-
-        switch (jobType) {
-            case SORCERER, DRUID, CLERIC, BARD, WIZARD -> {
-                switch (level) {
-                    case 1 -> spellSlots = new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0};
-                    case 2 -> spellSlots = new int[]{3, 0, 0, 0, 0, 0, 0, 0, 0};
-                    case 3 -> spellSlots = new int[]{4, 2, 0, 0, 0, 0, 0, 0, 0};
-                    case 4 -> spellSlots = new int[]{4, 3, 0, 0, 0, 0, 0, 0, 0};
-                    case 5 -> spellSlots = new int[]{4, 3, 2, 0, 0, 0, 0, 0, 0};
-                    case 6 -> spellSlots = new int[]{4, 3, 3, 0, 0, 0, 0, 0, 0};
-                    case 7 -> spellSlots = new int[]{4, 3, 3, 1, 0, 0, 0, 0, 0};
-                    case 8 -> spellSlots = new int[]{4, 3, 3, 2, 0, 0, 0, 0, 0};
-                    case 9 -> spellSlots = new int[]{4, 3, 3, 3, 1, 0, 0, 0, 0};
-                    case 10 -> spellSlots = new int[]{4, 3, 3, 3, 2, 0, 0, 0, 0};
-                    case 11, 12 -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 0, 0, 0};
-                    case 13, 14 -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 1, 0, 0};
-                    case 15, 16 -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 1, 1, 0};
-                    case 17 -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 1, 1, 1};
-                    case 18 -> spellSlots = new int[]{4, 3, 3, 3, 3, 1, 1, 1, 1};
-                    case 19 -> spellSlots = new int[]{4, 3, 3, 3, 3, 2, 1, 1, 1};
-                    default -> spellSlots = new int[]{4, 3, 3, 3, 3, 2, 2, 1, 1};
-                }
-            }
-            case PALADIN, RANGER -> {
-                switch (level) {
-                    case 1 -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-                    case 2 -> spellSlots = new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0};
-                    case 3, 4 -> spellSlots = new int[]{3, 0, 0, 0, 0, 0, 0, 0, 0};
-                    case 5, 6 -> spellSlots = new int[]{4, 2, 0, 0, 0, 0, 0, 0, 0};
-                    case 7, 8 -> spellSlots = new int[]{4, 3, 0, 0, 0, 0, 0, 0, 0};
-                    case 9, 10 -> spellSlots = new int[]{4, 3, 2, 0, 0, 0, 0, 0, 0};
-                    case 11, 12 -> spellSlots = new int[]{4, 3, 3, 0, 0, 0, 0, 0, 0};
-                    case 13, 14 -> spellSlots = new int[]{4, 3, 3, 1, 0, 0, 0, 0, 0};
-                    case 15, 16 -> spellSlots = new int[]{4, 3, 3, 2, 0, 0, 0, 0, 0};
-                    case 17, 18 -> spellSlots = new int[]{4, 3, 3, 3, 1, 0, 0, 0, 0};
-                    default -> spellSlots = new int[]{4, 3, 3, 3, 2, 0, 0, 0, 0};
-                }
-            }
-            case WARLOCK -> {
-                switch (level) {
-                    case 1 -> spellSlots = new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0};
-                    case 2 -> spellSlots = new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0};
-                    case 3, 4 -> spellSlots = new int[]{0, 2, 0, 0, 0, 0, 0, 0, 0};
-                    case 5, 6 -> spellSlots = new int[]{0, 0, 2, 0, 0, 0, 0, 0, 0};
-                    case 7, 8 -> spellSlots = new int[]{0, 0, 0, 2, 0, 0, 0, 0, 0};
-                    case 9, 10 -> spellSlots = new int[]{0, 0, 0, 0, 2, 0, 0, 0, 0};
-                    case 11, 12 -> spellSlots = new int[]{0, 0, 0, 0, 0, 3, 0, 0, 0};
-                    case 13, 14 -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 3, 0, 0};
-                    case 15, 16 -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 3, 0};
-                    default -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 4};
-                }
-            }
-            default -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-        }
-    }
-
-    /**
      * give maximum health points
+     *
      * @return the maximum health points of a character
      */
     public int getMaxHp() {
@@ -176,6 +114,7 @@ public class Job {
 
     /**
      * give current health points
+     *
      * @return current health points of a character
      */
     public int getHealthPoints() {
@@ -184,21 +123,18 @@ public class Job {
 
     /**
      * allow you to set the amount of health points of a character can't be superior than max HealthPoint
-     * @param healthPoints
+     *
+     * @param healthPoints health points to set
      */
     public void setHealthPoints(int healthPoints) {
         int max = getMaxHp();
-        if(healthPoints < max) {
-            this.healthPoints = healthPoints;
-        }else{
-            this.healthPoints = max;
-        }
-
+        this.healthPoints = Math.min(healthPoints, max);
     }
 
     /**
      * give a value proportional to the parameter statValue
-     * @param statValue
+     *
+     * @param statValue given value
      * @return a value proportional to the parameter
      */
     public int getModificator(int statValue) {
@@ -218,6 +154,7 @@ public class Job {
 
     /**
      * give base armor of the character
+     *
      * @return amount of base armor of the character
      */
     public int getArmor() {
@@ -225,11 +162,28 @@ public class Job {
     }
 
     /**
+     * set the armor value
+     *
+     * @param value armor points to set
+     */
+    public void setArmor(int value) {
+        armor = value;
+    }
+
+    /**
      * give level of the character
+     *
      * @return level of the character
      */
     public int getLevel() {
         return level;
+    }
+
+    /**
+     * Set of setter for job no final attribut
+     */
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     /**
@@ -239,7 +193,7 @@ public class Job {
      */
     public int getProficiencyLevel() {
 
-        double proficiency = 1 + ((double)level/4);
+        double proficiency = 1 + ((double) level / 4);
         System.out.println(proficiency);
         return (int) Math.ceil(proficiency);
 
@@ -247,54 +201,85 @@ public class Job {
 
     /**
      * give base strength
+     *
      * @return base strength of the character
      */
     public int getStrength() {
         return strength;
     }
 
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
     /**
      * give base dexterity
+     *
      * @return base dexterity of the character
      */
     public int getDexterity() {
         return dexterity;
     }
 
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+
     /**
      * give base intelligence
+     *
      * @return base Intelligence of the character
      */
     public int getIntelligence() {
         return intelligence;
     }
 
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
     /**
      * give base wisdom
+     *
      * @return base wisdom of the character
      */
     public int getWisdom() {
         return wisdom;
     }
 
+    public void setWisdom(int wisdom) {
+        this.wisdom = wisdom;
+    }
+
     /**
      * give base charisma
+     *
      * @return base charisma of the character
      */
     public int getCharisma() {
         return charisma;
     }
 
+    public void setCharisma(int charisma) {
+        this.charisma = charisma;
+    }
+
     /**
      * give base robustness
+     *
      * @return base robustness of the character
      */
     public int getRobustness() {
         return robustness;
     }
 
+    public void setRobustness(int robustness) {
+        this.robustness = robustness;
+    }
+
     /**
      * give base speed
+     *
      * @return base speed of the character
      */
     public int getSpeed() {
@@ -303,20 +288,22 @@ public class Job {
 
     /**
      * allow use to set the speed of the character
-     * @param speed
+     *
+     * @param speed speed value to set
      */
-    public void setSpeed(int speed){
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 
     /**
      * get armorBoost coming from equipments
+     *
      * @return armorBoost coming from equipments
      */
     public int getArmorBoost() {
         int result = 0;
         for (Equipment equip : equippedEquipments.getEquippedList()) {
-            if(equip != null)
+            if (equip != null)
                 result += equip.getArmorBonus();
         }
         return result;
@@ -324,6 +311,7 @@ public class Job {
 
     /**
      * get strength boost coming from equipments and improvements
+     *
      * @return strength boost coming from equipments and improvements
      */
     public int getStrengthBoost() {
@@ -335,9 +323,9 @@ public class Job {
 
         result += race.getStrengthBoost();
 
-        if(equippedEquipments.getEquippedList() != null){
+        if (equippedEquipments.getEquippedList() != null) {
             for (Equipment equip : equippedEquipments.getEquippedList()) {
-                if(equip != null)
+                if (equip != null)
                     result += equip.getStrengthBoost();
 
             }
@@ -348,6 +336,7 @@ public class Job {
 
     /**
      * get dexterity boost coming from equipments and improvements
+     *
      * @return dexterity boost coming from equipments and improvements
      */
     public int getDexterityBoost() {
@@ -359,9 +348,9 @@ public class Job {
 
         result += race.getDexterityBoost();
 
-        if(equippedEquipments.getEquippedList() != null){
+        if (equippedEquipments.getEquippedList() != null) {
             for (Equipment equip : equippedEquipments.getEquippedList()) {
-                if(equip !=null)
+                if (equip != null)
                     result += equip.getDexterityBoost();
             }
         }
@@ -370,6 +359,7 @@ public class Job {
 
     /**
      * get robustness boost coming from equipments and improvements
+     *
      * @return robustness boost coming from equipments and improvements
      */
     public int getRobustnessBoost() {
@@ -381,9 +371,9 @@ public class Job {
 
         result += race.getRobustnessBoost();
 
-        if(equippedEquipments.getEquippedList() != null) {
+        if (equippedEquipments.getEquippedList() != null) {
             for (Equipment equip : equippedEquipments.getEquippedList()) {
-                if(equip!=null)
+                if (equip != null)
                     result += equip.getRobustnessBoost();
 
             }
@@ -393,6 +383,7 @@ public class Job {
 
     /**
      * get intelligence boost coming from equipments and improvements
+     *
      * @return intelligence boost coming from equipments and improvements
      */
     public int getIntelligenceBoost() {
@@ -404,9 +395,9 @@ public class Job {
 
         result += race.getIntelligenceBoost();
 
-        if(equippedEquipments.getEquippedList() != null) {
+        if (equippedEquipments.getEquippedList() != null) {
             for (Equipment equip : equippedEquipments.getEquippedList()) {
-                if(equip !=null)
+                if (equip != null)
                     result += equip.getIntelligenceBoost();
 
             }
@@ -416,6 +407,7 @@ public class Job {
 
     /**
      * get wisdom boost coming from equipments and improvements
+     *
      * @return wisdom boost coming from equipments and improvements
      */
     public int getWisdomBoost() {
@@ -426,9 +418,9 @@ public class Job {
         }
 
         result += race.getWisdomBoost();
-        if(equippedEquipments.getEquippedList() != null) {
+        if (equippedEquipments.getEquippedList() != null) {
             for (Equipment equip : equippedEquipments.getEquippedList()) {
-                if(equip !=null)
+                if (equip != null)
                     result += equip.getWisdomBoost();
 
             }
@@ -438,6 +430,7 @@ public class Job {
 
     /**
      * get charisma boost coming from equipments and improvements
+     *
      * @return charisma boost coming from equipments and improvements
      */
     public int getCharismaBoost() {
@@ -448,9 +441,9 @@ public class Job {
         }
 
         result += race.getCharismaBoost();
-        if(equippedEquipments.getEquippedList() != null) {
+        if (equippedEquipments.getEquippedList() != null) {
             for (Equipment equip : equippedEquipments.getEquippedList()) {
-                if(equip != null)
+                if (equip != null)
                     result += equip.getCharismaBoost();
 
             }
@@ -460,6 +453,7 @@ public class Job {
 
     /**
      * get Speed boosts from equipments and improvements
+     *
      * @return speed boost coming from equipments and improvements
      */
     public int getSpeedBoost() {
@@ -469,23 +463,14 @@ public class Job {
             result += improve.getSpeedBoost();
         }
 
-        if(equippedEquipments.getEquippedList() != null) {
+        if (equippedEquipments.getEquippedList() != null) {
             for (Equipment equip : equippedEquipments.getEquippedList()) {
-                if(equip != null)
+                if (equip != null)
                     result += equip.getSpeedBoost();
 
             }
         }
         return result;
-    }
-
-    /**
-     * set the armor value
-     *
-     * @param value
-     */
-    public void setArmor(int value) {
-        armor = value;
     }
 
     /**
@@ -562,6 +547,7 @@ public class Job {
 
     /**
      * get race of the character
+     *
      * @return race of the character
      */
     public Race getRaceType() {
@@ -570,6 +556,7 @@ public class Job {
 
     /**
      * get the jobtype of the character
+     *
      * @return jobtype of the character
      */
     public JobType getJobType() {
@@ -578,19 +565,24 @@ public class Job {
 
     /**
      * get the inventory of the character
+     *
      * @return the inventory of the character
      */
     public List<Item> getInventory() {
         return inventory;
     }
 
-    public void removeFromInventory(Equipment equipment){
-        if(equipment == null){
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public void removeFromInventory(Equipment equipment) {
+        if (equipment == null) {
             return;
         }
         List<Item> newInventory = new ArrayList<>();
-        for (Item item: inventory) {
-            if(item != null && !item.getName().equals(equipment.getName())){
+        for (Item item : inventory) {
+            if (item != null && !item.getName().equals(equipment.getName())) {
                 newInventory.add(item);
             }
 
@@ -600,6 +592,7 @@ public class Job {
 
     /**
      * get name of the character
+     *
      * @return name of the character
      */
     public String getName() {
@@ -608,6 +601,7 @@ public class Job {
 
     /**
      * get description of the character
+     *
      * @return description of the character
      */
     public String getDescription() {
@@ -616,6 +610,7 @@ public class Job {
 
     /**
      * get spell slots of the character
+     *
      * @return spell slots of the character
      */
     public int[] getSpellSlots() {
@@ -623,7 +618,74 @@ public class Job {
     }
 
     /**
+     * allow to define the number of spell you can use for each level and each class
+     *
+     * @param level targeted level
+     */
+    private void setSpellSlots(int level) {
+
+        switch (jobType) {
+            case SORCERER, DRUID, CLERIC, BARD, WIZARD -> {
+                switch (level) {
+                    case 1 -> spellSlots = new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 2 -> spellSlots = new int[]{3, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 3 -> spellSlots = new int[]{4, 2, 0, 0, 0, 0, 0, 0, 0};
+                    case 4 -> spellSlots = new int[]{4, 3, 0, 0, 0, 0, 0, 0, 0};
+                    case 5 -> spellSlots = new int[]{4, 3, 2, 0, 0, 0, 0, 0, 0};
+                    case 6 -> spellSlots = new int[]{4, 3, 3, 0, 0, 0, 0, 0, 0};
+                    case 7 -> spellSlots = new int[]{4, 3, 3, 1, 0, 0, 0, 0, 0};
+                    case 8 -> spellSlots = new int[]{4, 3, 3, 2, 0, 0, 0, 0, 0};
+                    case 9 -> spellSlots = new int[]{4, 3, 3, 3, 1, 0, 0, 0, 0};
+                    case 10 -> spellSlots = new int[]{4, 3, 3, 3, 2, 0, 0, 0, 0};
+                    case 11, 12 -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 0, 0, 0};
+                    case 13, 14 -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 1, 0, 0};
+                    case 15, 16 -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 1, 1, 0};
+                    case 17 -> spellSlots = new int[]{4, 3, 3, 3, 2, 1, 1, 1, 1};
+                    case 18 -> spellSlots = new int[]{4, 3, 3, 3, 3, 1, 1, 1, 1};
+                    case 19 -> spellSlots = new int[]{4, 3, 3, 3, 3, 2, 1, 1, 1};
+                    default -> spellSlots = new int[]{4, 3, 3, 3, 3, 2, 2, 1, 1};
+                }
+            }
+            case PALADIN, RANGER -> {
+                switch (level) {
+                    case 1 -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 2 -> spellSlots = new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 3, 4 -> spellSlots = new int[]{3, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 5, 6 -> spellSlots = new int[]{4, 2, 0, 0, 0, 0, 0, 0, 0};
+                    case 7, 8 -> spellSlots = new int[]{4, 3, 0, 0, 0, 0, 0, 0, 0};
+                    case 9, 10 -> spellSlots = new int[]{4, 3, 2, 0, 0, 0, 0, 0, 0};
+                    case 11, 12 -> spellSlots = new int[]{4, 3, 3, 0, 0, 0, 0, 0, 0};
+                    case 13, 14 -> spellSlots = new int[]{4, 3, 3, 1, 0, 0, 0, 0, 0};
+                    case 15, 16 -> spellSlots = new int[]{4, 3, 3, 2, 0, 0, 0, 0, 0};
+                    case 17, 18 -> spellSlots = new int[]{4, 3, 3, 3, 1, 0, 0, 0, 0};
+                    default -> spellSlots = new int[]{4, 3, 3, 3, 2, 0, 0, 0, 0};
+                }
+            }
+            case WARLOCK -> {
+                switch (level) {
+                    case 1 -> spellSlots = new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 2 -> spellSlots = new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0};
+                    case 3, 4 -> spellSlots = new int[]{0, 2, 0, 0, 0, 0, 0, 0, 0};
+                    case 5, 6 -> spellSlots = new int[]{0, 0, 2, 0, 0, 0, 0, 0, 0};
+                    case 7, 8 -> spellSlots = new int[]{0, 0, 0, 2, 0, 0, 0, 0, 0};
+                    case 9, 10 -> spellSlots = new int[]{0, 0, 0, 0, 2, 0, 0, 0, 0};
+                    case 11, 12 -> spellSlots = new int[]{0, 0, 0, 0, 0, 3, 0, 0, 0};
+                    case 13, 14 -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 3, 0, 0};
+                    case 15, 16 -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 3, 0};
+                    default -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 4};
+                }
+            }
+            default -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+        }
+    }
+
+    public void setSpellSlots(int[] spellSlots) {
+        this.spellSlots = spellSlots;
+    }
+
+    /**
      * get list of spells of the character
+     *
      * @return list of spells of the character
      */
     public List<Spell> getSpellInventory() {
@@ -632,6 +694,7 @@ public class Job {
 
     /**
      * get list of improvements of the character
+     *
      * @return list of improvements of the character
      */
     public List<Improvement> getImprovements() {
@@ -640,6 +703,7 @@ public class Job {
 
     /**
      * get list of jobskills of the character
+     *
      * @return list of jobskills of the character
      */
     public List<JobSkill> getSkills() {
@@ -648,26 +712,29 @@ public class Job {
 
     /**
      * get the list of equipped equipments
+     *
      * @return the list of equipped equipments
      */
     public EquipmentInventory getEquippedEquipments() {
         return equippedEquipments;
     }
 
+    public void setEquippedEquipments(EquipmentInventory equippedEquipments) {
+        this.equippedEquipments = equippedEquipments;
+    }
 
     /**
      * get the Equipment of given EquipmentPart
-     * @param equipmentPart
+     *
+     * @param equipmentPart equipment part to get
      * @return Equipment of given EquipmentPart
-     * @throws UnsupportedItemException
+     * @throws UnsupportedItemException If item isn't supported
      */
     public Equipment getEquipment(EquipmentPart equipmentPart) throws UnsupportedItemException {
-
-        if(equipmentPart == null){
+        if (equipmentPart == null)
             throw new UnsupportedItemException("Equipment Part " + null + " isn't supported");
-        }
 
-        switch (equipmentPart){
+        switch (equipmentPart) {
             case BELT -> {
                 return equippedEquipments.getBelt();
             }
@@ -692,27 +759,26 @@ public class Job {
             case MANTLE -> {
                 return equippedEquipments.getMantle();
             }
-            case RING ->  {
+            case RING -> {
                 return equippedEquipments.getLeftRing();
             }
             case RING2 -> {
                 return equippedEquipments.getRightRing();
             }
-            default ->{
-                throw new UnsupportedItemException("Equipment Part " + equipmentPart + " isn't supported");
-            }
+            default -> throw new UnsupportedItemException("Equipment Part " + equipmentPart + " isn't supported");
         }
     }
 
     /**
      * remove an equipped equipment from the EquipmentInventory
-     * @param equipment
+     *
+     * @param equipment equipment to remove
      */
     public void removeEquippedEquipment(Equipment equipment) {
         if (equipment == null) {
             return;
         }
-        switch (equipment.getEquipmentPart()){
+        switch (equipment.getEquipmentPart()) {
             case BELT -> equippedEquipments.removeBelt();
             case BODY -> equippedEquipments.removeBody();
             case FEET -> equippedEquipments.removeFeet();
@@ -730,16 +796,17 @@ public class Job {
     /**
      * remove Left ring equipment
      */
-    public void removeLeftRing(){
+    public void removeLeftRing() {
         Equipment ring = equippedEquipments.getLeftRing();
         equippedEquipments.removeLeftRing();
-        if(!inventory.contains(ring))
+        if (!inventory.contains(ring))
             inventory.add(ring);
     }
+
     /**
      * remove Right ring equipment
      */
-    public void removeRightRing(){
+    public void removeRightRing() {
         Equipment ring = equippedEquipments.getRightRing();
         equippedEquipments.removeRightRing();
         inventory.add(ring);
@@ -747,13 +814,14 @@ public class Job {
 
     /**
      * add new equipped equipment if there's no equipped equipment of same EquipmentPart yet and remove it from inventory
-     * @param equipment
+     *
+     * @param equipment equipment to equip
      */
-    public void addEquippedEquipment(Equipment equipment){
-        if(equipment == null){
+    public void addEquippedEquipment(Equipment equipment) {
+        if (equipment == null) {
             return;
         }
-        switch (equipment.getEquipmentPart()){
+        switch (equipment.getEquipmentPart()) {
             case BELT -> equippedEquipments.addBelt(equipment);
             case BODY -> equippedEquipments.addBody(equipment);
             case FEET -> equippedEquipments.addFeet(equipment);
@@ -764,16 +832,17 @@ public class Job {
             case MANTLE -> equippedEquipments.addMantle(equipment);
             default -> addLeftRing(equipment);
         }
-        if(equippedEquipments.getEquippedList().contains(equipment))
+        if (equippedEquipments.getEquippedList().contains(equipment))
             removeFromInventory(equipment);
     }
 
     /**
      * add new LeftRing if there's no leftRing already equipped and remove it from inventory
-     * @param equipment
+     *
+     * @param equipment left ring to equip
      */
-    public void addLeftRing(Equipment equipment){
-        if(equipment == null){
+    public void addLeftRing(Equipment equipment) {
+        if (equipment == null) {
             return;
         }
         equippedEquipments.addLeftRing(equipment);
@@ -782,10 +851,11 @@ public class Job {
 
     /**
      * add new RightRing if there's not RightRing already equipped and remove it from inventory
-     * @param equipment
+     *
+     * @param equipment right ring to equip
      */
-    public void addRightRing(Equipment equipment){
-        if(equipment == null){
+    public void addRightRing(Equipment equipment) {
+        if (equipment == null) {
             return;
         }
         equippedEquipments.addRightRing(equipment);
@@ -794,14 +864,15 @@ public class Job {
 
     /**
      * replace equippedEquipment by the param equipment
-     * @param equipment
+     *
+     * @param equipment equipped equipment to replace
      */
-    public void replaceEquippedEquipment(Equipment equipment){
+    public void replaceEquippedEquipment(Equipment equipment) {
         Equipment equipped;
-        if(equipment == null){
+        if (equipment == null) {
             return;
         }
-        switch (equipment.getEquipmentPart()){
+        switch (equipment.getEquipmentPart()) {
             case BELT -> {
                 equipped = equippedEquipments.getBelt();
                 equippedEquipments.removeBelt();
@@ -848,48 +919,49 @@ public class Job {
             }
 
         }
-        if(equippedEquipments.getEquippedList().contains(equipment))
+        if (equippedEquipments.getEquippedList().contains(equipment))
             removeFromInventory(equipment);
         inventory.add(equipped);
     }
 
     /**
      * Replace equipped Left ring by param
-     * @param equipment
+     *
+     * @param equipment left ring to replace
      */
-    public void replaceLeftRing(Equipment equipment){
-        if(equipment.getEquipmentPart() != EquipmentPart.RING)
+    public void replaceLeftRing(Equipment equipment) {
+        if (equipment.getEquipmentPart() != EquipmentPart.RING)
             return;
 
         Equipment equipped = equippedEquipments.getLeftRing();
         removeLeftRing();
         addLeftRing(equipment);
 
-        if(equippedEquipments.getEquippedList().contains(equipment))
+        if (equippedEquipments.getEquippedList().contains(equipment))
             removeFromInventory(equipment);
-        if(!inventory.contains(equipped)) {
+        if (!inventory.contains(equipped)) {
             inventory.add(equipped);
         }
     }
 
     /**
      * Replace equipped right ring by param
-     * @param equipment
+     *
+     * @param equipment right ring to replace
      */
-    public void replaceRightRing(Equipment equipment){
+    public void replaceRightRing(Equipment equipment) {
 
-        if(equipment.getEquipmentPart() != EquipmentPart.RING)
+        if (equipment.getEquipmentPart() != EquipmentPart.RING)
             return;
 
         Equipment equipped = equippedEquipments.getRightRing();
         removeRightRing();
         addRightRing(equipment);
 
-        if(equippedEquipments.getEquippedList().contains(equipment))
+        if (equippedEquipments.getEquippedList().contains(equipment))
             removeFromInventory(equipment);
         inventory.add(equipped);
     }
-
 
     /**
      * allow to increase base Strength can't be superior from 15 at character creation
@@ -996,7 +1068,7 @@ public class Job {
      * allow to increase base charisma can't be superior from 15 at character creation
      */
     public void increaseCharisma() {
-            charisma++;
+        charisma++;
     }
 
     /**
@@ -1022,6 +1094,7 @@ public class Job {
 
     /**
      * give the the Alignment of the character
+     *
      * @return the Alignment of the character
      */
     public Alignment getAlignment() {
@@ -1030,6 +1103,7 @@ public class Job {
 
     /**
      * give the Race of the character
+     *
      * @return the Race of the character
      */
     public Race getRace() {
@@ -1038,6 +1112,7 @@ public class Job {
 
     /**
      * give amount of additional statistics points
+     *
      * @return the amount of additional statistics points
      */
     public int getAdditionalStatPoints() {
@@ -1047,7 +1122,7 @@ public class Job {
     /**
      * set the statistics point to parameter value
      *
-     * @param additionalStatPoints
+     * @param additionalStatPoints additional stats points to set
      */
     public void setAdditionalStatPoints(int additionalStatPoints) {
         if (additionalStatPoints < 0)
@@ -1058,7 +1133,7 @@ public class Job {
     /**
      * add an improvement to the list of improvement of the character
      *
-     * @param improvement
+     * @param improvement improvement to add
      */
     public void addImprovement(Improvement improvement) {
         improvements.add(improvement);
@@ -1067,15 +1142,15 @@ public class Job {
     /**
      * add a spell in the spellList of the character
      *
-     * @param spell
+     * @param spell spell to add
      */
     public void addSpell(Spell spell) {
         spellInventory.add(spell);
     }
 
-
     /**
      * give the gender of the character
+     *
      * @return the gender of the character
      */
     public Gender getGender() {
@@ -1084,54 +1159,11 @@ public class Job {
 
     /**
      * give the name of the Character
+     *
      * @return name of the Character
      */
     @Override
     public String toString() {
         return name;
-    }
-
-
-    /**
-     * Set of setter for job no final attribut
-     */
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public void setDexterity(int dexterity) {
-        this.dexterity = dexterity;
-    }
-
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
-
-    public void setWisdom(int wisdom) {
-        this.wisdom = wisdom;
-    }
-
-    public void setRobustness(int robustness) {
-        this.robustness = robustness;
-    }
-
-    public void setCharisma(int charisma) {
-        this.charisma = charisma;
-    }
-
-    public void setSpellSlots(int[] spellSlots) {
-        this.spellSlots = spellSlots;
-    }
-
-    public void setInventory(List<Item> inventory) {
-        this.inventory = inventory;
-    }
-
-    public void setEquippedEquipments(EquipmentInventory equippedEquipments) {
-        this.equippedEquipments = equippedEquipments;
     }
 }

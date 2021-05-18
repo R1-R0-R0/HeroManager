@@ -25,6 +25,10 @@ public class Weapon implements Item {
         return properties;
     }
 
+    public void setProperties(String properties) {
+        this.properties = properties;
+    }
+
     /**
      * @return type of weapon
      * @see WeaponType
@@ -33,11 +37,19 @@ public class Weapon implements Item {
         return weaponType;
     }
 
+    public void setWeaponType(WeaponType weaponType) {
+        this.weaponType = weaponType;
+    }
+
     /**
      * @return damage type of the weapon
      */
     public DamageType getDamageType() {
         return damageType;
+    }
+
+    public void setDamageType(DamageType damageType) {
+        this.damageType = damageType;
     }
 
     /**
@@ -48,6 +60,10 @@ public class Weapon implements Item {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /**
      * @return description of the weapon
      */
@@ -56,32 +72,15 @@ public class Weapon implements Item {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     /**
-     *
      * @return name of the weapon
      */
     @Override
     public String toString() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
-    }
-
-    public void setWeaponType(WeaponType weaponType) {
-        this.weaponType = weaponType;
-    }
-
-    public void setDamageType(DamageType damageType) {
-        this.damageType = damageType;
     }
 }

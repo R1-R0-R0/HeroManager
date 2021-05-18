@@ -1,7 +1,5 @@
 package exceptions;
 
-import model.items.ItemType;
-
 /**
  * Exception when a job skill name isn't recognized
  */

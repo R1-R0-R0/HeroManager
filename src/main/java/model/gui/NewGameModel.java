@@ -1,13 +1,12 @@
 package model.gui;
 
-import controller.NewGameController;
 import view.NewGameView;
 
 /**
  * @Deprecated User will just directly create his character. This class will be removed soon.
  */
 public class NewGameModel implements Model {
-    
+
     private static NewGameModel instance;
 
     /**
@@ -18,12 +17,12 @@ public class NewGameModel implements Model {
         new NewGameView();
     }
 
-    public void close() {
-        NewGameView.getInstance().close();
-    }
-
     public static NewGameModel getInstance() {
         return instance;
+    }
+
+    public void close() {
+        NewGameView.getInstance().close();
     }
 
     public void createNewCharacter() {

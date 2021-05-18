@@ -20,7 +20,6 @@ import utils.gui.character_creator.SpellItem;
 import view.CharacterCreatorView;
 import view.MenuView;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**

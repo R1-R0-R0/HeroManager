@@ -3,6 +3,8 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +23,8 @@ public class SplashScreenController implements Initializable {
      */
     @FXML
     public ProgressBar loadingProgress;
+    public GridPane window;
+    public Pane img;
 
     /**
      * @return instance of this class

@@ -2,6 +2,7 @@ package view;
 
 import controller.Main;
 import controller.MenuController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -65,7 +66,7 @@ public class MenuView implements View {
             controller.resumeText.setText(
                     job.getName() + " - "
                             + job.getJobType() + " - "
-                            +  "LVL " + job.getLevel()
+                            + "LVL " + job.getLevel()
             );
         }
     }

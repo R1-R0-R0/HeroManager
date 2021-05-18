@@ -34,7 +34,15 @@ public class LoadGameModel implements Model {
     }
 
     /**
+     * @return instance of this class
+     */
+    public static LoadGameModel getInstance() {
+        return instance;
+    }
+
+    /**
      * Event triggered when user selected a job in list, and allows to show its information
+     *
      * @param selectedCharacter selected character
      */
     public void selectedCharacter(Job selectedCharacter) {
@@ -62,13 +70,6 @@ public class LoadGameModel implements Model {
         close();
         MenuView.getInstance().close();
         HeroManagerDB.modifyJob(selectedCharacter);
-    }
-
-    /**
-     * @return instance of this class
-     */
-    public static LoadGameModel getInstance() {
-        return instance;
     }
 
     /**

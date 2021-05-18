@@ -22,6 +22,7 @@ import utils.gui.Dialog;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * View manager of Load Game view
@@ -42,7 +43,8 @@ public class LoadGameView implements View {
     public LoadGameView() {
         try {
             stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/load_game_menu.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = loader.load(getClass().getResourceAsStream("/fxml/load_game_menu.fxml"));
             stage.setTitle("HeroManager - Load Game");
             stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));
@@ -67,7 +69,7 @@ public class LoadGameView implements View {
     /**
      * Allows to fill up all saved games in list
      *
-     * @param jobs
+     * @param jobs jobs to show
      */
     public void setGamesList(List<Job> jobs) {
         ObservableList<Job> jobObservableList = FXCollections.observableList(jobs);
@@ -101,7 +103,7 @@ public class LoadGameView implements View {
             default -> throw new UnsupportedJobTypeException(character.getJobType().name() + " not handled");
         }
 
-        imgView.setImage(new Image(getClass().getResourceAsStream(imgPath)));
+        imgView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(imgPath))));
     }
 
     /**
@@ -116,7 +118,7 @@ public class LoadGameView implements View {
         String genderNameFile = (character.getGender() == Gender.MAN) ? "_m.jpg" : "_f.jpg";
         String imageJobPath = "/images/jobs/pictures/" + classNameFile + genderNameFile;
 
-        imgView.setImage(new Image(getClass().getResourceAsStream(imageJobPath)));
+        imgView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(imageJobPath))));
     }
 
     /**
@@ -150,7 +152,6 @@ public class LoadGameView implements View {
     }
 
     /**
-     *
      * @return stage's view
      */
     public Stage getStage() {

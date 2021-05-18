@@ -17,7 +17,6 @@ import utils.ListenableArrayList;
 import utils.gui.Dialog;
 import view.ItemManagerView;
 import view.MenuView;
-import view.SpellManagerView;
 
 import java.util.Arrays;
 import java.util.List;

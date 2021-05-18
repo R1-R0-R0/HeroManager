@@ -1,12 +1,8 @@
 package controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -15,6 +11,7 @@ import model.gui.LoadGameModel;
 import model.job.Job;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -65,15 +62,12 @@ public class LoadGameController implements Controller {
     /**
      * Entry point of controller.
      * When called, init images and text required to help user
-     *
-     * @param location
-     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
-        imageJob.setImage(new Image(getClass().getResourceAsStream("/images/ui/question_mark.png")));
-        imageJobClass.setImage(new Image(getClass().getResourceAsStream("/images/ui/question_mark.png")));
+        imageJob.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/ui/question_mark.png"))));
+        imageJobClass.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/ui/question_mark.png"))));
         textJobDesc.getChildren().add(new Text("<- Select a character on the left."));
 
         charactersList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> characterSelected(newValue));

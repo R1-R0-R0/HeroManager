@@ -25,7 +25,8 @@ public class NewGameView implements View {
     public NewGameView() {
         try {
             stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/new_game_menu.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = loader.load(getClass().getResourceAsStream("/fxml/new_game_menu.fxml"));
             stage.setTitle("HeroManager - New Game");
             stage.getIcons().add(Main.APP_LOGO);
             stage.setScene(new Scene(root));

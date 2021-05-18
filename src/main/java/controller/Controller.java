@@ -7,6 +7,10 @@ import javafx.fxml.Initializable;
  */
 public interface Controller extends Initializable {
 
+    /**
+     * @param <T> class implementing its interface
+     * @return instance of implemented class
+     */
     static <T> T getInstance() {
         return null;
     }

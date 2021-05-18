@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.gui.MenuModel;
 import view.MenuView;
@@ -18,13 +19,13 @@ import java.util.ResourceBundle;
  */
 public class MenuController implements Controller {
 
+    private static MenuController instance;
     @FXML
     public Button resumeButton;
-
     @FXML
     public Text resumeText;
-
-    private static MenuController instance;
+    public AnchorPane window;
+    public Button newGameButton, loadGameButton;
 
     /**
      * @return instance of this class
@@ -35,9 +36,6 @@ public class MenuController implements Controller {
 
     /**
      * Entry of controller. When called, loads all necessary attributes for the software to work properly
-     *
-     * @param location
-     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {

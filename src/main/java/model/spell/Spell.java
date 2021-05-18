@@ -6,17 +6,18 @@ import java.util.List;
 
 /**
  * Spell used by a Job
+ *
  * @see model.job.Job
  */
 public class Spell {
-    private String  name,
-                    description,
-                    school,
-                    castingTime,
-                    duration;
+    private String name,
+            description,
+            school,
+            castingTime,
+            duration;
 
     private int level,
-        range;
+            range;
 
     private JobType jobType;
     private boolean doDamages;
@@ -38,6 +39,7 @@ public class Spell {
 
     /**
      * give name of the spell
+     *
      * @return name of the spell
      */
     public String getName() {
@@ -46,83 +48,11 @@ public class Spell {
 
     /**
      * give description of the spell
+     *
      * @return description of the spell
      */
     public String getDescription() {
         return description;
-    }
-
-    /**
-     * give school of the spell
-     * @return school from which you learn the spell
-     */
-    public String getSchool() {
-        return school;
-    }
-
-    /**
-     * give time to execute the spell
-     * @return necessary time to execute the spell
-     */
-    public String getCastingTime() {
-        return castingTime;
-    }
-
-    /**
-     * give duration of the spell
-     * @return total duration of the spell
-     */
-    public String getDuration() {
-        return duration;
-    }
-
-    /**
-     * give level of the spell
-     * @return level of the spell
-     */
-    public int getLevel() {
-        return level;
-    }
-
-    /**
-     * give range of the spell
-     * @return range in which you can execute the spell
-     */
-    public int getRange() {
-        return range;
-    }
-
-    /**
-     * give jobtype that can use the spell
-     * @return jobType that can use the spell
-     */
-    public JobType getJobType() {
-        return jobType;
-    }
-
-    /**
-     * say if spell does damage or not
-     * @return can do damages or not
-     */
-    public boolean isDoDamages() {
-        return doDamages;
-    }
-
-    /**
-     * give condition of execution of a spell
-     * @return condition of execution of a spell
-     */
-    public List<Component> getComponents() {
-        return components;
-    }
-
-    /**
-     * give name of the spell
-     * @return name of the spell
-     */
-    @Override
-    public String toString(){
-        return name;
     }
 
     /**
@@ -132,35 +62,117 @@ public class Spell {
         this.description = description;
     }
 
+    /**
+     * give school of the spell
+     *
+     * @return school from which you learn the spell
+     */
+    public String getSchool() {
+        return school;
+    }
+
     public void setSchool(String school) {
         this.school = school;
+    }
+
+    /**
+     * give time to execute the spell
+     *
+     * @return necessary time to execute the spell
+     */
+    public String getCastingTime() {
+        return castingTime;
     }
 
     public void setCastingTime(String castingTime) {
         this.castingTime = castingTime;
     }
 
+    /**
+     * give duration of the spell
+     *
+     * @return total duration of the spell
+     */
+    public String getDuration() {
+        return duration;
+    }
+
     public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    /**
+     * give level of the spell
+     *
+     * @return level of the spell
+     */
+    public int getLevel() {
+        return level;
     }
 
     public void setLevel(int level) {
         this.level = level;
     }
 
+    /**
+     * give range of the spell
+     *
+     * @return range in which you can execute the spell
+     */
+    public int getRange() {
+        return range;
+    }
+
     public void setRange(int range) {
         this.range = range;
+    }
+
+    /**
+     * give jobtype that can use the spell
+     *
+     * @return jobType that can use the spell
+     */
+    public JobType getJobType() {
+        return jobType;
     }
 
     public void setJobType(JobType jobType) {
         this.jobType = jobType;
     }
 
+    /**
+     * say if spell does damage or not
+     *
+     * @return can do damages or not
+     */
+    public boolean isDoDamages() {
+        return doDamages;
+    }
+
     public void setDoDamages(boolean doDamages) {
         this.doDamages = doDamages;
     }
 
+    /**
+     * give condition of execution of a spell
+     *
+     * @return condition of execution of a spell
+     */
+    public List<Component> getComponents() {
+        return components;
+    }
+
     public void setComponents(List<Component> components) {
         this.components = components;
+    }
+
+    /**
+     * give name of the spell
+     *
+     * @return name of the spell
+     */
+    @Override
+    public String toString() {
+        return name;
     }
 }

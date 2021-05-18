@@ -1,21 +1,16 @@
 package model.gui;
 
-import com.sun.glass.ui.Application;
-import com.sun.glass.ui.GlassRobot;
 import exceptions.UnsupportedItemException;
 import javafx.scene.Node;
-import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.robot.Robot;
 import model.items.Item;
 import model.items.ItemType;
-import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.equipments.EquipmentPart;
 import model.items.weapons.Weapon;
 import model.job.Job;
-import utils.gui.ContainerPane;
 import utils.gui.Dialog;
 import view.CharacterView;
 
@@ -114,8 +109,7 @@ public class CharacterModel implements Model {
                             .append("\nDamage type inflicted: ").append(((Weapon) item).getDamageType())
                             .append("\n\nProperties: ").append(((Weapon) item).getProperties())
                             .append("\n\n---\n\n");
-                }
-                else if (item instanceof Equipment) {
+                } else if (item instanceof Equipment) {
                     description.append("Can be worn on: ").append(((Equipment) item).getEquipmentPart())
                             .append("\nEquipment type: ").append(((Equipment) item).getEquipmentPart())
                             .append("\n\nStatistics:")
@@ -188,30 +182,27 @@ public class CharacterModel implements Model {
                 getCharacter().removeEquippedEquipment(finalEquippedItem);
                 CharacterView.getInstance().refreshView();
             });
-            
+
             SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
-            
+
             MenuItem info = new MenuItem("Info");
             info.setId("infoAction");
             Equipment finalEquippedItem1 = equippedItem;
             info.setOnAction(event1 -> {
-                StringBuilder description = new StringBuilder();
-                description.append("Can be worn on: ").append(finalEquippedItem1.getEquipmentPart())
-                        .append("\nEquipment type: ").append(finalEquippedItem1.getEquipmentPart())
-                        .append("\n\nStatistics:")
-                        .append("\n\t- Armor Bonus:\t\t").append(finalEquippedItem1.getArmorBonus())
-                        .append("\n\t- Strength Boost:\t\t").append(finalEquippedItem1.getStrengthBoost())
-                        .append("\n\t- Dexterity Boost: \t\t").append(finalEquippedItem1.getDexterityBoost())
-                        .append("\n\t- Robustness Boost: \t").append(finalEquippedItem1.getRobustnessBoost())
-                        .append("\n\t- Intelligence Boost: \t").append(finalEquippedItem1.getIntelligenceBoost())
-                        .append("\n\t- Wisdom Boost: \t\t").append(finalEquippedItem1.getWisdomBoost())
-                        .append("\n\t- Charisma Boost: \t\t").append(finalEquippedItem1.getCharismaBoost())
-                        .append("\n\t- Speed Boost: \t\t").append(finalEquippedItem1.getSpeedBoost())
-                        .append("\n\n---\n\n");
-
-
-                description.append(finalEquippedItem1.getDescription());
-                new Dialog(Alert.AlertType.INFORMATION, finalEquippedItem1.getName(), description.toString()).show();
+                String description = "Can be worn on: " + finalEquippedItem1.getEquipmentPart() +
+                        "\nEquipment type: " + finalEquippedItem1.getEquipmentPart() +
+                        "\n\nStatistics:" +
+                        "\n\t- Armor Bonus:\t\t" + finalEquippedItem1.getArmorBonus() +
+                        "\n\t- Strength Boost:\t\t" + finalEquippedItem1.getStrengthBoost() +
+                        "\n\t- Dexterity Boost: \t\t" + finalEquippedItem1.getDexterityBoost() +
+                        "\n\t- Robustness Boost: \t" + finalEquippedItem1.getRobustnessBoost() +
+                        "\n\t- Intelligence Boost: \t" + finalEquippedItem1.getIntelligenceBoost() +
+                        "\n\t- Wisdom Boost: \t\t" + finalEquippedItem1.getWisdomBoost() +
+                        "\n\t- Charisma Boost: \t\t" + finalEquippedItem1.getCharismaBoost() +
+                        "\n\t- Speed Boost: \t\t" + finalEquippedItem1.getSpeedBoost() +
+                        "\n\n---\n\n" +
+                        finalEquippedItem1.getDescription();
+                new Dialog(Alert.AlertType.INFORMATION, finalEquippedItem1.getName(), description).show();
             });
 
             clickMenu.getItems().addAll(unequip, separatorMenuItem, info);

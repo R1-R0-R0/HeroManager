@@ -3,7 +3,7 @@ package model.files;
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
 import model.items.weapons.Weapon;
-import model.job.*;
+import model.job.Job;
 import model.spell.Spell;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Writer {
     /**
-     * Methode to write the Consumable file
+     * Method to write the Consumable file
      *
      * @param consumable List of consumable to be write on the file
      */
@@ -24,14 +24,9 @@ public class Writer {
         JSONObject consu = new JSONObject();
         JSONArray consumableList = new JSONArray();
 
-
-        for (int index = 0; index < consumable.size(); index++) {
-
-
-            consumableList.add(consumable.get(index).getName());
-            consumableList.add(consumable.get(index).getDescription());
-
-
+        for (Consumable value : consumable) {
+            consumableList.add(value.getName());
+            consumableList.add(value.getDescription());
         }
 
         consu.put("consumable", consumableList);
@@ -39,7 +34,7 @@ public class Writer {
     }
 
     /**
-     * Methode to write the Weapons file
+     * Method to write the Weapons file
      *
      * @param weapons List of weapons to be write on the file
      */
@@ -47,15 +42,12 @@ public class Writer {
         JSONArray weaponList = new JSONArray();
         JSONObject consu = new JSONObject();
 
-        for (int index = 0; index < weapons.size(); index++) {
-
-            weaponList.add(weapons.get(index).getName());
-            weaponList.add(weapons.get(index).getDescription());
-            weaponList.add(weapons.get(index).getProperties());
-            weaponList.add(weapons.get(index).getWeaponType().toString());
-
-            weaponList.add(weapons.get(index).getDamageType().toString());
-
+        for (Weapon weapon : weapons) {
+            weaponList.add(weapon.getName());
+            weaponList.add(weapon.getDescription());
+            weaponList.add(weapon.getProperties());
+            weaponList.add(weapon.getWeaponType().toString());
+            weaponList.add(weapon.getDamageType().toString());
         }
         consu.put("weapon", weaponList);
         FileManager.writeFile("weapon", consu);
@@ -63,7 +55,7 @@ public class Writer {
     }
 
     /**
-     * Methode to write the Equipments file
+     * Method to write the Equipments file
      *
      * @param equipment List of equipment to be write on the file
      */
@@ -71,22 +63,20 @@ public class Writer {
         JSONArray equipmentList = new JSONArray();
         JSONObject consu = new JSONObject();
 
-        for (int index = 0; index < equipment.size(); index++) {
+        for (Equipment value : equipment) {
+            equipmentList.add(value.getName());
+            equipmentList.add(value.getDescription());
+            equipmentList.add(value.getEquipmentPart().toString());
 
-
-            equipmentList.add(equipment.get(index).getName());
-            equipmentList.add(equipment.get(index).getDescription());
-            equipmentList.add(equipment.get(index).getEquipmentPart().toString());
-
-            equipmentList.add(equipment.get(index).getArmorBonus());
-            equipmentList.add(equipment.get(index).getEquipmentType().toString());
-            equipmentList.add(equipment.get(index).getStrengthBoost());
-            equipmentList.add(equipment.get(index).getDexterityBoost());
-            equipmentList.add(equipment.get(index).getRobustnessBoost());
-            equipmentList.add(equipment.get(index).getIntelligenceBoost());
-            equipmentList.add(equipment.get(index).getWisdomBoost());
-            equipmentList.add(equipment.get(index).getCharismaBoost());
-            equipmentList.add(equipment.get(index).getSpeedBoost());
+            equipmentList.add(value.getArmorBonus());
+            equipmentList.add(value.getEquipmentType().toString());
+            equipmentList.add(value.getStrengthBoost());
+            equipmentList.add(value.getDexterityBoost());
+            equipmentList.add(value.getRobustnessBoost());
+            equipmentList.add(value.getIntelligenceBoost());
+            equipmentList.add(value.getWisdomBoost());
+            equipmentList.add(value.getCharismaBoost());
+            equipmentList.add(value.getSpeedBoost());
 
         }
         consu.put("equipment", equipmentList);
@@ -95,7 +85,7 @@ public class Writer {
     }
 
     /**
-     * Methode to write the Spell file
+     * Method to write the Spell file
      *
      * @param spells List of spells to be write on the file
      */
@@ -104,46 +94,36 @@ public class Writer {
         JSONObject consu = new JSONObject();
         JSONArray components = new JSONArray();
 
-        for (int index = 0; index < spells.size(); index++) {
+        for (Spell spell : spells) {
+            spellList.add(spell.getName());
+            spellList.add(spell.getDescription());
+            spellList.add(spell.getSchool());
+            spellList.add(spell.getCastingTime());
+            spellList.add(spell.getDuration());
+            spellList.add(spell.getLevel());
 
-            spellList.add(spells.get(index).getName());
-            spellList.add(spells.get(index).getDescription());
-            spellList.add(spells.get(index).getSchool());
-            spellList.add(spells.get(index).getCastingTime());
-            spellList.add(spells.get(index).getDuration());
-            spellList.add(spells.get(index).getLevel());
 
+            spellList.add(spell.getRange());
+            spellList.add(spell.getJobType().toString());
+            spellList.add(spell.isDoDamages());
 
-            spellList.add(spells.get(index).getRange());
-            spellList.add(spells.get(index).getJobType().toString());
-            spellList.add(spells.get(index).isDoDamages());
-            for (int x = 0; x < spells.get(index).getComponents().size(); x++) {
-                switch (spells.get(index).getComponents().get(x)) {
-                    case VOCAL:
-                        components.add("V");
-                        break;
-                    case MATERIAL:
-                        components.add("S");
-                        break;
-                    case MOVEMENT:
-                        components.add("M");
-                        break;
+            for (int x = 0; x < spell.getComponents().size(); x++) {
+                switch (spell.getComponents().get(x)) {
+                    case VOCAL -> components.add("V");
+                    case MATERIAL -> components.add("S");
+                    case MOVEMENT -> components.add("M");
                 }
-
             }
 
             spellList.add(components);
-
-
         }
+
         consu.put("spell", spellList);
-
         FileManager.writeFile("spell", consu);
-
     }
 
     /**
-     * Methode to write the Characters file
+     * Method to write the Characters file
      *
      * @param jobs List of jobs to be write on the file
      */
@@ -151,63 +131,58 @@ public class Writer {
         JSONArray jobList = new JSONArray();
         JSONObject consu = new JSONObject();
 
-
-        for (int index = 0; index < jobs.size(); index++) {
+        for (Job job : jobs) {
             JSONArray listspell = new JSONArray();
             JSONArray skills = new JSONArray();
             JSONArray improvements = new JSONArray();
             JSONArray equipments = new JSONArray();
             JSONArray inventory = new JSONArray();
 
-            jobList.add(jobs.get(index).getName());
-            jobList.add(jobs.get(index).getDescription());
-            jobList.add(jobs.get(index).getGender().toString());
-            jobList.add(jobs.get(index).getAlignment().toString());
-            jobList.add(jobs.get(index).getRaceType().name());
-            jobList.add(jobs.get(index).getJobType().toString());
-            for (int x = 0; x < jobs.get(index).getSpellInventory().size(); x++) {
-                listspell.add(jobs.get(index).getSpellInventory().get(x).getName());
+            jobList.add(job.getName());
+            jobList.add(job.getDescription());
+            jobList.add(job.getGender().toString());
+            jobList.add(job.getAlignment().toString());
+            jobList.add(job.getRaceType().name());
+            jobList.add(job.getJobType().toString());
+            for (int x = 0; x < job.getSpellInventory().size(); x++) {
+                listspell.add(job.getSpellInventory().get(x).getName());
             }
             jobList.add(listspell);
-            for (int x = 0; x < jobs.get(index).getSkills().size(); x++) {
-                skills.add(jobs.get(index).getSkills().get(x).getName());
+            for (int x = 0; x < job.getSkills().size(); x++) {
+                skills.add(job.getSkills().get(x).getName());
             }
             jobList.add(skills);
-            jobList.add(jobs.get(index).getLevel());
-            jobList.add(jobs.get(index).getStrength());
-            jobList.add(jobs.get(index).getDexterity());
-            jobList.add(jobs.get(index).getRobustness());
-            jobList.add(jobs.get(index).getWisdom());
-            jobList.add(jobs.get(index).getIntelligence());
-            jobList.add(jobs.get(index).getCharisma());
-            jobList.add(jobs.get(index).getSpeed());
-            jobList.add(jobs.get(index).getHealthPoints());
-            jobList.add(jobs.get(index).getArmor());
-            jobList.add(jobs.get(index).getAdditionalStatPoints());
-            for (int x = 0; x < jobs.get(index).getImprovements().size(); x++) {
-                improvements.add(jobs.get(index).getImprovements().get(x).toString());
+            jobList.add(job.getLevel());
+            jobList.add(job.getStrength());
+            jobList.add(job.getDexterity());
+            jobList.add(job.getRobustness());
+            jobList.add(job.getWisdom());
+            jobList.add(job.getIntelligence());
+            jobList.add(job.getCharisma());
+            jobList.add(job.getSpeed());
+            jobList.add(job.getHealthPoints());
+            jobList.add(job.getArmor());
+            jobList.add(job.getAdditionalStatPoints());
+            for (int x = 0; x < job.getImprovements().size(); x++) {
+                improvements.add(job.getImprovements().get(x).toString());
             }
             jobList.add(improvements);
-            if (!jobs.get(index).getEquippedEquipments().getEquippedList().isEmpty()) {
-                for (Equipment equiped : jobs.get(index).getEquippedEquipments().getEquippedList()
+            if (!job.getEquippedEquipments().getEquippedList().isEmpty()) {
+                for (Equipment equiped : job.getEquippedEquipments().getEquippedList()
                 ) {
                     if (equiped != null) equipments.add(equiped.getName());
                 }
                 jobList.add(equipments);
 
             } else jobList.add(new ArrayList<Equipment>());
-            for (int x = 0; x < jobs.get(index).getInventory().size(); x++) {
-                if (jobs.get(index).getInventory().get(x) != null)
-                    inventory.add(jobs.get(index).getInventory().get(x).getName());
+            for (int x = 0; x < job.getInventory().size(); x++) {
+                if (job.getInventory().get(x) != null)
+                    inventory.add(job.getInventory().get(x).getName());
             }
             jobList.add(inventory);
         }
 
         consu.put("job", jobList);
-
         FileManager.writeFile("job", consu);
-
     }
-
-
 }

@@ -8,11 +8,11 @@ import model.items.Item;
 public class Equipment implements Item {
 
     private final String name;
-    private  String description;
-    private  EquipmentPart equipmentPart;
-    private  int armorBonus;
-    private  EquipmentType type;
-    private  int[] characteristicsBoost = new int[7];
+    private String description;
+    private EquipmentPart equipmentPart;
+    private int armorBonus;
+    private EquipmentType type;
+    private int[] characteristicsBoost = new int[7];
 
 
     public Equipment(String name, String description, EquipmentPart equipmentPart, int armorBonus, EquipmentType type,
@@ -35,6 +35,7 @@ public class Equipment implements Item {
 
     /**
      * give name of the equipment
+     *
      * @return name of the equipment
      */
     @Override
@@ -44,6 +45,7 @@ public class Equipment implements Item {
 
     /**
      * give description of the equipment
+     *
      * @return description of the equipment
      */
     @Override
@@ -52,11 +54,30 @@ public class Equipment implements Item {
     }
 
     /**
+     * Change the description of the Equipment
+     *
+     * @param description the new description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
      * give armor bonus given by item
+     *
      * @return armor bonus given by the item
      */
     public int getArmorBonus() {
         return armorBonus;
+    }
+
+    /**
+     * Change the armorBonus of the Equipment
+     *
+     * @param armorBonus the new armorBonus
+     */
+    public void setArmorBonus(int armorBonus) {
+        this.armorBonus = armorBonus;
     }
 
     /**
@@ -68,6 +89,14 @@ public class Equipment implements Item {
         return equipmentPart;
     }
 
+    /**
+     * Change the equipmentPart of the Equipment
+     *
+     * @param equipmentPart the new equipmentPart
+     */
+    public void setEquipmentPart(EquipmentPart equipmentPart) {
+        this.equipmentPart = equipmentPart;
+    }
 
     /**
      * Says the type of equipment
@@ -80,6 +109,7 @@ public class Equipment implements Item {
 
     /**
      * give bonus given by item
+     *
      * @return strength bonus when equipped
      */
     public int getStrengthBoost() {
@@ -88,6 +118,7 @@ public class Equipment implements Item {
 
     /**
      * give bonus given by item
+     *
      * @return dexterity bonus when equipped
      */
     public int getDexterityBoost() {
@@ -96,6 +127,7 @@ public class Equipment implements Item {
 
     /**
      * give bonus given by item
+     *
      * @return robustness bonus when equipped
      */
     public int getRobustnessBoost() {
@@ -104,6 +136,7 @@ public class Equipment implements Item {
 
     /**
      * give bonus given by item
+     *
      * @return intelligence bonus when equipped
      */
     public int getIntelligenceBoost() {
@@ -112,6 +145,7 @@ public class Equipment implements Item {
 
     /**
      * give bonus given by item
+     *
      * @return wisdom bonus when equipped
      */
     public int getWisdomBoost() {
@@ -120,6 +154,7 @@ public class Equipment implements Item {
 
     /**
      * give bonus given by item
+     *
      * @return charisma bonus when equipped
      */
     public int getCharismaBoost() {
@@ -128,6 +163,7 @@ public class Equipment implements Item {
 
     /**
      * give bonus given by item
+     *
      * @return speed bonus when equipped
      */
     public int getSpeedBoost() {
@@ -136,6 +172,7 @@ public class Equipment implements Item {
 
     /**
      * give name of equipment
+     *
      * @return name of equipment
      */
     @Override
@@ -144,7 +181,6 @@ public class Equipment implements Item {
     }
 
     /**
-     *
      * @return type of the equipment
      */
     public EquipmentType getType() {
@@ -152,7 +188,17 @@ public class Equipment implements Item {
     }
 
     /**
+     * Change the type of the Equipment
+     *
+     * @param type the new type
+     */
+    public void setType(EquipmentType type) {
+        this.type = type;
+    }
+
+    /**
      * Change the list of Characteristic Boost
+     *
      * @return boolean if it succeeded
      */
     public int[] getCharacteristicsBoost() {
@@ -160,35 +206,8 @@ public class Equipment implements Item {
     }
 
     /**
-     * Change the description of the Equipment
-     * @param description the new description
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    /**
-     * Change the equipmentPart of the Equipment
-     * @param equipmentPart the new equipmentPart
-     */
-    public void setEquipmentPart(EquipmentPart equipmentPart) {
-        this.equipmentPart = equipmentPart;
-    }
-    /**
-     * Change the armorBonus of the Equipment
-     * @param armorBonus the new armorBonus
-     */
-    public void setArmorBonus(int armorBonus) {
-        this.armorBonus = armorBonus;
-    }
-    /**
-     * Change the type of the Equipment
-     * @param type the new type
-     */
-    public void setType(EquipmentType type) {
-        this.type = type;
-    }
-    /**
      * Change the characteristics Boost of the Equipment
+     *
      * @param characteristicsBoost the new characteristics Boost
      */
     public void setCharacteristicsBoost(int[] characteristicsBoost) {

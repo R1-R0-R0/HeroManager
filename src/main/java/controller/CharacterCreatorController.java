@@ -3,7 +3,6 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.effect.DropShadow;
@@ -23,6 +22,7 @@ import utils.gui.character_creator.SpellItem;
 import view.CharacterCreatorView;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -139,16 +139,13 @@ public class CharacterCreatorController implements Controller {
 
     /**
      * Entry of controller, which loads all pictures, pickers and spinners event handlers
-     *
-     * @param location
-     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
 
-        jobImage.setImage(new Image(getClass().getResourceAsStream(QUESTION_MARK_PATH)));
-        jobTypeImage.setImage(new Image(getClass().getResourceAsStream(QUESTION_MARK_PATH)));
+        jobImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(QUESTION_MARK_PATH))));
+        jobTypeImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(QUESTION_MARK_PATH))));
         jobImage.setEffect(new DropShadow(20, Color.BLACK));
         jobTypeImage.setEffect(new DropShadow(20, Color.BLACK));
 

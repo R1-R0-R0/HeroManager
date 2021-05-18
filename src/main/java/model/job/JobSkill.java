@@ -66,6 +66,44 @@ public enum JobSkill {
     }
 
     /**
+     * give a list of all Jobskill
+     *
+     * @return List of jobSkills
+     */
+    public static List<JobSkill> getJobSkillList() {
+        return Arrays.asList(values());
+    }
+
+    /**
+     * Convert string to JobSkill element
+     *
+     * @return target skill
+     */
+    public static JobSkill getJobSkill(String name) throws UnknownJobSkillException {
+        return switch (name) {
+            case "ACROBATICS" -> ACROBATICS;
+            case "ARCANA" -> ARCANA;
+            case "ATHLETICS" -> ATHLETICS;
+            case "ANIMAL_HANDLING" -> ANIMAL_HANDLING;
+            case "DECEPTION" -> DECEPTION;
+            case "HISTORY" -> HISTORY;
+            case "INTIMIDATION" -> INTIMIDATION;
+            case "INSIGHT" -> INSIGHT;
+            case "INVESTIGATION" -> INVESTIGATION;
+            case "MEDICINE" -> MEDICINE;
+            case "NATURE" -> NATURE;
+            case "PERCEPTION" -> PERCEPTION;
+            case "PERFORMANCE" -> PERFORMANCE;
+            case "PERSUASION" -> PERSUASION;
+            case "RELIGION" -> RELIGION;
+            case "SLEIGHT_OF_HAND" -> SLEIGHT_OF_HAND;
+            case "STEALTH" -> STEALTH;
+            case "SURVIVAL" -> SURVIVAL;
+            default -> throw new UnknownJobSkillException("Unknown job skill " + name);
+        };
+    }
+
+    /**
      * @return name of the jobSkill
      */
     public String getName() {
@@ -91,48 +129,10 @@ public enum JobSkill {
     /**
      * Allow the user to set a skill to mastered or not
      *
-     * @param mastered
+     * @param mastered boolean if skill is mastered
      */
     public void setMastered(boolean mastered) {
         this.mastered = mastered;
-    }
-
-    /**
-     * give a list of all Jobskill
-     *
-     * @return List of jobSkills
-     */
-    public static List<JobSkill> getJobSkillList() {
-        return Arrays.asList(values());
-    }
-
-    /**
-     * Convert string to JobSkill element
-     *
-     * @return target skill
-     */
-    public static JobSkill getJobSkill(String name) throws UnknownJobSkillException {
-        return switch (name) {
-            case "ACROBATICS" -> ACROBATICS;
-            case "ARCANA" ->  ARCANA;
-            case "ATHLETICS" -> ATHLETICS;
-            case "ANIMAL_HANDLING" ->  ANIMAL_HANDLING;
-            case "DECEPTION" -> DECEPTION;
-            case "HISTORY" -> HISTORY;
-            case "INTIMIDATION" -> INTIMIDATION;
-            case "INSIGHT" -> INSIGHT;
-            case "INVESTIGATION" -> INVESTIGATION;
-            case "MEDICINE" -> MEDICINE;
-            case "NATURE" -> NATURE;
-            case "PERCEPTION" -> PERCEPTION;
-            case "PERFORMANCE" -> PERFORMANCE;
-            case "PERSUASION" -> PERSUASION;
-            case "RELIGION" -> RELIGION;
-            case "SLEIGHT_OF_HAND" -> SLEIGHT_OF_HAND;
-            case "STEALTH" -> STEALTH;
-            case "SURVIVAL" -> SURVIVAL;
-            default -> throw new UnknownJobSkillException("Unknown job skill " + name);
-        };
     }
 
     /**

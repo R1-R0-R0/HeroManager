@@ -1,6 +1,7 @@
 package model.files;
 
 import exceptions.UnknownJobSkillException;
+import exceptions.UnknownRaceException;
 import javafx.scene.control.Alert;
 import model.items.Item;
 import model.items.consumables.Consumable;
@@ -27,7 +28,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import static model.job.JobType.*;
+import static model.job.JobType.SORCERER;
 
 /**
  * Class that use JSONObject from FileManager to change it into Java Object
@@ -57,28 +58,27 @@ public class FileReaders {
             while (iterator.hasNext()) {
                 switch (count % 5) {
                     case 0:
-                        names.add(iterator.next());break;
+                        names.add(iterator.next());
+                        break;
                     case 1:
-                        descriptions.add(iterator.next());break;
+                        descriptions.add(iterator.next());
+                        break;
                     case 2:
-                        proerties.add(iterator.next());break;
+                        proerties.add(iterator.next());
+                        break;
                     case 3:
                         switch (iterator.next().toLowerCase()) {
-                            case "war":
-                                weaponTypes.add(WeaponType.WAR);break;
-                            case "common":
-                                weaponTypes.add(WeaponType.COMMON);break;
-                        }break;
+                            case "war" -> weaponTypes.add(WeaponType.WAR);
+                            case "common" -> weaponTypes.add(WeaponType.COMMON);
+                        }
+                        break;
                     case 4:
                         switch (iterator.next().toLowerCase()) {
-                            case "slashing":
-                                damageTypes.add(DamageType.SLASHING);break;
-                            case "piercing":
-                                damageTypes.add(DamageType.PIERCING);break;
-                            case "bludgeoning":
-                                damageTypes.add(DamageType.BLUDGEONING);break;
-                        }break;
-
+                            case "slashing" -> damageTypes.add(DamageType.SLASHING);
+                            case "piercing" -> damageTypes.add(DamageType.PIERCING);
+                            case "bludgeoning" -> damageTypes.add(DamageType.BLUDGEONING);
+                        }
+                        break;
                 }
                 count++;
             }
@@ -114,7 +114,6 @@ public class FileReaders {
         List<Boolean> doDamages = new ArrayList<>();
         List<List<Component>> components = new ArrayList<>();
 
-
         try {
             JSONObject obj = FileManager.getFile("spell");
 
@@ -123,64 +122,59 @@ public class FileReaders {
             for (int i = 0; i < jsonArray.size(); i++) {
                 switch (i % 10) {
                     case 0:
-                        names.add((String) jsonArray.get(i));break;
+                        names.add((String) jsonArray.get(i));
+                        break;
                     case 1:
-                        descriptions.add((String) jsonArray.get(i));break;
+                        descriptions.add((String) jsonArray.get(i));
+                        break;
                     case 2:
-                        school.add((String) jsonArray.get(i));break;
+                        school.add((String) jsonArray.get(i));
+                        break;
                     case 3:
-                        castingTimes.add((String) jsonArray.get(i));break;
+                        castingTimes.add((String) jsonArray.get(i));
+                        break;
                     case 4:
-                        duration.add((String) jsonArray.get(i));break;
+                        duration.add((String) jsonArray.get(i));
+                        break;
                     case 5:
-                        level.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        level.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 6:
-                        range.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        range.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 7:
                         switch ((String) jsonArray.get(i)) {
-                            case "BARBARIAN":
-                                jobTypes.add(JobType.BARBARIAN);break;
-                            case "BARD":
-                                jobTypes.add(JobType.BARD);break;
-                            case "CLERIC":
-                                jobTypes.add(JobType.CLERIC);break;
-                            case "DRUID":
-                                jobTypes.add(JobType.DRUID);break;
-                            case "FIGHTER":
-                                jobTypes.add(JobType.FIGHTER);break;
-                            case "MONK":
-                                jobTypes.add(JobType.MONK);break;
-                            case "PALADIN":
-                                jobTypes.add(JobType.PALADIN);break;
-                            case "RANGER":
-                                jobTypes.add(JobType.RANGER);break;
-                            case "ROGUE":
-                                jobTypes.add(JobType.ROGUE);break;
-                            case "SORCERER":
-                                jobTypes.add(JobType.SORCERER);break;
-                            case "WARLOCK":
-                                jobTypes.add(JobType.WARLOCK);break;
-                            case "WIZARD":
-                                jobTypes.add(JobType.WIZARD);break;
-                        }break;
+                            case "BARBARIAN" -> jobTypes.add(JobType.BARBARIAN);
+                            case "BARD" -> jobTypes.add(JobType.BARD);
+                            case "CLERIC" -> jobTypes.add(JobType.CLERIC);
+                            case "DRUID" -> jobTypes.add(JobType.DRUID);
+                            case "FIGHTER" -> jobTypes.add(JobType.FIGHTER);
+                            case "MONK" -> jobTypes.add(JobType.MONK);
+                            case "PALADIN" -> jobTypes.add(JobType.PALADIN);
+                            case "RANGER" -> jobTypes.add(JobType.RANGER);
+                            case "ROGUE" -> jobTypes.add(JobType.ROGUE);
+                            case "SORCERER" -> jobTypes.add(JobType.SORCERER);
+                            case "WARLOCK" -> jobTypes.add(JobType.WARLOCK);
+                            case "WIZARD" -> jobTypes.add(JobType.WIZARD);
+                        }
+                        break;
                     case 8:
-                        doDamages.add((Boolean) jsonArray.get(i));break;
+                        doDamages.add((Boolean) jsonArray.get(i));
+                        break;
                     case 9: {
                         JSONArray comp = (JSONArray) jsonArray.get(i);
                         List<Component> componentList = new ArrayList<>();
 
-                        for (int y = 0; y < comp.size(); y++) {
-                            switch ((String) comp.get(y)) {
-                                case "V":
-                                    componentList.add(Component.VOCAL);break;
-                                case "S":
-                                    componentList.add(Component.MATERIAL);break;
-                                case "M":
-                                    componentList.add(Component.MOVEMENT);break;
+                        for (Object o : comp) {
+                            switch ((String) o) {
+                                case "V" -> componentList.add(Component.VOCAL);
+                                case "S" -> componentList.add(Component.MATERIAL);
+                                case "M" -> componentList.add(Component.MOVEMENT);
                             }
                         }
                         components.add(componentList);
-                    }break;
+                    }
+                    break;
                 }
             }
             for (int x = 0; x < names.size(); x++) {
@@ -216,10 +210,8 @@ public class FileReaders {
 
             while (iterator.hasNext()) {
                 switch (count % 2) {
-                    case 0:
-                        names.add(iterator.next());break;
-                    case 1:
-                        descriptions.add(iterator.next());break;
+                    case 0 -> names.add(iterator.next());
+                    case 1 -> descriptions.add(iterator.next());
                 }
                 count++;
             }
@@ -262,72 +254,69 @@ public class FileReaders {
             JSONArray jsonArray = (JSONArray) obj.get("equipment");
 
 
-            for (int i = 0; i < jsonArray.size(); i++) {
+            for (Object o : jsonArray) {
                 {
                     switch (count % 12) {
                         case 0:
-                            names.add((String) jsonArray.get(i));break;
+                            names.add((String) o);
+                            break;
                         case 1:
-                            descriptions.add((String) jsonArray.get(i));break;
+                            descriptions.add((String) o);
+                            break;
                         case 2:
-                            switch ((String) jsonArray.get(i)) {
-                                case "HEAD":
-                                    equipmentPart.add(EquipmentPart.HEAD);break;
-                                case "BODY":
-                                    equipmentPart.add(EquipmentPart.BODY);break;
-                                case "BELT":
-                                    equipmentPart.add(EquipmentPart.BELT);break;
-                                case "LEGS":
-                                    equipmentPart.add(EquipmentPart.LEGS);break;
-                                case "FEET":
-                                    equipmentPart.add(EquipmentPart.FEET);break;
-                                case "AMULET":
-                                    equipmentPart.add(EquipmentPart.AMULET);break;
-                                case "HANDS":
-                                    equipmentPart.add(EquipmentPart.HANDS);break;
-                                case "MANTLE":
-                                    equipmentPart.add(EquipmentPart.MANTLE);break;
-                                case "RING":
-                                    equipmentPart.add(EquipmentPart.RING);break;
-                            }break;
+                            switch ((String) o) {
+                                case "HEAD" -> equipmentPart.add(EquipmentPart.HEAD);
+                                case "BODY" -> equipmentPart.add(EquipmentPart.BODY);
+                                case "BELT" -> equipmentPart.add(EquipmentPart.BELT);
+                                case "LEGS" -> equipmentPart.add(EquipmentPart.LEGS);
+                                case "FEET" -> equipmentPart.add(EquipmentPart.FEET);
+                                case "AMULET" -> equipmentPart.add(EquipmentPart.AMULET);
+                                case "HANDS" -> equipmentPart.add(EquipmentPart.HANDS);
+                                case "MANTLE" -> equipmentPart.add(EquipmentPart.MANTLE);
+                                case "RING" -> equipmentPart.add(EquipmentPart.RING);
+                            }
+                            break;
                         case 3:
-                            armorBonus.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                            armorBonus.add(Integer.parseInt(o.toString()));
+                            break;
                         case 4:
-                            switch ((String) jsonArray.get(i)) {
-                                case "LIGHT":
-                                    types.add(EquipmentType.LIGHT);break;
-                                case "MEDIUM":
-                                    types.add(EquipmentType.MEDIUM);break;
-                                case "HEAVY":
-                                    types.add(EquipmentType.HEAVY);break;
-
-                            }break;
+                            switch ((String) o) {
+                                case "LIGHT" -> types.add(EquipmentType.LIGHT);
+                                case "MEDIUM" -> types.add(EquipmentType.MEDIUM);
+                                case "HEAVY" -> types.add(EquipmentType.HEAVY);
+                            }
+                            break;
                         case 5:
-                            strengthBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                            strengthBoost.add(Integer.parseInt(o.toString()));
+                            break;
                         case 6:
-                            dexterityBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                            dexterityBoost.add(Integer.parseInt(o.toString()));
+                            break;
                         case 7:
-                            robustnessBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                            robustnessBoost.add(Integer.parseInt(o.toString()));
+                            break;
                         case 8:
-                            intelligenceBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                            intelligenceBoost.add(Integer.parseInt(o.toString()));
+                            break;
                         case 9:
-                            wisdomBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                            wisdomBoost.add(Integer.parseInt(o.toString()));
+                            break;
                         case 10:
-                            charismaBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                            charismaBoost.add(Integer.parseInt(o.toString()));
+                            break;
                         case 11:
-                            speedBoost.add(Integer.parseInt(jsonArray.get(i).toString()));break;
-
+                            speedBoost.add(Integer.parseInt(o.toString()));
+                            break;
                     }
                 }
                 count++;
             }
+
             for (int x = 0; x < names.size(); x++) {
                 equipment.add(new Equipment(names.get(x), descriptions.get(x), equipmentPart.get(x), armorBonus.get(x), types.get(x),
                         strengthBoost.get(x), dexterityBoost.get(x), robustnessBoost.get(x), intelligenceBoost.get(x), wisdomBoost.get(x),
                         charismaBoost.get(x), speedBoost.get(x)));
             }
-
-
         } catch (FileNotFoundException e) {
             FileCreator.createFile("equipment.json");
             getEquipement();
@@ -336,9 +325,9 @@ public class FileReaders {
     }
 
     /**
-     * Call for FileManager and return a List of Caracters
+     * Call for FileManager and return a List of Characters
      *
-     * @return Lits of Job
+     * @return List of Job
      */
     public static List<Job> getCaracters() {
         List<Job> jobs = new ArrayList<>();
@@ -373,181 +362,158 @@ public class FileReaders {
             for (int i = 0; i < jsonArray.size(); i++) {
                 switch (i % 22) {
                     case 0:
-                        names.add((String) jsonArray.get(i));break;
+                        names.add((String) jsonArray.get(i));
+                        break;
                     case 1:
-                        descriptions.add((String) jsonArray.get(i));break;
+                        descriptions.add((String) jsonArray.get(i));
+                        break;
                     case 2:
                         switch ((String) jsonArray.get(i)) {
-                            case "MAN":
-                                genders.add(Gender.MAN);break;
-                            case "WOMAN":
-                                genders.add(Gender.WOMAN);break;
-                        }break;
+                            case "MAN" -> genders.add(Gender.MAN);
+                            case "WOMAN" -> genders.add(Gender.WOMAN);
+                        }
+                        break;
                     case 3:
                         switch ((String) jsonArray.get(i)) {
-                            case "NEUTRAL_GOOD":
-                                alignments.add(Alignment.NEUTRAL_GOOD);break;
-                            case "NEUTRAL_NEUTRAL":
-                                alignments.add(Alignment.NEUTRAL_NEUTRAL);break;
-                            case "NEUTRAL_EVIL":
-                                alignments.add(Alignment.NEUTRAL_EVIL);break;
-                            case "LAWFUL_GOOD":
-                                alignments.add(Alignment.LAWFUL_GOOD);break;
-                            case "LAWFUL_NEUTRAL":
-                                alignments.add(Alignment.LAWFUL_NEUTRAL);break;
-                            case "LAWFUL_EVIL":
-                                alignments.add(Alignment.LAWFUL_EVIL);break;
-                            case "CHAOTIC_GOOD":
-                                alignments.add(Alignment.CHAOTIC_GOOD);break;
-                            case "CHAOTIC_NEUTRAL":
-                                alignments.add(Alignment.CHAOTIC_NEUTRAL);break;
-                            case "CHAOTIC_EVIL":
-                                alignments.add(Alignment.CHAOTIC_EVIL);break;
-                        }break;
+                            case "NEUTRAL_GOOD" -> alignments.add(Alignment.NEUTRAL_GOOD);
+                            case "NEUTRAL_NEUTRAL" -> alignments.add(Alignment.NEUTRAL_NEUTRAL);
+                            case "NEUTRAL_EVIL" -> alignments.add(Alignment.NEUTRAL_EVIL);
+                            case "LAWFUL_GOOD" -> alignments.add(Alignment.LAWFUL_GOOD);
+                            case "LAWFUL_NEUTRAL" -> alignments.add(Alignment.LAWFUL_NEUTRAL);
+                            case "LAWFUL_EVIL" -> alignments.add(Alignment.LAWFUL_EVIL);
+                            case "CHAOTIC_GOOD" -> alignments.add(Alignment.CHAOTIC_GOOD);
+                            case "CHAOTIC_NEUTRAL" -> alignments.add(Alignment.CHAOTIC_NEUTRAL);
+                            case "CHAOTIC_EVIL" -> alignments.add(Alignment.CHAOTIC_EVIL);
+                        }
+                        break;
                     case 4:
-                        races.add(Race.foundRace((String)jsonArray.get(i)));break;
+                        try {
+                            races.add(Race.findRace((String) jsonArray.get(i)));
+                            break;
+                        } catch (UnknownRaceException e) {
+                            new Dialog("Error while loading data", e).showAndWait();
+                        }
                     case 5:
                         switch ((String) jsonArray.get(i)) {
-                            case "BARBARIAN":
-                                jobTypes.add(JobType.BARBARIAN);break;
-                            case "BARD":
-                                jobTypes.add(JobType.BARD);break;
-                            case "CLERIC":
-                                jobTypes.add(JobType.CLERIC);break;
-                            case "DRUID":
-                                jobTypes.add(JobType.DRUID);break;
-                            case "FIGHTER":
-                                jobTypes.add(JobType.FIGHTER);break;
-                            case "MONK":
-                                jobTypes.add(JobType.MONK);break;
-                            case "PALADIN":
-                                jobTypes.add(JobType.PALADIN);break;
-                            case "RANGER":
-                                jobTypes.add(JobType.RANGER);break;
-                            case "ROGUE":
-                                jobTypes.add(JobType.ROGUE);break;
-                            case "SORCERER":
-                                jobTypes.add(JobType.SORCERER);break;
-                            case "WARLOCK":
-                                jobTypes.add(JobType.WARLOCK);break;
-                            case "WIZARD":
-                                jobTypes.add(JobType.WIZARD);break;
-                        }break;
+                            case "BARBARIAN" -> jobTypes.add(JobType.BARBARIAN);
+                            case "BARD" -> jobTypes.add(JobType.BARD);
+                            case "CLERIC" -> jobTypes.add(JobType.CLERIC);
+                            case "DRUID" -> jobTypes.add(JobType.DRUID);
+                            case "FIGHTER" -> jobTypes.add(JobType.FIGHTER);
+                            case "MONK" -> jobTypes.add(JobType.MONK);
+                            case "PALADIN" -> jobTypes.add(JobType.PALADIN);
+                            case "RANGER" -> jobTypes.add(JobType.RANGER);
+                            case "ROGUE" -> jobTypes.add(JobType.ROGUE);
+                            case "SORCERER" -> jobTypes.add(JobType.SORCERER);
+                            case "WARLOCK" -> jobTypes.add(JobType.WARLOCK);
+                            case "WIZARD" -> jobTypes.add(JobType.WIZARD);
+                        }
+                        break;
                     case 6: {
                         JSONArray spell = (JSONArray) jsonArray.get(i);
                         List<Spell> name = new ArrayList<>();
 
-                        for (int y = 0; y < spell.size(); y++) {
-                            name.add(new Spell((String)spell.get(y),"","","","",0,0, SORCERER,false,new ArrayList<Component>()));
+                        for (Object o : spell) {
+                            name.add(new Spell((String) o, "", "", "", "", 0, 0, SORCERER, false, new ArrayList<>()));
                         }
                         spells.add(name);
-                    }break;
+                    }
+                    break;
 
                     case 7: {
                         JSONArray skill = (JSONArray) jsonArray.get(i);
                         List<JobSkill> modfy = new ArrayList<>();
 
-                        for (int y = 0; y < skill.size(); y ++) {
-                           try {
-                               String s = (String) skill.get(y);
-                               modfy.add(JobSkill.getJobSkill(s.toUpperCase()));
-                           } catch (UnknownJobSkillException e) {
-                               e.printStackTrace();
-                               new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
-                           }
+                        for (Object o : skill) {
+                            try {
+                                String s = (String) o;
+                                modfy.add(JobSkill.getJobSkill(s.toUpperCase()));
+                            } catch (UnknownJobSkillException e) {
+                                e.printStackTrace();
+                                new Dialog(Alert.AlertType.ERROR, e.getMessage(), Arrays.toString(e.getStackTrace())).showAndWait();
+                            }
                         }
                         skills.add(modfy);
-                    }break;
+                    }
+                    break;
                     case 8:
-                        level.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        level.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 9:
-                        strength.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        strength.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 10:
-                        dexterity.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        dexterity.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 11:
-                        robustness.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        robustness.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 12:
-                        intelligence.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        intelligence.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 13:
-                        wisdom.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        wisdom.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 14:
-                        charisma.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        charisma.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 15:
-                        speed.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        speed.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 16:
-                        hp.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        hp.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 17:
-                        armor.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        armor.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 18:
-                        points.add(Integer.parseInt(jsonArray.get(i).toString()));break;
+                        points.add(Integer.parseInt(jsonArray.get(i).toString()));
+                        break;
                     case 19: {
                         JSONArray improvment = (JSONArray) jsonArray.get(i);
                         List<Improvement> name = new ArrayList<>();
 
-                        for (int y = 0; y < improvment.size(); y++) {
-                            switch ((String) improvment.get(y)) {
-                                case "Darkvision":
-                                    name.add(Improvement.DARKVISION);break;
-                                case "Dwarven Resilience":
-                                    name.add(Improvement.DWARVEN_RESILIENCE);break;
-                                case "Dwarven Combat Training":
-                                    name.add(Improvement.DWARVEN_COMBAT_TRAINING);break;
-                                case "Tool Proficiency":
-                                    name.add(Improvement.TOOL_PROFICIENCY);break;
-                                case "Stonecunning":
-                                    name.add(Improvement.STONECUNNING);break;
-                                case "Keen Senses":
-                                    name.add(Improvement.KEEN_SENSES);break;
-                                case "Fey Ancestry":
-                                    name.add(Improvement.FEY_ANCESTRY);break;
-                                case "Trance":
-                                    name.add(Improvement.TRANCE);break;
-                                case "Lucky":
-                                    name.add(Improvement.LUCKY);break;
-                                case "Brave":
-                                    name.add(Improvement.BRAVE);break;
-                                case "Halfling Nimbleness":
-                                    name.add(Improvement.HALFLING_NIMBLENESS);break;
-                                case "Draconic Ancestry":
-                                    name.add(Improvement.DRACONIC_ANCESTRY);break;
-                                case "Breath Weapon":
-                                    name.add(Improvement.BREATH_WEAPON);break;
-                                case "Damage Resistance":
-                                    name.add(Improvement.DAMAGE_RESISTANCE);break;
-                                case "Gnome cunning":
-                                    name.add(Improvement.GNOME_CUNNING);break;
-                                case "Skill Versatility":
-                                    name.add(Improvement.SKILL_VERSATILITY);break;
-                                case "Menacing":
-                                    name.add(Improvement.MENACING);break;
-                                case "Relentless Endurance":
-                                    name.add(Improvement.RELENTLESS_ENDURANCE);break;
-                                case "Savage Attacks":
-                                    name.add(Improvement.SAVAGE_ATTACKS);break;
-                                case "Hellish Resistance":
-                                    name.add(Improvement.HELLISH_RESISTANCE);break;
-                                case "Infernal Legacy":
-                                    name.add(Improvement.INFERNAL_LEGACY);break;
-                                case "Flight":
-                                    name.add(Improvement.FLIGHT);break;
-                                case "Talons":
-                                    name.add(Improvement.TALONS);break;
-                                default:
-                                    name.add(Improvement.DARKVISION);break;
+                        for (Object o : improvment) {
+                            switch ((String) o) {
+                                case "Darkvision" -> name.add(Improvement.DARKVISION);
+                                case "Dwarven Resilience" -> name.add(Improvement.DWARVEN_RESILIENCE);
+                                case "Dwarven Combat Training" -> name.add(Improvement.DWARVEN_COMBAT_TRAINING);
+                                case "Tool Proficiency" -> name.add(Improvement.TOOL_PROFICIENCY);
+                                case "Stonecunning" -> name.add(Improvement.STONECUNNING);
+                                case "Keen Senses" -> name.add(Improvement.KEEN_SENSES);
+                                case "Fey Ancestry" -> name.add(Improvement.FEY_ANCESTRY);
+                                case "Trance" -> name.add(Improvement.TRANCE);
+                                case "Lucky" -> name.add(Improvement.LUCKY);
+                                case "Brave" -> name.add(Improvement.BRAVE);
+                                case "Halfling Nimbleness" -> name.add(Improvement.HALFLING_NIMBLENESS);
+                                case "Draconic Ancestry" -> name.add(Improvement.DRACONIC_ANCESTRY);
+                                case "Breath Weapon" -> name.add(Improvement.BREATH_WEAPON);
+                                case "Damage Resistance" -> name.add(Improvement.DAMAGE_RESISTANCE);
+                                case "Gnome cunning" -> name.add(Improvement.GNOME_CUNNING);
+                                case "Skill Versatility" -> name.add(Improvement.SKILL_VERSATILITY);
+                                case "Menacing" -> name.add(Improvement.MENACING);
+                                case "Relentless Endurance" -> name.add(Improvement.RELENTLESS_ENDURANCE);
+                                case "Savage Attacks" -> name.add(Improvement.SAVAGE_ATTACKS);
+                                case "Hellish Resistance" -> name.add(Improvement.HELLISH_RESISTANCE);
+                                case "Infernal Legacy" -> name.add(Improvement.INFERNAL_LEGACY);
+                                case "Flight" -> name.add(Improvement.FLIGHT);
+                                case "Talons" -> name.add(Improvement.TALONS);
                             }
                         }
                         improvements.add(name);
-                    }break;
+                    }
+                    break;
                     case 20: {
                         JSONArray equipment = (JSONArray) jsonArray.get(i);
                         List<Equipment> adding = new ArrayList<>();
 
-                        for (int y = 0; y < equipment.size(); y++) {
-                            adding.add(new Equipment((String) equipment.get(y),"",EquipmentPart.HEAD,0,EquipmentType.LIGHT,0,0,0,0,0,0,0));
+                        for (Object o : equipment) {
+                            adding.add(new Equipment((String) o, "", EquipmentPart.HEAD, 0, EquipmentType.LIGHT, 0, 0, 0, 0, 0, 0, 0));
                         }
                         EquipmentInventory name = new EquipmentInventory(adding);
                         equipments.add(name);
-                    }break;
+                    }
+                    break;
                     case 21: {
                         JSONArray item = (JSONArray) jsonArray.get(i);
                         List<Item> name = new ArrayList<>();
@@ -568,7 +534,8 @@ public class FileReaders {
                             );
                         }
                         inventory.add(name);
-                    }break;
+                    }
+                    break;
                 }
             }
             for (int x = 0; x < names.size(); x++) {

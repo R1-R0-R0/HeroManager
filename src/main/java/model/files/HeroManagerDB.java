@@ -2,9 +2,8 @@ package model.files;
 
 import model.items.consumables.Consumable;
 import model.items.equipments.Equipment;
-import model.items.equipments.EquipmentType;
 import model.items.weapons.Weapon;
-import model.job.*;
+import model.job.Job;
 import model.spell.Spell;
 import view.SplashScreenView;
 
@@ -27,6 +26,7 @@ public class HeroManagerDB {
 
     /**
      * Method witch call on FileReaders getter to initialize the DataBase
+     *
      * @throws IOException if files doesn't exist
      */
     public static void init() throws IOException {
@@ -247,7 +247,7 @@ public class HeroManagerDB {
      *
      * @param equipment the modified equipment
      */
-    public static void modifyEquipment (Equipment equipment) {
+    public static void modifyEquipment(Equipment equipment) {
         for (Equipment modify : equipments) {
             if (modify.getName().equals(equipment.getName())) {
                 modify.setDescription(equipment.getDescription());
@@ -403,13 +403,14 @@ public class HeroManagerDB {
 
     /**
      * Find and remove target weapon
+     *
      * @param name of the target
      * @return true if it was remove , false if not
      */
-    public static boolean removeWeapon (String name){
+    public static boolean removeWeapon(String name) {
         for (Weapon weapon : weapons) {
             if (weapon.getName().equals(name))
-            return weapons.remove(weapon);
+                return weapons.remove(weapon);
         }
 
         return false;
@@ -417,10 +418,11 @@ public class HeroManagerDB {
 
     /**
      * Find and remove target conusmable
+     *
      * @param name of the target
      * @return true if it was remove , false if not
      */
-    public static boolean removeConsumable (String name){
+    public static boolean removeConsumable(String name) {
         for (Consumable consumable : consumables) {
             if (consumable.getName().equals(name))
                 return consumables.remove(consumable);
@@ -431,10 +433,11 @@ public class HeroManagerDB {
 
     /**
      * Find and remove target equipment
+     *
      * @param name of the target
      * @return true if it was remove , false if not
      */
-    public static boolean removeEquipment (String name){
+    public static boolean removeEquipment(String name) {
         for (Equipment equipment : equipments) {
             if (equipment.getName().equals(name))
                 return equipments.remove(equipment);
@@ -445,10 +448,11 @@ public class HeroManagerDB {
 
     /**
      * Find and remove target spell
+     *
      * @param name of the target
      * @return true if it was remove , false if not
      */
-    public static boolean removeSpell (String name){
+    public static boolean removeSpell(String name) {
         for (Spell spell : spells) {
             if (spell.getName().equals(name))
                 return spells.remove(spell);
@@ -459,10 +463,11 @@ public class HeroManagerDB {
 
     /**
      * Find and remove target job
+     *
      * @param name of the target
      * @return true if it was remove , false if not
      */
-    public static boolean removeJob (String name){
+    public static boolean removeJob(String name) {
         for (Job job : jobs) {
             if (job.getName().equals(name))
                 return jobs.remove(job);
