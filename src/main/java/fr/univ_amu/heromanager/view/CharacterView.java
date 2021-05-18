@@ -30,6 +30,7 @@ import fr.univ_amu.heromanager.utils.gui.Dialog;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * View manager of Character Card fr.univ_amu.heromanager.view.
@@ -96,8 +97,8 @@ public class CharacterView implements View {
 
             String pictureNameJobType = jobType.name().toLowerCase();
             String pictureNameGender = (gender == Gender.MAN) ? "_m.jpg" : "_f.jpg";
-            String pictureJobPath = ".." + IMAGES_JOBS_FOLDER + pictureNameJobType + pictureNameGender;
-            Image pictureJob = new Image(getClass().getResourceAsStream(pictureJobPath));
+            String pictureJobPath = IMAGES_JOBS_FOLDER + pictureNameJobType + pictureNameGender;
+            Image pictureJob = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureJobPath)));
 
             BackgroundImage bgImg = new BackgroundImage(pictureJob,
                     BackgroundRepeat.NO_REPEAT,
