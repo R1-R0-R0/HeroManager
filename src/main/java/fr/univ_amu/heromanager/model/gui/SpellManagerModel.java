@@ -268,7 +268,7 @@ public class SpellManagerModel implements Model {
             Platform.runLater(() -> {
                 busyDialog.close();
                 if (SpellManagerView.getInstance().getStage().getOwner() == null)
-                    new MenuView();
+                    new MenuModel();
             });
         }).start();
     }

@@ -546,7 +546,7 @@ public class ItemManagerModel implements Model {
             Platform.runLater(() -> {
                 busyDialog.close();
                 if (ItemManagerView.getInstance().getStage().getOwner() == null)
-                    new MenuView();
+                    new MenuModel();
             });
         }).start();
 
