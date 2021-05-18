@@ -1,12 +1,14 @@
 package utils.gui;
 
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.stage.StageStyle;
 
 import java.awt.*;
 import java.io.PrintWriter;
@@ -89,6 +91,8 @@ public class Dialog {
 
         alert.getDialogPane().getButtonTypes().clear();
         alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        alert.getDialogPane().lookupButton(ButtonType.OK).setDisable(true);
+        alert.initStyle(StageStyle.UNDECORATED);
 
         exceptionAlert = false;
     }
