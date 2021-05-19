@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
  *
  * @see fr.univ_amu.heromanager.view.SplashScreenView associated class fr.univ_amu.heromanager.view (MVC pattern)
  */
-public class SplashScreenController implements Initializable {
+public class SplashScreenController implements Controller {
 
     private static SplashScreenController instance;
 
