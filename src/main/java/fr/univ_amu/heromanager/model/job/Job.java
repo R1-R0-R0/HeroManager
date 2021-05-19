@@ -194,7 +194,6 @@ public class Job {
     public int getProficiencyLevel() {
 
         double proficiency = 1 + ((double) level / 4);
-        System.out.println(proficiency);
         return (int) Math.ceil(proficiency);
 
     }
