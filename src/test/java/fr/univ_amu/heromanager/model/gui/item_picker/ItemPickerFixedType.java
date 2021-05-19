@@ -1,5 +1,6 @@
 package fr.univ_amu.heromanager.model.gui.item_picker;
 
+import fr.univ_amu.heromanager.model.files.HeroManagerDB;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import fr.univ_amu.heromanager.model.gui.ItemPickerModel;
@@ -20,6 +21,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -34,7 +36,8 @@ public class ItemPickerFixedType {
             consumable2 = new Consumable("Gameboy", "A simple gameboy.");
 
     @Start
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
+        HeroManagerDB.init();
         ItemPickerModel model = new ItemPickerModel(primaryStage, ItemType.CONSUMABLES, selectedItem -> {});
         model.setWeaponList(Collections.singletonList(weapon));
         model.setEquipmentList(Collections.singletonList(equipment));
@@ -48,7 +51,7 @@ public class ItemPickerFixedType {
     }
 
     @Test
-    @DisplayName("Check if list fr.univ_amu.heromanager.view already show imposed items")
+    @DisplayName("Check if list view already show imposed items")
     public void itemListPresetTest(FxRobot robot) {
         Assertions.assertEquals(2, ((ListView<Item>) robot.lookup("#itemList").tryQuery().get()).getItems().size());
     }

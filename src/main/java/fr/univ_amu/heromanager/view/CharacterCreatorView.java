@@ -197,11 +197,12 @@ public class CharacterCreatorView implements View {
     }
 
     /**
-     * Allows to define spells list fr.univ_amu.heromanager.view elements
+     * Allows to define spells list view elements
      *
      * @param spells spells to show
      */
     public void setSpellsListView(List<Spell> spells) {
+        System.out.println("spells.size() = " + spells.size());
         ObservableList<SpellItem> items = FXCollections.observableArrayList();
 
         for (Spell spell : spells)
@@ -211,7 +212,7 @@ public class CharacterCreatorView implements View {
     }
 
     /**
-     * @return stage of this fr.univ_amu.heromanager.view
+     * @return stage of this view
      */
     public Stage getStage() {
         return stage;

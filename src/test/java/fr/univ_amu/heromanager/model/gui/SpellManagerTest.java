@@ -1,5 +1,7 @@
 package fr.univ_amu.heromanager.model.gui;
 
+import fr.univ_amu.heromanager.model.files.HeroManagerDB;
+import javafx.application.Platform;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -14,6 +16,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import java.io.IOException;
 import java.util.Collections;
 
 @ExtendWith(ApplicationExtension.class)
@@ -34,7 +37,8 @@ public class SpellManagerTest {
             );
 
     @Start
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
+        HeroManagerDB.init();
         new SpellManagerModel();
     }
 
@@ -74,13 +78,13 @@ public class SpellManagerTest {
 
         robot.clickOn("#newSpellButton");
 
-        Assertions.assertEquals(1, ((ListView<Spell>) robot.lookup("#spellList").tryQuery().get()).getItems().size());
+        Assertions.assertEquals(3, ((ListView<Spell>) robot.lookup("#spellList").tryQuery().get()).getItems().size());
     }
 
     @Test
     @DisplayName("Spell modification test")
     public void spellModificationTest(FxRobot robot) {
-        SpellManagerModel.getInstance().setSpells(Collections.singletonList(spell1));
+        Platform.runLater(() -> SpellManagerModel.getInstance().setSpells(Collections.singletonList(spell1)));
 
         Assertions.assertTrue(robot.lookup("#updateSpellButton").tryQuery().get().isDisabled());
         Assertions.assertTrue(robot.lookup("#deleteSpellButton").tryQuery().get().isDisabled());
@@ -102,7 +106,8 @@ public class SpellManagerTest {
     @Test
     @DisplayName("Spell deletion test")
     public void spellDeletiontest(FxRobot robot) {
-        SpellManagerModel.getInstance().setSpells(Collections.singletonList(spell1));
+        HeroManagerDB.addSpell(spell1);
+        Platform.runLater(() -> SpellManagerModel.getInstance().setSpells(Collections.singletonList(spell1)));
 
         Assertions.assertTrue(robot.lookup("#updateSpellButton").tryQuery().get().isDisabled());
         Assertions.assertTrue(robot.lookup("#deleteSpellButton").tryQuery().get().isDisabled());

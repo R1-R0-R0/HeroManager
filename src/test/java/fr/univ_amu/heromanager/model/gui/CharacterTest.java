@@ -1,6 +1,8 @@
 package fr.univ_amu.heromanager.model.gui;
 
 import fr.univ_amu.heromanager.controller.CharacterController;
+import fr.univ_amu.heromanager.view.CharacterCreatorView;
+import fr.univ_amu.heromanager.view.CharacterView;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -48,16 +50,16 @@ public class CharacterTest {
     @DisplayName("Test setting up new hp amount")
     public void characterHpViewTest(FxRobot robot) {
         Job character = CharacterModel.getInstance().getCharacter();
-        character.setHealthPoints(50);
-        Assertions.assertEquals(50, character.getHealthPoints());
+        character.setHealthPoints(2);
+        Assertions.assertEquals(2, character.getHealthPoints());
 
         robot.clickOn("#hpBar");
         robot.clickOn("#newHPInput");
-        robot.write("25");
+        robot.write("1");
         robot.clickOn("#setButton");
 
-        Assertions.assertEquals(25, character.getHealthPoints());
-        Assertions.assertEquals("25 / 100", CharacterController.getInstance().hpText.getText());
+        Assertions.assertEquals(1, character.getHealthPoints());
+        Assertions.assertEquals(character.getHealthPoints() + " / " + character.getMaxHp(), CharacterController.getInstance().hpText.getText());
     }
 
     @Test
@@ -79,8 +81,8 @@ public class CharacterTest {
     }
 
     @Test
-    @DisplayName("")
-    public void characterViewTest(FxRobot robot) throws InterruptedException {
+    @DisplayName("Character view test")
+    public void characterViewTest(FxRobot robot) {
         TabPane tabPane = ((TabPane) robot.lookup("#tabPane").tryQuery().get());
 
         Assertions.assertEquals("Hiraye", tabPane.getTabs().get(0).getText());
@@ -90,25 +92,18 @@ public class CharacterTest {
 
         Assertions.assertEquals(9, ((TextFlow) robot.lookup("#jobInfo").tryQuery().get()).getChildren().size());
         Assertions.assertEquals(2, ((TextFlow) robot.lookup("#skillsInfo").tryQuery().get()).getChildren().size());
-        Assertions.assertEquals(2, ((TextFlow) robot.lookup("#improvementsInfo").tryQuery().get()).getChildren().size());
+        Assertions.assertEquals(4, ((TextFlow) robot.lookup("#improvementsInfo").tryQuery().get()).getChildren().size());
         // Assertions.assertEquals("100 / 100", ((Text) robot.lookup("#hpText").tryQuery().get()).getText());
         Assertions.assertEquals("LVL 01", ((Text) robot.lookup("#levelText").tryQuery().get()).getText());
+
+        Assertions.assertTrue(CharacterController.getInstance().spellsTabDongle.isDisabled());
+        CharacterController.getInstance().spellsTabDongle.setDisable(false);
 
         robot.clickOn("#spellsTabDongle");
         robot.clickOn("#spellList");
         robot.type(KeyCode.ENTER, KeyCode.DOWN);
 
         Assertions.assertEquals("B spell", ((TextArea) robot.lookup("#spellDesc").tryQuery().get()).getText());
-
-        /*
-        robot.clickOn("#equipmentTabDongle");
-
-        
-
-        robot.clickOn("#characterTab");
-
-         */
-
     }
 
     @Test
@@ -161,8 +156,6 @@ public class CharacterTest {
 
         robot.clickOn("#equipmentTabDongle");
         robot.clickOn("#headPane");
-        robot.clickOn("#unequipAction");
-        robot.sleep(250);
         robot.clickOn("#unequipAction");
 
         Assertions.assertNull(CharacterModel.getInstance().getCharacter().getEquippedEquipments().getHead());

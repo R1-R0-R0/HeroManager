@@ -33,22 +33,28 @@ public class HeroManagerDB {
         SplashScreenView splashScreen = SplashScreenView.getInstance();
 
         weapons = FileReaders.getWeapons();
-        splashScreen.setLoading(16);
+        if (splashScreen != null)
+            splashScreen.setLoading(16);
 
         spells = FileReaders.getSpells();
-        splashScreen.setLoading(32);
+        if (splashScreen != null)
+            splashScreen.setLoading(32);
 
         consumables = FileReaders.getConsumable();
-        splashScreen.setLoading(48);
+        if (splashScreen != null)
+            splashScreen.setLoading(48);
 
         equipments = FileReaders.getEquipement();
-        splashScreen.setLoading(64);
+        if (splashScreen != null)
+            splashScreen.setLoading(64);
 
         jobs = FileReaders.getCaracters();
-        splashScreen.setLoading(80);
+        if (splashScreen != null)
+            splashScreen.setLoading(80);
 
         initJobs();
-        splashScreen.setLoading(100);
+        if (splashScreen != null)
+            splashScreen.setLoading(100);
     }
 
     /**
@@ -104,6 +110,8 @@ public class HeroManagerDB {
      * @return List of Weapon
      */
     public static List<Weapon> getWeapons() {
+        if (weapons == null) return new ArrayList<>();
+
         return new ArrayList<>(weapons);
     }
 
@@ -122,6 +130,7 @@ public class HeroManagerDB {
      * @return List of consumable
      */
     public static List<Consumable> getConsumables() {
+        if (consumables == null) return new ArrayList<>();
         return new ArrayList<>(consumables);
     }
 
@@ -131,6 +140,7 @@ public class HeroManagerDB {
      * @return List of Equipment
      */
     public static List<Equipment> getEquipments() {
+        if (equipments == null) return new ArrayList<>();
         return new ArrayList<>(equipments);
     }
 
@@ -395,7 +405,7 @@ public class HeroManagerDB {
      * @return the last played Character
      */
     public static Job lastPlayedParty() {
-        if (jobs.size() == 0)
+        if (jobs == null || jobs.size() == 0)
             return null;
 
         return jobs.get(0);

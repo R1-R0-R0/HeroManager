@@ -1,7 +1,9 @@
 package fr.univ_amu.heromanager.model.gui;
 
 import fr.univ_amu.heromanager.controller.CharacterCreatorController;
+import fr.univ_amu.heromanager.model.files.HeroManagerDB;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
@@ -25,6 +27,7 @@ import fr.univ_amu.heromanager.view.CharacterCreatorView;
 import fr.univ_amu.heromanager.view.CharacterView;
 import fr.univ_amu.heromanager.view.MenuView;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -33,7 +36,8 @@ import java.util.List;
 public class CharacterCreatorTest extends Application {
 
     @Start
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
+        HeroManagerDB.init();
         new MenuModel();
     }
 
@@ -205,15 +209,11 @@ public class CharacterCreatorTest extends Application {
                 "no duration", 5, 35, JobType.WIZARD, true,
                 Collections.singletonList(Component.VOCAL));
         Spell frostSpike = new Spell("Frostspike", "Launch a spike of ice dealing magical movement impairment", "Ice", "instant",
-                "3 turns", 6, 40, JobType.SORCERER, false,
+                "3 turns", 6, 40, JobType.WARLOCK, false,
                 Arrays.asList(Component.VOCAL, Component.MATERIAL));
         List<Spell> spells = Arrays.asList(fireBall, frostSpike);
 
-        List<JobSkill> skills = Arrays.asList();
-
         createWarlock(robot);
-
-        CharacterCreatorView.getInstance().setSpellsListView(spells);
 
         robot.clickOn("#createCharacterButton");
         robot.clickOn("#spinnerStrength");
@@ -223,16 +223,11 @@ public class CharacterCreatorTest extends Application {
         }
 
         robot.clickOn("#skillsTab");
-        Assertions.assertEquals(skills.size(), ((ListView<JobSkillItem>) robot.lookup("#skillsListView").tryQuery().get()).getItems().size());
-        if (skills.size() > 0) {
-            robot.type(KeyCode.TAB);
+        Assertions.assertEquals(JobSkill.values().length, ((ListView<JobSkillItem>) robot.lookup("#skillsListView").tryQuery().get()).getItems().size());
 
-            for (int i = 0; i < skills.size(); i++)
-                robot.type(KeyCode.TAB, KeyCode.ENTER);
-        }
-
+        Platform.runLater(() -> CharacterCreatorView.getInstance().setSpellsListView(spells));
         robot.clickOn("#spellsTab");
-        Assertions.assertEquals(spells.size(), ((ListView<SpellItem>) robot.lookup("#spellsListView").tryQuery().get()).getItems().size());
+        Assertions.assertEquals(2, ((ListView<SpellItem>) robot.lookup("#spellsListView").tryQuery().get()).getItems().size());
         if (spells.size() > 0) {
             robot.type(KeyCode.TAB);
 
@@ -249,7 +244,6 @@ public class CharacterCreatorTest extends Application {
         Job character = CharacterModel.getInstance().getCharacter();
         Assertions.assertEquals(1, character.getLevel());
         Assertions.assertEquals(0, character.getInventory().size());
-        Assertions.assertEquals(skills.size(), character.getSkills().size());
         Assertions.assertEquals(spells.size(), character.getSpellInventory().size());
 
         robot.clickOn("#spellsTabDongle");

@@ -1,5 +1,6 @@
 package fr.univ_amu.heromanager.model.gui;
 
+import fr.univ_amu.heromanager.model.files.HeroManagerDB;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
@@ -27,6 +28,8 @@ public class LoadGameTest {
 
     @Start
     public void start(Stage primaryStage) throws Exception {
+        HeroManagerDB.init();
+
         new MenuModel();
         new LoadGameModel();
 

@@ -1,6 +1,7 @@
 package fr.univ_amu.heromanager.model.gui;
 
 import fr.univ_amu.heromanager.controller.ItemManagerController;
+import fr.univ_amu.heromanager.model.files.HeroManagerDB;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -22,6 +23,8 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 import fr.univ_amu.heromanager.utils.ListenableArrayList;
 
+import java.io.IOException;
+
 @ExtendWith(ApplicationExtension.class)
 @DisplayName("GUI Item Manager Tests")
 public class ItemManagerTest {
@@ -33,7 +36,8 @@ public class ItemManagerTest {
             consumable2 = new Consumable("Gameboy", "A simple gameboy.");
 
     @Start
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
+        HeroManagerDB.init();
         new ItemManagerModel();
     }
 
