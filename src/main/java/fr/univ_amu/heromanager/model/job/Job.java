@@ -571,10 +571,18 @@ public class Job {
         return inventory;
     }
 
+    /**
+     * set inventory to given inventory
+     * @param inventory
+     */
     public void setInventory(List<Item> inventory) {
         this.inventory = inventory;
     }
 
+    /**
+     * remove given equipment from inventory
+     * @param equipment
+     */
     public void removeFromInventory(Equipment equipment) {
         if (equipment == null) {
             return;
@@ -586,7 +594,7 @@ public class Job {
             }
 
         }
-        inventory = newInventory;
+        setInventory(newInventory);
     }
 
     /**
@@ -677,6 +685,11 @@ public class Job {
             default -> spellSlots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         }
     }
+
+    /**
+     * set spellSlot
+     * @param spellSlots
+     */
 
     public void setSpellSlots(int[] spellSlots) {
         this.spellSlots = spellSlots;
