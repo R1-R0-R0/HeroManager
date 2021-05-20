@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'fr.univ_amu.HeroManager'
-version 'v0.1-alpha'
+version 'v0.2-alpha'
 
 mainClassName = "fr.univ_amu.heromanager.Main"
 
